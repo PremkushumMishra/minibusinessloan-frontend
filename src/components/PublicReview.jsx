@@ -184,14 +184,7 @@ const PublicReview = () => {
           </button>
         </div>
 
-        {/* Company Address */}
-        <div className="mt-12 text-white">
-          <h3 className="text-xl font-semibold mb-4">Our Location</h3>
-          <div className="space-y-1">
-            <p className="text-sm md:text-base">Lalita Park, Gurudwara, Lalita Park,</p>
-            <p className="text-sm md:text-base">New Delhi, East Delhi, Delhi, 110092</p>
-          </div>
-        </div>
+  
       </div>
 
       {/* Animation Styles */}

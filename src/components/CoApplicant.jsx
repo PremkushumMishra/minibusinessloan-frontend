@@ -14,7 +14,8 @@ const CoApplicant = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
   const [error, setError] = useState("");
-  const [clientId, setClientId] = useState("");
+  // const [clientId, setClientId] = useState("");
+  const [customerID, setCustomerID] = useState(CUSTOMER_ID);
 
   const navigate = useNavigate();
 
@@ -62,7 +63,7 @@ const CoApplicant = () => {
         {
           phone: mobile,
           pan: pan,
-          clientId: clientId,
+          customerID: customerID,
         },
         {
           headers: {
@@ -75,14 +76,11 @@ const CoApplicant = () => {
       );
       console.log(response, "response");
 
-      // if (response.data && response.data.status) {
-      if (
-        response.data?.status === true &&
-        response.data?.message === "Success"
-      ) {
+      if (response.data?.status === true) {
         // recieve clientId
-        const recievedClientId = response.data?.clientId;
-        setClientId(recievedClientId);
+        // const recievedClientId = response.data?.clientId;
+        // setClientId(recievedClientId);   
+        setCustomerID(response.data?.customerID);
         setShowOtpInput(true);
         setStatus(null);
         alert("OTP sent to co-applicant mobile number!");
@@ -116,7 +114,8 @@ const CoApplicant = () => {
         {
           phone: mobile,
           otp: otp,
-          clientId: clientId,
+          // customerID: CUSTOMER_ID,
+          customerID: customerID,
         },
         {
           headers: {
