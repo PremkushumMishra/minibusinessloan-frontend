@@ -69,7 +69,9 @@ const MobileVerification = () => {
 
   // API Configuration - Just change these URLs when switching APIs
   const API_CONFIG = {
-    BASE_URL: "http://10.6.3.57:3000/api/v1",
+    // BASE_URL: "http://10.6.3.57:3000/api/v1",
+    // live url
+    BASE_URL: "http://103.104.73.107:3004/api/v1",
     ENDPOINTS: {
       SEND_OTP: "/send-otp",
       VERIFY_OTP: "/verify-otp",
@@ -157,8 +159,10 @@ const MobileVerification = () => {
       const mobileNumberWithoutPrefix = mobileNumber.slice(3);
       // const client_id = "your_client_id_here";
       const response = await axios.post(
-        "http://10.6.3.57:3000/api/v1/auth/verify-otp-customer",
-        // `${API_CONFIG.BASE_URL}/auth/verify-otp-customer`,
+        // "http://10.6.3.57:3000/api/v1/auth/verify-otp-customer",
+        // live url
+        // "http://103.104.73.107:3004/api/v1/auth/verify-otp-customer",
+        `${API_CONFIG.BASE_URL}/auth/verify-otp-customer`,
         { phone: mobileNumberWithoutPrefix, otp:otp, client_id: clientId },
         {
           headers: { "Content-Type": "application/json" },

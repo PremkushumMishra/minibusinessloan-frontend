@@ -7,7 +7,7 @@ const GetAmount = () => {
         Get amount <span className="text-4xl md:text-5xl text-[#E53935] font-extrabold">₹5,000</span> upto <span className="text-4xl md:text-5xl text-[#E53935] font-extrabold">₹10,00,000</span>
       </h2>
       <p className="text-[#003366] text-lg mt-4 mb-10">
-        Quick approval within 30 minutes • 120 days tenure • No prepayment
+        Quick approval within 30 minutes • 100 days tenure • No prepayment
         penalty
       </p>
       <Link to="/mobile-verification">
