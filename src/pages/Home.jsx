@@ -27,11 +27,11 @@ const Home = () => {
       <PublicReview />
       <GetAmount />
       {/* <KycSuccess /> */}
-      <CoApplicant/>
+      {/* <CoApplicant/> */}
       {/* <ApplicantPersonalDetails/> */}
       {/* <ApplicantBusinessDetails /> */}
       {/* <LoanEligiblity/> */}
-      <AdditionalInfo/>
+      {/* <AdditionalInfo/> */}
       </>
   );
 };
