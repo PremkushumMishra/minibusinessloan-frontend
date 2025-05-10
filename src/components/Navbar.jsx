@@ -129,7 +129,7 @@ const Navbar = () => {
           {/* Mobile Menu Header */}
           <div className="p-6 border-b border-gray-200 flex items-center justify-center">
             <img
-              src="/logo.jpg"
+              src="/newlogo.png"
               alt="Blinkr Logo"
               className="h-24 w-auto object-contain bg-white p-1 rounded"
               style={{ maxWidth: "180px", maxHeight: "100px" }}
