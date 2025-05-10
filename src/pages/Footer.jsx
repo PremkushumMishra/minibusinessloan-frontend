@@ -1,9 +1,7 @@
 import React from "react";
-import {
-  FaYoutube,
-  FaFacebookF,
-  FaInstagram,
-} from "react-icons/fa6";
+import { Link } from "react-router-dom";
+
+import { FaYoutube, FaFacebookF, FaInstagram } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -19,10 +17,14 @@ const Footer = () => {
             <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">
               Quick Link
             </h2>
+
             <div className="space-y-1">
-              <p className="text-sm md:text-base text-gray-700 hover:text-gray-900 transition-colors cursor-pointer font-bold">
+              <Link
+                to="/terms"
+                className="text-sm md:text-base text-gray-700 hover:text-gray-900 transition-colors cursor-pointer font-bold"
+              >
                 Terms & Condition
-              </p>
+              </Link>
               <p className="text-sm md:text-base text-gray-700 hover:text-gray-900 transition-colors cursor-pointer font-bold">
                 Privacy Policy
               </p>
@@ -38,7 +40,7 @@ const Footer = () => {
             </h3>
             <div className="space-y-1">
               <p className="text-sm md:text-base text-gray-700 hover:text-gray-900 transition-colors cursor-pointer font-bold">
-              info@minibusinessloanloan.com 
+                info@minibusinessloan.com
               </p>
               <p className="text-sm md:text-base text-gray-700 hover:text-gray-900 transition-colors cursor-pointer font-bold">
                 +91 7814447895
@@ -51,9 +53,9 @@ const Footer = () => {
               Reach Us
             </h3>
             <div className="space-y-1">
-              <p className="text-sm md:text-base text-gray-700 font-bold">
+              {/* <p className="text-sm md:text-base text-gray-700 font-bold">
                 2nd Floor, 1/50, Ganga Appartment,
-              </p>
+              </p> */}
               <p className="text-sm md:text-base text-gray-700 font-bold">
                 Lalita Park, Gurudwara, Lalita Park,
               </p>
@@ -69,7 +71,11 @@ const Footer = () => {
         {/* Logo Left & Social Icons Right */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 relative z-10">
           <div className="flex items-center justify-center text-lg md:text-xl font-b px-3 md:px-4 py-1 rounded-full text-center w-full md:w-auto">
-            <img src="/newlogo.png" alt="Blinkr Logo" className="h-24 w-24 rounded-full object-contain" />
+            <img
+              src="/newlogo.png"
+              alt="Blinkr Logo"
+              className="h-24 w-24 rounded-full object-contain"
+            />
           </div>
 
           <div className="flex gap-3 mr-10 md:gap-4 justify-center w-full md:w-auto">
@@ -96,7 +102,7 @@ const Footer = () => {
 
       {/* Bottom Section */}
       <div className="text-center text-black text-sm md:text-base py-2 md:py-3 bg-gray-300 rounded-b-3xl mb-4 font-bold">
-        Mini  Business Loan. 2025 All rights reserved
+        Mini Business Loan. 2025 All rights reserved
       </div>
     </>
   );

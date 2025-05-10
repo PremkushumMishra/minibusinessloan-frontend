@@ -4,10 +4,10 @@ const About = () => {
   return (
     <div className="min-h-screen bg-[#003366]">
       {/* Main Content */}
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 mt-8 py-10">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8  py-10">
         {/* Our Story Section */}
         <div className="mb-12 bg-white/90 backdrop-blur-sm rounded-xl p-6 sm:p-8 shadow-lg border-l-8 border-[#E53935]">
-          <h2 className="text-3xl font-bold text-[#003366] mb-6 text-center">
+          <h2 className="text-3xl font-bold text-[#003366] mb-6 mt-10 text-center">
             Our Journey
           </h2>
           <p className="text-gray-700 leading-relaxed text-lg">

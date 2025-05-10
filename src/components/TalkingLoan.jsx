@@ -9,7 +9,7 @@ const TalkingLoan = () => {
         <img
           src={homepic}
           alt="Home"
-          className="w-full h-[500px] object-cover object-[20%] rounded-3xl"
+          className="w-full h-[500px] object-cover object-[20%]"
         />
       </div>
     </div>

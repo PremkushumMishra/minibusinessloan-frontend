@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const ContactUs = () => {
   return (
@@ -8,17 +8,23 @@ const ContactUs = () => {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white mb-4">Contact Us</h1>
           <p className="text-lg text-gray-300">
-            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            Have questions? We'd love to hear from you. Send us a message and
+            we'll respond as soon as possible.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Form */}
           <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h2 className="text-2xl font-bold text-[#003366] mb-6">Send us a Message</h2>
+            <h2 className="text-2xl font-bold text-[#003366] mb-6">
+              Send us a Message
+            </h2>
             <form className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Full Name
                 </label>
                 <input
@@ -30,7 +36,10 @@ const ContactUs = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Email Address
                 </label>
                 <input
@@ -42,7 +51,10 @@ const ContactUs = () => {
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Phone Number
                 </label>
                 <input
@@ -54,7 +66,10 @@ const ContactUs = () => {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Subject
                 </label>
                 <input
@@ -66,7 +81,10 @@ const ContactUs = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Message
                 </label>
                 <textarea
@@ -90,18 +108,22 @@ const ContactUs = () => {
           <div className="space-y-6">
             {/* Office Address */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-[#003366] mb-4">Our Office</h3>
+              <h3 className="text-xl font-bold text-[#003366] mb-4">
+                Our Office
+              </h3>
               <div className="space-y-2 text-gray-600">
-                <p>123 Business Park</p>
-                <p>Tech Hub, Sector 62</p>
-                <p>Noida, Uttar Pradesh 201301</p>
+                <p>Lalita Park, Gurudwara, Lalita Park</p>
+                <p>New Delhi, East Delhi</p>
+                <p>Delhi, 110092</p>
                 <p>India</p>
               </div>
             </div>
 
             {/* Contact Details */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-[#003366] mb-4">Contact Details</h3>
+              <h3 className="text-xl font-bold text-[#003366] mb-4">
+                Contact Details
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <span className="text-2xl">📞</span>
@@ -109,7 +131,7 @@ const ContactUs = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <span className="text-2xl">✉️</span>
-                  <p className="text-gray-600">info@minibusinessloanloan.com</p>
+                  <p className="text-gray-600">info@minibusinessloan.com</p>
                 </div>
                 <div className="flex items-center space-x-3">
                   <span className="text-2xl">⏰</span>
@@ -120,18 +142,32 @@ const ContactUs = () => {
 
             {/* Social Media */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-[#003366] mb-4">Connect With Us</h3>
+              <h3 className="text-xl font-bold text-[#003366] mb-4">
+                Connect With Us
+              </h3>
               <div className="flex space-x-6">
-                <a href="#" className="text-2xl hover:text-[#003366] transition-colors duration-300">
+                <a
+                  href="#"
+                  className="text-2xl hover:text-[#003366] transition-colors duration-300"
+                >
                   📱
                 </a>
-                <a href="#" className="text-2xl hover:text-[#003366] transition-colors duration-300">
+                <a
+                  href="#"
+                  className="text-2xl hover:text-[#003366] transition-colors duration-300"
+                >
                   💼
                 </a>
-                <a href="#" className="text-2xl hover:text-[#003366] transition-colors duration-300">
+                <a
+                  href="#"
+                  className="text-2xl hover:text-[#003366] transition-colors duration-300"
+                >
                   📸
                 </a>
-                <a href="#" className="text-2xl hover:text-[#003366] transition-colors duration-300">
+                <a
+                  href="#"
+                  className="text-2xl hover:text-[#003366] transition-colors duration-300"
+                >
                   🐦
                 </a>
               </div>
@@ -140,8 +176,10 @@ const ContactUs = () => {
         </div>
 
         {/* Map Section */}
-        <div className="mt-12 bg-white rounded-2xl shadow-xl p-8">
-          <h3 className="text-2xl font-bold text-[#003366] mb-6 text-center">Find Us</h3>
+        {/* <div className="mt-12 bg-white rounded-2xl shadow-xl p-8">
+          <h3 className="text-2xl font-bold text-[#003366] mb-6 text-center">
+            Find Us
+          </h3>
           <div className="aspect-w-16 aspect-h-9">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.2233913121413!2d77.4054523!3d28.5022296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce626851f7009%3A0x621185133cfd1ad1!2sGurugram%2C%20Haryana!5e0!3m2!1sen!2sin!4v1647880021744!5m2!1sen!2sin"
@@ -154,7 +192,7 @@ const ContactUs = () => {
               className="rounded-lg"
             ></iframe>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

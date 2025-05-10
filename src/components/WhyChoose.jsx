@@ -43,7 +43,7 @@ const WhyChoose = () => {
   return (
     <div className="bg-[#003366] py-16 px-8">
       {/* <h2 className="text-3xl font-bold text-center mt-1 mb-8 text-white">Why Choose Us ?</h2> */}
-      <h2 className="text-3xl font-bold text-center  mt-0 mb-6 text-white">
+      <h2 className="text-3xl font-bold text-center  mt-0 mb-4 text-white">
         Why Choose Us ?
       </h2>
 
