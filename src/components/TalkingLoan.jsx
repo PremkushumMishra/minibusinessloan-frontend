@@ -1,5 +1,5 @@
 import React from "react";
-import homepic from "../assets/homepic.jpg";
+import homepic from "../assets/homepicnew.jpg";
 
 const TalkingLoan = () => {
   return (

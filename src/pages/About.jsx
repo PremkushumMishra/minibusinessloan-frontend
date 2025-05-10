@@ -2,12 +2,12 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="min-h-screen mt-1.5 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE]">
+    <div className="min-h-screen bg-[#003366]">
       {/* Main Content */}
-      <div className="container mx-auto px-6  mt-16 py-16">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 mt-8 py-10">
         {/* Our Story Section */}
-        <div className="mb-16 bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg border-l-4 border-[#003366]">
-          <h2 className="text-3xl font-bold text-[#003366] mb-6 text-center">
+        <div className="mb-12 bg-white/90 backdrop-blur-sm rounded-xl p-6 sm:p-8 shadow-lg border-l-8 border-[#E53935]">
+          <h2 className="text-3xl font-bold text-[#E53935] mb-6 text-center">
             Our Journey
           </h2>
           <p className="text-gray-700 leading-relaxed text-lg">
@@ -21,8 +21,8 @@ const About = () => {
         </div>
 
         {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-4 border-[#003366]">
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#003366]">
             <h3 className="text-2xl font-bold text-[#003366] mb-4">
               Our Mission
             </h3>
@@ -36,7 +36,7 @@ const About = () => {
               </ul>
             </p>
           </div>
-          <div className="bg-white/90 backdrop-blur-sm p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-4 border-[#E53935]">
+          <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#E53935]">
             <h3 className="text-2xl font-bold text-[#E53935] mb-4">
               Our Vision
             </h3>
@@ -53,12 +53,12 @@ const About = () => {
         </div>
 
         {/* Services Section */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">
             Our Services
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#003366]">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#003366]">
               <div className="text-4xl mb-4">💻</div>
               <h4 className="text-xl font-bold text-[#003366] mb-3">
                 Web Development
@@ -68,7 +68,7 @@ const About = () => {
                 websites built with cutting-edge technologies.
               </p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#E53935]">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#E53935]">
               <div className="text-4xl mb-4">📱</div>
               <h4 className="text-xl font-bold text-[#E53935] mb-3">
                 Mobile Apps
@@ -78,7 +78,7 @@ const About = () => {
                 Android with seamless user experience.
               </p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#003366]">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#003366]">
               <div className="text-4xl mb-4">🤖</div>
               <h4 className="text-xl font-bold text-[#003366] mb-3">
                 AI Solutions
@@ -92,8 +92,8 @@ const About = () => {
         </div>
 
         {/* Achievements Section */}
-        <div className="mb-16 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-xl p-8 text-gray-800 shadow-lg">
-          <h2 className="text-3xl font-bold mb-8 text-center">
+        <div className="mb-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-xl p-8 text-white shadow-lg">
+          <h2 className="text-3xl font-bold mb-8 text-center text-white">
             Our Achievements
           </h2>
           <div className="grid md:grid-cols-4 gap-8 text-center">
@@ -117,12 +117,12 @@ const About = () => {
         </div>
 
         {/* Core Values */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">
             Our Core Values
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#003366]">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#003366]">
               <h4 className="text-xl font-bold text-[#003366] mb-3">
                 Innovation
               </h4>
@@ -131,7 +131,7 @@ const About = () => {
                 wisdom.
               </p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#E53935]">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#E53935]">
               <h4 className="text-xl font-bold text-[#E53935] mb-3">
                 Excellence
               </h4>
@@ -140,7 +140,7 @@ const About = () => {
                 standards.
               </p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-4 border-[#003366]">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#003366]">
               <h4 className="text-xl font-bold text-[#003366] mb-3">
                 Integrity
               </h4>
@@ -153,13 +153,13 @@ const About = () => {
         </div>
 
         {/* Team Section */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">
             Our Leadership Team
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300 border-l-4 border-[#003366]">
-              <div className="w-32 h-32 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-full mx-auto mb-4 flex items-center justify-center text-gray-800 text-4xl font-bold">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#003366]">
+              <div className="w-32 h-32 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold">
                 RK
               </div>
               <h4 className="text-xl font-bold text-[#003366]">Rajesh Kumar</h4>
@@ -168,8 +168,8 @@ const About = () => {
                 IIT Delhi, 15+ years experience
               </p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300 border-l-4 border-[#E53935]">
-              <div className="w-32 h-32 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-full mx-auto mb-4 flex items-center justify-center text-gray-800 text-4xl font-bold">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#E53935]">
+              <div className="w-32 h-32 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold">
                 AS
               </div>
               <h4 className="text-xl font-bold text-[#E53935]">Arjun Sharma</h4>
@@ -178,8 +178,8 @@ const About = () => {
                 IIT Bombay, Tech Visionary
               </p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300 border-l-4 border-[#003366]">
-              <div className="w-32 h-32 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-full mx-auto mb-4 flex items-center justify-center text-gray-800 text-4xl font-bold">
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#003366]">
+              <div className="w-32 h-32 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold">
                 VP
               </div>
               <h4 className="text-xl font-bold text-[#003366]">Vikram Patel</h4>

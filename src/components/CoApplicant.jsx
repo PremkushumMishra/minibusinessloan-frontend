@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import API_CONFIG from "../config";
 import { useNavigate } from "react-router-dom";
+// const [clientId, setClientId] = useState(null); // <-- state for storing client_id
+
 const CUSTOMER_ID = "TABL004"; // TODO: Make dynamic if needed
 
 const CoApplicant = () => {
@@ -12,6 +14,8 @@ const CoApplicant = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
   const [error, setError] = useState("");
+  const [clientId, setClientId] = useState("");
+
   const navigate = useNavigate();
 
   // PAN validation: 5 letters, 4 digits, 1 letter
@@ -58,7 +62,7 @@ const CoApplicant = () => {
         {
           phone: mobile,
           pan: pan,
-          customerID: CUSTOMER_ID,
+          clientId: clientId,
         },
         {
           headers: {
@@ -71,7 +75,14 @@ const CoApplicant = () => {
       );
       console.log(response, "response");
 
-      if (response.data && response.data.status) {
+      // if (response.data && response.data.status) {
+      if (
+        response.data?.status === true &&
+        response.data?.message === "Success"
+      ) {
+        // recieve clientId
+        const recievedClientId = response.data?.clientId;
+        setClientId(recievedClientId);
         setShowOtpInput(true);
         setStatus(null);
         alert("OTP sent to co-applicant mobile number!");
@@ -105,7 +116,7 @@ const CoApplicant = () => {
         {
           phone: mobile,
           otp: otp,
-          customerID: CUSTOMER_ID,
+          clientId: clientId,
         },
         {
           headers: {
@@ -117,8 +128,13 @@ const CoApplicant = () => {
         }
       );
 
-      if (response.data?.status === true) {
-        console.log("✅ OTP verified successfully! Navigating to business details...");
+      if (
+        response.data?.status === true &&
+        response.data?.message === "Success"
+      ) {
+        console.log(
+          "✅ OTP verified successfully! Navigating to business details..."
+        );
         setStatus("success");
         setTimeout(() => {
           navigate("/applicant-business-details");
@@ -130,7 +146,9 @@ const CoApplicant = () => {
     } catch (err) {
       console.error("❌ Error:", err);
       setStatus("error");
-      setError(err.response?.data?.message || "Network error. Please try again.");
+      setError(
+        err.response?.data?.message || "Network error. Please try again."
+      );
     } finally {
       setIsLoading(false);
     }

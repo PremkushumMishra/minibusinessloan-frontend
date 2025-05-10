@@ -71,7 +71,7 @@ const MobileVerification = () => {
 
   // API Configuration - Just change these URLs when switching APIs
   const API_CONFIG = {
-    BASE_URL: "http://10.6.3.135:3000/api/v1",
+    BASE_URL: "http://10.6.3.57:3000/api/v1",
     ENDPOINTS: {
       SEND_OTP: "/send-otp",
       VERIFY_OTP: "/verify-otp",
@@ -230,8 +230,8 @@ const MobileVerification = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#003366] flex items-center justify-center py-12 px-4 mt-20 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-3xl shadow-2xl border-2 border-[#003366]">
+    <div className="min-h-screen w-full bg-[#003366] flex items-center justify-center py-8 px-2  sm:px-4">
+      <div className="w-full max-w-sm space-y-5 bg-white p-3 sm:p-5 sm:mt-10 rounded-3xl shadow-2xl border-2 border-[#003366]">
         <div className="text-center">
           <div className="w-12 h-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
             <span className="text-3xl text-[#E53935]">📱</span>

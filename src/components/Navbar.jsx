@@ -6,6 +6,7 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleScroll = () => {
     if (window.scrollY > lastScrollY) {
       setShowNavbar(false);
@@ -18,7 +19,7 @@ const Navbar = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [handleScroll, lastScrollY]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -120,22 +121,22 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed right-0 top-0 h-full w-[80%] max-w-sm bg-white border-l border-[#003366] shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden fixed right-0 top-0 h-screen w-[80%] max-w-sm bg-white border-l border-[#003366] shadow-xl z-50 transform transition-transform duration-300 ease-in-out ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-screen">
           {/* Mobile Menu Header */}
           <div className="p-6 border-b border-gray-200 flex items-center justify-center">
             <img
               src="/logo.jpg"
               alt="Blinkr Logo"
-              className="h-16 w-auto object-contain bg-white p-1 rounded"
-              style={{ maxWidth: "150px", maxHeight: "60px" }}
+              className="h-24 w-auto object-contain bg-white p-1 rounded"
+              style={{ maxWidth: "180px", maxHeight: "100px" }}
             />
           </div>
 
-          {/* Mobile Menu Items */}
+          {/* Mobile Menu Items (scrollable) */}
           <div className="flex-1 overflow-y-auto py-6">
             <ul className="space-y-4 px-6">
               <li>
@@ -176,6 +177,70 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+
+          {/* Mobile Apply Now Button (fixed at bottom) */}
+          {/* <div className="p-6 border-t border-gray-200">
+            <Link 
+              to="/mobile-verification" 
+              onClick={toggleMobileMenu}
+              className="block w-full"
+            >
+              <div className="bg-[#003366] px-8 py-4 rounded-full font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
+                <span className="text-lg">Apply Now</span>
+                <svg
+                  className="w-5 h-5 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </div>
+            </Link>
+          </div> */}
+
+
+{/* Mobile Apply Now Button (fixed at bottom) */}
+<div className="mt-auto px-6 pb-6 pt-4 bg-white sticky bottom-0 z-50">
+  <Link 
+    to="/mobile-verification" 
+    onClick={toggleMobileMenu}
+    className="block w-full"
+  >
+    <div className="bg-[#003366] px-6 py-3 rounded-full font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
+      <span className="text-lg">Apply Now</span>
+      <svg
+        className="w-5 h-5 transition-transform duration-300"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M13 7l5 5m0 0l-5 5m5-5H6"
+        />
+      </svg>
+    </div>
+  </Link>
+</div>
+
+
+
+
+
+
+
+
+
+
+
         </div>
       </div>
     </>
