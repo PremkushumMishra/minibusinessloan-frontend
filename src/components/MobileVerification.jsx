@@ -4,58 +4,58 @@ import { useStep } from "../context/StepContext";
 import axios from "axios";
 import API_CONFIG from "../config";
 
-const TERMS_CONTENT = (
-  <div className="max-h-[60vh] overflow-y-auto px-2 py-4 bg-[#003366] border-l-8 border-[#E53935] rounded-xl shadow-lg">
-    <h2 className="text-2xl font-bold text-[#E53935] mb-4">
-      Terms and Conditions
-    </h2>
-    <p className="text-[#E53935] font-bold mb-3">
-      PLEASE READ THESE TERMS CAREFULLY.
-    </p>
-    <p className="mb-3 text-white">
-      By applying for a TechAvom Business Loan, you agree to the following terms:
-    </p>
-    <p className="mb-3 text-white font-semibold">
-      Loan amount ranges from <span className="text-[#E53935] font-bold">₹5,000</span> to <span className="text-[#E53935] font-bold">₹10,00,000</span>.
-    </p>
-    <ul className="list-disc pl-6 mb-3 text-white space-y-2 marker:text-[#003366]">
-      <li>
-        <span className="font-semibold text-[#E53935]">Loan Tenure:</span> The business loan is
-        provided for a flexible tenure from <span className="text-[#E53935] font-bold">7 days</span> to <span className="text-[#E53935] font-bold">120 days</span>. Early repayment is allowed
-        without penalty.
-      </li>
-      <li>
-        <span className="font-semibold text-[#E53935]">Processing Time:</span> Loan approval
-        and disbursal are typically completed within 30 minutes, subject to
-        successful KYC and credit checks.
-      </li>
-      <li>
-        <span className="font-semibold text-[#E53935]">Eligibility:</span> You must provide
-        accurate business and personal information. False or misleading
-        information may result in rejection or legal action.
-      </li>
-      <li>
-        <span className="font-semibold text-[#E53935]">Repayment:</span> Timely repayment is
-        required. Late payments may incur additional charges and affect your
-        credit profile.
-      </li>
-      <li>
-        <span className="font-semibold text-[#E53935]">Privacy:</span> Your data will be used
-        solely for loan processing and will be kept confidential as per our
-        Privacy Policy.
-      </li>
-      <li>
-        <span className="font-semibold text-[#E53935]">Agreement:</span> By clicking <span className="text-[#E53935] font-bold">"Agree"</span>
-        you confirm you have read, understood, and accept these terms.
-      </li>
-    </ul>
-    <div className="border-t-2 border-[#E53935] my-4"></div>
-    <p className="text-white">
-      If you do not agree with any part of these terms, please do not proceed
-      with the loan application.
-    </p>
-  </div>
-);
+// const TERMS_CONTENT = (
+//   <div className="max-h-[60vh] overflow-y-auto px-2 py-4 bg-[#003366] border-l-8 border-[#E53935] rounded-xl shadow-lg">
+//     <h2 className="text-2xl font-bold text-[#E53935] mb-4">
+//       Terms and Conditions
+//     </h2>
+//     <p className="text-[#E53935] font-bold mb-3">
+//       PLEASE READ THESE TERMS CAREFULLY.
+//     </p>
+//     <p className="mb-3 text-white">
+//       By applying for a TechAvom Business Loan, you agree to the following terms:
+//     </p>
+//     <p className="mb-3 text-white font-semibold">
+//       Loan amount ranges from <span className="text-[#E53935] font-bold">₹5,000</span> to <span className="text-[#E53935] font-bold">₹10,00,000</span>.
+//     </p>
+//     <ul className="list-disc pl-6 mb-3 text-white space-y-2 marker:text-[#003366]">
+//       <li>
+//         <span className="font-semibold text-[#E53935]">Loan Tenure:</span> The business loan is
+//         provided for a flexible tenure from <span className="text-[#E53935] font-bold">7 days</span> to <span className="text-[#E53935] font-bold">120 days</span>. Early repayment is allowed
+//         without penalty.
+//       </li>
+//       <li>
+//         <span className="font-semibold text-[#E53935]">Processing Time:</span> Loan approval
+//         and disbursal are typically completed within 30 minutes, subject to
+//         successful KYC and credit checks.
+//       </li>
+//       <li>
+//         <span className="font-semibold text-[#E53935]">Eligibility:</span> You must provide
+//         accurate business and personal information. False or misleading
+//         information may result in rejection or legal action.
+//       </li>
+//       <li>
+//         <span className="font-semibold text-[#E53935]">Repayment:</span> Timely repayment is
+//         required. Late payments may incur additional charges and affect your
+//         credit profile.
+//       </li>
+//       <li>
+//         <span className="font-semibold text-[#E53935]">Privacy:</span> Your data will be used
+//         solely for loan processing and will be kept confidential as per our
+//         Privacy Policy.
+//       </li>
+//       <li>
+//         <span className="font-semibold text-[#E53935]">Agreement:</span> By clicking <span className="text-[#E53935] font-bold">"Agree"</span>
+//         you confirm you have read, understood, and accept these terms.
+//       </li>
+//     </ul>
+//     <div className="border-t-2 border-[#E53935] my-4"></div>
+//     <p className="text-white">
+//       If you do not agree with any part of these terms, please do not proceed
+//       with the loan application.
+//     </p>
+//   </div>
+// );
 
 const MobileVerification = () => {
   const [mobileNumber, setMobileNumber] = useState("+91");
@@ -63,8 +63,6 @@ const MobileVerification = () => {
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [showTermsModal, setShowTermsModal] = useState(false);
   const navigate = useNavigate();
   const { updateStep } = useStep();
   const [clientId, setClientId] = useState("");
@@ -236,11 +234,11 @@ const MobileVerification = () => {
           <div className="w-12 h-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
             <span className="text-3xl text-[#E53935]">📱</span>
           </div>
-          <h2 className="text-4xl font-extrabold text-[#003366]">
-            Mobile Verification
+          <h2 className="text-3xl font-extrabold text-[#003366]">
+            Mobile No Verification
           </h2>
           <p className="mt-3 text-[#003366] text-lg font-medium">
-            Please verify your mobile number to continue
+            Please enter the mobile number linked with your Aadhaar
           </p>
         </div>
 
@@ -276,73 +274,12 @@ const MobileVerification = () => {
               </p>
             </div>
 
-            {/* Terms and Conditions Checkbox */}
-            <div className="flex items-start">
-              <div className="flex items-center h-5">
-                <input
-                  id="terms"
-                  name="terms"
-                  type="checkbox"
-                  checked={acceptedTerms}
-                  onChange={(e) => setAcceptedTerms(e.target.checked)}
-                  className="h-5 w-5 text-purple-600 focus:ring-purple-500 border-gray-300 rounded cursor-pointer"
-                />
-              </div>
-              <div className="ml-3 text-sm">
-                <label
-                  htmlFor="terms"
-                  className="font-medium text-gray-700 cursor-pointer"
-                >
-                  I agree to the{" "}
-                  <button
-                    type="button"
-                    className="text-purple-600 hover:text-purple-500 font-semibold underline focus:outline-none"
-                    onClick={() => setShowTermsModal(true)}
-                  >
-                    Terms and Conditions
-                  </button>
-                </label>
-              </div>
-            </div>
-
-            {/* Terms Modal */}
-            {showTermsModal && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-                <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 relative animate-fade-in">
-                  <h3 className="text-xl font-bold mb-2">
-                    Terms and Conditions
-                  </h3>
-                  <div className="border-t border-gray-200 mb-4"></div>
-                  {TERMS_CONTENT}
-                  <div className="flex justify-end gap-4 mt-6">
-                    <button
-                      className="px-5 py-2 rounded-lg text-white font-semibold bg-[#003366] hover:bg-[#002244] border border-[#003366] transition"
-                      onClick={() => setShowTermsModal(false)}
-                    >
-                      Decline
-                    </button>
-                    <button
-                      className="px-5 py-2 rounded-lg bg-[#E53935] text-white font-bold hover:bg-[#c62828] transition shadow"
-                      onClick={() => {
-                        setAcceptedTerms(true);
-                        setShowTermsModal(false);
-                      }}
-                    >
-                      Agree
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-
             <div>
               <button
                 type="submit"
-                disabled={
-                  isLoading || mobileNumber.length !== 13 || !acceptedTerms
-                }
+                disabled={isLoading || mobileNumber.length !== 13}
                 className={`w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl text-base font-medium text-white bg-gradient-to-r from-[#003366] to-[#E53935] hover:from-[#002244] hover:to-[#b71c1c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E53935] transform hover:scale-[1.02] transition-all duration-200 shadow-lg ${
-                  isLoading || mobileNumber.length !== 13 || !acceptedTerms
+                  isLoading || mobileNumber.length !== 13
                     ? "opacity-50 cursor-not-allowed"
                     : ""
                 }`}

@@ -7,7 +7,7 @@ const Repay = () => {
       <div className="container mx-auto px-4 mt-15 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Loan Summary Card */}
-          <div className="bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
+          {/* <div className="bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Your Loan Summary
             </h2>
@@ -26,15 +26,15 @@ const Repay = () => {
                 <p className="text-sm text-gray-600">Due on 15th every month</p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Payment Options */}
           <div className="bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Choose Payment Option
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Regular EMI Payment */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Daily Payment */}
               <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-full flex items-center justify-center mr-4">
@@ -42,33 +42,95 @@ const Repay = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-800">
-                      Regular EMI Payment
+                      Daily Payment
                     </h3>
                     <p className="text-sm text-gray-700">
-                      Pay your monthly EMI
+                      Pay your daily installment
                     </p>
                   </div>
                 </div>
                 <button className="w-full bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] text-gray-800 py-2 rounded-lg font-bold hover:shadow-lg transition-all duration-300">
-                  Pay EMI Now
+                  Pay Daily
                 </button>
               </div>
 
-              {/* Full Payment */}
+              {/* Weekly Payment */}
               <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-full flex items-center justify-center mr-4">
-                    <span className="text-2xl">✅</span>
+                    <span className="text-2xl">📊</span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-800">Full Payment</h3>
+                    <h3 className="font-bold text-gray-800">
+                      Weekly Payment
+                    </h3>
                     <p className="text-sm text-gray-700">
-                      Close your loan completely
+                      Pay your weekly installment
                     </p>
                   </div>
                 </div>
                 <button className="w-full bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] text-gray-800 py-2 rounded-lg font-bold hover:shadow-lg transition-all duration-300">
-                  Pay Full Amount
+                  Pay Weekly
+                </button>
+              </div>
+
+              {/* Regular EMI Payment */}
+              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-full flex items-center justify-center mr-4">
+                    <span className="text-2xl">💰</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-800">
+                      Pre Payment
+                    </h3>
+                    <p className="text-sm text-gray-700">
+                      Pay your EMI in advance
+                    </p>
+                  </div>
+                </div>
+                <button className="w-full bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] text-gray-800 py-2 rounded-lg font-bold hover:shadow-lg transition-all duration-300">
+                  Pay in Advance
+                </button>
+              </div>
+
+              {/* Renewal or Top Up */}
+              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-full flex items-center justify-center mr-4">
+                    <span className="text-2xl">🔄</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-800">
+                      Renewal or Top Up
+                    </h3>
+                    <p className="text-sm text-gray-700">
+                      Renew your loan or increase limit
+                    </p>
+                  </div>
+                </div>
+                <button className="w-full bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] text-gray-800 py-2 rounded-lg font-bold hover:shadow-lg transition-all duration-300">
+                  Renew/Top Up
+                </button>
+              </div>
+
+              {/* Early Payment */}
+              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-full flex items-center justify-center mr-4">
+                    <span className="text-2xl">⚡</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-800">
+                      Early Payment
+                    </h3>
+                    <p className="text-sm text-gray-700">
+                      Pay before due date
+                    </p>
+                  </div>
+                </div>
+                <button className="w-full bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] text-gray-800 py-2 rounded-lg font-bold hover:shadow-lg transition-all duration-300">
+                  Pay Early
                 </button>
               </div>
             </div>
@@ -129,7 +191,9 @@ const Repay = () => {
                 </div>
                 <p className="text-gray-700">
                   For any assistance, please contact our customer support at
-                  1800-XXX-XXXX or email us at support@example.com
+                  1800-XXX-XXXX or email us at info@minibusinessloanloan.com
+
+
                 </p>
               </div>
             </div>

@@ -1,178 +1,158 @@
-import React from "react";
+import React from 'react';
 
-const About = () => {
+const ContactUs = () => {
   return (
-    <div className="min-h-screen bg-[#003366] text-white">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 mt-8 py-10">
-        {/* Our Story Section */}
-        <div className="mb-12 bg-white/95 backdrop-blur-md rounded-xl p-6 sm:p-8 shadow-xl border-l-8 border-[#E53935] hover:shadow-red-200 transition-all duration-300">
-          <h2 className="text-3xl font-bold text-[#E53935] mb-6 text-center">
-            Our Journey
-          </h2>
-          <p className="text-gray-800 leading-relaxed text-lg">
-            Founded in 2024, we are a team of passionate innovators dedicated to
-            transforming India's digital landscape. Our journey began with a
-            vision to bridge the gap between traditional business practices and
-            modern technological solutions. Today, we stand proud as a leading
-            force in India's tech revolution, serving clients across the nation
-            with cutting-edge digital solutions.
+    <div className="min-h-screen bg-[#003366] py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mt-15 mx-auto">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-white mb-4">Contact Us</h1>
+          <p className="text-lg text-gray-300">
+            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
           </p>
         </div>
 
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white/90 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-xl transform hover:scale-105 transition duration-300 border-l-8 border-[#003366]">
-            <h3 className="text-2xl font-bold text-[#003366] mb-4">
-              Our Mission
-            </h3>
-            <p className="text-gray-700">
-              To empower Indian businesses with innovative technology solutions that drive growth:
-              <ul className="list-disc ml-6 mt-3 space-y-2 text-gray-800">
-                <li>Accessible financial solutions</li>
-                <li>Support for entrepreneurs</li>
-                <li>Sustainable employment</li>
-                <li>Stronger digital economy</li>
-              </ul>
-            </p>
-          </div>
-          <div className="bg-white/90 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-xl transform hover:scale-105 transition duration-300 border-l-8 border-[#E53935]">
-            <h3 className="text-2xl font-bold text-[#E53935] mb-4">
-              Our Vision
-            </h3>
-            <p className="text-gray-700">
-              To become India’s most trusted tech partner:
-              <ul className="list-disc ml-6 mt-3 space-y-2 text-gray-800">
-                <li>Digitally empowered ecosystem</li>
-                <li>Financial inclusion for all</li>
-                <li>Innovation-driven growth</li>
-                <li>Future-ready India</li>
-              </ul>
-            </p>
-          </div>
-        </div>
-
-        {/* Services Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-[#E53935] mb-8 text-center">
-            Our Services
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: "💻",
-                title: "Web Development",
-                color: "#003366",
-                desc: "Custom web apps, e-commerce, and responsive sites."
-              },
-              {
-                icon: "📱",
-                title: "Mobile Apps",
-                color: "#E53935",
-                desc: "Native and cross-platform mobile solutions."
-              },
-              {
-                icon: "🤖",
-                title: "AI Solutions",
-                color: "#003366",
-                desc: "Automation, machine learning, and intelligent tools."
-              }
-            ].map(({ icon, title, color, desc }, index) => (
-              <div
-                key={index}
-                className={`bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg hover:scale-105 hover:shadow-xl transition-transform duration-300 border-l-8`}
-                style={{ borderColor: color }}
-              >
-                <div className="text-4xl mb-4">{icon}</div>
-                <h4 className={`text-xl font-bold mb-3`} style={{ color }}>
-                  {title}
-                </h4>
-                <p className="text-gray-700">{desc}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Contact Form */}
+          <div className="bg-white rounded-2xl shadow-xl p-8">
+            <h2 className="text-2xl font-bold text-[#003366] mb-6">Send us a Message</h2>
+            <form className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
+                  required
+                />
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Achievements Section */}
-        <div className="mb-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-xl p-8 text-white shadow-xl">
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            Our Achievements
-          </h2>
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            {[
-              { num: "500+", label: "Happy Clients" },
-              { num: "1000+", label: "Projects Completed" },
-              { num: "50+", label: "Team Members" },
-              { num: "15+", label: "Years Experience" }
-            ].map((item, i) => (
-              <div key={i}>
-                <div className="text-4xl font-bold mb-2">{item.num}</div>
-                <p className="font-semibold">{item.label}</p>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
+                  required
+                />
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Core Values */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-[#E53935] mb-8 text-center">
-            Our Core Values
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Innovation",
-                color: "#003366",
-                desc: "Cutting-edge tech, rooted in traditional wisdom."
-              },
-              {
-                title: "Excellence",
-                color: "#E53935",
-                desc: "World-class output with Indian values."
-              },
-              {
-                title: "Integrity",
-                color: "#003366",
-                desc: "Transparent and ethical business practices."
-              }
-            ].map((val, i) => (
-              <div
-                key={i}
-                className="bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg hover:scale-105 transition duration-300"
-                style={{ borderLeft: `8px solid ${val.color}` }}
-              >
-                <h4 className="text-xl font-bold mb-3" style={{ color: val.color }}>
-                  {val.title}
-                </h4>
-                <p className="text-gray-700">{val.desc}</p>
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
+                  required
+                />
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Team Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-[#E53935] mb-8 text-center">
-            Our Leadership Team
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { name: "Rajesh Kumar", role: "CEO & Founder", initials: "RK", color: "#003366", edu: "IIT Delhi, 15+ years" },
-              { name: "Arjun Sharma", role: "CTO", initials: "AS", color: "#E53935", edu: "IIT Bombay, Tech Visionary" },
-              { name: "Vikram Patel", role: "Lead Developer", initials: "VP", color: "#003366", edu: "IIT Madras, Full Stack Expert" }
-            ].map((leader, i) => (
-              <div
-                key={i}
-                className="bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition duration-300"
-                style={{ borderLeft: `8px solid ${leader.color}` }}
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  rows="4"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-[#E53935] text-white py-3 px-6 rounded-lg font-medium hover:bg-red-600 transition-all duration-300"
               >
-                <div className="w-32 h-32 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold">
-                  {leader.initials}
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          {/* Contact Information */}
+          <div className="space-y-6">
+            {/* Office Address */}
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <h3 className="text-xl font-bold text-[#003366] mb-4">Our Office</h3>
+              <div className="space-y-2 text-gray-600">
+                <p>123 Business Park</p>
+                <p>Tech Hub, Sector 62</p>
+                <p>Noida, Uttar Pradesh 201301</p>
+                <p>India</p>
+              </div>
+            </div>
+
+            {/* Contact Details */}
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <h3 className="text-xl font-bold text-[#003366] mb-4">Contact Details</h3>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <span className="text-2xl">📞</span>
+                  <p className="text-gray-600">+91 7814447895</p>
                 </div>
-                <h4 className="text-xl font-bold" style={{ color: leader.color }}>{leader.name}</h4>
-                <p className="text-gray-700">{leader.role}</p>
-                <p className="text-sm text-gray-600 mt-2">{leader.edu}</p>
+                <div className="flex items-center space-x-3">
+                  <span className="text-2xl">✉️</span>
+                  <p className="text-gray-600">info@minibusinessloanloan.com</p>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <span className="text-2xl">⏰</span>
+                  <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Social Media */}
+            <div className="bg-white rounded-2xl shadow-xl p-8">
+              <h3 className="text-xl font-bold text-[#003366] mb-4">Connect With Us</h3>
+              <div className="flex space-x-6">
+                <a href="#" className="text-2xl hover:text-[#003366] transition-colors duration-300">
+                  📱
+                </a>
+                <a href="#" className="text-2xl hover:text-[#003366] transition-colors duration-300">
+                  💼
+                </a>
+                <a href="#" className="text-2xl hover:text-[#003366] transition-colors duration-300">
+                  📸
+                </a>
+                <a href="#" className="text-2xl hover:text-[#003366] transition-colors duration-300">
+                  🐦
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Map Section */}
+        <div className="mt-12 bg-white rounded-2xl shadow-xl p-8">
+          <h3 className="text-2xl font-bold text-[#003366] mb-6 text-center">Find Us</h3>
+          <div className="aspect-w-16 aspect-h-9">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.2233913121413!2d77.4054523!3d28.5022296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce626851f7009%3A0x621185133cfd1ad1!2sGurugram%2C%20Haryana!5e0!3m2!1sen!2sin!4v1647880021744!5m2!1sen!2sin"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="rounded-lg"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -180,4 +160,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default ContactUs;

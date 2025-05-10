@@ -7,7 +7,7 @@ const About = () => {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 mt-8 py-10">
         {/* Our Story Section */}
         <div className="mb-12 bg-white/90 backdrop-blur-sm rounded-xl p-6 sm:p-8 shadow-lg border-l-8 border-[#E53935]">
-          <h2 className="text-3xl font-bold text-[#E53935] mb-6 text-center">
+          <h2 className="text-3xl font-bold text-[#003366] mb-6 text-center">
             Our Journey
           </h2>
           <p className="text-gray-700 leading-relaxed text-lg">
@@ -22,7 +22,7 @@ const About = () => {
 
         {/* Mission & Vision */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#003366]">
+          <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#E53935]">
             <h3 className="text-2xl font-bold text-[#003366] mb-4">
               Our Mission
             </h3>
@@ -49,45 +49,6 @@ const About = () => {
                 <li>Building a future-ready India</li>
               </ul>
             </p>
-          </div>
-        </div>
-
-        {/* Services Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
-            Our Services
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#003366]">
-              <div className="text-4xl mb-4">💻</div>
-              <h4 className="text-xl font-bold text-[#003366] mb-3">
-                Web Development
-              </h4>
-              <p className="text-gray-700">
-                Custom web applications, e-commerce solutions, and responsive
-                websites built with cutting-edge technologies.
-              </p>
-            </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#E53935]">
-              <div className="text-4xl mb-4">📱</div>
-              <h4 className="text-xl font-bold text-[#E53935] mb-3">
-                Mobile Apps
-              </h4>
-              <p className="text-gray-700">
-                Native and cross-platform mobile applications for iOS and
-                Android with seamless user experience.
-              </p>
-            </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#003366]">
-              <div className="text-4xl mb-4">🤖</div>
-              <h4 className="text-xl font-bold text-[#003366] mb-3">
-                AI Solutions
-              </h4>
-              <p className="text-gray-700">
-                Intelligent automation, machine learning models, and AI-powered
-                business solutions.
-              </p>
-            </div>
           </div>
         </div>
 
@@ -152,46 +113,47 @@ const About = () => {
           </div>
         </div>
 
-        {/* Team Section */}
+        {/* Partners Section */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-white mb-8 text-center">
-            Our Leadership Team
+            Our Partners
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#003366]">
-              <div className="w-32 h-32 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold">
-                RK
+            {/* NBF Partner */}
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#003366]">
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <img src="/newlogo.png" alt="NBF Partner" className="w-22 h-22 object-contain" />
               </div>
-              <h4 className="text-xl font-bold text-[#003366]">Rajesh Kumar</h4>
-              <p className="text-gray-700">CEO & Founder</p>
-              <p className="text-sm text-gray-600 mt-2">
-                IIT Delhi, 15+ years experience
+              <h4 className="text-xl font-bold text-[#003366]  mb-3">Our NBF Partner</h4>
+              <p className="text-gray-700 mb-3 text-sm">
+                Leading financial institution providing innovative banking solutions and digital services to empower businesses across India.
               </p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#E53935]">
-              <div className="w-32 h-32 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold">
-                AS
+            {/* Sourcing Partner */}
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#E53935]">
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <img src="/sourcingpartner.png" alt="Sourcing Partner" className="w-20 h-20 object-contain" />
               </div>
-              <h4 className="text-xl font-bold text-[#E53935]">Arjun Sharma</h4>
-              <p className="text-gray-700">CTO</p>
-              <p className="text-sm text-gray-600 mt-2">
-                IIT Bombay, Tech Visionary
+              <h4 className="text-xl font-bold text-[#E53935] mb-2">Our Sourcing Partner</h4>
+              <p className="text-gray-700 text-sm">
+                Trusted partner in business development and customer acquisition, helping us reach and serve more entrepreneurs nationwide.
               </p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#003366]">
-              <div className="w-32 h-32 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full mx-auto mb-4 flex items-center justify-center text-white text-4xl font-bold">
-                VP
+            {/* Tech Partner */}
+            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#003366]">
+              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <img src="/fintechcloud.png" alt="Tech Partner" className="w-22 h-22 object-contain" />
               </div>
-              <h4 className="text-xl font-bold text-[#003366]">Vikram Patel</h4>
-              <p className="text-gray-700">Lead Developer</p>
-              <p className="text-sm text-gray-600 mt-2">
-                IIT Madras, Full Stack Expert
+              <h4 className="text-xl font-bold text-[#003366] mb-2">Our Tech Partner</h4>
+              <p className="text-gray-700 text-sm">
+                Cutting-edge technology solutions provider ensuring secure, scalable, and efficient digital infrastructure for our services.
               </p>
             </div>
+
+
+            
           </div>
         </div>
-
-        {/* Contact Section */}
       </div>
     </div>
   );
