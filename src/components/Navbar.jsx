@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`bg-white border border-[#003366] w-[105%] md:w-[100%] lg:w-[70%] rounded-full flex items-center justify-between px-4 md:px-9 py-0 mt-2 mb-8 shadow-lg mx-auto fixed left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
+        className={`bg-white border border-[#003366] w-full max-w-4xl rounded-full flex items-center justify-between px-4 md:px-9 py-0 mt-2 mb-8 shadow-lg mx-auto fixed left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
           showNavbar ? "top-2" : "-top-20"
         }`}
       >
