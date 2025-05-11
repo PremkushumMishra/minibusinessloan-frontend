@@ -13,7 +13,7 @@ const Modal = ({ title, children, onClose }) => (
 );
 
 const Repay = () => {
-  const [showUPIModal, setShowUPIModal] = useState(false);
+  // const [showUPIModal, setShowUPIModal] = useState(false);
   const [openModal, setOpenModal] = useState(null); // null, 'upi', 'netbanking', 'card', 'wallet'
 
   const upiApps = [
@@ -51,7 +51,7 @@ const Repay = () => {
           </div> */}
 
           {/* Payment Options */}
-          <div className="bg-gradient-to-r from-[#003366] to-[#E53935] rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
+          <div className="bg-gradient-to-r from-[#003366] to-blac rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
             <h2 className="text-2xl font-bold text-white mb-6">
               Choose Payment Option
             </h2>
@@ -143,7 +143,7 @@ const Repay = () => {
                     <span className="text-2xl">🔒</span>
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#E53935]">Loan for Closure</h3>
+                    <h3 className="font-bold text-[#003366]">Loan for Closure</h3>
                     <p className="text-sm text-gray-700">Close your loan account with a single payment</p>
                   </div>
                 </div>
@@ -191,7 +191,6 @@ const Repay = () => {
               {/* Wallet */}
               <div
                 className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
-                onClick={() => setOpenModal('wallet')}
               >
                 <div className="text-3xl mb-2 text-[#003366] flex justify-center items-center">
                   <svg 
@@ -212,7 +211,7 @@ const Repay = () => {
                     <path d="M10 14h.01" />
                   </svg>
                 </div>
-                <p className="font-bold text-[#003366]">Wallet</p>
+                <p className="font-bold text-[#003366]"> Wallet</p>
               </div>
             </div>
           </div>
@@ -305,21 +304,6 @@ const Repay = () => {
           </div>
           <button className="w-full mt-6 bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300">
             Pay Now
-          </button>
-        </Modal>
-      )}
-
-      {/* Wallet Modal */}
-      {openModal === 'wallet' && (
-        <Modal title="Choose Wallet" onClose={() => setOpenModal(null)}>
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <img src="/paytmwallet.jpg" alt="Paytm Wallet" className="h-18 mx-auto" />
-            <img src="/mobikwik.png" alt="Mobikwik" className="h-12 mx-auto" />
-            <img src="/freecharge.png" alt="Freecharge" className="h-12 mx-auto" />
-            <img src="/amazonpay.png" alt="Amazon Pay" className="h-12 mx-auto" />
-          </div>
-          <button className="w-full mt-6 bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300">
-            Pay with Wallet
           </button>
         </Modal>
       )}
