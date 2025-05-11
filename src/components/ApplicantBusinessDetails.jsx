@@ -850,8 +850,8 @@ const ApplicantBusinessDetails = () => {
               </div>
             ) : (
               <div className="relative">
-                <input
-                  type="text"
+            <input
+              type="text"
                   name="electricityBillNumber"
                   value={electricityBillNumber}
                   onChange={(e) => {
@@ -886,7 +886,7 @@ const ApplicantBusinessDetails = () => {
 {/* after bill number verification */}
 
 <div className="md:col-span-2">
-  <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
     Electricity Bill (Home/Business)
   </label>
 
@@ -912,7 +912,7 @@ const ApplicantBusinessDetails = () => {
         className="mr-2"
       />
       Enter Bill Number
-    </label>
+            </label>
   </div>
 
   {electricityBillInputType === "upload" ? (
@@ -951,14 +951,14 @@ const ApplicantBusinessDetails = () => {
       <div className="flex flex-wrap gap-2 items-end">
         <div className="flex-1 min-w-[120px]">
           <label className="block font-semibold mb-1">Bill Number</label>
-          <input
+            <input
             type="text"
             value={userEnteredBillNumber}
             onChange={(e) => setUserEnteredBillNumber(e.target.value)}
             className="w-full px-4 py-2 border rounded"
             placeholder="Enter bill number"
-          />
-        </div>
+            />
+          </div>
         <div className="flex-1 min-w-[120px]">
           <label className="block font-semibold mb-1">Operator</label>
           <select

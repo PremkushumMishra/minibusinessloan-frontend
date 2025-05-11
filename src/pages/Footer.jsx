@@ -6,7 +6,7 @@ import { FaYoutube, FaFacebookF, FaInstagram } from "react-icons/fa6";
 const Footer = () => {
   return (
     <>
-      <footer className="bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] p-2 sm:p-3 md:p-6 rounded-t-3xl relative overflow-hidden">
+      <footer className="bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] p-2 sm:p-3 md:p-6  relative overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent"></div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE]"></div>
@@ -23,11 +23,12 @@ const Footer = () => {
                 to="/terms"
                 className="text-sm md:text-base text-gray-700 hover:text-gray-900 transition-colors cursor-pointer font-bold"
               >
-                Terms & Condition
+                Terms & Condition <br />
               </Link>
-              <p className="text-sm md:text-base text-gray-700 hover:text-gray-900 transition-colors cursor-pointer font-bold">
+              <Link to='/privacy' className="text-sm md:text-base text-gray-700 hover:text-gray-900 transition-colors cursor-pointer font-bold">
                 Privacy Policy
-              </p>
+              </Link>
+
               <p className="text-sm md:text-base text-gray-700 hover:text-gray-900 transition-colors cursor-pointer font-bold">
                 FAQs
               </p>
@@ -101,7 +102,7 @@ const Footer = () => {
       </footer>
 
       {/* Bottom Section */}
-      <div className="text-center text-black text-sm md:text-base py-2 md:py-3 bg-gray-300 rounded-b-3xl mb-4 font-bold">
+      <div className="text-center text-white text-sm md:text-base py-2 md:py-3 bg-[#003366] rounded-b-3xl mb-4 font-bold">
         Mini Business Loan. 2025 All rights reserved
       </div>
     </>

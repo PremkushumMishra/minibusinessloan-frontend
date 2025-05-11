@@ -6,6 +6,7 @@ const images = [
   { src: "/imageforth.jpg", desc: "Small Manufacturer" },
   { src: "/imagefifth.jpg", desc: "Service Provider" },
   { src: "/imagesixth.jpg", desc: "Wholesaler" },
+  { src: "/streetfoodpic.png", desc: "Retail Shop Owner" },
 ];
 
 const EligibleProfile = () => {
@@ -33,35 +34,42 @@ const EligibleProfile = () => {
         </p>
       </div>
 
-      {/* Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-4xl w-full">
-        {images.map((img, idx) => (
-          <div
-            key={idx}
-            className="relative rounded-3xl shadow-xl overflow-hidden flex flex-col items-center justify-center transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-fadeIn bg-transparent"
-            style={{
-              minHeight: 340,
-              animation: `fadeInUp 0.7s ease ${0.1 * idx + 0.2}s both`,
-            }}
-          >
-            {/* Floating Badge - now on left */}
-            <div className="absolute top-5 left-5 flex items-center gap-1 bg-[#E53935] text-white px-4 py-1 rounded-full shadow-md text-base font-bold z-10">
-              <FaCheckCircle className="mr-1" /> Eligible
+      {/* Cards Container - Updated to be responsive */}
+      <div className="w-full max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {images.map((img, idx) => (
+            <div
+              key={idx}
+              className="w-full"
+            >
+              <div
+                className="relative rounded-3xl shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-fadeIn bg-transparent"
+                style={{
+                  minHeight: 340,
+                  animation: `fadeInUp 0.7s ease ${0.1 * idx + 0.2}s both`,
+                }}
+              >
+                {/* Floating Badge */}
+                <div className="absolute top-5 left-5 flex items-center gap-1 bg-[#E53935] text-white px-4 py-1 rounded-full shadow-md text-base font-bold z-10">
+                  <FaCheckCircle className="mr-1" /> Eligible
+                </div>
+                <img
+                  src={img.src}
+                  alt={`Eligible ${idx + 1}`}
+                  className="w-full h-60 object-cover rounded-2xl border-4 border-white"
+                  style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
+                />
+                <div className="w-full text-center py-4 px-2" style={{background: "rgba(255,255,255,0.15)", borderBottomLeftRadius: 24, borderBottomRightRadius: 24}}>
+                  <span className="text-lg font-bold text-white tracking-wide">
+                    {img.desc}
+                  </span>
+                </div>
+              </div>
             </div>
-            <img
-              src={img.src}
-              alt={`Eligible ${idx + 1}`}
-              className="w-full h-60 object-cover rounded-2xl border-4 border-white"
-              style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
-            />
-            <div className="w-full text-center py-4 px-2" style={{background: "rgba(255,255,255,0.15)", borderBottomLeftRadius: 24, borderBottomRightRadius: 24}}>
-              <span className="text-lg font-bold text-white tracking-wide">
-                {img.desc}
-              </span>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
       {/* Animation keyframes */}
       <style>{`
         @keyframes fadeInUp {

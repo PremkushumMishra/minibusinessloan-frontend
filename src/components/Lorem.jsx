@@ -20,13 +20,13 @@ const Features = () => {
   ];
 
   return (
-    <div className="bg-[#003366] py-10">
+    <div className="bg-white py-10">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#E53935] mb-2">
             Simple Loan Process
           </h2>
-          <p className="text-sm md:text-base text-white/90">
+          <p className="text-sm md:text-base text-[#003366]">
             Experience the fastest and most secure way to get your loan approved
           </p>
         </div>
@@ -34,19 +34,19 @@ const Features = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group bg-white p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-[#003366]/10"
+              className="group bg-[#003366] p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-[#003366]/10"
             >
               {/* Icon */}
-              <div className="w-10 h-10 bg-[#003366] rounded-lg flex items-center justify-center mb-3 text-xl transform group-hover:bg-[#E53935] transition-colors duration-300">
+              <div className="w-10 h-10 bg-white text-[#E53935] rounded-lg flex items-center justify-center mb-3 text-xl group-hover:bg-[#E53935] group-hover:text-white transition-colors duration-300">
                 {feature.icon}
               </div>
 
               {/* Text */}
               <div>
-                <h3 className="text-lg font-semibold text-[#003366] mb-2 group-hover:text-[#E53935] transition-colors duration-300">
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#E53935] transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-white leading-relaxed">
                   {feature.text}
                 </p>
               </div>

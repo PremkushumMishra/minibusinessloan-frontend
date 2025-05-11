@@ -201,7 +201,7 @@ import React from 'react'
 
 const KycProcess = () => {
   return (
-    <div>
+              <div>
       <h1>Kyc Process</h1>
     </div>
   )

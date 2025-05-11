@@ -30,7 +30,7 @@ const faqs = [
     id: 5,
     question: "Is there any prepayment penalty?",
     answer:
-      "No, we don't charge any prepayment penalty. You can repay your loan before the 100-day tenure without any additional charges.",
+      "No, we don't charge any prepayment penalty. You can repay your loan before the 100-day tenure without any penalty.",
   },
 ];
 

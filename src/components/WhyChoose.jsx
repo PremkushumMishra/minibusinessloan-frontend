@@ -6,7 +6,7 @@ const WhyChoose = () => {
       icon: "⚡",
       title: "Quick Loan Approval",
       description:
-        "Get your loan approved within 24 hours with minimal documentation and hassle-free process.",
+        "Get your loan approved within 30 mins with minimal documentation and hassle-free process.",
     },
     {
       icon: "💰",
@@ -33,17 +33,35 @@ const WhyChoose = () => {
         "Get personalized assistance from our expert loan advisors available 24/7 to help you.",
     },
     {
-      icon: "📊",
+      icon: "🪟",
       title: "Transparent Process",
       description:
         "No hidden charges or surprises. Clear terms and conditions with complete transparency in all dealings.",
     },
+    {
+      icon: "💵",
+      title: "10Cr+ Disbursement",
+      description:
+        "Trusted by thousands of customers with over 10 crores in successful loan disbursements.",
+    },
+    {
+      icon: "🏢",
+      title: "20+ Branches",
+      description:
+        "Wide network of branches across multiple locations for easy access to our services.",
+    },
+    {
+      icon: "👥",
+      title: "200+ Team Members",
+      description:
+        "Large team of experienced professionals dedicated to serving you better.",
+    },
   ];
 
   return (
-    <div className="bg-[#003366] py-16 px-8">
+    <div className="bg-white py-16 px-8">
       {/* <h2 className="text-3xl font-bold text-center mt-1 mb-8 text-white">Why Choose Us ?</h2> */}
-      <h2 className="text-3xl font-bold text-center  mt-0 mb-4 text-white">
+      <h2 className="text-3xl font-bold text-center mt-0 mb-4 text-[#E53935]">
         Why Choose Us ?
       </h2>
 
@@ -51,15 +69,15 @@ const WhyChoose = () => {
         {benefits.map((benefit, index) => (
           <div
             key={index}
-            className="bg-white p-6  mt-8 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 group"
+            className="bg-[#003366] p-6 mt-8 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 group"
           >
-            <div className="w-12 h-12 bg-[#003366] text-white flex items-center justify-center rounded-full mb-4 text-2xl group-hover:bg-[#E53935] transition-colors duration-300">
+            <div className="w-12 h-12 bg-white text-[#E53935] flex items-center justify-center rounded-full mb-4 text-2xl group-hover:bg-[#E53935] group-hover:text-white transition-colors duration-300">
               {benefit.icon}
             </div>
-            <h3 className="text-lg font-semibold mb-2 text-[#003366] group-hover:text-[#E53935] transition-colors duration-300">
+            <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-[#E53935] transition-colors duration-300">
               {benefit.title}
             </h3>
-            <p className="text-sm text-gray-600">{benefit.description}</p>
+            <p className="text-sm text-white">{benefit.description}</p>
           </div>
         ))}
       </div>

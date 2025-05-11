@@ -11,17 +11,15 @@ const About = () => {
             Our Journey
           </h2>
           <p className="text-gray-700 leading-relaxed text-lg">
-            Founded in 2024, we are a team of passionate innovators dedicated to
-            transforming India's digital landscape. Our journey began with a
-            vision to bridge the gap between traditional business practices and
-            modern technological solutions. Today, we stand proud as a leading
-            force in India's tech revolution, serving clients across the nation
-            with cutting-edge digital solutions.
+            Since our inception in 2024, TechAvom has been driven by a single mission: to empower businesses and individuals across India with seamless, technology-driven financial solutions. What started as a small team of visionaries has rapidly grown into a trusted brand, recognized for our commitment to transparency, innovation, and customer-centricity.
+          </p>
+          <p className="text-gray-700 leading-relaxed text-lg mt-4">
+            Over the years, we have helped thousands of entrepreneurs and families achieve their dreams by making finance accessible, simple, and secure. Our journey is defined by the success stories of our clients, the dedication of our team, and our relentless pursuit of excellence. As we continue to expand our reach and impact, we remain steadfast in our promise to deliver cutting-edge digital solutions and set new benchmarks in the fintech industry.
           </p>
         </div>
 
         {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-8 mb-12 rounded-xl p-6 sm:p-8">
           <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#E53935]">
             <h3 className="text-2xl font-bold text-[#003366] mb-4">
               Our Mission
@@ -59,23 +57,32 @@ const About = () => {
           </h2>
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold mb-2">500+</div>
+              <div className="text-4xl font-bold mb-2">5000+</div>
               <p className="font-bold">Happy Clients</p>
             </div>
             <div>
-              <div className="text-4xl font-bold mb-2">1000+</div>
-              <p className="font-bold">Projects Completed</p>
+              <div className="text-4xl font-bold mb-2">10cr+</div>
+              <p className="font-bold">Loan Disbursed</p>
             </div>
+
+
+
             <div>
-              <div className="text-4xl font-bold mb-2">50+</div>
+              <div className="text-4xl font-bold mb-2">200+</div>
               <p className="font-bold">Team Members</p>
             </div>
+
             <div>
-              <div className="text-4xl font-bold mb-2">15+</div>
-              <p className="font-bold">Years Experience</p>
+              <div className="text-4xl font-bold mb-2">20+</div>
+              <p className="font-bold">Branches</p>
             </div>
           </div>
         </div>
+
+
+
+
+
 
         {/* Core Values */}
         <div className="mb-12">
@@ -116,15 +123,15 @@ const About = () => {
         {/* Partners Section */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-white mb-8 text-center">
-            Our Partners
+           Our Partners
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {/* NBF Partner */}
+            {/* NBFC Partner */}
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#003366]">
               <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <img src="/newlogo.png" alt="NBF Partner" className="w-22 h-22 object-contain" />
+                <img src="/sourcingpartner.png" alt="NBF Partner" className="w-22 h-22 object-contain" />
               </div>
-              <h4 className="text-xl font-bold text-[#003366]  mb-3">Our NBF Partner</h4>
+              <h4 className="text-xl font-bold text-[#003366]  mb-3">Our NBFC Partner</h4>
               <p className="text-gray-700 mb-3 text-sm">
                 Leading financial institution providing innovative banking solutions and digital services to empower businesses across India.
               </p>
@@ -132,7 +139,7 @@ const About = () => {
             {/* Sourcing Partner */}
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#E53935]">
               <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <img src="/sourcingpartner.png" alt="Sourcing Partner" className="w-20 h-20 object-contain" />
+                <img src="/techaviom.png" alt="Sourcing Partner" className="w-20 h-20 objec t-contain" />
               </div>
               <h4 className="text-xl font-bold text-[#E53935] mb-2">Our Sourcing Partner</h4>
               <p className="text-gray-700 text-sm">

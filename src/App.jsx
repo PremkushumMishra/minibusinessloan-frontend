@@ -18,7 +18,8 @@ import KycProcess from "./components/KycProcess";
 import KycSuccess from "./components/KycSuccess";
 import AdditionalInfo from "./components/AdditionalInfo";
 import CoApplicant from "./components/CoApplicant";
-import TermsCondition from "./components/TermsCondition";   
+import TermsCondition from "./components/TermsCondition";  
+import PrivacyPolicy from "./components/PrivacyPolicy";
 function App() {
   return (
     <Router>
@@ -29,6 +30,7 @@ function App() {
         <Route path="/repay" element={<Repay />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/terms" element={<TermsCondition />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/apply" element={<Apply />} />
         {/* Step-by-step journey starts here */}
         <Route path="/mobile-verification" element={<MobileVerification />} />

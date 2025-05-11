@@ -22,9 +22,29 @@ const LoanCalculator = () => {
     { name: "Payable Amount", value: payableAmount, color: payableColor },
   ];
 
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div
+          style={{
+            background: "#003366",
+            color: "white",
+            borderRadius: 8,
+            padding: "4px 8px",
+            fontSize: 14,
+            fontWeight: "bold",
+          }}
+        >
+          ₹{payload[0].value.toLocaleString()}
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="flex flex-col items-center bg-[#003366] min-h-screen p-6  rounded-1xl">
-      <h2 className="text-4xl mt-10 font-bold mb-19 text-white">
+    <div className="flex flex-col items-center bg-[#003366] p-7 pb-6 rounded-1xl">
+      <h2 className="text-3xl mt-0.1 font-bold mb-1 text-white">
         Loan Calculator
       </h2>
       <div className="flex flex-wrap md:flex-nowrap p-6 w-full max-w-5xl gap-2 rounded-xl">
@@ -60,18 +80,18 @@ const LoanCalculator = () => {
           </div>
           <div>
             <label className="block font-semibold mb-2 text-[#003366]">
-              Number of days (1-120): {days}
+              Number of days (1-100): {days}
             </label>
             <input
               type="number"
               min="1"
-              max="120"
+              max="100"
               step="1"
               value={days}
               onChange={e => {
                 let val = Number(e.target.value);
                 if (val < 1) val = 1;
-                if (val > 120) val = 120;
+                if (val > 100) val = 100;
                 setDays(val);
               }}
               className="w-full mb-2 px-4 py-2 border-2 border-[#003366] rounded-lg text-[#003366] font-bold text-lg focus:outline-none focus:ring-2 focus:ring-[#E53935] bg-white"
@@ -79,7 +99,7 @@ const LoanCalculator = () => {
             <input
               type="range"
               min="1"
-              max="120"
+              max="100"
               step="1"
               value={days}
               onChange={(e) => setDays(Number(e.target.value))}
@@ -108,7 +128,7 @@ const LoanCalculator = () => {
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />} />
           </PieChart>
 
           {/* Legends */}
