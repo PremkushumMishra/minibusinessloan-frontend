@@ -1,6 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+
+const Modal = ({ title, children, onClose }) => (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+      <div className="flex justify-between items-center mb-6">
+        <h3 className="text-2xl font-bold text-[#003366]">{title}</h3>
+        <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
+      </div>
+      {children}
+    </div>
+  </div>
+);
 
 const Repay = () => {
+  const [showUPIModal, setShowUPIModal] = useState(false);
+  const [openModal, setOpenModal] = useState(null); // null, 'upi', 'netbanking', 'card', 'wallet'
+
+  const upiApps = [
+    { name: "Paytm", logo: "/paytmlogo.png" },
+    { name: "Google Pay", logo: "/googlepay.jpg" },
+    { name: "PhonePe", logo: "/phonepay.png" },
+    { name: "BHIM", logo: "/bhimlogo.png" }
+  ];
+
   return (
     <div className="min-h-screen bg-[#003366]">
       {/* Header Section */}/{/* Main Content */}
@@ -137,18 +159,42 @@ const Repay = () => {
             <h2 className="text-2xl font-bold text-white mb-6">
               Available Payment Methods
             </h2>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {/* Net Banking */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                <div className="text-3xl mb-2 text-[#003366]">🏦</div>
+              <div
+                className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                onClick={() => setOpenModal('netbanking')}
+              >
+                <div className="flex justify-center mb-2">
+                  <img src="/netbanking.jpg" alt="Net Banking" className="h-8" />
+                </div>
                 <p className="font-bold text-[#003366]">Net Banking</p>
               </div>
               {/* UPI with real logo */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <div
+                className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                onClick={() => setOpenModal('upi')}
+              >
                 <div className="flex justify-center mb-2">
                   <img src="/upipic.png" alt="UPI" className="h-8" />
                 </div>
                 <p className="font-bold text-[#003366]">UPI</p>
+              </div>
+              {/* ATM/Debit Card */}
+              <div
+                className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                onClick={() => setOpenModal('card')}
+              >
+                <div className="text-3xl mb-2 text-[#003366]">💳</div>
+                <p className="font-bold text-[#003366]">ATM/Debit Card</p>
+              </div>
+              {/* Wallet */}
+              <div
+                className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                onClick={() => setOpenModal('wallet')}
+              >
+                <div className="text-3xl mb-2 text-[#003366]">👛</div>
+                <p className="font-bold text-[#003366]">Wallet</p>
               </div>
             </div>
           </div>
@@ -190,6 +236,75 @@ const Repay = () => {
           </div>
         </div>
       </div>
+
+      {/* Net Banking Modal */}
+      {openModal === 'netbanking' && (
+        <Modal title="Choose Your Bank" onClose={() => setOpenModal(null)}>
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {/* Add your bank logos here */}
+            <img src="/sbi.png" alt="SBI" className="h-12 mx-auto" />
+            <img src="/hdfc.png" alt="HDFC" className="h-12 mx-auto" />
+            <img src="/icici.png" alt="ICICI" className="h-12 mx-auto" />
+            <img src="/axis.png" alt="Axis" className="h-12 mx-auto" />
+          </div>
+          <button className="w-full mt-6 bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300">
+            Proceed to Net Banking
+          </button>
+        </Modal>
+      )}
+
+      {/* UPI Modal */}
+      {openModal === 'upi' && (
+        <Modal title="Choose UPI App" onClose={() => setOpenModal(null)}>
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            {upiApps.map((app, index) => (
+              <div key={index} className="bg-gray-50 rounded-lg p-4 text-center hover:bg-gray-100 cursor-pointer transition-all duration-300">
+                <img src={app.logo} alt={app.name} className="h-12 mx-auto mb-2" />
+                <p className="font-medium text-gray-800">{app.name}</p>
+              </div>
+            ))}
+          </div>
+          <div className="bg-gray-50 rounded-lg p-4">
+            <label className="block text-gray-700 font-medium mb-2">Enter Your UPI ID</label>
+            <input type="text" placeholder="example@upi" className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#003366] focus:border-transparent" />
+          </div>
+          <button className="w-full mt-6 bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300">
+            Pay Now
+          </button>
+        </Modal>
+      )}
+
+      {/* ATM/Debit Card Modal */}
+      {openModal === 'card' && (
+        <Modal title="Enter Card Details" onClose={() => setOpenModal(null)}>
+          <div className="space-y-4">
+            <input type="text" placeholder="Card Number" className="w-full px-4 py-2 rounded-lg border border-gray-300" />
+            <div className="flex gap-2">
+              <input type="text" placeholder="MM/YY" className="w-1/2 px-4 py-2 rounded-lg border border-gray-300" />
+              <input type="text" placeholder="CVV" className="w-1/2 px-4 py-2 rounded-lg border border-gray-300" />
+            </div>
+            <input type="text" placeholder="Cardholder Name" className="w-full px-4 py-2 rounded-lg border border-gray-300" />
+          </div>
+          <button className="w-full mt-6 bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300">
+            Pay Now
+          </button>
+        </Modal>
+      )}
+
+      {/* Wallet Modal */}
+      {openModal === 'wallet' && (
+        <Modal title="Choose Wallet" onClose={() => setOpenModal(null)}>
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <img src="/paytmwallet.png" alt="Paytm Wallet" className="h-12 mx-auto" />
+            <img src="/mobikwik.png" alt="Mobikwik" className="h-12 mx-auto" />
+            <img src="/freecharge.png" alt="Freecharge" className="h-12 mx-auto" />
+            <img src="/amazonpay.png" alt="Amazon Pay" className="h-12 mx-auto" />
+          </div>
+          <button className="w-full mt-6 bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300">
+            Pay with Wallet
+          </button>
+        </Modal>
+      )}
     </div>
   );
 };
