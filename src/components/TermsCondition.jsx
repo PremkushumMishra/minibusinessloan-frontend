@@ -541,10 +541,10 @@ Opt Out of Marketing Communications
                   </h3>
                   <div className="space-y-2 text-gray-600">
                     <p>General Queries: info@minibusinessloan.com</p>
-                    <p>Existing Customers: support@minibusinessloan.com</p>
+                    {/* <p>Existing Customers: support@minibusinessloan.com</p> */}
                     <p>Phone: 7814447895</p>
                     <p>
-                      Customer Support Hours: 09:00 AM to 05:30 PM (Monday to
+                      Customer Support Hours: 10:00 AM to 06:30 PM (Monday to
                       Saturday)
                     </p>
                   </div>
