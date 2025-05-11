@@ -530,9 +530,9 @@ Opt Out of Marketing Communications
                     Grievance Redressal Officer
                   </h3>
                   <div className="space-y-2 text-gray-600">
-                    <p>Name: Swati Aggarwal</p>
+                    {/* <p>Name: Swati Aggarwal</p> */}
                     <p>Contact: +91-7814447895</p>
-                    <p>Email: grievance@minibusinessloan.com</p>
+                    <p>Email: info@minibusinessloan.com</p>
                   </div>
                 </div>
                 <div>

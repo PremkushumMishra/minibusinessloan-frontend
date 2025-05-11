@@ -11,7 +11,7 @@ const About = () => {
             Our Journey
           </h2>
           <p className="text-gray-700 leading-relaxed text-lg">
-            Since our inception in 2024, TechAvom has been driven by a single mission: to empower businesses and individuals across India with seamless, technology-driven financial solutions. What started as a small team of visionaries has rapidly grown into a trusted brand, recognized for our commitment to transparency, innovation, and customer-centricity.
+            Since our inception in 2024, We have been driven by a single mission: to empower businesses and individuals across India with seamless, technology-driven financial solutions. What started as a small team of visionaries has rapidly grown into a trusted brand, recognized for our commitment to transparency, innovation, and customer-centricity.
           </p>
           <p className="text-gray-700 leading-relaxed text-lg mt-4">
             Over the years, we have helped thousands of entrepreneurs and families achieve their dreams by making finance accessible, simple, and secure. Our journey is defined by the success stories of our clients, the dedication of our team, and our relentless pursuit of excellence. As we continue to expand our reach and impact, we remain steadfast in our promise to deliver cutting-edge digital solutions and set new benchmarks in the fintech industry.
