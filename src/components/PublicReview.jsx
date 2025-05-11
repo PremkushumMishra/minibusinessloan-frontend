@@ -95,31 +95,32 @@ const PublicReview = () => {
         {/* Heading + Avatars */}
         <div className="flex items-center justify-center gap-4 flex-wrap mb-8">
           <h2 className="text-3xl font-bold flex items-center gap-2 text-white">
-            Happy <span className="text-[#E53935]">😊</span> Customers
+            Happy <span className="text-[#E53935]"></span> Customers 😊
           </h2>
-          <div className="flex -space-x-2">
+          {/* <div className="flex -space-x-2">
             <img
-              src="https://i.pravatar.cc/150?img=3&u=a042581f4e29026704n"
+              src="https://i.pravatar.cc/150?img=32"
               alt="user1"
               className="w-10 h-10 rounded-full border-2 border-white shadow-md"
             />
             <img
-              src="https://i.pravatar.cc/150?img=6&u=a042581f4e29026704o"
+              src="https://i.pravatar.cc/150?img=44"
               alt="user2"
               className="w-10 h-10 rounded-full border-2 border-white shadow-md"
             />
             <img
-              src="https://i.pravatar.cc/150?img=9&u=a042581f4e29026704p"
+              src="https://i.pravatar.cc/150?img=36"
               alt="user3"
               className="w-10 h-10 rounded-full border-2 border-white shadow-md"
             />
             <span className="w-10 h-10 flex items-center justify-center rounded-full bg-[#E53935] text-white text-sm font-bold border-2 border-white shadow-md">
               1K+
             </span>
-          </div>
+          </div> */}
         </div>
 
         {/* Review Cards with Animation */}
+
         <div
           className={`grid md:grid-cols-3 gap-8 transition-all duration-300 ${animate}`}
         >
@@ -157,6 +158,10 @@ const PublicReview = () => {
               </div>
             ))}
         </div>
+
+
+
+
 
         {/* Next & Prev Buttons */}
         <div className="flex justify-center gap-4 mt-8">

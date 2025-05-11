@@ -193,7 +193,25 @@ const Repay = () => {
                 className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
                 onClick={() => setOpenModal('wallet')}
               >
-                <div className="text-3xl mb-2 text-[#003366]">👛</div>
+                <div className="text-3xl mb-2 text-[#003366] flex justify-center items-center">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="32" 
+                    height="32" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className="mx-auto"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M2 10h20" />
+                    <path d="M6 14h.01" />
+                    <path d="M10 14h.01" />
+                  </svg>
+                </div>
                 <p className="font-bold text-[#003366]">Wallet</p>
               </div>
             </div>
@@ -243,9 +261,9 @@ const Repay = () => {
           <div className="grid grid-cols-2 gap-4 mb-6">
             {/* Add your bank logos here */}
             <img src="/sbi.png" alt="SBI" className="h-12 mx-auto" />
-            <img src="/hdfc.png" alt="HDFC" className="h-12 mx-auto" />
-            <img src="/icici.png" alt="ICICI" className="h-12 mx-auto" />
-            <img src="/axis.png" alt="Axis" className="h-12 mx-auto" />
+            <img src="/hdfcbnk.png" alt="HDFC" className="h-12 mx-auto" />
+            <img src="/icici.jpg" alt="ICICI" className="h-12 mx-auto" />
+            <img src="/axisbnk.png" alt="Axis" className="h-12 mx-auto" />
           </div>
           <button className="w-full mt-6 bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-3 rounded-lg font-bold hover:opacity-90 transition-all duration-300">
             Proceed to Net Banking
@@ -295,7 +313,7 @@ const Repay = () => {
       {openModal === 'wallet' && (
         <Modal title="Choose Wallet" onClose={() => setOpenModal(null)}>
           <div className="grid grid-cols-2 gap-4 mb-6">
-            <img src="/paytmwallet.png" alt="Paytm Wallet" className="h-12 mx-auto" />
+            <img src="/paytmwallet.jpg" alt="Paytm Wallet" className="h-18 mx-auto" />
             <img src="/mobikwik.png" alt="Mobikwik" className="h-12 mx-auto" />
             <img src="/freecharge.png" alt="Freecharge" className="h-12 mx-auto" />
             <img src="/amazonpay.png" alt="Amazon Pay" className="h-12 mx-auto" />

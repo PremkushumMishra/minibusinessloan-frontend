@@ -132,7 +132,7 @@ const ApplicantBusinessDetails = () => {
     try {
       const token = localStorage.getItem("authToken");
       const response = await axios.post(
-        `${API_CONFIG.BASE_URL}/sorcing/verify-otp-udyam`,
+        `${API_CONFIG.BASE_URL}/sourcing/verify-otp-udyam`,
         {
           client_id: "udyam_otp_pDompboGAwibgt",
           otp: formData.udyamOtp,
@@ -183,7 +183,7 @@ const ApplicantBusinessDetails = () => {
       const token = localStorage.getItem("authToken");
       console.log("📦 Token being sent in Authorization header:", token);
       const response = await axios.post(
-        `${API_CONFIG.BASE_URL}/sourcing/valdiate-gstin`,
+        `${API_CONFIG.BASE_URL}/sourcing/validate-gstin`,
         {
           gstin: number,
           customerID: customerID,
@@ -303,7 +303,7 @@ const ApplicantBusinessDetails = () => {
       };
   
       const response = await axios.post(
-        `${API_CONFIG.BASE_URL}/sourcing/valdiate-electricity-bill`,
+        `${API_CONFIG.BASE_URL}/sourcing/validate-electricity-bill`,
         payload,
         {
           headers: {
@@ -349,34 +349,25 @@ const ApplicantBusinessDetails = () => {
     const token = localStorage.getItem("authToken");
     console.log("📦 Token being sent in Authorization header:", token); // 👈 Debug line
 
-    // Fetch Business Nature
+    // Fetch Business Nature and Loan Purpose in a single call
     axios
-      .get(`${API_CONFIG.BASE_URL}/api/business-nature`, {
+      .get(`${API_CONFIG.BASE_URL}/sourcing/business-nature-purpose`, {
         headers: {
-          // Authorization: token,
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
       })
-      .then((res) =>
-        setBusinessNatureOptions(Array.isArray(res.data) ? res.data : [])
-      )
-      .catch(() => setBusinessNatureOptions([]));
-
-    // Fetch Loan Purpose
-    axios
-      .get(`${API_CONFIG.BASE_URL}/api/loan-purpose`, {
-        headers: {
-          Authorization: token,
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          setBusinessNatureOptions(res.data);
+          setLoanPurposeOptions(res.data);
+        }
       })
-      .then((res) =>
-        setLoanPurposeOptions(Array.isArray(res.data) ? res.data : [])
-      )
-      .catch(() => setLoanPurposeOptions([]));
+      .catch(() => {
+        setBusinessNatureOptions([]);
+        setLoanPurposeOptions([]);
+      });
   }, []);
 
   const validateField = (name, value) => {
