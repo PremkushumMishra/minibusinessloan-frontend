@@ -76,10 +76,14 @@ const CoApplicant = () => {
       );
       console.log(response, "response");
 
-      if (response.data?.status === true) {
+      if (
+        response.data?.status === true &&
+        response.data?.message === "SUCCESS"
+      ) {
+        console.log(response.data, "response.data")
         // recieve clientId
         // const recievedClientId = response.data?.clientId;
-        // setClientId(recievedClientId);   
+        // setClientId(recievedClientId);
         setCustomerID(response.data?.customerID);
         setShowOtpInput(true);
         setStatus(null);

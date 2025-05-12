@@ -29,7 +29,7 @@ const Home = () => {
       {/* <KycSuccess /> */}
       {/* <CoApplicant/> */}
       {/* <ApplicantPersonalDetails/> */}
-      {/* <ApplicantBusinessDetails /> */}
+      <ApplicantBusinessDetails />
       {/* <LoanEligiblity/> */}
       {/* <AdditionalInfo/> */}
       </>

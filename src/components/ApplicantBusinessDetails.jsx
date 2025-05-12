@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { useStep } from "../context/useStep";
 import axios from "axios";
@@ -32,6 +32,7 @@ const ApplicantBusinessDetails = () => {
   const [submitError, setSubmitError] = useState("");
   const [businessNatureOptions, setBusinessNatureOptions] = useState([]);
   const [loanPurposeOptions, setLoanPurposeOptions] = useState([]);
+  const [isDropdownClicked, setIsDropdownClicked] = useState(false);
 
   // Add verification states
   const [verificationStatus, setVerificationStatus] = useState({
@@ -220,118 +221,43 @@ const ApplicantBusinessDetails = () => {
 
 
 
-  // verify electricity bill
-  // const verifyElectricityBill = async (input) => {
-  //   if (!input) return;
-  //   setVerificationStatus((prev) => ({
-  //     ...prev,
-  //     electricityBill: { loading: true, verified: false, error: null },
-  //   }));
-  //   try {
-  //     const token = localStorage.getItem("authToken");
-  //     console.log("📦 Token being sent in Authorization header:", token);
-  //     let payload;
-  //     if (electricityBillInputType === "upload") {
-  //       payload = {
-  //         customerID: customerID,
-  //         // id_number: input.name, // Using file name as id_number, adjust if needed
-
-  //         id_number: "6543092000",
-  //         operator_code: "UP",
-  //       };
-  //     } else {
-  //       payload = {
-  //         // customerID: customerID,
-  //         customerID: data.client_id,
-
-  //         id_number: input, // input is the bill number
-  //         operator_code: "UP",
-  //       };
-  //     }
-  //     const response = await axios.post(
-  //       `${API_CONFIG.BASE_URL}/sourcing/valdiate-electricity-bill`,
-  //       payload,
-  //       {
-  //         headers: {
-  //           Authorization: getAuthToken(),
-  //           "Content-Type": "application/json",
-  //           "Access-Control-Allow-Origin": "*",
-  //         },
-  //       }
-  //     );
-  //     if (response.data?.success) {
-  //       setVerificationStatus((prev) => ({
-  //         ...prev,
-  //         electricityBill: { loading: false, verified: true, error: null },
-  //       }));
-  //     } else {
-  //       throw new Error(
-  //         response.data?.message || "Electricity bill verification failed"
-  //       );
-  //     }
-  //   } catch (error) {
-  //     setVerificationStatus((prev) => ({
-  //       ...prev,
-  //       electricityBill: {
-  //         loading: false,
-  //         verified: false,
-  //         error:
-  //           error.response?.data?.message ||
-  //           "Electricity bill verification failed",
-  //       },
-  //     }));
-  //   }
-  // };
-
-
-
-  const verifyElectricityBill = async (input, selectedOperatorCode) => {
-    if (!input || !selectedOperatorCode) return;
-  
-    setVerificationStatus((prev) => ({
-      ...prev,
-      electricityBill: { loading: true, verified: false, error: null },
-    }));
-  
+ 
+ 
+ 
+ 
+ 
+  const fetchBusinessNatureAndPurpose = async () => {
     try {
       const token = localStorage.getItem("authToken");
-  
-      const payload = {
-        customerID: customerID,
-        id_number: input,
-        operator_code: selectedOperatorCode,
-      };
-  
-      const response = await axios.post(
-        `${API_CONFIG.BASE_URL}/sourcing/validate-electricity-bill`,
-        payload,
+      const response = await axios.get(
+        `${API_CONFIG.BASE_URL}/sourcing/business-nature-purpose`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            // Authorization: token,
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
           },
         }
       );
   
-      if (response.data?.status===true && response.data?.message==="SUCCESS") {
-        setVerificationStatus((prev) => ({
-          ...prev,
-          electricityBill: { loading: false, verified: true, error: null },
-        }));
+      console.log("Dropdown response:", response.data); // Debug line
+  
+      if (
+        response.data?.status === true &&
+        response.data?.message === "SUCCESS" &&
+        response.data?.data
+      ) {
+        setBusinessNatureOptions(response.data.data.nature || []);
+        setLoanPurposeOptions(response.data.data.purpose || []);
       } else {
-        throw new Error(response.data?.message || "Verification failed");
+        alert("Failed to fetch dropdown options.");
+        setBusinessNatureOptions([]);
+        setLoanPurposeOptions([]);
       }
     } catch (error) {
-      setVerificationStatus((prev) => ({
-        ...prev,
-        electricityBill: {
-          loading: false,
-          verified: false,
-          error: error.response?.data?.message || "Verification failed",
-        },
-      }));
+      console.error("Error fetching options:", error);
+      setBusinessNatureOptions([]);
+      setLoanPurposeOptions([]);
     }
   };
   
@@ -339,36 +265,6 @@ const ApplicantBusinessDetails = () => {
 
 
 
-
-
-
-
-  // Fetch dropdown options from backend
-  useEffect(() => {
-    // Get token only once
-    const token = localStorage.getItem("authToken");
-    console.log("📦 Token being sent in Authorization header:", token); // 👈 Debug line
-
-    // Fetch Business Nature and Loan Purpose in a single call
-    axios
-      .get(`${API_CONFIG.BASE_URL}/sourcing/business-nature-purpose`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-      .then((res) => {
-        if (Array.isArray(res.data)) {
-          setBusinessNatureOptions(res.data);
-          setLoanPurposeOptions(res.data);
-        }
-      })
-      .catch(() => {
-        setBusinessNatureOptions([]);
-        setLoanPurposeOptions([]);
-      });
-  }, []);
 
   const validateField = (name, value) => {
     let error = "";
@@ -471,6 +367,104 @@ const ApplicantBusinessDetails = () => {
       // navigate("/application-processing");
     }
   };
+
+
+
+
+  const verifyElectricityBill = async (input, selectedOperatorCode) => {
+    // Bill number is now optional, so only operator code is required
+    if (!selectedOperatorCode) return;
+    setVerificationStatus((prev) => ({
+      ...prev,
+      electricityBill: { loading: true, verified: false, error: null },
+    }));
+    try {
+      const token = localStorage.getItem("authToken");
+      const payload = {
+        customerID: customerID,
+        id_number: input || "", // input (bill number) is optional
+        operator_code: selectedOperatorCode,
+      };
+      const response = await axios.post(
+        `${API_CONFIG.BASE_URL}/sourcing/validate-electricity-bill`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      if (response.data?.status === true && response.data?.message === "SUCCESS") {
+        setVerificationStatus((prev) => ({
+          ...prev,
+          electricityBill: { loading: false, verified: true, error: null },
+        }));
+      } else {
+        throw new Error(response.data?.message || "Verification failed");
+      }
+    } catch (error) {
+      setVerificationStatus((prev) => ({
+        ...prev,
+        electricityBill: {
+          loading: false,
+          verified: false,
+          error: error.response?.data?.message || "Verification failed",
+        },
+      }));
+    }
+  };
+  
+
+
+  // 1. Add file upload function
+  const uploadElectricityBillFile = async (file) => {
+    if (!file) return;
+    setVerificationStatus((prev) => ({
+      ...prev,
+      electricityBill: { loading: true, verified: false, error: null },
+    }));
+    try {
+      const token = localStorage.getItem("authToken");
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("customerID", customerID);
+      // Add more fields if required by backend
+      const response = await axios.post(
+        `${API_CONFIG.BASE_URL}/sourcing/upload-file`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      if (response.data?.status === true && response.data?.message === "SUCCESS") {
+        setVerificationStatus((prev) => ({
+          ...prev,
+          electricityBill: { loading: false, verified: true, error: null },
+        }));
+      } else {
+        throw new Error(response.data?.message || "File upload failed");
+      }
+    } catch (error) {
+      setVerificationStatus((prev) => ({
+        ...prev,
+        electricityBill: {
+          loading: false,
+          verified: false,
+          error: error.response?.data?.message || "File upload failed",
+        },
+      }));
+    }
+  };
+
+
+
+
 
   return (
     <div className="max-w-3xl mx-auto p-8 mt-30 mb-10 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl border border-gray-100">
@@ -663,12 +657,18 @@ const ApplicantBusinessDetails = () => {
               name="businessNature"
               value={formData.businessNature}
               onChange={handleChange}
+              onClick={() => {
+                if (!isDropdownClicked) {
+                  fetchBusinessNatureAndPurpose();
+                  setIsDropdownClicked(true);
+                }
+              }}
               className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
             >
               <option value="">Select Nature</option>
               {businessNatureOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
+                <option key={option.id} value={option.nature}>
+                  {option.nature}
                 </option>
               ))}
             </select>
@@ -682,12 +682,18 @@ const ApplicantBusinessDetails = () => {
               name="loanPurpose"
               value={formData.loanPurpose}
               onChange={handleChange}
+              onClick={() => {
+                if (!isDropdownClicked) {
+                  fetchBusinessNatureAndPurpose();
+                  setIsDropdownClicked(true);
+                }
+              }}
               className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
             >
               <option value="">Select Purpose</option>
               {loanPurposeOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
+                <option key={option.id} value={option.purpose}>
+                  {option.purpose}
                 </option>
               ))}
             </select>
@@ -917,7 +923,7 @@ const ApplicantBusinessDetails = () => {
             ...prev,
             electricityBill: e.target.files[0],
           }));
-          verifyElectricityBill(e.target.files[0]);
+          uploadElectricityBillFile(e.target.files[0]);
         }}
         className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white"
       />
@@ -941,13 +947,13 @@ const ApplicantBusinessDetails = () => {
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2 items-end">
         <div className="flex-1 min-w-[120px]">
-          <label className="block font-semibold mb-1">Bill Number</label>
+          <label className="block font-semibold mb-1">Bill Number (Optional)</label>
             <input
             type="text"
             value={userEnteredBillNumber}
             onChange={(e) => setUserEnteredBillNumber(e.target.value)}
             className="w-full px-4 py-2 border rounded"
-            placeholder="Enter bill number"
+            placeholder="Enter bill number (optional)"
             />
           </div>
         <div className="flex-1 min-w-[120px]">
@@ -966,7 +972,7 @@ const ApplicantBusinessDetails = () => {
         <button
           onClick={() => verifyElectricityBill(userEnteredBillNumber, selectedOperatorCode)}
           className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-all mt-6"
-          disabled={!userEnteredBillNumber || !selectedOperatorCode}
+          disabled={!selectedOperatorCode}
         >
           Verify Bill
         </button>
