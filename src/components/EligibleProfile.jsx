@@ -28,7 +28,15 @@ const EligibleProfile = () => {
             Who Can Apply for This Loan?
           </h1>
         </div>
-        <div className="mx-auto mt-2 mb-2" style={{ width: 120, height: 6, background: "linear-gradient(90deg, #003366 60%, #E53935 100%)", borderRadius: 6 }} />
+        <div
+          className="mx-auto mt-2 mb-2"
+          style={{
+            width: 120,
+            height: 6,
+            background: "linear-gradient(90deg, #003366 60%, #E53935 100%)",
+            borderRadius: 6,
+          }}
+        />
         <p className="text-white text-base max-w-md mx-auto font-medium">
           If you run a business or earn a steady income, you might be eligible!
         </p>
@@ -38,10 +46,7 @@ const EligibleProfile = () => {
       <div className="w-full max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {images.map((img, idx) => (
-            <div
-              key={idx}
-              className="w-full"
-            >
+            <div key={idx} className="w-full">
               <div
                 className="relative rounded-3xl shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-fadeIn bg-transparent"
                 style={{
@@ -53,13 +58,24 @@ const EligibleProfile = () => {
                 <div className="absolute top-5 left-5 flex items-center gap-1 bg-[#E53935] text-white px-4 py-1 rounded-full shadow-md text-base font-bold z-10">
                   <FaCheckCircle className="mr-1" /> Eligible
                 </div>
-                <img
-                  src={img.src}
-                  alt={`Eligible ${idx + 1}`}
-                  className="w-full h-60 object-cover rounded-2xl border-4 border-white"
-                  style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
-                />
-                <div className="w-full text-center py-4 px-2" style={{background: "rgba(255,255,255,0.15)", borderBottomLeftRadius: 24, borderBottomRightRadius: 24}}>
+                <div className="relative group">
+                  <div className="animated-border rounded-2xl">
+                    <img
+                      src={img.src}
+                      alt={`Eligible ${idx + 1}`}
+                      className="w-full h-60 object-cover rounded-2xl border-4 border-white relative z-10"
+                      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
+                    />
+                  </div>
+                </div>
+                <div
+                  className="w-full text-center py-4 px-2"
+                  style={{
+                    background: "rgba(255,255,255,0.15)",
+                    borderBottomLeftRadius: 24,
+                    borderBottomRightRadius: 24,
+                  }}
+                >
                   <span className="text-lg font-bold text-white tracking-wide">
                     {img.desc}
                   </span>
@@ -76,20 +92,22 @@ const EligibleProfile = () => {
           0% { opacity: 0; transform: translateY(40px); }
           100% { opacity: 1; transform: translateY(0); }
         }
+        .animated-border {
+          position: relative;
+          padding: 4px; /* border thickness */
+          background: linear-gradient(270deg, #E53935, #003366, #7EE7EE, #E53935);
+          background-size: 600% 600%;
+          animation: borderGradient 3s linear infinite;
+          border-radius: 1rem; /* match rounded-2xl */
+          z-index: 1;
+        }
+        @keyframes borderGradient {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
+        }
       `}</style>
     </div>
   );
 };
 
 export default EligibleProfile;
-
-
-
-
-
-
-
-
-
-
-
