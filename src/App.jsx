@@ -20,6 +20,7 @@ import AdditionalInfo from "./components/AdditionalInfo";
 import CoApplicant from "./components/CoApplicant";
 import TermsCondition from "./components/TermsCondition";  
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import Faqs from "./components/Faqs";
 function App() {
   return (
     <Router>
@@ -31,6 +32,8 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/terms" element={<TermsCondition />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path ="/faqs" element={<Faqs/>}/>
+
         <Route path="/apply" element={<Apply />} />
         {/* Step-by-step journey starts here */}
         <Route path="/mobile-verification" element={<MobileVerification />} />

@@ -6,7 +6,7 @@ const images = [
   { src: "/imageforth.jpg", desc: "Small Manufacturer" },
   { src: "/imagefifth.jpg", desc: "Service Provider" },
   { src: "/imagesixth.jpg", desc: "Wholesaler" },
-  { src: "/streetfoodpic.png", desc: "Retail Shop Owner" },
+  { src: "/newstreetshop.jpg", desc: "Street Food Vendor" },
 ];
 
 const EligibleProfile = () => {

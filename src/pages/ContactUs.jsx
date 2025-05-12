@@ -135,13 +135,13 @@ const ContactUs = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <span className="text-2xl">⏰</span>
-                  <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                  <p className="text-gray-600">Monday to Saturday: 10:00 AM - 6:30 PM</p>
                 </div>
               </div>
             </div>
 
             {/* Social Media */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
+            {/* <div className="bg-white rounded-2xl shadow-xl p-8">
               <h3 className="text-xl font-bold text-[#003366] mb-4">
                 Connect With Us
               </h3>
@@ -171,7 +171,7 @@ const ContactUs = () => {
                   🐦
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

@@ -44,6 +44,7 @@ const ApplicantBusinessDetails = () => {
     },
     gstNumber: { loading: false, verified: false, error: null },
     electricityBill: { loading: false, verified: false, error: null },
+    bankStatement: { loading: false, verified: false, error: null },
   });
 
   // Add state for electricity bill input type and bill number
@@ -462,6 +463,51 @@ const ApplicantBusinessDetails = () => {
     }
   };
 
+  // 2. Add bank statement upload function
+  const uploadBankStatementFile = async (file) => {
+    if (!file) return;
+    setVerificationStatus((prev) => ({
+      ...prev,
+      bankStatement: { loading: true, verified: false, error: null },
+    }));
+    try {
+      const token = localStorage.getItem("authToken");
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("customerID", customerID);
+      // Add more fields if required by backend
+      console.log(`${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`);
+      const response = await axios.post(
+        `${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+      if (response.data?.status === true && response.data?.message === "SUCCESS") {
+        setVerificationStatus((prev) => ({
+          ...prev,
+          bankStatement: { loading: false, verified: true, error: null },
+        }));
+      } else {
+        throw new Error(response.data?.message || "File upload failed");
+      }
+    } catch (error) {
+      setVerificationStatus((prev) => ({
+        ...prev,
+        bankStatement: {
+          loading: false,
+          verified: false,
+          error: error.response?.data?.message || "File upload failed",
+        },
+      }));
+    }
+  };
+
 
 
 
@@ -785,101 +831,6 @@ const ApplicantBusinessDetails = () => {
 
 
 
-          {/* Electricity Bill (Home/Business) */}
-          {/* <div className="md:col-span-2">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Electricity Bill (Home/Business)
-            </label>
-            <div className="flex gap-4 mb-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="electricityBillInputType"
-                  value="upload"
-                  checked={electricityBillInputType === "upload"}
-                  onChange={() => setElectricityBillInputType("upload")}
-                  className="mr-2"
-                />
-                Upload Document
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="electricityBillInputType"
-                  value="number"
-                  checked={electricityBillInputType === "number"}
-                  onChange={() => setElectricityBillInputType("number")}
-                  className="mr-2"
-                />
-                Enter Bill Number
-              </label>
-            </div>
-            {electricityBillInputType === "upload" ? (
-              <div className="relative">
-                <input
-                  type="file"
-                  name="electricityBill"
-                  accept="application/pdf,image/*"
-                  onChange={(e) => {
-                    setFormData((prev) => ({
-                      ...prev,
-                      electricityBill: e.target.files[0],
-                    }));
-                    verifyElectricityBill(e.target.files[0]);
-                  }}
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white"
-                />
-                {verificationStatus.electricityBill.loading && (
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
-                  </div>
-                )}
-                {verificationStatus.electricityBill.verified && (
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-500">
-                    ✓
-                  </div>
-                )}
-                {verificationStatus.electricityBill.error && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {verificationStatus.electricityBill.error}
-                  </p>
-                )}
-              </div>
-            ) : (
-              <div className="relative">
-            <input
-              type="text"
-                  name="electricityBillNumber"
-                  value={electricityBillNumber}
-                  onChange={(e) => {
-                    setElectricityBillNumber(e.target.value);
-                  }}
-                  placeholder="Enter Electricity Bill Number"
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
-                />
-                <button
-                  type="button"
-                  onClick={() => verifyElectricityBill(electricityBillNumber)}
-                  className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
-                  disabled={!electricityBillNumber}
-                >
-                  Verify
-                </button>
-                {verificationStatus.electricityBill.loading && (
-                  <span className="ml-2 animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500 inline-block"></span>
-                )}
-                {verificationStatus.electricityBill.verified && (
-                  <span className="ml-2 text-green-500">✓</span>
-                )}
-                {verificationStatus.electricityBill.error && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {verificationStatus.electricityBill.error}
-                  </p>
-                )}
-              </div>
-            )}
-          </div> */}
-
 {/* after bill number verification */}
 
 <div className="md:col-span-2">
@@ -1006,10 +957,29 @@ const ApplicantBusinessDetails = () => {
               type="file"
               name="bankStatement"
               accept="application/pdf,image/*"
-              onChange={handleChange}
+              onChange={(e) => {
+                setFormData((prev) => ({
+                  ...prev,
+                  bankStatement: e.target.files[0],
+                }));
+                uploadBankStatementFile(e.target.files[0]);
+              }}
               className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white"
               required
             />
+            {verificationStatus.bankStatement?.loading && (
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
+              </div>
+            )}
+            {verificationStatus.bankStatement?.verified && (
+              <div className="text-green-500 mt-1">✓ Uploaded</div>
+            )}
+            {verificationStatus.bankStatement?.error && (
+              <p className="text-red-500 text-sm mt-1">
+                {verificationStatus.bankStatement.error}
+              </p>
+            )}
             {errors.bankStatement && (
               <p className="text-red-500 text-sm mt-1">
                 {errors.bankStatement}

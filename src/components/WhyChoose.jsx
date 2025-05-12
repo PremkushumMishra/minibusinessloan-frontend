@@ -9,7 +9,7 @@ const WhyChoose = () => {
         "Get your loan approved within 30 mins with minimal documentation and hassle-free process.",
     },
     {
-      icon: "💰",
+      icon: "₹",
       title: "Competitive Interest Rates",
       description:
         "Enjoy the lowest interest rates in the market with flexible repayment options tailored to your needs.",
@@ -39,7 +39,7 @@ const WhyChoose = () => {
         "No hidden charges or surprises. Clear terms and conditions with complete transparency in all dealings.",
     },
     {
-      icon: "💵",
+      icon: "🏆",
       title: "10Cr+ Disbursement",
       description:
         "Trusted by thousands of customers with over 10 crores in successful loan disbursements.",

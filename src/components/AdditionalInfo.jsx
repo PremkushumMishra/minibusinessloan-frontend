@@ -6,7 +6,7 @@ const AdditionalInfo = () => {
   const [form, setForm] = useState({
     maritalStatus: "",
     relation: "",
-    emailID: "",
+    // emailID: "",
     firstReferenceName: "",
     firstReferenceRelation: "",
     firstReferenceContact: "",
@@ -133,7 +133,7 @@ const AdditionalInfo = () => {
             required
           />
         </div>
-        <div>
+        {/* <div>
           <label className="block font-medium mb-1">Email ID</label>
           <input
             type="email"
@@ -143,7 +143,7 @@ const AdditionalInfo = () => {
             className="w-full border rounded px-3 py-2"
             required
           />
-        </div>
+        </div> */}
         <div>
           <label className="block font-medium mb-1">First Reference Name</label>
           <input

@@ -14,6 +14,7 @@ import LoanEligiblity from "../components/LoanEligiblity";
 import CoApplicant from '../components/CoApplicant';
 import AdditionalInfo from '../components/AdditionalInfo';
 import EligibleProfile from '../components/EligibleProfile';
+import AppDownload from '../components/AppDownload';
 const Home = () => {
   return (
     <>
@@ -23,13 +24,14 @@ const Home = () => {
       <Lorem />
       <LoanCalculator />
       <WhyChoose />
-      <Frequently />
+      <AppDownload/>
+      {/* <Frequently /> */}
       <PublicReview />
       <GetAmount />
       {/* <KycSuccess /> */}
       {/* <CoApplicant/> */}
       {/* <ApplicantPersonalDetails/> */}
-      <ApplicantBusinessDetails />
+      {/* <ApplicantBusinessDetails /> */}
       {/* <LoanEligiblity/> */}
       {/* <AdditionalInfo/> */}
       </>

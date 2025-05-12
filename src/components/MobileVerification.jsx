@@ -505,8 +505,8 @@ const MobileVerification = () => {
       // Send OTP using axios to the new API endpoint
       const mobileNumberWithoutPrefix = mobileNumber.slice(3);
       const response = await axios.post(
-        'http://103.104.73.107:3004/api/v1/auth/generate-otp-customer',
-        // `${API_CONFIG.BASE_URL}/auth/generate-otp-customer`,
+        // 'http://103.104.73.107:3004/api/v1/auth/generate-otp-customer',
+        `${API_CONFIG.BASE_URL}/auth/generate-otp-customer`,
         {
           phone: mobileNumberWithoutPrefix,
           appliedMode: "web",
