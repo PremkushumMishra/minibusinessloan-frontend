@@ -629,7 +629,7 @@ const MobileVerification = () => {
     <div className="min-h-screen w-full bg-[#003366] flex items-center justify-center py-8 px-2  sm:px-4">
       <div className="w-full max-w-sm space-y-5 bg-white p-3 sm:p-5 sm:mt-14 rounded-3xl shadow-2xl border-2 border-[#003366]">
         <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-[#003366]">
+          <h2 className="text-3xl font-bold text-[#003366]">
             Enter Your Mobile Number
           </h2>
           <p className="mt-3 text-[#003366] text-lg font-medium">

@@ -10,9 +10,9 @@ const TalkingLoan = () => {
         style={{ backgroundImage: `url(${newheropic})` }}>
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative flex flex-col justify-center h-full pl-20 max-w-xl w-full z-10">
-          <h1 className="font-bold text-white mb-2 mt-20" style={{ fontSize: "2rem", lineHeight: "1.1" }}>
-            <span className="block md:inline" style={{ fontSize: "2.2rem" }}>Grow your business</span>
-            <span className="block text-[#00BCD4] text-2xl font-semibold mt-2">
+          <h1 className="font-bold text-white mb-2 mt-20" style={{ fontSize: "3rem", lineHeight: "1.1" }}>
+            <span className="block md:inline" style={{ fontSize: "3.2rem" }}>Grow your business</span>
+            <span className="block text-[#00BCD4] text-4xl font-semibold mt-2">
               Get loan in 30 minutes
             </span>
           </h1>

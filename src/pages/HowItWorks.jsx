@@ -53,16 +53,16 @@ const HowItWorks = () => {
         <h2 className="text-3xl font-bold text-[#003366] text-center mb-2">Why Choose Us?</h2>
         <div className="w-24 h-1 bg-yellow-400 rounded-full mx-auto mb-10" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Card 1 */}
+          {/* Card 1: Mobile-Optimized */}
           <div className="relative flex items-center">
             <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10">
-              {/* Mobile Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 32 32">
-                <rect width="24" height="36" x="4" y="-2" rx="6" fill="#fff"/>
-                <rect x="8" y="2" width="16" height="28" rx="4" fill="#003366" stroke="#fff" strokeWidth="2.5"/>
-                <circle cx="16" cy="26" r="2" fill="#fff"/>
-                <rect x="12" y="6" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="12" y="10" width="8" height="2" rx="1" fill="#fff"/>
+              {/* New Mobile Icon */}
+              <svg width="70" height="70" fill="none" viewBox="0 0 70 70">
+                <rect x="18" y="8" width="34" height="54" rx="8" fill="#fff"/>
+                <rect x="22" y="12" width="26" height="46" rx="6" fill="#00BCD4"/>
+                <circle cx="35" cy="52" r="3" fill="#fff"/>
+                <rect x="28" y="18" width="14" height="2.5" rx="1.25" fill="#fff"/>
+                <rect x="28" y="24" width="14" height="2.5" rx="1.25" fill="#fff"/>
               </svg>
             </div>
             <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
@@ -70,16 +70,15 @@ const HowItWorks = () => {
               <div className="text-gray-600 text-base">Access and manage your account easily from your mobile device, wherever you are.</div>
             </div>
           </div>
-          {/* Card 2 */}
+          {/* Card 2: Quick Signup */}
           <div className="relative flex items-center">
             <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10">
-              {/* Onboarding Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 32 32">
-                <rect width="24" height="36" x="4" y="-2" rx="6" fill="#fff"/>
-                <rect x="8" y="2" width="16" height="28" rx="4" fill="#003366" stroke="#fff" strokeWidth="2.5"/>
-                <rect x="12" y="8" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="12" y="14" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="12" y="20" width="5" height="2" rx="1" fill="#fff"/>
+              {/* New Signup Icon */}
+              <svg width="70" height="70" fill="none" viewBox="0 0 70 70">
+                <circle cx="35" cy="28" r="12" fill="#00BCD4"/>
+                <rect x="16" y="44" width="38" height="14" rx="7" fill="#fff"/>
+                <rect x="22" y="50" width="26" height="4" rx="2" fill="#00BCD4"/>
+                <circle cx="35" cy="28" r="6" fill="#fff"/>
               </svg>
             </div>
             <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
@@ -87,18 +86,15 @@ const HowItWorks = () => {
               <div className="text-gray-600 text-base">Register and get started in minutes—no paperwork, no waiting.</div>
             </div>
           </div>
-          {/* Card 3 */}
+          {/* Card 3: Higher Credit Limits */}
           <div className="relative flex items-center">
             <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10">
-              {/* Purchasing Power Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 32 32">
-                <rect width="24" height="36" x="4" y="-2" rx="6" fill="#fff"/>
-                <rect x="8" y="2" width="16" height="28" rx="4" fill="#003366" stroke="#fff" strokeWidth="2.5"/>
-                <rect x="12" y="8" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="12" y="14" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="12" y="20" width="5" height="2" rx="1" fill="#fff"/>
-                <circle cx="24" cy="24" r="4" fill="#003366" stroke="#fff" strokeWidth="2"/>
-                <text x="22" y="27" fontSize="1.5em" fill="#fff" fontWeight="bold">₹</text>
+              {/* New Credit Icon */}
+              <svg width="70" height="70" fill="none" viewBox="0 0 70 70">
+                <rect x="14" y="22" width="42" height="26" rx="6" fill="#00BCD4"/>
+                <rect x="20" y="28" width="30" height="6" rx="3" fill="#fff"/>
+                <circle cx="35" cy="35" r="8" fill="#fff"/>
+                <text x="31" y="40" fontSize="1.5em" fill="#00BCD4" fontWeight="bold">₹</text>
               </svg>
             </div>
             <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
@@ -106,17 +102,16 @@ const HowItWorks = () => {
               <div className="text-gray-600 text-base">Get access to credit from ₹5,000 up to ₹10 lakhs as per your eligibility.</div>
             </div>
           </div>
-          {/* Card 4 */}
+          {/* Card 4: Smooth Checkout */}
           <div className="relative flex items-center">
             <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10">
-              {/* User Experience Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 32 32">
-                <rect width="24" height="36" x="4" y="-2" rx="6" fill="#fff"/>
-                <rect x="8" y="2" width="16" height="28" rx="4" fill="#003366" stroke="#fff" strokeWidth="2.5"/>
-                <circle cx="24" cy="8" r="4" fill="#003366" stroke="#fff" strokeWidth="2"/>
-                <rect x="12" y="8" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="12" y="14" width="8" height="2" rx="1" fill="#fff"/>
-                <rect x="12" y="20" width="5" height="2" rx="1" fill="#fff"/>
+              {/* New Checkout Icon */}
+              <svg width="70" height="70" fill="none" viewBox="0 0 70 70">
+                <rect x="18" y="24" width="34" height="22" rx="6" fill="#00BCD4"/>
+                <rect x="24" y="30" width="22" height="4" rx="2" fill="#fff"/>
+                <rect x="24" y="38" width="14" height="4" rx="2" fill="#fff"/>
+                <circle cx="53" cy="35" r="5" fill="#fff"/>
+                <rect x="30" y="44" width="10" height="2" rx="1" fill="#fff"/>
               </svg>
             </div>
             <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
@@ -133,13 +128,15 @@ const HowItWorks = () => {
           {/* Card 1 */}
           <div className="relative flex items-center">
             <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10">
-              {/* Pricing Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 80 80">
-                <rect x="10" y="20" width="60" height="40" rx="10" fill="#fff"/>
-                <rect x="20" y="30" width="40" height="8" rx="2" fill="#fff"/>
-                <rect x="20" y="44" width="20" height="8" rx="2" fill="#fff"/>
-                <circle cx="60" cy="40" r="8" fill="#003366" stroke="#fff" strokeWidth="2"/>
-                <text x="56" y="45" fontSize="2em" fill="#fff" fontWeight="bold">₹</text>
+              {/* New Transparent Pricing Icon */}
+              <svg width="100" height="100" fill="none" viewBox="0 0 100 100">
+                <rect x="25" y="25" width="50" height="50" rx="10" fill="#fff" stroke="#00BCD4" strokeWidth="3"/>
+                <rect x="35" y="35" width="30" height="8" rx="2" fill="#00BCD4"/>
+                <rect x="35" y="48" width="20" height="6" rx="2" fill="#00BCD4"/>
+                <circle cx="70" cy="70" r="10" fill="#00BCD4" stroke="#fff" strokeWidth="2"/>
+                <text x="65" y="75" fontSize="1.5em" fill="#fff" fontWeight="bold">₹</text>
+                <rect x="60" y="60" width="8" height="8" rx="2" fill="#fff" stroke="#00BCD4" strokeWidth="2"/>
+                <path d="M64 64 l4 4" stroke="#00BCD4" strokeWidth="2"/>
               </svg>
             </div>
             <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
@@ -150,13 +147,17 @@ const HowItWorks = () => {
           {/* Card 2 */}
           <div className="relative flex items-center">
             <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10">
-              {/* Omni-Channel Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 80 80">
-                <rect x="15" y="25" width="50" height="30" rx="8" fill="#fff"/>
-                <rect x="22" y="32" width="16" height="16" rx="3" fill="#003366" stroke="#fff" strokeWidth="2"/>
-                <rect x="42" y="32" width="16" height="16" rx="3" fill="#003366" stroke="#fff" strokeWidth="2"/>
-                <rect x="32" y="18" width="16" height="10" rx="3" fill="#003366" stroke="#fff" strokeWidth="2"/>
-                <rect x="28" y="50" width="24" height="4" rx="2" fill="#fff"/>
+              {/* New Omni-Channel Icon */}
+              <svg width="100" height="100" fill="none" viewBox="0 0 100 100">
+                <rect x="15" y="60" width="25" height="20" rx="4" fill="#00BCD4" stroke="#fff" strokeWidth="3"/>
+                <rect x="60" y="20" width="25" height="40" rx="6" fill="#00BCD4" stroke="#fff" strokeWidth="3"/>
+                <rect x="30" y="20" width="30" height="20" rx="4" fill="#fff" stroke="#00BCD4" strokeWidth="2"/>
+                <rect x="40" y="25" width="10" height="10" rx="2" fill="#00BCD4"/>
+                <circle cx="27" cy="70" r="3" fill="#fff"/>
+                <circle cx="72" cy="35" r="3" fill="#fff"/>
+                <path d="M40 80 Q50 90 60 80" stroke="#fff" strokeWidth="2" fill="none"/>
+                <path d="M45 40 L45 60" stroke="#00BCD4" strokeWidth="2"/>
+                <path d="M55 40 L55 60" stroke="#00BCD4" strokeWidth="2"/>
               </svg>
             </div>
             <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
@@ -164,32 +165,17 @@ const HowItWorks = () => {
               <div className="text-gray-600 text-base">Use our platform on web, mobile, or in-store—whichever suits you best.</div>
             </div>
           </div>
-          {/* Card 3 */}
-          {/* <div className="relative flex items-center">
-            <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10"> */}
-              {/* Assortment Icon */}
-              {/* <svg width="100" height="100" fill="none" viewBox="0 0 80 80">
-                <rect x="18" y="28" width="44" height="24" rx="6" fill="#fff"/>
-                <rect x="24" y="36" width="32" height="8" rx="2" fill="#fff"/>
-                <circle cx="60" cy="40" r="5" fill="#003366" stroke="#fff" strokeWidth="2"/>
-                <rect x="50" y="48" width="10" height="4" rx="2" fill="#fff"/>
-                <rect x="30" y="48" width="10" height="4" rx="2" fill="#fff"/>
-              </svg> */}
-            {/* </div> */}
-            {/* <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
-              <div className="font-bold text-2xl text-gray-800 mb-1">Wide Product Selection</div>
-              <div className="text-gray-600 text-base">Benefit from a large variety of products through our merchant partners.</div>
-            </div> */}
-          {/* </div> */}
-          {/* Card 4 */}
+        
           <div className="relative flex items-center">
             <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10">
-              {/* Hasslefree Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 80 80">
-                <ellipse cx="40" cy="56" rx="28" ry="12" fill="#fff"/>
-                <path d="M20 56c0-8 20-16 20-16s20 8 20 16" stroke="#fff" strokeWidth="2" fill="none"/>
-                <rect x="32" y="60" width="16" height="4" rx="2" fill="#fff"/>
-                <rect x="36" y="48" width="8" height="8" rx="2" fill="#003366" stroke="#fff" strokeWidth="2"/>
+              {/* New Payments Icon */}
+              <svg width="100" height="100" fill="none" viewBox="0 0 100 100">
+                <rect x="20" y="30" width="60" height="40" rx="10" fill="#fff"/>
+                <circle cx="50" cy="50" r="18" fill="#00BCD4"/>
+                <text x="43" y="57" fontSize="2.5em" fill="#fff" fontWeight="bold">₹</text>
+                <path d="M60 60 l10 10 M70 60 l-10 10" stroke="#fff" strokeWidth="3" strokeLinecap="round"/>
+                <circle cx="70" cy="70" r="7" fill="#fff" stroke="#00BCD4" strokeWidth="2"/>
+                <path d="M67 70 l2 2 l4 -4" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/>
               </svg>
             </div>
             <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
