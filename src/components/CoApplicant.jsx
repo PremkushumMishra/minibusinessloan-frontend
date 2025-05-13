@@ -25,11 +25,6 @@ const CoApplicant = () => {
   const isMobileValid = /^\d{10}$/.test(mobile);
   const isPanValid = panRegex.test(pan);
 
-  // const getAuthToken = () => {
-  //   // Get token from localStorage (should already have 'Bearer ...')
-  //   return localStorage.getItem("authToken") || "";
-  // };
-
   useEffect(() => {
     if (status === "success") {
       const timer = setTimeout(() => {
@@ -80,11 +75,22 @@ const CoApplicant = () => {
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
       ) {
-        console.log(response.data, "response.data")
+        console.log(response.data, "response.data");
         // recieve clientId
         // const recievedClientId = response.data?.clientId;
         // setClientId(recievedClientId);
-        setCustomerID(response.data?.customerID);
+
+        //recieve cliendid
+        //   const receivedClientId =
+        //   response.data?.client_id || response.data?.data?.client_id;
+        // if (receivedClientId) {
+        //   localStorage.setItem("client_id", receivedClientId);
+        //   console.log("🗃️ client_id saved to localStorage:", receivedClientId);
+        // }
+
+        if (response.data?.customerID && response.data.customerID.length > 6) {
+          setCustomerID(response.data.customerID);
+        }
         setShowOtpInput(true);
         setStatus(null);
         alert("OTP sent to co-applicant mobile number!");
@@ -108,6 +114,10 @@ const CoApplicant = () => {
       setError("Please enter a valid 6-digit OTP.");
       return;
     }
+    if (!customerID || customerID.length <= 6) {
+      setError("CustomerID is missing or invalid.");
+      return;
+    }
     setIsLoading(true);
     try {
       const token = localStorage.getItem("authToken");
@@ -118,10 +128,9 @@ const CoApplicant = () => {
         {
           phone: mobile,
           otp: otp,
-          // customerID: CUSTOMER_ID,
           customerID: customerID,
         },
-        {
+        {  
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -161,7 +170,7 @@ const CoApplicant = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#E0BCF3] to-[#7EE7EE] py-12 px-4">
       <div className="max-w-md w-full bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 mt-20">
         <h2 className="text-2xl font-bold text-center text-[#003366] mb-6">
-          Co-Applicant (Guarantor) Verification
+          Co-Applicant Verification
         </h2>
         <form
           onSubmit={showOtpInput ? handleVerifyOtp : handleSendOtp}

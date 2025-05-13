@@ -21,7 +21,6 @@ const ApplicantBusinessDetails = () => {
     averageTurnoverLakhs: "",
     electricityBill: null,
     billScanned: false,
-    bankStatement: null,
     businessPhoto: null,
     itrNumber: "",
     udyamPhone: "",
@@ -44,7 +43,6 @@ const ApplicantBusinessDetails = () => {
     },
     gstNumber: { loading: false, verified: false, error: null },
     electricityBill: { loading: false, verified: false, error: null },
-    bankStatement: { loading: false, verified: false, error: null },
   });
 
   // Add state for electricity bill input type and bill number
@@ -312,9 +310,7 @@ const ApplicantBusinessDetails = () => {
       case "averageTurnoverLakhs":
         if (!/^[0-9]+$/.test(value)) error = "Please enter a valid amount";
         break;
-      case "bankStatement":
-        if (!value) error = "Bank Statement is required";
-        break;
+     
       case "businessPhoto":
         if (!value) error = "Business Photo is required";
         break;
@@ -464,49 +460,49 @@ const ApplicantBusinessDetails = () => {
   };
 
   // 2. Add bank statement upload function
-  const uploadBankStatementFile = async (file) => {
-    if (!file) return;
-    setVerificationStatus((prev) => ({
-      ...prev,
-      bankStatement: { loading: true, verified: false, error: null },
-    }));
-    try {
-      const token = localStorage.getItem("authToken");
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("customerID", customerID);
-      // Add more fields if required by backend
-      console.log(`${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`);
-      const response = await axios.post(
-        `${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      );
-      if (response.data?.status === true && response.data?.message === "SUCCESS") {
-        setVerificationStatus((prev) => ({
-          ...prev,
-          bankStatement: { loading: false, verified: true, error: null },
-        }));
-      } else {
-        throw new Error(response.data?.message || "File upload failed");
-      }
-    } catch (error) {
-      setVerificationStatus((prev) => ({
-        ...prev,
-        bankStatement: {
-          loading: false,
-          verified: false,
-          error: error.response?.data?.message || "File upload failed",
-        },
-      }));
-    }
-  };
+  // const uploadBankStatementFile = async (file) => {
+  //   if (!file) return;
+  //   setVerificationStatus((prev) => ({
+  //     ...prev,
+  //     bankStatement: { loading: true, verified: false, error: null },
+  //   }));
+  //   try {
+  //     const token = localStorage.getItem("authToken");
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     formData.append("customerID", customerID);
+  //     // Add more fields if required by backend
+  //     console.log(`${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`);
+  //     const response = await axios.post(
+  //       `${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "Content-Type": "multipart/form-data",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //       }
+  //     );
+  //     if (response.data?.status === true && response.data?.message === "SUCCESS") {
+  //       setVerificationStatus((prev) => ({
+  //         ...prev,
+  //         bankStatement: { loading: false, verified: true, error: null },
+  //       }));
+  //     } else {
+  //       throw new Error(response.data?.message || "File upload failed");
+  //     }
+  //   } catch (error) {
+  //     setVerificationStatus((prev) => ({
+  //       ...prev,
+  //       bankStatement: {
+  //         loading: false,
+  //         verified: false,
+  //         error: error.response?.data?.message || "File upload failed",
+  //       },
+  //     }));
+  //   }
+  // };
 
 
 
@@ -948,44 +944,6 @@ const ApplicantBusinessDetails = () => {
 
 
 
-          {/* Bank Statement Upload */}
-          <div className="md:col-span-2">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Bank Statement (PDF/Image)
-            </label>
-            <input
-              type="file"
-              name="bankStatement"
-              accept="application/pdf,image/*"
-              onChange={(e) => {
-                setFormData((prev) => ({
-                  ...prev,
-                  bankStatement: e.target.files[0],
-                }));
-                uploadBankStatementFile(e.target.files[0]);
-              }}
-              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white"
-              required
-            />
-            {verificationStatus.bankStatement?.loading && (
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
-              </div>
-            )}
-            {verificationStatus.bankStatement?.verified && (
-              <div className="text-green-500 mt-1">✓ Uploaded</div>
-            )}
-            {verificationStatus.bankStatement?.error && (
-              <p className="text-red-500 text-sm mt-1">
-                {verificationStatus.bankStatement.error}
-              </p>
-            )}
-            {errors.bankStatement && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.bankStatement}
-              </p>
-            )}
-          </div>
           {/* Business Photo Upload */}
           <div className="md:col-span-2">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -1003,24 +961,6 @@ const ApplicantBusinessDetails = () => {
               <p className="text-red-500 text-sm mt-1">
                 {errors.businessPhoto}
               </p>
-            )}
-          </div>
-          {/* ITR Number */}
-          <div className="md:col-span-2">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              ITR Number
-            </label>
-            <input
-              type="text"
-              name="itrNumber"
-              value={formData.itrNumber}
-              onChange={handleChange}
-              className={`w-full px-4 py-2.5 rounded-lg border ${
-                errors.itrNumber ? "border-red-500" : "border-gray-300"
-              } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none`}
-            />
-            {errors.itrNumber && (
-              <p className="text-red-500 text-sm mt-1">{errors.itrNumber}</p>
             )}
           </div>
         </div>

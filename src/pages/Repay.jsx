@@ -92,7 +92,7 @@ const Repay = () => {
               <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full flex items-center justify-center mr-4">
-                    <span className="text-2xl">💰</span>
+                    <span className="text-2xl">₹</span>
                   </div>
                   <div>
                     <h3 className="font-bold text-[#003366]">Pre Payment</h3>

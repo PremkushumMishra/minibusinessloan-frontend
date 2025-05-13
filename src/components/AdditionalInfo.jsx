@@ -24,46 +24,6 @@ const AdditionalInfo = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   setSuccess(null);
-  //   setError(null);
-  //   try {
-  //     const token = localStorage.getItem("authToken"); // already has "Bearer ..."
-  //     console.log("📦 Token being sent in Authorization header:", token); // 👈 Debug line
-
-  //     await axios.put(
-  //       // "http://10.6.3.135:3000/api/v1/sourcing/update-applicant-additional-data",
-  //       `${API_CONFIG.BASE_URL}/sourcing/update-applicant-additional-data`,
-  //       form,
-  //       {
-  //         headers: {
-  //           // Authorization: token,
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //           "Access-Control-Allow-Origin": "*",
-  //         },
-  //       }
-  //     );
-  //     if (response.data?.status === true && response.data?.message === "SUCCESS") {
-  //     setSuccess("Data submitted successfully!");
-  //     setTimeout(() => {
-  //       navigate("/co-applicant");
-  //     }, 1000);
-  //   } else {
-  //     setError("Submission failed. Please try again.");
-  //   }
-  //   } catch {
-  //     setError("Submission failed. Please try again.");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-
-
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -87,12 +47,20 @@ const AdditionalInfo = () => {
 
       if (response.data?.status === true) {
         setSuccess("Data submitted successfully!");
+        // const clientId=response.data?.data?.client_id;
+        // if(clientId){
+        //   localStorage.setItem("clientId",clientId);  
+        //   console.log("✅ Success! Navigating to co-applicant...");
+        // }
+        // setSuccess("data submitted successfylly");
         console.log("✅ Success! Navigating to co-applicant...");
         setTimeout(() => {
           navigate("/co-applicant");
         }, 1000);
       } else {
-        setError(response.data?.message || "Submission failed. Please try again.");
+        setError(
+          response.data?.message || "Submission failed. Please try again."
+        );
       }
     } catch (err) {
       console.error("❌ Error:", err);
@@ -101,8 +69,6 @@ const AdditionalInfo = () => {
       setLoading(false);
     }
   };
-  
-
 
   return (
     <div className="max-w-lg mx-auto mt-32 p-6 bg-white rounded shadow">

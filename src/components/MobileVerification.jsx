@@ -512,7 +512,7 @@ const MobileVerification = () => {
           appliedMode: "web",
           sourceBy: "null",
         },
-        { headers: { "Content-Type": "application/json" } }
+        { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "" } }
       );
 
       console.log("API Response:", response.data);
