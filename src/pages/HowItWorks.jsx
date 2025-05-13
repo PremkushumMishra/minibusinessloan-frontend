@@ -1,4 +1,5 @@
 import React from 'react';
+import howitworks from '../../public/howitpic.png';
 
 const HowItWorks = () => {
   return (
@@ -8,7 +9,7 @@ const HowItWorks = () => {
         <div className="w-full md:w-1/2 flex justify-center">
           <div className="relative flex items-center justify-center">
             <img
-              src="/howitpic.png" // <-- replace with your phone illustration image path
+              src={howitworks} // <-- replace with your phone illustration image path
               alt="How it works"
               className="w-80 h-auto z-10"
             />
