@@ -100,7 +100,7 @@ const About = () => {
               </p>
             </div>
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#E53935]">
-              <h4 className="text-xl font-bold text-[#E53935] mb-3">
+              <h4 className="text-xl font-bold text-[#003366] mb-3">
                 Excellence
               </h4>
               <p className="text-gray-700">
@@ -138,10 +138,10 @@ const About = () => {
             </div>
             {/* Sourcing Partner */}
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#E53935]">
-              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <img src="/techaviomlogo.png" alt="Sourcing Partner" className="w-20 h-20 objec t-contain" />
+              <div className="w-25 h-20 mx-auto mb-4 flex items-center justify-center">
+                <img src="/techaviomlogo.png" alt="Sourcing Partner" className="w-25 h-18 objec t-contain" />
               </div>
-              <h4 className="text-xl font-bold text-[#E53935] mb-2">Our Sourcing Partner</h4>
+              <h4 className="text-xl font-bold text-[#003366] mb-2">Our Sourcing Partner</h4>
               <p className="text-gray-700 text-sm">
                 Trusted partner in business development and customer acquisition, helping us reach and serve more entrepreneurs nationwide.
               </p>
@@ -149,7 +149,7 @@ const About = () => {
             {/* Tech Partner */}
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#003366]">
               <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <img src="/fintechcloud.png" alt="Tech Partner" className="w-22 h-22 object-contain" />
+                {/* <img src="/fintechcloud.png" alt="Tech Partner" className="w-22 h-22 object-contain" /> */}
               </div>
               <h4 className="text-xl font-bold text-[#003366] mb-2">Our Tech Partner</h4>
               <p className="text-gray-700 text-sm">

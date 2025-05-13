@@ -45,11 +45,14 @@ const AdditionalInfo = () => {
         }
       );
 
-      if (response.data?.status === true) {
+      if (
+        response.data?.status === true &&
+        response.data?.message === "SUCCESS"
+      ) {
         setSuccess("Data submitted successfully!");
         // const clientId=response.data?.data?.client_id;
         // if(clientId){
-        //   localStorage.setItem("clientId",clientId);  
+        //   localStorage.setItem("clientId",clientId);
         //   console.log("✅ Success! Navigating to co-applicant...");
         // }
         // setSuccess("data submitted successfylly");
@@ -57,6 +60,11 @@ const AdditionalInfo = () => {
         setTimeout(() => {
           navigate("/co-applicant");
         }, 1000);
+      } else if (
+        response.data?.status === false &&
+        response.data?.message === "Lead Rejected"
+      ) {
+        navigate("/about");
       } else {
         setError(
           response.data?.message || "Submission failed. Please try again."
