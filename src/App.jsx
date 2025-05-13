@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import HowItWorks from "./pages/HowItWorks";
 import Footer from "./pages/Footer";
 import Repay from "./pages/Repay";
 import ContactUs from "./pages/ContactUs";
@@ -21,6 +22,7 @@ import CoApplicant from "./components/CoApplicant";
 import TermsCondition from "./components/TermsCondition";  
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Faqs from "./components/Faqs";
+// import HowItWorks from "./components/HowItWorks";
 function App() {
   return (
     <Router>
@@ -28,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/repay" element={<Repay />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/terms" element={<TermsCondition />} />

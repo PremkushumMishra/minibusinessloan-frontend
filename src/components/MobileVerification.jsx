@@ -668,28 +668,28 @@ const MobileVerification = () => {
 
             {/* Consent Section with Modal Link */}
             <div className="mt-6 flex items-center">
-                <input
+              <input
                 id="consent"
-                  type="checkbox"
+                type="checkbox"
                 checked={hasConsented}
-                onChange={(e) => setHasConsented(e.target.checked)}
-                className="h-5 w-5 text-[#E53935] focus:ring-[#E53935] border-[#003366] rounded"
+                readOnly
+                onClick={() => setShowTermsModal(true)}
+                className="h-5 w-5 text-[#E53935] focus:ring-[#E53935] border-[#003366] rounded cursor-pointer"
               />
               <label
                 htmlFor="consent"
-                className="ml-2 block text-base select-none"
+                className="ml-2 block text-base select-none cursor-pointer"
                 style={{ color: "#b48b8b", fontWeight: 500 }}
+                onClick={() => setShowTermsModal(true)}
               >
-                I agree to the{" "}
-                  <button
-                    type="button"
-                  className="font-bold text-[#8B1A1A] hover:underline focus:outline-none"
+                I agree to the{' '}
+                <span
+                  className="font-bold text-[#8B1A1A] hover:underline focus:outline-none cursor-pointer"
                   style={{ fontWeight: 700 }}
-                    onClick={() => setShowTermsModal(true)}
-                  >
+                >
                   terms and conditions
-                  </button>
-                </label>
+                </span>
+              </label>
             </div>
 
             <Modal
@@ -697,9 +697,9 @@ const MobileVerification = () => {
               onClose={() => setShowTermsModal(false)}
               onAgree={() => {
                 setHasConsented(true);
-                        setShowTermsModal(false);
-                      }}
-                    >
+                setShowTermsModal(false);
+              }}
+            >
               {TERMS_CONTENT}
             </Modal>
 
@@ -765,7 +765,7 @@ const MobileVerification = () => {
                   onChange={(e) => setOtp(e.target.value)}
                   maxLength="6"
                   className="appearance-none block w-full px-4 py-4 border-2 border-[#003366] rounded-2xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-center tracking-[0.5em] text-2xl font-semibold group-hover:border-[#E53935]"
-                  placeholder="Enter 6-digit OTP"
+                  placeholder="Enter OTP"
                 />
               </div>
             </div>

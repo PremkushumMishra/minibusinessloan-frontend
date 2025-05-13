@@ -15,16 +15,14 @@ const NameEmailVerify = () => {
     name: "",
     email: "",
     phone: "",
-    redirectURL: "http://localhost:5174/kyc-sucess",
+    // redirectURL: "http://localhost:5174/kyc-sucess",
+    redirectURL: "http://103.104.73.107:3004/kyc-sucess",
+
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
     
-    // const getAuthToken = () => {
-    //   // Get token from localStorage (should already have 'Bearer ...')
-    //   return localStorage.getItem("authToken") || "";
-    // };
-
+    
   useEffect(() => {
     if (mobileNumber) {
       setFormData((prev) => ({
@@ -69,7 +67,7 @@ const NameEmailVerify = () => {
       setIsLoading(true);
       try {
         const token = localStorage.getItem("authToken");
-        console.log("📦 Token being sent in Authorization header:", token); // 👈 Debug line
+        console.log("📦 Token being sent in Authorization header:", token); // 👈 consoling token
         const response = await axios.post(
           `${API_CONFIG.BASE_URL}/sourcing/initiate-digilocker`,
           {
@@ -81,7 +79,6 @@ const NameEmailVerify = () => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              // Authorization: token.startsWith("Bearer ") ? token : `Bearer ${token}`,
               "Content-Type": "application/json",
               "Access-Control-Allow-Origin": "*",
             },
@@ -89,7 +86,6 @@ const NameEmailVerify = () => {
           }
         );
         console.log("Name email verify response:", response.data);  
-        // const redirectUrl = response.data?.data?.url;
         if (response.data?.status === true && response.data?.message === "SUCCESS") {
 
           const redirectUrl = response.data?.data?.url;

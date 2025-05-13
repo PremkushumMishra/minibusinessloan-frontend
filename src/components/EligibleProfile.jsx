@@ -20,7 +20,7 @@ const EligibleProfile = () => {
         <div className="flex justify-center items-center mb-2">
           <FaCheckCircle className="text-3xl text-[#E53935] mr-3 drop-shadow-lg" />
           <h1
-            className="text-3xl md:text-3xl font-extrabold text-white"
+            className="text-3xl md:text-3xl font-bold text-white font-poppins"
             style={{
               letterSpacing: 1,
             }}
@@ -37,7 +37,7 @@ const EligibleProfile = () => {
             borderRadius: 6,
           }}
         />
-        <p className="text-white text-base max-w-md mx-auto font-medium">
+        <p className="text-white text-base max-w-md mx-auto font-semibold">
           If you run a business or earn a steady income, you might be eligible!
         </p>
       </div>

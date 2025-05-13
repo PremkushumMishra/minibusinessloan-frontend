@@ -29,14 +29,14 @@ const Home = () => {
       <AppDownload/>
       {/* <BsaRejectes/> */}
       <PublicReview />
-      <GetAmount />
+      {/* <GetAmount /> */}
       {/* <KycSuccess /> */}
       {/* <CoApplicant/> */}
       {/* <ApplicantPersonalDetails/> */}
       {/* <ApplicantBusinessDetails /> */}
       {/* <LoanEligiblity/> */}
       {/* <AdditionalInfo/> */}
-      <BankStatement/>
+      {/* <BankStatement/> */}
       </>
   );
 };

@@ -35,7 +35,9 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center">
           <img
-            src="/newlogo.png"
+            src="/newnavlogo.png"
+            // src="/latestnavpic.jpg"
+
             alt=" Logo"
             className="h-19 w-auto object-contain bg-white p-1 rounded ml-2"
             style={{ maxWidth: "120px", maxHeight: "70px" }}
@@ -52,6 +54,9 @@ const Navbar = () => {
               <Link to="/about">About Us</Link>
             </li>
             <li className="cursor-pointer hover:text-[#E53935]">
+              <Link to="/how-it-works">How it Works</Link>
+            </li>
+            <li className="cursor-pointer hover:text-[#E53935]">
               <Link to="/repay">Repay</Link>
             </li>
             <li className="cursor-pointer hover:text-[#E53935]">
@@ -61,10 +66,10 @@ const Navbar = () => {
 
           {/* Apply Now Button - Desktop */}
           <Link to="/mobile-verification" className="block">
-            <div className="bg-[#003366] px-8 py-3 rounded-full font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
-              <span className="text-lg">Apply Now</span>
+            <div className="bg-[#003366] px-4 py-2 rounded-full font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
+              <span className="text-base">Apply Now</span>
               <svg
-                className="w-5 h-5 transition-transform duration-300"
+                className="w-4 h-4 transition-transform duration-300"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -159,6 +164,15 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
+                  to="/how-it-works"
+                  onClick={toggleMobileMenu}
+                  className="block text-[#003366] text-lg font-medium hover:text-[#E53935] transition-colors"
+                >
+                  How it Works
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/repay"
                   onClick={toggleMobileMenu}
                   className="block text-[#003366] text-lg font-medium hover:text-[#E53935] transition-colors"
@@ -179,16 +193,16 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Apply Now Button (fixed at bottom) */}
-          {/* <div className="p-6 border-t border-gray-200">
+          <div className="mt-auto px-6 pb-6 pt-4 bg-white sticky bottom-0 z-50">
             <Link 
               to="/mobile-verification" 
               onClick={toggleMobileMenu}
               className="block w-full"
             >
-              <div className="bg-[#003366] px-8 py-4 rounded-full font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
-                <span className="text-lg">Apply Now</span>
+              <div className="bg-[#003366] px-4 py-2 rounded-full font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
+                <span className="text-base">Apply Now</span>
                 <svg
-                  className="w-5 h-5 transition-transform duration-300"
+                  className="w-4 h-4 transition-transform duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -202,45 +216,7 @@ const Navbar = () => {
                 </svg>
               </div>
             </Link>
-          </div> */}
-
-
-{/* Mobile Apply Now Button (fixed at bottom) */}
-<div className="mt-auto px-6 pb-6 pt-4 bg-white sticky bottom-0 z-50">
-  <Link 
-    to="/mobile-verification" 
-    onClick={toggleMobileMenu}
-    className="block w-full"
-  >
-    <div className="bg-[#003366] px-6 py-3 rounded-full font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
-      <span className="text-lg">Apply Now</span>
-      <svg
-        className="w-5 h-5 transition-transform duration-300"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M13 7l5 5m0 0l-5 5m5-5H6"
-        />
-      </svg>
-    </div>
-  </Link>
-</div>
-
-
-
-
-
-
-
-
-
-
-
+          </div>
         </div>
       </div>
     </>

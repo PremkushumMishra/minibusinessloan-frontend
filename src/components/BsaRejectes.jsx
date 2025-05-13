@@ -36,16 +36,6 @@ const BsaRejectes = () => {
           <br/><br/>
           <span className="font-semibold text-blue-700">But this is not the end — just a pause.</span> Many of our customers improve their credit and come back stronger. And so can you!
         </p>
-        <div className="bg-blue-50/80 border border-blue-200 rounded-2xl p-6 text-left mb-7 shadow-md">
-          <p className="text-lg text-blue-800 font-semibold mb-3 flex items-center gap-2">
-            <span className="text-2xl">💡</span> Here are a few simple steps to help boost your credit score:
-          </p>
-          <ul className="text-lg text-gray-700 list-none space-y-3 pl-0 font-sans">
-            <li className="flex items-start gap-3"><span className="text-xl">⏰</span>Pay your EMIs and credit card bills on time</li>
-            <li className="flex items-start gap-3"><span className="text-xl">📉</span>Keep your credit utilization below 30%</li>
-            <li className="flex items-start gap-3"><span className="text-xl">🔍</span>Check your credit report regularly for any errors</li>
-          </ul>
-        </div>
         <p className="text-gray-600 text-lg mb-7 font-sans">
           We're always here to support your financial journey. You can reapply anytime once things improve. <span className="text-2xl">✨</span>
         </p>
