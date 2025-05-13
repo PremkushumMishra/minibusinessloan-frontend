@@ -36,7 +36,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <img
             src="/newlogo.png"
-            alt="Blinkr Logo"
+            alt=" Logo"
             className="h-19 w-auto object-contain bg-white p-1 rounded ml-2"
             style={{ maxWidth: "120px", maxHeight: "70px" }}
           />

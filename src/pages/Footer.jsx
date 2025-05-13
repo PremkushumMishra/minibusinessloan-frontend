@@ -54,10 +54,8 @@ const Footer = () => {
             <div className="space-y-1">
               {/* <p className="text-sm md:text-base text-gray-700 font-bold">
                 2nd Floor, 1/50, Ganga Appartment,
-              </p> */}
-              <p className="text-sm md:text-base text-white font-bold">
-                Lalita Park, Gurudwara, Lalita Park,
-              </p>
+              </p> */}                Lalita Park, Gurudwara, Lalita Park,
+              {/* </p> */}
               <p className="text-sm md:text-base text-white font-bold">
                 New Delhi, East Delhi, Delhi, 110092
               </p>
@@ -72,8 +70,8 @@ const Footer = () => {
           <div className="flex items-center justify-center text-lg md:text-xl font-b px-3 md:px-4 py-1 rounded-full text-center w-full md:w-auto">
             <img
               src="/footerlogo.png"
-              alt="Blinkr Logo"
-              className="h-22 w-30 rounded-full object-contain"
+              alt="."
+              className="h-14 w-14 md:h-20 md:w-20 rounded-full object-contain mx-auto"
             />
           </div>
 
@@ -84,7 +82,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="bg-white/90 backdrop-blur-lg p-2 md:p-3 rounded-full text-gray-800 text-lg md:text-xl transition-all duration-300 hover:scale-125 hover:bg-white hover:shadow-xl hover:text-[#003366]"
             >
-              <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" className="h-6 w-6 md:h-8 md:w-8 object-contain" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" className="h-5 w-5 md:h-7 md:w-7 object-contain" />
             </a>
             <a
               href="https://facebook.com/blinkr"
@@ -92,7 +90,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="bg-white/90 backdrop-blur-lg p-2 md:p-3 rounded-full text-gray-800 text-lg md:text-xl transition-all duration-300 hover:scale-125 hover:bg-white hover:shadow-xl hover:text-[#003366]"
             >
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" className="h-6 w-6 md:h-8 md:w-8 object-contain" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" className="h-5 w-5 md:h-7 md:w-7 object-contain" />
             </a>
             <a
               href="https://instagram.com/blinkr"
@@ -100,7 +98,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="bg-white/90 backdrop-blur-lg p-2 md:p-3 rounded-full text-gray-800 text-lg md:text-xl transition-all duration-300 hover:scale-125 hover:bg-white hover:shadow-xl hover:text-[#003366]"
             >
-              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="h-6 w-6 md:h-8 md:w-8 object-contain" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="h-5 w-5 md:h-7 md:w-7 object-contain" />
             </a>
           </div>
         </div>
