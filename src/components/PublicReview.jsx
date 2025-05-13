@@ -3,45 +3,38 @@ import React, { useState } from "react";
 const reviews = [
   {
     id: 1,
-    text: " loan process ka experience ekdum zabardast tha! Mera business loan 1 din mein approve ho gaya. Customer care wale bhi bahut helpful the, har step pe guide kiya. Interest rates bhi market se kam hain. Highly recommend karunga!",
+    text: "बहुत आसान और तेज़ सेवा! धन्यवाद।",
     img: "https://i.pravatar.cc/150?img=1&u=a042581f4e29026704d",
-    name: "Amit Sharma",
   },
   {
     id: 2,
-    text: "Maine pehle kisi aur company se loan liya tha, lekin yahan ka process bahut simple hai. Documents upload karne ke baad koi tension nahi, sab kuch online ho jata hai. EMI calculation bhi clear hai, koi hidden charges nahi hain. Best hai!",
+    text: "मुझे तुरंत लोन मिल गया, बहुत अच्छा अनुभव।",
     img: "https://i.pravatar.cc/150?img=5&u=a042581f4e29026704e",
-    name: "Priya Singh",
   },
   {
     id: 3,
-    text: "Mera small business hai, bank se loan nahi mil raha tha. Yahan se 5 lakh ka loan mil gaya, process bhi simple tha. Bank statement upload kiya, verification hui, aur paise account mein aa gaye. Customer support bhi kafi helpful hai, koi problem ho toh solve kar dete hain.",
+    text: "सपोर्ट टीम बहुत मददगार है।",
     img: "https://i.pravatar.cc/150?img=8&u=a042581f4e29026704f",
-    name: "Rajesh Verma",
   },
   {
     id: 4,
-    text: "App ka interface bahut user-friendly hai. Loan apply karne se lekar EMI payment tak, sab kuch ek hi app mein hai. Processing time bhi bahut kam hai, 1 ghanta me loan mil gya, experience ekdum behtar raha.",
+    text: "प्रोसेस बहुत सिंपल है, सब कुछ ऑनलाइन।",
     img: "https://i.pravatar.cc/150?img=9&u=a042581f4e29026704g",
-    name: "Anisha",
   },
   {
     id: 5,
-    text: "Maine 3 baar loan liya hai inse, har baar experience better hota gaya hai. Interest rates competitive hain, aur early repayment ka option bhi hai. Customer care wale bahut polite hain, har query ka proper solution dete hain. Trustworthy company hai!",
+    text: "कम ब्याज दर और जल्दी अप्रूवल।",
     img: "https://i.pravatar.cc/150?img=12&u=a042581f4e29026704h",
-    name: "Suresh Kumar",
   },
   {
     id: 6,
-    text: "New business start karne ke liye loan chahiye tha. Bank wale bahut documents maang rahe the, lekin yahan sirf basic documents se kaam ho gaya. Loan amount bhi business ke hisaab se perfect tha. Processing fee bhi nominal hai, koi extra charges nahi hain.",
+    text: "बहुत भरोसेमंद प्लेटफार्म।",
     img: "https://i.pravatar.cc/150?img=15&u=a042581f4e29026704i",
-    name: "Neha Patel",
   },
   {
     id: 7,
-    text: "Working capital ke liye instant loan chahiye tha. Morning apply kiya, evening tak approval mil gaya. Same day paise account mein aa gaye. Interest rates bhi market se kam hain.  Best platform hai business loans ke liye!",
+    text: "मेरे बिज़नेस के लिए बहुत फायदेमंद।",
     img: "https://i.pravatar.cc/150?img=18&u=a042581f4e29026704j",
-    name: "Vikram Mehta",
   },
 
   // {
@@ -93,35 +86,14 @@ const PublicReview = () => {
   return (
     <div className="bg-[#003366] py-16 min-h-[70vh] flex items-center">
       <div className="max-w-5xl mx-auto px-4 text-center">
-        {/* Heading + Avatars */}
+        {/* Heading */}
         <div className="flex items-center justify-center gap-4 flex-wrap mb-8">
           <h2 className="text-3xl font-bold flex items-center gap-2 text-white">
-            Happy <span className="text-[#E53935]"></span> Customers 😊
+            Happy Customers 😊
           </h2>
-          {/* <div className="flex -space-x-2">
-            <img
-              src="https://i.pravatar.cc/150?img=32"
-              alt="user1"
-              className="w-10 h-10 rounded-full border-2 border-white shadow-md"
-            />
-            <img
-              src="https://i.pravatar.cc/150?img=44"
-              alt="user2"
-              className="w-10 h-10 rounded-full border-2 border-white shadow-md"
-            />
-            <img
-              src="https://i.pravatar.cc/150?img=36"
-              alt="user3"
-              className="w-10 h-10 rounded-full border-2 border-white shadow-md"
-            />
-            <span className="w-10 h-10 flex items-center justify-center rounded-full bg-[#E53935] text-white text-sm font-bold border-2 border-white shadow-md">
-              1K+
-            </span>
-          </div> */}
         </div>
 
         {/* Review Cards with Animation */}
-
         <div
           className={`grid md:grid-cols-3 gap-8 transition-all duration-300 ${animate}`}
         >
@@ -130,39 +102,19 @@ const PublicReview = () => {
             .map((review) => (
               <div
                 key={review.id}
-                className="bg-white p-5 rounded-xl shadow-lg"
+                className="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center min-h-[220px]"
               >
-                {/* Quote Circle - Left Align */}
-                <div className="flex items-start">
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#003366]">
-                    <span className="text-2xl text-white">❝</span>
-                  </div>
-                </div>
-
+                {/* User Image Centered */}
+                <img
+                  src={review.img}
+                  alt="reviewer"
+                  className="w-16 h-16 rounded-full border-2 border-[#003366] shadow mb-4 object-cover"
+                />
                 {/* Review Text */}
-                <p className="text-[#003366] text-lg mt-2">{review.text}</p>
-
-                {/* Thin Border */}
-                <div className="border-t border-gray-200 my-4"></div>
-
-                {/* Reviewer */}
-                <div className="flex items-center gap-3">
-                  <img
-                    src={review.img}
-                    alt="reviewer"
-                    className="w-10 h-10 rounded-full border-2 border-white shadow-md"
-                  />
-                  <p className="text-md font-semibold text-[#003366]">
-                    {review.name}
-                  </p>
-                </div>
+                <p className="text-[#003366] text-lg font-medium text-center">{review.text}</p>
               </div>
             ))}
         </div>
-
-
-
-
 
         {/* Next & Prev Buttons */}
         <div className="flex justify-center gap-4 mt-8">
@@ -190,22 +142,20 @@ const PublicReview = () => {
           </button>
         </div>
 
-  
+        {/* Animation Styles */}
+        <style>
+          {`
+            .slide-left {
+              transform: translateX(-20px);
+              opacity: 0;
+            }
+            .slide-right {
+              transform: translateX(20px);
+              opacity: 0;
+            }
+          `}
+        </style>
       </div>
-
-      {/* Animation Styles */}
-      <style>
-        {`
-          .slide-left {
-            transform: translateX(-20px);
-            opacity: 0;
-          }
-          .slide-right {
-            transform: translateX(20px);
-            opacity: 0;
-          }
-        `}
-      </style>
     </div>
   );
 };
