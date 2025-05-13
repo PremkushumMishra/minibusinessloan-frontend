@@ -6,7 +6,7 @@ const TermsCondition = () => {
       <div className="max-w-4xl mx-auto px-4">
         <div className="bg-white rounded-lg shadow-md p-6">
           <h1 className="text-3xl font-bold text-center mb-8 mt-10 text-gray-800">
-Terms and Conditions 
+            Terms and Conditions
           </h1>
 
           {/* Important Notice */}
@@ -27,7 +27,7 @@ Terms and Conditions
               </div>
               <div className="ml-3">
                 <p className="text-sm text-yellow-700 font-medium">
-PLEASE READ THESE TERMS AND CONDITIONS ("TERMS") CAREFULLY. 
+                  PLEASE READ THESE TERMS AND CONDITIONS ("TERMS") CAREFULLY.
                   THESE TERMS CONSTITUTE A LEGALLY BINDING AGREEMENT BETWEEN YOU
                   (THE CUSTOMER), RICH CREDIT NBFC, AND ITS BUSINESS SOURCING
                   PARTNER, TECH AVIOM FINANCE.
@@ -45,83 +45,19 @@ PLEASE READ THESE TERMS AND CONDITIONS ("TERMS") CAREFULLY.
           </div>
 
           {/* Loan Terms Consent Section */}
-          <section className="mb-8 bg-[#003366] border-l-8 border-[#E53935] rounded-xl shadow-lg p-6">
-            <h2 className="text-2xl font-bold text-[#E53935] mb-4">
-              Loan Terms and Conditions
-            </h2>
-            <p className="text-[#E53935] font-bold mb-3">
-              PLEASE READ THESE TERMS CAREFULLY.
-            </p>
-            <p className="mb-3 text-white">
-              By applying for a TechAvom Business Loan, you agree to the
-              following terms:
-            </p>
-            <p className="mb-3 text-white font-semibold">
-              Loan amount ranges from{" "}
-              <span className="text-[#E53935] font-bold">₹5,000</span> to{" "}
-              <span className="text-[#E53935] font-bold">₹10,00,000</span>.
-            </p>
-            <ul className="list-disc pl-6 mb-3 text-white space-y-2 marker:text-[#003366]">
-              <li>
-                <span className="font-semibold text-[#E53935]">
-                  Loan Tenure:
-                </span>{" "}
-                The business loan is provided for a flexible tenure from{" "}
-                <span className="text-[#E53935] font-bold">7 days</span> to{" "}
-                <span className="text-[#E53935] font-bold">100 days</span>.
-                Early repayment is allowed without penalty.
-              </li>
-              <li>
-                <span className="font-semibold text-[#E53935]">
-                  Processing Time:
-                </span>{" "}
-                Loan approval and disbursal are typically completed within 30
-                minutes, subject to successful KYC and credit checks.
-              </li>
-              <li>
-                <span className="font-semibold text-[#E53935]">
-                  Eligibility:
-                </span>{" "}
-                You must provide accurate business and personal information.
-                False or misleading information may result in rejection or legal
-                action.
-              </li>
-              <li>
-                <span className="font-semibold text-[#E53935]">Repayment:</span>{" "}
-                Timely repayment is required. Late payments may incur additional
-                charges and affect your credit profile.
-              </li>
-              <li>
-                <span className="font-semibold text-[#E53935]">Privacy:</span>{" "}
-                Your data will be used solely for loan processing and will be
-                kept confidential as per our Privacy Policy.
-              </li>
-              <li>
-                <span className="font-semibold text-[#E53935]">Agreement:</span>{" "}
-                By clicking{" "}
-                <span className="text-[#E53935] font-bold">"Agree"</span>
-                you confirm you have read, understood, and accept these terms.
-              </li>
-            </ul>
-            <div className="border-t-2 border-[#E53935] my-4"></div>
-            <p className="text-white">
-              If you do not agree with any part of these terms, please do not
-              proceed with the loan application.
-            </p>
-          </section>
-
+    
           <div className="space-y-8">
             {/* Definitions Section */}
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-DEFINITIONS 
+              <h2 className="text-1xl font-semibold mb-4 text-gray-800">
+                DEFINITIONS
               </h2>
               <ul className="list-disc pl-6 space-y-3 text-gray-600">
                 <li>
                   "Web Platform","Application" or "App" refers to "MiniBusiness
                   Loan," the web platform/ mobile software application developed
                   and maintained by the Company to facilitate access to its
-Services. 
+                  Services.
                 </li>
                 <li>
                   "LENDER" denotes the financial institutions, including banks
@@ -181,8 +117,8 @@ Services.
 
             {/* Description of Services Section */}
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-DESCRIPTION OF SERVICES 
+              <h2 className="text-1xl font-semibold mb-4 text-gray-800">
+                DESCRIPTION OF SERVICES
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
@@ -231,7 +167,7 @@ DESCRIPTION OF SERVICES
                   disclaims all liability for loss, damages, or claims arising
                   from unauthorized access or misuse of the Services. We reserve
                   the right to accept or deny service requests at our sole
-discretion without obligation to provide reasoning. 
+                  discretion without obligation to provide reasoning.
                 </p>
                 <p>
                   The performance of the Platform is contingent on the technical
@@ -263,8 +199,8 @@ discretion without obligation to provide reasoning.
 
             {/* Consent for Communication Section */}
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-CONSENT FOR COMMUNICATION 
+              <h2 className="text-1xl font-semibold mb-4 text-gray-800">
+                CONSENT FOR COMMUNICATION
               </h2>
               <p className="text-gray-600">
                 You hereby expressly consent to and authorize the Company, its
@@ -344,7 +280,7 @@ CONSENT FOR COMMUNICATION
 
             {/* Termination Section */}
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+              <h2 className="text-1xl font-semibold mb-4 text-gray-800">
                 TERMINATION
               </h2>
               <div className="space-y-4 text-gray-600">
@@ -366,7 +302,7 @@ CONSENT FOR COMMUNICATION
                   The Company reserves its right to Track you, even when you
                   have uninstalled the App or even after termination of these
                   Terms, until all your obligations, including but not limited
-to payment of the Outstanding Amount(s) is in subsistence. 
+                  to payment of the Outstanding Amount(s) is in subsistence.
                 </p>
                 <p>
                   Upon termination of these Terms, the rights and licenses
@@ -376,14 +312,14 @@ to payment of the Outstanding Amount(s) is in subsistence.
                   contained in these Terms or otherwise, the termination of
                   these Terms for any reason whatsoever, shall not affect your
                   obligations, including but not limited to repayment of the
-Outstanding Amount(s). 
+                  Outstanding Amount(s).
                 </p>
               </div>
             </section>
 
             {/* Indemnity Section */}
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+              <h2 className="text-1xl font-semibold mb-4 text-gray-800">
                 INDEMNITY
               </h2>
               <p className="text-gray-600">
@@ -400,8 +336,8 @@ Outstanding Amount(s).
 
             {/* Limitations of Liability Section */}
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-LIMITATIONS OF LIABILITY 
+              <h2 className="text-1xl font-semibold mb-4 text-gray-800">
+                LIMITATIONS OF LIABILITY
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p>
@@ -438,7 +374,7 @@ LIMITATIONS OF LIABILITY
 
             {/* Force Majeure Section */}
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+              <h2 className="text-1xl font-semibold mb-4 text-gray-800">
                 FORCE MAJEURE
               </h2>
               <p className="text-gray-600">
@@ -459,13 +395,13 @@ LIMITATIONS OF LIABILITY
 
             {/* Your Rights Section */}
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-YOUR RIGHTS 
+              <h2 className="text-1xl font-semibold mb-4 text-gray-800">
+                YOUR RIGHTS
               </h2>
               <div className="space-y-6">
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h3 className="text-xl font-semibold mb-2 text-gray-800">
-Access and Update Your Personal Information 
+                    Access and Update Your Personal Information
                   </h3>
                   <p className="text-gray-600">
                     You have the right to request access to the personal
@@ -476,7 +412,7 @@ Access and Update Your Personal Information
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h3 className="text-xl font-semibold mb-2 text-gray-800">
-Withdraw Consent for Data Collection and Usage 
+                    Withdraw Consent for Data Collection and Usage
                   </h3>
                   <p className="text-gray-600">
                     You may withdraw your consent for us to collect, use, or
@@ -488,7 +424,7 @@ Withdraw Consent for Data Collection and Usage
                 </div>
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <h3 className="text-xl font-semibold mb-2 text-gray-800">
-Opt Out of Marketing Communications 
+                    Opt Out of Marketing Communications
                   </h3>
                   <p className="text-gray-600">
                     You have the right to opt out of receiving promotional or
@@ -505,7 +441,7 @@ Opt Out of Marketing Communications
 
             {/* Changes to Terms Section */}
             <section>
-              <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+              <h2 className="text-1xl font-semibold mb-4 text-gray-800">
                 CHANGES TO TERMS
               </h2>
               <p className="text-gray-600">
@@ -521,7 +457,7 @@ Opt Out of Marketing Communications
 
             {/* Contact Information Section */}
             <section className="bg-gray-50 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-6 text-gray-800">
+              <h2 className="text-2xl font-bold mb-6 text-gray-800">
                 Contact Information
               </h2>
               <div className="space-y-6">
@@ -530,11 +466,19 @@ Opt Out of Marketing Communications
                     Grievance Redressal Officer
                   </h3>
                   <div className="space-y-2 text-gray-600">
-                    {/* <p>Name: Swati Aggarwal</p> */}
-                    <p>Contact: +91-7814447895</p>
-                    <p>Email: info@minibusinessloan.com</p>
+                    <p>Email: grievance.redressal@richcredit.in </p>
                   </div>
                 </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">
+                    Richcredit Nodal Officer{" "}
+                  </h3>
+                  <div className="space-y-2 text-gray-600">
+                    <p>Email: info@richcredit.in </p>
+                  </div>
+                </div>
+
                 <div>
                   <h3 className="text-xl font-semibold mb-3 text-gray-800">
                     General Contact
@@ -563,6 +507,11 @@ Opt Out of Marketing Communications
               </div>
             </section>
           </div>
+
+          <p className="text-xl text-white mb-8">
+            Get up to 10 Lacs Credit* <br />
+            <span className="text-[10px] text-gray-200">terms & conditions apply.</span>
+          </p>
         </div>
       </div>
     </div>
