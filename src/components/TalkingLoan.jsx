@@ -17,7 +17,7 @@ const TalkingLoan = () => {
             </span>
           </h1>
           <p className="text-xl text-white mb-8">
-            Get up to 10 lakhs credit*
+            Get up to 10 Lacks Credit.
           </p>
           <Link to="/mobile-verification">
             <button className="px-8 py-3 bg-[#003366] text-white rounded-full font-bold text-lg shadow-md hover:bg-[#00509e] transition-all duration-300 flex items-center gap-2 w-fit">
