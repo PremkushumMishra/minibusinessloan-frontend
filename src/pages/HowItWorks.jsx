@@ -277,7 +277,9 @@ const HowItWorks = () => {
               },
               {
                 q: "Is there any collateral required for the business loan?",
-                a: "We offer both secured and unsecured business loans. The need for collateral depends on various factors including the loan amount, your business's creditworthiness, and the specific loan product. Many of our offerings are collateral-free for smaller loan amounts."
+                a: "There is no need to provide any collateral or security to get a loan from us. Our loan offerings are designed to be hassle-free and accessible, especially for small and growing businesses. We evaluate applications based on your business potential and financials — not on assets."
+
+
               },
               {
                 q: "Can I prepay my loan? Are there any charges?",
@@ -349,7 +351,7 @@ const HowItWorks = () => {
         .scroll-reveal {
           opacity: 0;
           transform: translateY(50px);
-          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+          transition: opacity 2.2s ease-out, transform 4.2s ease-out;
         }
         .scroll-reveal.is-visible {
           opacity: 1;
