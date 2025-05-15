@@ -18,7 +18,7 @@ const TalkingLoan = () => {
           </h1>
           <p className="text-xl text-white mb-8">
             Get up to 10 Lacs Credit* <br />
-            <span className="text-[10px] text-gray-200">terms & conditions apply.</span>
+            <span className="text-[10px] text-gray-200">Terms & Conditions Apply.</span>
           </p>
        
           <Link to="/mobile-verification">
