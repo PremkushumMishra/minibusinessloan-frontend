@@ -22,7 +22,7 @@ const TalkingLoan = () => {
           </p>
        
           <Link to="/mobile-verification">
-            <button className="px-8 py-3 bg-[#003366] text-white rounded-full font-bold text-lg shadow-md hover:bg-[#00509e] transition-all duration-300 flex items-center gap-2 w-fit">
+            <button className="px-8 py-3 bg-transparent text-white rounded-full font-bold text-lg shadow-md hover:bg-[#00509e] transition-all duration-300 flex items-center gap-2 w-fit">
               Apply Now
               <svg className="w-5 h-5 ml-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>

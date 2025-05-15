@@ -76,7 +76,7 @@ const EligibleProfile = () => {
                     borderBottomRightRadius: 24,
                   }}
                 >
-                  <span className="text-lg font-bold text-white tracking-wide">
+                  <span className="text-lg text-white tracking-wide">
                     {img.desc}
                   </span>
                 </div>
