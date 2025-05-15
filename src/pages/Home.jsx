@@ -17,6 +17,8 @@ import EligibleProfile from '../components/EligibleProfile';
 import AppDownload from '../components/AppDownload';
 import BankStatement from "../components/BankStatement";
 import BsaRejectes from "../components/BsaRejectes";
+import SanctionLatter from "./SanctionLatter";
+import ChatBot from "../components/ChatBot";
 const Home = () => {
   return (
     <>
@@ -29,14 +31,16 @@ const Home = () => {
       <AppDownload/>
       {/* <BsaRejectes/> */}
       <PublicReview />
+      <SanctionLatter/>
       {/* <GetAmount /> */}
-      {/* <KycSuccess /> */}
+      {/* <KycSuccess />/ */}
       {/* <CoApplicant/> */}
       {/* <ApplicantPersonalDetails/> */}
       {/* <ApplicantBusinessDetails /> */}
       {/* <LoanEligiblity/> */}
       {/* <AdditionalInfo/> */}
       {/* <BankStatement/> */}
+      <ChatBot/>
       </>
   );
 };

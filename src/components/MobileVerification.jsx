@@ -469,9 +469,9 @@ const MobileVerification = () => {
 
   // API Configuration - Just change these URLs when switching APIs
   const API_CONFIG = {
-    // BASE_URL: "http://10.6.3.57:3000/api/v1",
+    BASE_URL: "http://10.6.3.90:3000/api/v1",
     // live url
-    BASE_URL: "http://103.104.73.107:3004/api/v1",
+    // BASE_URL: "http://103.104.73.107:3004/api/v1",
     ENDPOINTS: {
       SEND_OTP: "/send-otp",
       VERIFY_OTP: "/verify-otp",
@@ -572,7 +572,7 @@ const MobileVerification = () => {
       ) {
         // ✅ Save the JWT token in localStorage
         const token = response.data.data;
-        console.log("✅ Received token from OTP verify:", token); // 👈 Debug line
+        console.log("✅ Received token from OTP verify:", response); // 👈 Debug line
 
         localStorage.setItem("authToken", `${token}`);
         // localStorage.setItem("authToken", `Bearer ${token}`);
