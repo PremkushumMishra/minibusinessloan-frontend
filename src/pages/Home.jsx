@@ -33,7 +33,7 @@ const Home = () => {
       <PublicReview />
       {/* <SanctionLatter/> */}
       {/* <GetAmount /> */}
-      <KycSuccess />/
+      {/* <KycSuccess />/ */}
       {/* <CoApplicant/> */}
       {/* <ApplicantPersonalDetails/> */}
       {/* <ApplicantBusinessDetails /> */}
