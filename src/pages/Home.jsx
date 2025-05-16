@@ -34,7 +34,7 @@ const Home = () => {
       <AppDownload/>
       {/* <BsaRejectes/> */}
       <PublicReview />
-      <NameEmailVerify/>  
+      {/* <NameEmailVerify/>   */}
       {/* <SanctionLatter/> */}
       {/* <GetAmount /> */}
       {/* <KycSuccess />/ */}
