@@ -1,6 +1,7 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-export const StepContext = createContext();
+const StepContext = createContext();
+export { StepContext };
 
 export const StepProvider = ({ children }) => {
   const [currentStep, setCurrentStep] = useState("mobile-verification");
@@ -22,7 +23,10 @@ export const StepProvider = ({ children }) => {
   );
 };
 
-// 👇 Ye missing tha — isko add karo
 export const useStep = () => {
-  return useContext(StepContext);
+  const context = useContext(StepContext);
+  if (!context) {
+    throw new Error("useStep must be used within a StepProvider");
+  }
+  return context;
 };

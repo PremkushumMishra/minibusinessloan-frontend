@@ -4,6 +4,7 @@ import { useStep } from "../context/StepContext";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import API_CONFIG from "../config";
+// import ProtectedRoute from "./ProtectedRoute";
 const NameEmailVerify = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -15,8 +16,8 @@ const NameEmailVerify = () => {
     name: "",
     email: "",
     phone: "",
-    // redirectURL: "http://localhost:5174/kyc-sucess",
-    redirectURL: "https://minibusinessloan.vercel.app//kyc-sucess",
+    redirectURL: "http://localhost:5173/kyc-sucess",
+    // redirectURL: "https://minibusinessloan.vercel.app//kyc-sucess",
 
   });
   const [errors, setErrors] = useState({});
@@ -184,3 +185,4 @@ const NameEmailVerify = () => {
 };
 
 export default NameEmailVerify;
+// export default ProtectedRoute(NameEmailVerify);

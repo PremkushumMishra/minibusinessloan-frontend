@@ -2,22 +2,25 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useStep } from "../context/StepContext";
 
-const stepOrder = [
+const stepsOrder = [
   "mobile-verification",
-  "aadhaar-verification",
-  "applicant-personal-details",
+  "name-email-verify",
+  "kyc-process",
+  "kyc-sucess",
+  "additional-info",
+  "co-applicant",
   "applicant-business-details",
-  "application-processing",
+  "application-processing"
 ];
 
 const ProtectedRoute = ({ allowedStep, children }) => {
   const { currentStep } = useStep();
 
-  const currentIndex = stepOrder.indexOf(currentStep);
-  const allowedIndex = stepOrder.indexOf(allowedStep);
+  const currentIndex = stepsOrder.indexOf(currentStep);
+  const allowedIndex = stepsOrder.indexOf(allowedStep);
 
-  if (currentIndex < allowedIndex) {
-    return <Navigate to={`/${currentStep}`} replace />;
+  if (allowedIndex > currentIndex) {
+    return <Navigate to={`/${currentStep}`} />;
   }
 
   return children;

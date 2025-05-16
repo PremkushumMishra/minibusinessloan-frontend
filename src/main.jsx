@@ -11,3 +11,20 @@ createRoot(document.getElementById("root")).render(
     </StepProvider>
   </StrictMode>
 );
+
+
+
+
+
+
+
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./App";
+// import { StepProvider } from "./context/StepContext";
+
+// ReactDOM.createRoot(document.getElementById("root")).render(
+//   <StepProvider>
+//     <App />
+//   </StepProvider>
+// );

@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useStep } from "../context/StepContext";
 import axios from "axios";
 import API_CONFIG from "../config";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// protect routing
+// import { useStep } from "../context/useStep";
 const TERMS_CONTENT = (
   <div className="max-h-[60vh] overflow-y-auto px-2 py-4 bg-white border-l-8 border-black rounded-xl shadow-lg text-black">
     {/* <h2 className="text-2xl font-bold text-black mb-4">Terms and Conditions</h2> */}
@@ -497,7 +500,7 @@ const MobileVerification = () => {
   const handleMobileSubmit = async (e) => {
     e.preventDefault();
     if (mobileNumber.length !== 13) {
-      alert("Please enter a valid 10-digit mobile number");
+      toast.error("Please enter a valid 10-digit mobile number");
       return;
     }
 
@@ -527,25 +530,28 @@ const MobileVerification = () => {
         const receivedClientId = response.data?.data?.client_id;
         setClientId(receivedClientId);
         setShowOtpInput(true);
-        alert("OTP sent successfully!");
+        toast.success("OTP sent successfully!");
       } else {
-        alert(response.data.message || "Failed to send OTP");
+        toast.error(response.data.message || "Failed to send OTP");
       }
     } catch (err) {
       console.error("Error sending OTP:", err);
-      alert("Network error. Please try again.");
+      toast.error("Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
+// use protect routing
+  // const { setCurrentStep } = useStep(); 
+  
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
 
     console.log("OTP Length:", otp.length);
 
     if (otp.length !== 6 && otp.length !== 4) {
-      alert("Please enter a valid 4 or 6-digit OTP");
+      toast.error("Please enter a valid 4 or 6-digit OTP");
       return;
     }
 
@@ -579,9 +585,12 @@ const MobileVerification = () => {
         // localStorage.setItem("authToken", `Bearer ${token}`);
 
         setVerificationStatus("success");
-        alert("OTP Verified Successfully!");
+        toast.success("OTP Verified Successfully!");
 
         setTimeout(() => {
+          // protect krte time upadtestep ko remove krke isko uncomment krna h 
+          // setCurrentStep("name-email-verify"); // ✅ Step set
+
           updateStep("aadhaar-verification");
           navigate(
             `/name-email-verify?mobileNumber=${mobileNumberWithoutPrefix}`
@@ -589,11 +598,11 @@ const MobileVerification = () => {
         }, 1000);
       } else {
         setVerificationStatus("error");
-        alert(response.data.message || "Invalid OTP");
+        toast.error(response.data.message || "Invalid OTP");
       }
     } catch (err) {
       console.error("Error verifying OTP:", err);
-      alert("Network error. Please try again.");
+      toast.error("Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -614,13 +623,13 @@ const MobileVerification = () => {
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
       ) {
-        alert("OTP resent successfully!");
+        toast.success("OTP resent successfully!");
       } else {
-        alert(response.data.message || "Failed to resend OTP");
+        toast.error(response.data.message || "Failed to resend OTP");
       }
     } catch (err) {
       console.error("Error resending OTP:", err);
-      alert("Network error. Please try again.");
+      toast.error("Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -628,6 +637,7 @@ const MobileVerification = () => {
 
   return (
     <div className="min-h-screen w-full bg-[#003366] flex items-center justify-center py-8 px-2  sm:px-4">
+      <ToastContainer position="top-center" />
       <div className="w-full max-w-sm space-y-5 bg-white p-3 sm:p-5 sm:mt-14 rounded-3xl shadow-2xl border-2 border-[#003366]">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-[#003366]">
