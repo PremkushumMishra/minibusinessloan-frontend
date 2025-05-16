@@ -415,6 +415,11 @@ const SanctionLatter = () => {
               </div>
             </div>
 
+
+
+
+
+
             {/* 2.3 Computation of Interest */}
             <p className="font-bold text-sm mt-4 mb-2">2.3 Computation of Interest</p>
             <div className="ml-4 space-y-1"> {/* Reduced space-y for single paragraph */}

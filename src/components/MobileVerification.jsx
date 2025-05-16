@@ -579,7 +579,7 @@ const MobileVerification = () => {
       ) {
         // ✅ Save the JWT token in localStorage
         const token = response.data.data;
-        console.log("✅ Received token from OTP verify:", response); // 👈 Debug line
+        console.log("✅ Token to be saved:", token);
 
         localStorage.setItem("authToken", `${token}`);
         // localStorage.setItem("authToken", `Bearer ${token}`);
@@ -588,13 +588,8 @@ const MobileVerification = () => {
         toast.success("OTP Verified Successfully!");
 
         setTimeout(() => {
-          // protect krte time upadtestep ko remove krke isko uncomment krna h 
-          // setCurrentStep("name-email-verify"); // ✅ Step set
-
-          updateStep("aadhaar-verification");
-          navigate(
-            `/name-email-verify?mobileNumber=${mobileNumberWithoutPrefix}`
-          );
+          updateStep("name-email-verify");
+          navigate(`/name-email-verify?mobileNumber=${mobileNumberWithoutPrefix}`);
         }, 1000);
       } else {
         setVerificationStatus("error");

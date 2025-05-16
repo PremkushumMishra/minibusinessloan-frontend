@@ -19,11 +19,14 @@ import BankStatement from "../components/BankStatement";
 import BsaRejectes from "../components/BsaRejectes";
 import SanctionLatter from "./SanctionLatter";
 import ChatBot from "../components/ChatBot";
+import NameEmailVerify from "../components/NameEmailVerify";
+import Hindi from "./Hindi";
 const Home = () => {
   return (
     <>
       {/* <div className="pt-20">  */}
       <TalkingLoan />
+      {/* <Hindi/> */}
       <EligibleProfile/>
       <Lorem />
       <LoanCalculator />
@@ -31,6 +34,7 @@ const Home = () => {
       <AppDownload/>
       {/* <BsaRejectes/> */}
       <PublicReview />
+      <NameEmailVerify/>  
       {/* <SanctionLatter/> */}
       {/* <GetAmount /> */}
       {/* <KycSuccess />/ */}

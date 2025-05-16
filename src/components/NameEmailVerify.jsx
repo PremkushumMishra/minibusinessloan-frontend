@@ -16,8 +16,8 @@ const NameEmailVerify = () => {
     name: "",
     email: "",
     phone: "",
-    redirectURL: "http://localhost:5173/kyc-sucess",
-    // redirectURL: "https://minibusinessloan.vercel.app//kyc-sucess",
+    // redirectURL: "http://localhost:5173/kyc-sucess",
+    redirectURL: "https://minibusinessloan.vercel.app//kyc-sucess",
 
   });
   const [errors, setErrors] = useState({});

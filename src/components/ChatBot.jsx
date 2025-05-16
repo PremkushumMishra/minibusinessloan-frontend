@@ -10,13 +10,12 @@ import {
   CheckCircle,
   XCircle,
 } from "lucide-react";
-import { motion } from "framer-motion";
 // import { motion } from "motion/react";
 // import heroFace from '../../assets/heroFace.png';
+import { motion } from 'framer-motion';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [showEmiCalculator, setShowEmiCalculator] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [showEligibilityQuiz, setShowEligibilityQuiz] = useState(false);
@@ -88,12 +87,14 @@ const ChatBot = () => {
           "मुख्य मेनू पर वापस जाएं",
         ];
         break;
-      case "मुझे कौन-कौन से दस्तावेज़ चाहिए?":
+      case "मुझे कौन से दस्तावेज़ चाहिए?":
+    //   case "मुझे कौन-कौन से दस्तावेज़ चाहिए?":
         botResponse.content =
           "केवल बैंक स्टेटमेंट और उद्यम पंजीकरण प्रमाणपत्र की आवश्यकता है। 📄";
         botResponse.options = ["मुख्य मेनू पर वापस जाएं"];
         break;
 
+      case "दरें और शुल्क":
       case "रेट्स और चार्जेस":
         botResponse.content =
           "हमारी दरें और शुल्क इस प्रकार हैं:\n\n" +
@@ -148,10 +149,10 @@ const ChatBot = () => {
           botResponse.options = [
             "लोन आवेदन कैसे शुरू करें?",
             "मुझे कौन-कौन से दस्तावेज़ चाहिए?",
-            "ब्याज दरें और शुल्क",
+            "दरें और शुल्क",
             "EMI कैलकुलेटर",
             // 'मेरी पात्रता जांचें',
-            "अक्सर पूछे जाने वाले सवाल देखें",
+            "सामान्य प्रश्न देखें",
           ];
         }
         break;
@@ -175,6 +176,7 @@ const ChatBot = () => {
         }, 1000);
         break;
 
+      case "कैलकुलेट करें":
       case "EMI कैलकुलेट करें":
         if (emiInputs.loanAmount && emiInputs.tenure) {
           const principal = parseFloat(emiInputs.loanAmount);
@@ -217,6 +219,8 @@ const ChatBot = () => {
         botResponse.options = ["मुख्य मेनू पर वापस जाएँ"];
         break;
 
+      case "सामान्य प्रश्न देखें":
+      case "FAQ देखें":
       case "View FAQs":
         botResponse.content =
           "यहाँ कुछ सामान्य पूछे जाने वाले प्रश्न हैं। आप क्या जानना चाहेंगे?";
@@ -229,6 +233,7 @@ const ChatBot = () => {
         ];
         break;
 
+      case "न्यूनतम लोन राशि क्या है?":
       case "What is the minimum loan amount?":
         botResponse.content =
           "न्यूनतम लोन राशि ₹5,000 है। क्या आप हमारे लोन प्रोडक्ट्स के बारे में और जानना चाहेंगे?";
@@ -240,6 +245,7 @@ const ChatBot = () => {
         ];
         break;
 
+      case "अधिकतम लोन राशि क्या है?":
       case "What is the maximum loan amount?":
         botResponse.content =
           "अधिकतम लोन राशि ₹10,00,000 है। क्या आप हमारे लोन प्रोडक्ट्स के बारे में और जानना चाहेंगे?";
@@ -250,6 +256,7 @@ const ChatBot = () => {
           "मुख्य मेनू पर वापस जाएँ",
         ];
         break;
+      case "ब्याज दर क्या है?":
       case "What is the interest rate?":
         botResponse.content =
           "हमारा ब्याज दर 0.2% प्रति दिन से शुरू होता है। क्या आप और जानना चाहेंगे?";
@@ -261,7 +268,8 @@ const ChatBot = () => {
         ];
         break;
 
-      case "What is the loan tenure?":
+      case "लोन की अवधि क्या है?":
+    //   case "What is the loan tenure?":
         botResponse.content =
           "लोन की अवधि 7 दिन से लेकर 100 दिन तक होती है। क्या आप हमारे लोन उत्पादों के बारे में और जानना चाहेंगे?";
         botResponse.options = [
@@ -283,7 +291,7 @@ const ChatBot = () => {
           "दरें और शुल्क",
           "EMI कैलकुलेटर",
           // 'मेरी पात्रता जांचें',
-          "FAQ देखें",
+          "सामान्य प्रश्न देखें",
         ];
         break;
       default:
@@ -295,7 +303,7 @@ const ChatBot = () => {
           "दरें और शुल्क",
           "EMI कैलकुलेटर",
           // 'मेरी पात्रता जांचें',
-          "FAQ देखें",
+          "सामान्य प्रश्न देखें",
         ];
     }
 
@@ -325,97 +333,40 @@ const ChatBot = () => {
   };
 
   return (
-    <div className="fixed bottom-2  right-1 z-9999">
-      {/* Chat Toggle Button */}
-      <motion.button
+    <div className="fixed bottom-4 right-4 z-50">
+      {/* Toggle Button */}
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-10 h-10  rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${
-          isOpen
-            ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
-            : "bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:scale-110"
-        }`}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        className="w-14 h-14 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 shadow-xl flex items-center justify-center border-4 border-white group transition-all duration-300"
       >
-        <AnimatePresence mode="wait">
-          {isOpen ? (
-            <motion.div
-              key="close"
-              initial={{ rotate: -180, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 180, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <X className="w-6 h-6" />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="open"
-              initial={{ rotate: 180, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -180, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <MessageCircle className="w-6 h-6" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.button>
+        <span className="rounded-full p-1 transition-all duration-300 group-hover:ring-4 group-hover:ring-blue-400 group-hover:ring-opacity-60 group-hover:shadow-blue-400/50 group-hover:shadow-lg">
+          <img src="/headphones.jpg" alt="Bot" className="w-8 h-8 rounded-full transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-400/40" />
+        </span>
+      </button>
 
       {/* Chat Window */}
-      <AnimatePresence>
-        {isOpen && (
+      {isOpen && (
+        <AnimatePresence>
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className={`${
-              isFullscreen
-                ? "fixed inset-0 w-full h-full rounded-none "
-                : 
-                  // udpated
-                  "absolute bottom-12 right-0 w-80 h-[440px]"
-                } bg-white/20 shadow-1xl overflow-hidden rounded-2xl border border-blue-200`}
-
-            // } bg-white shadow-2xl overflow-hidden border border-gray-100`}
+            className="absolute bottom-15 right-0 w-80 max-w-xs bg-blue/600 backdrop-blur-md rounded-2xl mt-10 shadow-2xl border border-blue-200/40 overflow-hidden"
           >
-            {/* Chat Header */}
-            <div className=" bg-blue-800 p-4 relative overflow-hidden">
-              <div className="absolute inset-0 bg-white/10 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_1px,_transparent_1px)] "></div>
-              <div className="absolute top-0 right-0 w-24 h-24 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 translate-x-1/2 -translate-y-1/2"></div>
-              <div className="absolute top-0 left-0 w-24 h-24 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
-              <div className="relative flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div>
-                    <h3 className="text-white font-semibold">
-                      "नमस्कार! मैं हूँ आपका लोनसहायक!"
-                      <p className="text-white/80 text-sm">
-                        "हमेशा आपकी मदद के लिए तैयार।"
-                      </p>
-                    </h3>{" "}
-                  </div>
+            {/* Header */}
+            <div className="relative flex items-center gap-3">
+              <img src="/headphones.jpg" alt="Bot" className="w-8 h-8 rounded-full border-2 border-white" />
+              <div className="bg-blue-600 p-1 px-5 pr-16 rounded-lg">
+                <div className="text-white font-bold">नमस्कार! मैं हूँ आपका लोनसहायक!</div>
+                <div className="text-white text-xs whitespace-nowrap">हमेशा आपकी मदद के लिए तैयार।</div>
                 </div>
-                <button
-                  onClick={() => setIsFullscreen(!isFullscreen)}
-                  className="p-2 rounded-full hover:bg-white/60 transition-colors duration-200"
-                >
-                  {isFullscreen ? (
-                    <X className="w-2 h-2 text-white" />
-                  ) : (
-                    <MessageCircle className="w-1 h-1 text-white" />
-                  )}
-                </button>
-              </div>
+              <button onClick={() => setIsOpen(false)} className="ml-auto text-blue-600">
+                <X  className="w-6  h-6" />
+              </button>
             </div>
-
-            {/* Chat Messages */}
-            <div
-              className={
-                isFullscreen ? "h-[calc(100%-8rem)]" : "h-[calc(100%-8rem)]"
-              }
-              style={{ overflowY: "auto" }}
-            >
+            {/* Messages */}
+            <div className="h-96 overflow-y-auto p-4">
               {messages
                 .filter((m) => m.content)
                 .map((message, index) => (
@@ -424,7 +375,7 @@ const ChatBot = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className={`flex ${
+                    className={`flex mb-3 ${
                       message.type === "user" ? "justify-end" : "justify-start"
                     }`}
                   >
@@ -438,21 +389,19 @@ const ChatBot = () => {
                       <div
                         className={`rounded-full flex items-center justify-center ${
                           message.type === "user"
-                            ? "w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
+                            ? "w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md"
                             : ""
                         }`}
                       >
                         {message.type === "user" ? (
                           <User className="w-4 h-4" />
-                        ) : (
-                          <></>
-                        )}
+                        ) : null}
                       </div>
                       <div
-                        className={`rounded-2xl p-3 ${
+                        className={`rounded-2xl px-4 py-3 shadow-md ${
                           message.type === "user"
-                            ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
-                            : "bg-gray-100 text-gray-800"
+                            ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white"
+                            : "bg-blue-50 text-blue-900 border-l-4 border-blue-300"
                         }`}
                       >
                         <p className="whitespace-pre-line text-sm">
@@ -475,7 +424,7 @@ const ChatBot = () => {
                                       loanAmount: e.target.value,
                                     }))
                                   }
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-white"
                                   placeholder="Enter loan amount"
                                 />
                               </div>
@@ -505,39 +454,30 @@ const ChatBot = () => {
                                       tenure: e.target.value,
                                     }))
                                   }
-                                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-white"
                                   placeholder="Enter loan tenure (7-100 days)"
                                 />
                               </div>
-                              <motion.button
+                              <button
                                 onClick={() =>
-                                  handleOptionClick("कैलकुलेट करें")
+                                  handleOptionClick("EMI कैलकुलेट करें")
                                 }
-                                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 rounded-lg hover:opacity-90 transition-opacity"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
+                                className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-2 rounded-lg hover:brightness-110 hover:scale-105 transition-all shadow-md"
                               >
-                                कैलकुलेट करें{" "}
-                              </motion.button>
+                                कैलकुलेट करें
+                              </button>
                             </div>
                           )}
                         {message.options && (
                           <div className="mt-3 space-y-2">
                             {message.options.map((option, optIndex) => (
-                              <motion.button
+                              <button
                                 key={optIndex}
                                 onClick={() => handleOptionClick(option)}
-                                className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-all duration-200 ${
-                                  message.type === "user"
-                                    ? "bg-white/20 hover:bg-white/30 text-white"
-                                    : "bg-white/60 hover:bg-gray-50 text-gray-800"
-                                   
-                                }`}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
+                                className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-all duration-200 shadow-sm bg-gradient-to-r from-blue-500 to-indigo-500 text-white hover:brightness-110 hover:scale-105`}
                               >
                                 {option}
-                              </motion.button>
+                              </button>
                             ))}
                           </div>
                         )}
@@ -551,41 +491,15 @@ const ChatBot = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex justify-start"
+                  className="flex justify-start mb-3"
                 >
                   <div className="flex items-start gap-2 max-w-[80%]">
-                    <div className="flex-shrink-0">
-                      {/* Removed white circle here */}
-                    </div>
-                    <div className="rounded-2xl p-3 bg-gray-100 text-gray-800">
+                    <div className="flex-shrink-0"></div>
+                    <div className="rounded-2xl px-4 py-3 bg-blue-50 text-blue-900 border-l-4 border-blue-300 shadow-md">
                       <div className="flex space-x-1">
-                        <motion.div
-                          className="w-2 h-2 bg-gray-400 rounded-full"
-                          animate={{ y: [0, -5, 0] }}
-                          transition={{
-                            duration: 0.6,
-                            repeat: Infinity,
-                            delay: 0,
-                          }}
-                        />
-                        <motion.div
-                          className="w-2 h-2 bg-gray-400 rounded-full"
-                          animate={{ y: [0, -5, 0] }}
-                          transition={{
-                            duration: 0.6,
-                            repeat: Infinity,
-                            delay: 0.2,
-                          }}
-                        />
-                        <motion.div
-                          className="w-2 h-2 bg-gray-400 rounded-full"
-                          animate={{ y: [0, -5, 0] }}
-                          transition={{
-                            duration: 0.6,
-                            repeat: Infinity,
-                            delay: 0.4,
-                          }}
-                        />
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" />
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce delay-150" />
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce delay-300" />
                       </div>
                     </div>
                   </div>
@@ -594,9 +508,13 @@ const ChatBot = () => {
 
               <div ref={messagesEndRef} />
             </div>
+            {/* Input/Options */}
+            <div className="p-3 bg-white/60">
+              {/* ...input or options... */}
+            </div>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </div>
   );
 };
