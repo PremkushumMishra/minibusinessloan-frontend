@@ -27,93 +27,47 @@ const Navbar = () => {
 
   return (
     <>
-      <nav
-        className={`bg-white border border-[#003366] w-full max-w-4xl rounded-full flex items-center justify-between px-4 md:px-9 py-0 mt-2 mb-8 shadow-lg mx-auto fixed left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300 ${
-          showNavbar ? "top-2" : "-top-20"
-        }`}
-      >
-        {/* Logo */}
-        <div className="flex items-center">
-          <img
-            src="/newnavlogo.png"
-            // src="/latestnavpic.jpg"
-
-            alt=" Logo"
-            className="h-19 w-auto object-contain bg-white p-1 rounded ml-2"
-            style={{ maxWidth: "120px", maxHeight: "70px" }}
-          />
-        </div>
-
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center space-x-8">
-          <ul className="flex space-x-6 text-[#003366] font-medium">
-            <li className="cursor-pointer hover:text-[#E53935]">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="cursor-pointer hover:text-[#E53935]">
-              <Link to="/about">About Us</Link>
-            </li>
-            <li className="cursor-pointer hover:text-[#E53935]">
-              <Link to="/how-it-works">How it Works</Link>
-            </li>
-            <li className="cursor-pointer hover:text-[#E53935]">
-              <Link to="/repay">Repay</Link>
-            </li>
-            <li className="cursor-pointer hover:text-[#E53935]">
-              <Link to="/contact">ContactUs</Link>
-            </li>
-          </ul>
-
-          {/* Apply Now Button - Desktop */}
-          <Link to="/mobile-verification" className="block">
-            <div className="bg-[#003366] px-4 py-2 rounded-full font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
-              <span className="text-base">Apply Now</span>
-              <svg
-                className="w-4 h-4 transition-transform duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
-                />
-              </svg>
-            </div>
+      <nav className="w-full bg-white border-b border-gray-100 font-poppins">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center h-full">
+            <img
+              src="/newnavlogo.png"
+              alt="Logo"
+              className="h-12 w-auto object-contain"
+            />
           </Link>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-gray-800 focus:outline-none"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            {isMobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center w-full">
+            {/* Centered Menu */}
+            <div className="flex-1 flex justify-center space-x-8 font-poppins">
+              <Link to="/" className="text-[#303030] font-medium hover:text-[#E53935]">Home</Link>
+              <Link to="/about" className="text-[#303030] font-medium hover:text-[#E53935]">About Us</Link>
+              <Link to="/how-it-works" className="text-[#303030] font-medium hover:text-[#E53935]">How It Works</Link>
+              <Link to="/repay" className="text-[#303030] font-medium hover:text-[#E53935]">Repay</Link>
+              <Link to="/contact" className="text-[#303030] font-medium hover:text-[#E53935]">Contact Us</Link>
+            </div>
+            {/* Right Side Apply Now Button */}
+            <Link to="/mobile-verification" className="ml-4">
+              <button className="bg-[#003366] text-white px-6 py-2 font-bold hover:bg-[#E53935] transition-all rounded-t-xl rounded-bl-xl rounded-br-none">
+                Apply Now
+              </button>
+            </Link>
+          </div>
+
+          {/* Mobile Hamburger */}
+          <div className="md:hidden flex items-center">
+            {/* Add your hamburger menu logic here */}
+            {/* Example: */}
+            <button onClick={toggleMobileMenu} className="text-[#003366] focus:outline-none">
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        {/* Mobile menu overlay and drawer code (same as your current logic) */}
       </nav>
 
       {/* Mobile Menu Overlay */}
@@ -199,22 +153,24 @@ const Navbar = () => {
               onClick={toggleMobileMenu}
               className="block w-full"
             >
-              <div className="bg-[#003366] px-4 py-2 rounded-full font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
-                <span className="text-base">Apply Now</span>
-                <svg
-                  className="w-4 h-4 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </div>
+{/*               
+             <div className="bg-[#003366] px-4 py-2 font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
+  <span className="text-base">Apply Now</span>
+  <svg
+    className="w-4 h-4 transition-transform duration-300"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      // strokeLinecap="round"
+      // strokeLinejoin="round"
+      strokeWidth="2"
+      d="M13 7l5 5m0 0l-5 5m5-5H6"
+    />
+  </svg>
+</div> */}
+
             </Link>
           </div>
         </div>

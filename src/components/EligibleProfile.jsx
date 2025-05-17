@@ -2,27 +2,31 @@ import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
 const images = [
-  { src: "/imagefirst.jpg", desc: "Retail Shop Owner" },
-  { src: "/imageforth.jpg", desc: "Small Manufacturer" },
-  { src: "/imagefifth.jpg", desc: "Service Provider" },
-  { src: "/imagesixth.jpg", desc: "Wholesaler" },
-  { src: "/newstreetshop.jpg", desc: "Street Food Vendor" },
+  { src: "/imagefifth.jpg" },
+  { src: "/imagesixth.jpg" },
+  { src: "/newstreetshop.jpg" },
+  { src: "/imageforth.jpg" },
+  { src: "/imagefirst.jpg" },
+
 ];
 
 const EligibleProfile = () => {
   return (
     <div
-      className="w-full min-h-screen px-4 py-12 flex flex-col justify-center items-center"
-      style={{ background: "#003366" }}
+      className="w-full min-h-screen px-4 py- flex flex-col justify-center items-center"
+      style={{ background: "#EAEAEA" }}
     >
       {/* Heading */}
-      <div className="text-center mb-12">
-        <div className="flex justify-center items-center mb-2">
-          <FaCheckCircle className="text-3xl text-[#E53935] mr-3 drop-shadow-lg" />
+      <div className="text-center">
+        <div className="flex justify-center items-center">
           <h1
-            className="text-3xl md:text-3xl font-bold text-white font-poppins"
+            className="font-poppins font-medium mt-3 text-[#0D4183] text-center"
             style={{
-              letterSpacing: 1,
+              fontSize: '40px',
+              lineHeight: '140%',
+              letterSpacing: 0,
+              fontWeight: 500,
+              // marginTop: '15px',
             }}
           >
             Who Can Apply for This Loan?
@@ -33,79 +37,71 @@ const EligibleProfile = () => {
           style={{
             width: 120,
             height: 6,
-            background: "linear-gradient(90deg, #003366 60%, #E53935 100%)",
+            // background: "linear-gradient(90deg, #003366 60%, #E53935 100%)",
             borderRadius: 6,
           }}
         />
-        <p className="text-white text-base max-w-md mx-auto font-semibold">
-          If you run a business or earn a steady income, you might be eligible!
+        <p className="text-[#222] text-base max-w-md mx-auto font-semibold">
+          If you run a business or earn a steady income, <br /> you might be eligible!
         </p>
+        {/* Profile Names */}
+        <div className="mt-9 text-center font-bold text-lg text-[#222]">
+          Retail Shop Owner, Small Manufacturer, Service Provider, <br /> Wholesaler, Street Food Vendor
+        </div>
       </div>
 
       {/* Cards Container - Updated to be responsive */}
       <div className="w-full max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-          {images.map((img, idx) => (
-            <div key={idx} className="w-full">
-              <div
-                className="relative rounded-3xl shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-fadeIn bg-transparent"
-                style={{
-                  minHeight: 340,
-                  animation: `fadeInUp 0.7s ease ${0.1 * idx + 0.2}s both`,
-                }}
-              >
-                {/* Floating Badge */}
-                <div className="absolute top-5 left-5 flex items-center gap-1 bg-[#E53935] text-white px-4 py-1 rounded-full shadow-md text-base font-bold z-10">
-                  <FaCheckCircle className="mr-1" /> Eligible
-                </div>
-                <div className="relative group">
-                  <div className="animated-border rounded-2xl">
-                    <img
-                      src={img.src}
-                      alt={`Eligible ${idx + 1}`}
-                      className="w-full h-60 object-cover rounded-2xl border-4 border-white relative z-10"
-                      style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
-                    />
-                  </div>
-                </div>
+        <div className="grid grid-cols-5 gap-0 items-end">
+          {images.map((img, idx) => {
+            // Size classes based on index
+            let sizeClass = "w-44 h-60"; // default
+            if (idx === 0 || idx === 4) sizeClass = "w-56 h-80"; // first & last: largest, more height
+            if (idx === 2) sizeClass = "w-50 h-50"; // 3rd: medium
+            if (idx === 1 || idx === 3) sizeClass = "w-48 h-64"; // 2nd & 4th: slightly smaller
+
+            // Remove margin for vertical alignment
+            let marginClass = "";
+
+            return (
+              <div key={idx} className={`flex justify-center ${marginClass}`}>
                 <div
-                  className="w-full text-center py-4 px-2"
+                  className="relative rounded-3xl max-w-xs w-full"
                   style={{
-                    background: "rgba(255,255,255,0.15)",
-                    borderBottomLeftRadius: 24,
-                    borderBottomRightRadius: 24,
+                    minHeight: 200,
+                    animation: `fadeInUp 0.7s ease ${0.1 * idx + 0.2}s both`,
                   }}
                 >
-                  <span className="text-lg text-white tracking-wide">
-                    {img.desc}
-                  </span>
+                  <div className="relative group flex justify-center">
+                    <div
+                      className={`rounded-2xl flex justify-center items-center mx-auto ${sizeClass}`}
+                    >
+                      <img
+                        src={img.src}
+                        // alt={`Eligible ${idx + 1}`}
+                        className="w-full h-full object-cover rounded-2xl relative z-10"
+                        style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="w-full text-center py-4 px-2"
+                    style={{
+                      background: "rgba(255,255,255,0.15)",
+                      borderBottomLeftRadius: 24,
+                      borderBottomRightRadius: 24,
+                    }}
+                  >
+                    <span className="text-lg text-white tracking-wide">
+                      {img.desc}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-      </div>
-
-      {/* Animation keyframes */}
-      <style>{`
-        @keyframes fadeInUp {
-          0% { opacity: 0; transform: translateY(40px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        .animated-border {
-          position: relative;
-          padding: 4px; /* border thickness */
-          background: linear-gradient(270deg, #E53935, #003366, #7EE7EE, #E53935);
-          background-size: 600% 600%;
-          animation: borderGradient 3s linear infinite;
-          border-radius: 1rem; /* match rounded-2xl */
-          z-index: 1;
-        }
-        @keyframes borderGradient {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 100% 50%; }
-        }
-      `}</style>
+      </div>     
     </div>
   );
 };

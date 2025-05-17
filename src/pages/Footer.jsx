@@ -84,7 +84,7 @@ const Footer = () => {
 
           <div className="flex gap-2 mr-6 md:gap-3 justify-center w-full md:w-auto">
             <a
-              href="https://youtube.com/@blinkr"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/90 backdrop-blur-lg p-1.5 md:p-2 rounded-full text-gray-800 text-base md:text-lg transition-all duration-300 hover:scale-125 hover:bg-white hover:shadow-xl hover:text-[#003366]"
@@ -96,7 +96,7 @@ const Footer = () => {
               />
             </a>
             <a
-              href="https://facebook.com/blinkr"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/90 backdrop-blur-lg p-1.5 md:p-2 rounded-full text-gray-800 text-base md:text-lg transition-all duration-300 hover:scale-125 hover:bg-white hover:shadow-xl hover:text-[#003366]"
@@ -108,7 +108,7 @@ const Footer = () => {
               />
             </a>
             <a
-              href="https://instagram.com/blinkr"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/90 backdrop-blur-lg p-1.5 md:p-2 rounded-full text-gray-800 text-base md:text-lg transition-all duration-300 hover:scale-125 hover:bg-white hover:shadow-xl hover:text-[#003366]"

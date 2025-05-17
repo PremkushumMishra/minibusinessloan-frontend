@@ -44,7 +44,7 @@ const Home = () => {
       {/* <LoanEligiblity/> */}
       {/* <AdditionalInfo/> */}
       {/* <BankStatement/> */}
-      <ChatBot/>
+      {/* <ChatBot/> */}
       </>
   );
 };

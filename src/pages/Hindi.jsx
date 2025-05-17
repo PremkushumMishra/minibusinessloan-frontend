@@ -16,7 +16,7 @@ const SanctionLatter = () => {
             <div><span className="font-bold">व्यापार का पता:</span> ____________________________________________________________________________________________</div>
           </div>
 
-          <p className="mb-4 text-gray-700">Miniusinessloan-लेंडिंग फाइनेंस से ऋण प्राप्त करने में अपनी रुचि दिखाने और हमें आपकी सेवा करने का अवसर देने के लिए धन्यवाद।</p>
+          <p className="mb-4 text-gray-700">MiniBusinessLoan-लेंडिंग फाइनेंस से ऋण प्राप्त करने में अपनी रुचि दिखाने और हमें आपकी सेवा करने का अवसर देने के लिए धन्यवाद।</p>
 
           <p className="mb-4 text-gray-700">हमें यह सूचित करते हुए प्रसन्नता हो रही है कि आपका ऋण आवेदन निम्नलिखित नियमों और शर्तों के अनुसार स्वीकृत कर दिया गया है। minibusinessloan-लेंडिंग फाइनेंस, जो मैसर्स रिचक्रेडिट फाइनेंस
 
@@ -645,7 +645,7 @@ const SanctionLatter = () => {
           </div>
           
             {/* 6.9 */}
-            <p className="font-bold text-sm mt-4 mb-2">6.9</p>
+            <p className="font-bold text-sm mr-4 ml-4 mt-4 mb-2">6.9</p>
             <div className="ml-4 space-y-1">
               <div>
                 <span>उधारकर्ता ध्यान दे कि डिफॉल्ट की घटनाओं की सूची केवल सुझावात्मक है, संपूर्ण नहीं। ऋणदाता अपने विवेक से भविष्य में किसी भी घटना को डिफॉल्ट की घटना मान सकता है।</span>
@@ -653,7 +653,7 @@ const SanctionLatter = () => {
             </div>
 
             {/* 6.10 */}
-            <p className="font-bold text-sm mt-4 mb-2">6.10</p>
+            <p className="font-bold text-sm mr-4 ml-4 mt-4 mb-2">6.10</p>
             <div className="ml-4 space-y-1">
               <div>
                 <span>It be also be noted by the borrower that if the borrower unable to repay the loan within the specified time frame, lending institutions may send loan recovery agents to collect the remaining balance from the borrower.</span>
@@ -661,30 +661,29 @@ const SanctionLatter = () => {
             </div>
 
             {/* ARTICLE-7: WAIVER */}
-            <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-7: छूट</h3>
-            <p className="font-bold text-sm mt-4 mb-2">7.1 ऋणदाता के अधिकारों को कम न करने वाली छूट</p>
+            <h3 className="text-sm md:text-base mr-4 ml-4 font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-7: छूट</h3>
+            <p className="font-bold text-sm mr-4 ml-4 mt-4 mb-2">7.1 ऋणदाता के अधिकारों को कम न करने वाली छूट</p>
             <div className="ml-4 space-y-1">
-              <div>
+              <div className="ml-4 mr-4">
                 <span>इस समझौते या किसी अन्य समझौते या दस्तावेज़ के तहत किसी भी चूक पर ऋणदाता को प्राप्त होने वाले किसी भी अधिकार, शक्ति या उपाय का प्रयोग करने में देरी या चूक, ऐसे अधिकार, शक्ति या उपाय को कम नहीं करेगी और न ही इसे उसकी छूट या ऐसी चूक में सहमति के रूप में माना जाएगा। किसी चूक के संबंध में ऋणदाता की कार्रवाई या निष्क्रियता, किसी अन्य चूक के संबंध में ऋणदाता के किसी भी अधिकार, शक्ति या उपाय को प्रभावित या कम नहीं करेगी। पूर्ण किस्त से कम किसी भी भुगतान को ऋणदाता द्वारा स्वीकार करना छूट नहीं माना जाएगा।</span>
               </div>
             </div>
 
             {/* ARTICLE-8: TERMINATION */}
-            <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-8: समाप्ति</h3>
-            <p className="font-bold text-sm mt-4 mb-2">8.1</p>
+            <h3 className="text-sm md:text-base font-bold uppercase ml-4 mr-4 mt-6 mb-3 tracking-wide text-center">अनुच्छेद-8: समाप्ति</h3>
+            <p className="font-bold text-sm mr-4 ml-4 mt-4 mb-2">8.1</p>
             <div className="ml-4 space-y-1">
               <div>
                 <span>यह समझौता तब तक जारी रहेगा और पूर्ण प्रभाव में रहेगा जब तक कि सभी बकाया राशि का भुगतान नहीं हो जाता और उधारकर्ता और/या गारंटर द्वारा सभी दायित्वों का पालन, संतुष्टि और निर्वहन नहीं हो जाता।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">8.2</p>
-            <div className="ml-4 space-y-1">
+            <p className="font-bold text-sm mt-4 mb-2 ml-4 mr-4">8.2</p>
+            <div className="ml-4 mr-4 space-y-1">
               <div>
-                <span>इस समझौते या किसी अन्य दस्तावेज़ में कुछ भी विपरीत होने के बावजूद, ऋणदाता बिना किसी कारण बताए उधारकर्ता को 7 दिनों की लिखित सूचना देकर इस समझौते को समाप्त कर सकता है। ऐसी सूचना पर, सभी बकाया राशि तुरंत उधारकर्ता द्वारा ऋणदाता को देय हो जाएगी।</span>
-              </div>
+                <span>इस समझौते या किसी अन्य दस्तावेज़ में कुछ भी विपरीत होने के बावजूद, ऋणदाता बिना किसी कारण बताए उधारकर्ता को 7 दिनों की लिखित सूचना देकर इस समझौते को समाप्त कर सकता है। ऐसी सूचना पर, सभी बकाया राशि तुरंत उधारकर्ता द्वारा ऋणदाता को देय हो जाएगी।</span>              </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">8.3</p>
-            <div className="ml-4 space-y-1">
+            <p className="font-bold mr-4 ml-4 text-sm mt-4 mb-2">8.3</p>
+            <div className="ml-4 mr-4 space-y-1">
               <div>
                 <span>ऋणदाता के सभी अधिकार और उधारकर्ता के सभी दायित्व, वारंटी और क्षतिपूर्ति इस समझौते की समाप्ति के बावजूद भी बने रहेंगे।</span>
               </div>
@@ -692,20 +691,20 @@ const SanctionLatter = () => {
 
             {/* ARTICLE-9: SET OFF AND GENERAL LIEN */}
             <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-9: सेट ऑफ और सामान्य लाइन</h3>
-            <p className="font-bold text-sm mt-4 mb-2">9.1</p>
+            <p className="font-bold text-sm mr-4 ml-4 mt-4 mb-2">9.1</p>
             <div className="ml-4 space-y-1">
               <div>
                 <span>उधारकर्ता स्पष्ट रूप से स्वीकार करता है कि यदि उधारकर्ता किसी भी राशि का भुगतान निर्धारित समय पर या जो अन्यथा देय होने से पहले देय घोषित की जा सकती है, या ऋणदाता और/या उसके सहयोगियों के साथ किसी भी समझौते या दस्तावेज़ (इस समझौते सहित) के तहत कोई अन्य चूक करता है, जिसके तहत उधारकर्ता वित्तीय/ऋण/अन्य सुविधाओं का लाभ उठाता है, तो ऐसी स्थिति में ऋणदाता, प्रत्येक समझौते और/या दस्तावेज़ों के तहत अपने विशिष्ट अधिकारों के लागू रहते हुए, ऋणदाता के एकमात्र विवेक पर ऐसे किसी भी समझौते या दस्तावेज़ों (इस समझौते सहित) के तहत अपने सभी या किसी भी अधिकार का प्रयोग करने का पूर्ण अधिकार रखेगा।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">9.2</p>
+            <p className="font-bold text-sm mr-4 ml-4 mt-4 mb-2">9.2</p>
             <div className="ml-4 space-y-1">
               <div>
                 <span>ऋणदाता को ऋणदाता के कब्जे में उधारकर्ता से संबंधित सभी धन, प्रतिभूतियों, जमाओं और अन्य संपत्तियों और परिसंपत्तियों को सेट ऑफ करने का अधिकार होगा, चाहे वे ऋणदाता के किसी भी खाते में हों, और ऋणदाता के एकमात्र विवेक पर इसे यहां के तहत बकाया के निपटान के लिए उपयोग कर सकता है।</span>
               </div>
             </div>
             {/* 9.3 */}
-            <p className="font-bold text-sm mt-4 mb-2">9.3</p>
+            <p className="font-bold text-sm mt-4 ml-4 mr-4 mb-2">9.3</p>
             <div className="ml-4 space-y-1">
               <div>
                 <span>यह खंड समझौते की समाप्ति के बावजूद भी लागू रहेगा।</span>
@@ -722,14 +721,14 @@ const SanctionLatter = () => {
 
             {/* ARTICLE-10: EFFECTIVE DATE OF AGREEMENT */}
             <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-10: समझौते की प्रभावी तिथि</h3>
-            <p className="font-bold text-sm mt-4 mb-2">10.1 समझौता निष्पादन की तिथि से प्रभावी होगा।</p>
+            <p className="font-bold text-sm mt-4 ml-4 mr-4 mb-2">10.1 समझौता निष्पादन की तिथि से प्रभावी होगा।</p>
             <div className="ml-4 space-y-1">
               <div>
                 <span>समझौता उधारकर्ता और ऋणदाता पर बाध्यकारी होगा और इसके निष्पादन की तिथि से यह तब तक प्रभावी रहेगा जब तक कि इस समझौते के तहत ऋणदाता को देय और देय सभी धनराशि तथा उधारकर्ता और ऋणदाता के बीच निष्पादित किए गए अन्य समझौते/दस्तावेज पूरी तरह से ऋणदाता की संतुष्टि के अनुसार भुगतान नहीं कर दिए जाते।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">10.2</p>
-            <div className="ml-4 space-y-1">
+            <p className="font-bold text-sm ml-4 mt-4 mb-2">10.2</p>
+            <div className="ml-4 mr-4 space-y-1">
               <div>
                 <span>वितरण अनुसूची, ब्याज दरों, सेवा शुल्क, पूर्व भुगतान शुल्क आदि सहित शर्तों और शर्तों में किसी भी परिवर्तन को भविष्य में लागू किया जाना चाहिए।</span>
               </div>
@@ -737,8 +736,8 @@ const SanctionLatter = () => {
 
             {/* ARTICLE-11: MISCELLANEOUS */}
             <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-11: विविध</h3>
-            <p className="font-bold text-sm mt-4 mb-2">11.1</p>
-            <div className="ml-4 space-y-1">
+            <p className="font-bold text-sm ml-4 mt-4 mb-2">11.1</p>
+            <div className="ml-4 mx-4 space-y-1">
               <div>
                 <span>(क) इसके साथ संलग्न अनुसूचियां इस समझौते का हिस्सा मानी जाएंगी, मानो उनके प्रावधान यहां विस्तार से दिए गए हों।</span>
               </div>
@@ -746,8 +745,8 @@ const SanctionLatter = () => {
                 <span>(ख) इस समझौते, उसकी अनुसूचियों, दस्तावेजों और संपार्श्विक दस्तावेजों में कोई भी संशोधन, परिवर्तन या पुनरीक्षण केवल लिखित में होगा, और वह किसी पूरक समझौते की आवश्यकता के बिना इस समझौते का अभिन्न अंग बनेगा।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">11.2 निरीक्षण, असाइनमेंट, प्रकटीकरण आदि</p>
-            <div className="ml-4 space-y-2">
+            <p className="font-bold mx-4 text-sm mt-4 mb-2">11.2 निरीक्षण, असाइनमेंट, प्रकटीकरण आदि</p>
+            <div className="ml-4 mx-4 space-y-2">
               <div>
                 <span>(क) उधारकर्ता ऋण के संबंध में अपने द्वारा रखे गए सभी बही-खातों और अन्य रिकॉर्डों के निरीक्षण की अनुमति ऋणदाता के अधिकारियों को देगा। उधारकर्ता ऐसे अन्य कंपनियों, बैंकों, संस्थानों या निकायों के अधिकारियों द्वारा भी इसी तरह के निरीक्षण की अनुमति देगा जैसा कि ऋणदाता द्वारा अनुमोदित और उधारकर्ता को सूचित किया जाए।</span>
               </div>
@@ -767,8 +766,8 @@ const SanctionLatter = () => {
                 <span>(च) यहां कुछ भी उधारकर्ता को अपने किसी भी अधिकार, स्वामित्व, हित, लाभ या दायित्व को बेचने, हस्तांतरित करने या असाइन करने का अधिकार नहीं देगा।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">11.3 लागत, शुल्क और खर्च</p>
-            <div className="ml-4 space-y-2">
+            <p className="font-bold text-sm mt-4 mx-4 mb-2">11.3 लागत, शुल्क और खर्च</p>
+            <div className="ml-4 mx-4 space-y-2">
               <div>
                 <span>(क) उधारकर्ता मांग पर तुरंत ऋणदाता को सभी लागतों और खर्चों (पूर्ण क्षतिपूर्ति आधार पर कानूनी सलाहकार और ग्राहकों के बीच कानूनी लागतों सहित) का भुगतान करने का वचन देता है जो ऋण की तैयारी, निष्पादन, संरक्षण, प्रदर्शन, प्रवर्तन और वसूली के लिए ऋणदाता द्वारा किए गए और/या किए जाने वाले हैं।</span>
               </div>
@@ -776,26 +775,26 @@ const SanctionLatter = () => {
                 <span>(ख) ऋण और/या किसी भी परिसंपत्ति के संबंध में और/या ऋण को प्रमाणित करने वाले/संबंधित दस्तावेजों के संबंध में सरकार या किसी भी उचित प्राधिकरण द्वारा लगाए गए सभी स्टाम्प शुल्क, विधान शुल्क या अन्य कर/उपकर, शुल्क आदि केवल उधारकर्ता द्वारा वहन और भुगतान किए जाएंगे। यदि उधारकर्ता उनका भुगतान करने में विफल रहता है, तो ऋणदाता ऐसे भुगतान करेगा, जिस स्थिति में ऋणदाता द्वारा भुगतान की गई ऐसी राशियां वितरित किए गए ऋण की मूल राशि का हिस्सा बन जाएंगी।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">11.4</p>
-            <div className="ml-4 space-y-1">
+            <p className="font-bold text-sm mt-4 mx-4 mb-2">11.4</p>
+            <div className="ml-4 mx-4 space-y-1">
               <div>
                 <span>ऋणदाता को अनुसूची में निर्दिष्ट दर पर उक्त राशि पर ब्याज का अधिकार होगा। ऋणदाता को ऋणदाता के साथ रखे गए उधारकर्ता के किसी भी खाते के तहत उधारकर्ता द्वारा देय और देय सभी राशियों को डेबिट करने और उन्हें यहां के तहत बकाया के निपटान के लिए उपयुक्त बनाने का अधिकार होगा।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">11.5 अन्य ऋणों का अधीनस्थीकरण</p>
-            <div className="ml-4 space-y-1">
+            <p className="font-bold text-sm mx-4 mt-4 mb-2">11.5 अन्य ऋणों का अधीनस्थीकरण</p>
+            <div className="ml-4 mx-4 space-y-1">
               <div>
                 <span>उधारकर्ता द्वारा किसी भी स्रोत से प्राप्त किए गए/प्राप्त किए जाने वाले अन्य सभी ऋण/अग्रिम/सुविधा(ओं) को छोड़कर, जो उधारकर्ता के बैंकरों से प्राप्त सामान्य कार्य सुविधाओं के अलावा हैं, ऋणदाता द्वारा सहमत शर्तों और शर्तों के अधीन होगा और उसके पूर्व अनुमोदन के अधीन होगा। किसी भी स्थिति में, उधारकर्ता द्वारा उठाए गए ऐसे ऋण/अग्रिम/सुविधाएं हमेशा ऋणदाता द्वारा प्रदान किए गए ऋण या किसी अन्य ऋण(ओं)/सुविधा(ओं) के अधीन रहेंगी।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">11.6 आंशिक अमान्यता</p>
-            <div className="ml-4 space-y-1">
+            <p className="font-bold text-sm mx-4 mt-4 mb-2">11.6 आंशिक अमान्यता</p>
+            <div className="ml-4 mx-4 space-y-1">
               <div>
                 <span>यदि किसी भी समय इस समझौते का कोई प्रावधान कानून के तहत अवैध, अमान्य या प्रवर्तनीय हो जाता है, तो इस समझौते के शेष प्रावधानों की वैधता, प्रवर्तनीयता या अन्य प्रावधानों की वैधता, प्रवर्तनीयता पर इसका कोई प्रभाव नहीं पड़ेगा। पक्ष इस तरह की स्थिति में प्रावधानों को इस तरह से संशोधित कर सकते हैं जो पक्षों के इरादे को अवैधता के बिना प्राप्त करता है।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">11.7 विशेष एजेंसियों की भागीदारी</p>
-            <div className="ml-4 space-y-2">
+            <p className="font-bold text-sm mx-4 mt-4 mb-2">11.7 विशेष एजेंसियों की भागीदारी</p>
+            <div className="ml-4 mx-4 space-y-2">
               <div>
                 <span>(क) उधारकर्ता स्पष्ट रूप से मान्यता देता है और स्वीकार करता है कि ऋणदाता विशेष एजेंसियों की सेवाओं को उन्हें सौंपे गए विशिष्ट कार्यों को करने के लिए नियुक्त कर सकता है।</span>
               </div>
@@ -803,8 +802,8 @@ const SanctionLatter = () => {
                 <span>(ख) उधारकर्ता यहां सहमत है कि यहां के प्रावधान बाजार की स्थितियों के अधीन हैं, जो ऋणदाता के एकमात्र विचार में, यहां निहित शर्तों से प्रासंगिक हो सकते हैं। उधारकर्ता यहां सहमत है कि, बाजार या राष्ट्रीय या अंतर्राष्ट्रीय राजनीतिक या आर्थिक स्थिति में किसी भी महत्वपूर्ण परिवर्तन के मामले में, किसी भी वितरण से पहले या ऐसी स्थिति में जहां ऋणदाता यह निर्धारित करता है कि प्रचलित बाजार की स्थितियां सफल वित्तपोषण की अनुमति नहीं दे सकती हैं, ऋणदाता को उधारकर्ताओं को दिए जाने वाले ऋण की शर्तों पर पुनः बातचीत करने और/या वर्तमान वित्तीय व्यवस्था को समाप्त करने का अधिकार होगा।</span>
               </div>
             </div>
-            <p className="font-bold text-sm mt-4 mb-2">11.8 नोटिस की सेवा</p>
-            <div className="ml-4 space-y-1">
+            <p className="font-bold mx-4 text-sm mt-4 mb-2">11.8 नोटिस की सेवा</p>
+            <div className="ml-4 mx-4 space-y-1">
               <div>
                 <span>एक पक्ष द्वारा दूसरे पक्ष को भेजा गया कोई भी संचार/नोटिस/पत्र/दस्तावेज अंग्रेजी में होगा और यहां निर्दिष्ट पते पर या दूसरे पक्ष को लिखित में सूचित किए गए पते पर वितरित किया जाएगा। संचार आदि मेल, व्यावसायिक वितरण या ईमेल द्वारा भेजा जा सकता है। जहां ईमेल द्वारा भेजा जाता है, वहां वैध सेवा के लिए पंजीकृत ए.डी. संचार/कूरियर रसीद के साथ समर्थित होना चाहिए। संचार आदि को उधारकर्ता या उधारकर्ता द्वारा सूचित किए गए व्यक्ति द्वारा सूचित पते पर प्राप्त किया गया माना जाएगा जब मेल द्वारा भेजा जाता है, पोस्टिंग के प्रमाणपत्र के तहत पोस्टिंग की तिथि के 3 दिन बाद, या पंजीकृत डाक द्वारा भेजने के 48 घंटे बाद; जब व्यावसायिक रूप से वितरित किया जाता है, तो पक्ष के पते पर प्राप्त होने पर और जब फैक्स द्वारा भेजा जाता है, तो पुष्टि प्राप्त होने पर। उधारकर्ता द्वारा ऋणदाता को भेजा गया कोई भी संचार तभी प्रभावी होगा जब वह ऋणदाता द्वारा प्राप्त किया गया हो। पते में किसी भी परिवर्तन को ऐसे परिवर्तन के 7 दिनों के भीतर दूसरे पक्ष को सूचित किया जाना चाहिए।</span>
               </div>
@@ -812,8 +811,8 @@ const SanctionLatter = () => {
 
             {/* ARTICLE-12: Grievance Redressal */}
             <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-12: शिकायत निवारण</h3>
-            <p className="font-bold text-sm mt-4 mb-2">12.1 शिकायत निवारण-मैट्रिक्स</p>
-            <div className="ml-4 space-y-2">
+            <p className="font-bold text-sm mx-4 mt-4 mb-2">12.1 शिकायत निवारण-मैट्रिक्स</p>
+            <div className="ml-4 mx-4 space-y-2">
               <div>
                 <span className="font-bold">स्तर 1</span><br />
                 <span>ग्राहक अपनी शिकायत शाखा कार्यालय में प्रस्तुत कर सकता है या हमारी वेबसाइट के 'कस्टमर केयर' सेक्शन www.techaviom.in या customercare@techaviom.in पर लिख सकता है।</span>
@@ -865,23 +864,24 @@ const SanctionLatter = () => {
                 <span className="font-bold">13.2</span> मध्यस्थता की कार्यवाही दिल्ली में अंग्रेजी भाषा में आयोजित की जाएगी।
               </div>
               <div>
-                <span className="font-bold">13.3</span> मध्यस्थ का निर्णय अंतिम और पक्षों पर बाध्यकारी होगा और उसकी शर्तों के अनुसार प्रवर्तनीय होगा। मध्यस्थ अपने निष्कर्षों के लिए लिखित में कारण बताएगा। पक्ष सहमत हैं कि वे इससे बंधे रहेंगे और उसी के अनुसार कार्य करेंगे।
+                <span className="font-bold mx-4">13.3</span> मध्यस्थ का निर्णय अंतिम और पक्षों पर बाध्यकारी होगा और उसकी शर्तों के अनुसार प्रवर्तनीय होगा। मध्यस्थ अपने निष्कर्षों के लिए लिखित में कारण बताएगा। पक्ष सहमत हैं कि वे इससे बंधे रहेंगे और उसी के अनुसार कार्य करेंगे।
               </div>
             </div>
 
             {/* अनुच्छेद-14: स्वीकृति */}
-            <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-14: स्वीकृति</h3>
+            <h3 className="text-sm md:text-base अनुच्छेद-14: स्वीकृति
+ font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-14: स्वीकृति</h3>
             <div className="ml-4 space-y-2">
               <div><span className="font-bold">14.1</span> उधारकर्ता ने पूरे समझौते को पढ़ लिया है, जिसमें अनुसूचियों में दी गई जानकारी भी शामिल है, जो उधारकर्ता की उपस्थिति में भरी गई है।</div>
               <div><span className="font-bold">14.2</span> उधारकर्ता यहां स्पष्ट रूप से और अपरिवर्तनीय रूप से सभी शर्तों सहित अनुसूचियों में दी गई जानकारी से बंधे रहने के लिए सहमत है।</div>
-              <div><span className="font-bold">14.3</span> उपर्युक्त समझौता और अन्य दस्तावेज उधारकर्ता को उसकी ज्ञात भाषा में उसके किसी रिश्तेदार/मित्र द्वारा समझाए गए हैं और उधारकर्ता ने विभिन्न धाराओं का पूरा अर्थ समझ लिया है।</div>
-              <div><span className="font-bold">14.4</span> उधारकर्ता जानता है कि ऋणदाता केवल तभी इस समझौते का पक्षकार बनने के लिए सहमत होगा जब वह उधारकर्ता द्वारा आवेदन में भरी गई सभी शर्तों और विवरणों से संतुष्ट हो जाए, जो ऋणदाता की नीति के अनुरूप हैं।</div>
-              <div><span className="font-bold">14.5</span> उधारकर्ता सहमत है कि यह समझौता उस तिथि से लागू और कानूनी रूप से बाध्यकारी माना जाएगा जब ऋणदाता के अधिकृत कार्यालय द्वारा उस शहर में हस्ताक्षर किया जाएगा जहां ऋणदाता की शाखा स्थित है। यह तब तक प्रभावी रहेगा जब तक कि इस समझौते और उधारकर्ता और ऋणदाता के बीच विद्यमान/निष्पादित अन्य सभी समझौतों के तहत ऋणदाता को देय और देय सभी राशि पूरी तरह से चुका नहीं दी जाती।</div>
+              <div><span className="font-bold mx-4">14.3</span> उपर्युक्त समझौता और अन्य दस्तावेज उधारकर्ता को उसकी ज्ञात भाषा में उसके किसी रिश्तेदार/मित्र द्वारा समझाए गए हैं और उधारकर्ता ने विभिन्न धाराओं का पूरा अर्थ समझ लिया है।</div>
+              <div><span className="font-bold mx-4">14.4</span> उधारकर्ता जानता है कि ऋणदाता केवल तभी इस समझौते का पक्षकार बनने के लिए सहमत होगा जब वह उधारकर्ता द्वारा आवेदन में भरी गई सभी शर्तों और विवरणों से संतुष्ट हो जाए, जो ऋणदाता की नीति के अनुरूप हैं।</div>
+              <div><span className="font-bold mx-6">14.5</span> उधारकर्ता सहमत है कि यह समझौता उस तिथि से लागू और कानूनी रूप से बाध्यकारी माना जाएगा जब ऋणदाता के अधिकृत कार्यालय द्वारा उस शहर में हस्ताक्षर किया जाएगा जहां ऋणदाता की शाखा स्थित है। यह तब तक प्रभावी रहेगा जब तक कि इस समझौते और उधारकर्ता और ऋणदाता के बीच विद्यमान/निष्पादित अन्य सभी समझौतों के तहत ऋणदाता को देय और देय सभी राशि पूरी तरह से चुका नहीं दी जाती।</div>
             </div>
 
             {/* ARTICLE-15: PENAL CHARGES */}
             <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद-15: दंड शुल्क</h3>
-            <div className="overflow-x-auto mb-8">
+            <div className="overflow-x-auto mx-6 mb-8">
               <table className="min-w-full border border-gray-300 text-sm">
                 <tbody>
                   <tr>
@@ -938,7 +938,7 @@ const SanctionLatter = () => {
 
             {/* ARTICLE-16: KFS */}
             <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 tracking-wide text-center">अनुच्छेद 16: KFS</h3>
-            <div className="overflow-x-auto mb-8">
+            <div className="overflow-x-auto mx-6 mb-8">
               <table className="min-w-full border border-gray-300 text-sm">
                 <tbody>
                   <tr>
@@ -971,16 +971,14 @@ const SanctionLatter = () => {
 
             {/* ARTICLE-17: अधिकार क्षेत्र */}
             <h3 className="text-sm md:text-base font-bold uppercase mt-6 mb-3 ml-4 mr-4 tracking-wide text-center">अनुच्छेद-17: अधिकार क्षेत्र</h3>
-            <div className="text-xs md:text-sm text-center mb-8">
+            <div className="text-xs mx-6 md:text-sm text-center mb-8">
               <span>
                 उपरोक्त अनुच्छेद-12 के प्रावधानों के अधीन, यदि कारण कहीं भी उत्पन्न होता है, तो पक्षों के बीच विशेष रूप से सहमत है कि इस समझौते से उत्पन्न या किसी भी तरह से संबंधित किसी भी मामले, दावों या विवादों के संबंध में, केवल दिल्ली के न्यायालयों का विशेष अधिकार क्षेत्र होगा।
               </span>
             </div>
-          </div>
-
-          {/* अनुसूची A */}
+             {/* अनुसूची A */}
           <h3 className="text-sm md:text-base font-bold uppercase mt-10 mb-3 tracking-wide text-center ml-4 mr-4">अनुसूची A</h3>
-          <div className="overflow-x-auto mb-8 ml-4 mr-4">
+          <div className="overflow-x-auto mb-8 ml-6 mr-6">
             <table className="min-w-full border border-gray-300 text-xs md:text-sm">
               <thead className="bg-gray-100">
                 <tr>
@@ -1056,16 +1054,15 @@ const SanctionLatter = () => {
               </tbody>
             </table>
           </div>
-
-          {/* अनुसूची B */}
-          <h3 className="text-sm md:text-base font-bold uppercase  ml-4 mr-4 mt-10 mb-3 tracking-wide text-center">अनुसूची B</h3>
+              {/* अनुसूची B */}
+              <h3 className="text-sm md:text-base font-bold uppercase  ml-4 mr-4 mt-10 mb-3 tracking-wide text-center">अनुसूची B</h3>
           <div className="mb-6 text-center font-semibold text-xs  ml-4 mr-4 md:text-sm">निश्चित ब्याज दर के साथ ऋण पर लागू नियम और शर्तें</div>
           <div className="mb-4 text-xs md:text-sm ml-4 mr-4">
             <div className="mb-2"><span className="font-bold">(A) ब्याज की गणना:</span><br />निश्चित ब्याज दर <span className="inline-block w-24 border-b border-gray-400"></span> % प्रति वर्ष होगी। इसे मासिक दर के आधार पर गणना की जाएगी। इसे मासिक आधार पर देय होगा।</div>
             <div className="mb-2"><span className="font-bold">(B) ऋण की चुकौती और ब्याज का भुगतान:</span><br />ऋण और ब्याज उधारकर्ता द्वारा निम्नलिखित मासिक किस्तों में देय होगा।</div>
           </div>
-          <div className="overflow-x-auto mb-8">
-            <table className="min-w-full border border-gray-300 text-xs md:text-sm">
+          <div className="overflow-x-auto mx-6 mb-8">
+            <table className="min-w-full  border border-gray-300 text-xs md:text-sm">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="border  px-3 py-2">EMI (समान मासिक किस्त) रु.</th>
@@ -1088,13 +1085,13 @@ const SanctionLatter = () => {
               </tbody>
             </table>
           </div>
-
+          
           <div className="mb-8 mt-8">
-            <div className="font-bold text-xs md:text-sm mb-2">इस प्रमाण के रूप में, नीचे हस्ताक्षरकर्ता पक्षों ने इस समझौते पर ऊपर लिखित दिन, माह और वर्ष को हस्ताक्षर किए हैं।</div>
+            <div className="font-bold text-xs mx-4 md:text-sm mb-2">इस प्रमाण के रूप में, नीचे हस्ताक्षरकर्ता पक्षों ने इस समझौते पर ऊपर लिखित दिन, माह और वर्ष को हस्ताक्षर किए हैं।</div>
             <div className="flex flex-row justify-between mb-8">
               <div className="w-1/2">
-                <div className="font-semibold text-xs md:text-sm mb-1">उधारकर्ता का नाम</div>
-                <div className="border-b border-gray-400 w-11/12 mb-4"></div>
+                <div className="font-semibold text-xs mx-4 md:text-sm mb-1">उधारकर्ता का नाम</div>
+                <div className="border-b border-gray-400 mx-4 w-11/12 mb-4"></div>
                 <div className="border-b border-gray-400 w-11/12 mb-4"></div>
               </div>
               <div className="w-1/2">
@@ -1105,10 +1102,10 @@ const SanctionLatter = () => {
             </div>
 
             <div className="mb-6 text-xs md:text-sm">
-              <div className="mb-2">अंदर नामित द्वारा हस्ताक्षरित और सुपुर्द:</div>
+              <div className="mb-2 mx-4">अंदर नामित द्वारा हस्ताक्षरित और सुपुर्द:</div>
               <div className="mb-4">
-                <span className="font-bold">TECHAVIOM FINANCE PRIVATE LIMITED</span><br />
-                श्री/श्रीमती का हस्ताक्षर<span className="inline-block w-32 border-b border-gray-400"></span> <span className="inline-block w-64 border-b border-gray-400 ml-4"></span><br />
+                <span className="font-bold mx-4">TECHAVIOM FINANCE PRIVATE LIMITED</span><br />
+                श्री/श्रीमती का हस्ताक्षर<span className="inline-block  w-32 border-b border-gray-400"></span> <span className="inline-block w-64 border-b border-gray-400 ml-4"></span><br />
                 <span className="text-xs">इसके अधिकृत हस्ताक्षरकर्ता</span>
               </div>
               {/* <div className="mb-4">
@@ -1117,12 +1114,13 @@ const SanctionLatter = () => {
                 <span className="text-xs">इसके अधिकृत हस्ताक्षरकर्ता</span>
               </div> */}
               <div className="mb-4">
-                <span className="font-bold">RICHCREDIT FINANCE PRIVATE LIMITED,</span><br />
-                श्री/श्रीमती का हस्ताक्षर<span className="inline-block w-32 border-b border-gray-400"></span> <span className="inline-block w-64 border-b border-gray-400 ml-4"></span><br />
+                <span className="font-bold mx-4">RICHCREDIT FINANCE PRIVATE LIMITED,</span><br />
+                      श्री/श्रीमती का हस्ताक्षर<span className="inline-block  w-32 border-b border-gray-400"></span> <span className="inline-block w-64 border-b border-gray-400 ml-4"></span><br />
                 <span className="text-xs">इसके अधिकृत हस्ताक्षरकर्ता</span>
               </div>
             </div>
           </div>
+          
             {/* RECEIPT SECTION */}
         <div className="my-12 border border-gray-400 rounded bg-white p-8 max-w-2xl mx-auto shadow-md">
           <div className="flex justify-center mb-6">
@@ -1152,7 +1150,7 @@ const SanctionLatter = () => {
             </div>
           </div>
         </div>
-
+        
     {/* डिमांड प्रोमिसरी नोट सेक्शन */}
 <div className="my-12 border border-gray-400 rounded bg-white p-8 max-w-2xl mx-auto shadow-md">
   <div className="flex justify-center mb-6">
@@ -1207,6 +1205,13 @@ const SanctionLatter = () => {
     </div>
   </div>
 </div>
+          </div>
+
+      
+
+      
+
+
       
           
     
