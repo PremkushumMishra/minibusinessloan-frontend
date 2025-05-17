@@ -1,34 +1,34 @@
 import React, { useState } from "react";
 const reviews = [
-  {
-    id: 1,
-    text: "कुछ महीनों पहले अचानक खर्च बढ़ गया था। सोच नहीं रहा था कि इतनी जल्दी लोन मिल जाएगा। काम फिर से पटरी पर आ गया।",
-    img: "https://i.pravatar.cc/150?img=1&u=a042581f4e29026704d",
-    },
+  // {
+  //   id: 1,
+  //   text: "कुछ महीनों पहले अचानक खर्च बढ़ गया था। सोच नहीं रहा था कि इतनी जल्दी लोन मिल जाएगा। काम फिर से पटरी पर आ गया।",
+  //   img: "https://i.pravatar.cc/150?img=1&u=a042581f4e29026704d",
+  //   },
     {
       id: 2,
       text: "छोटा बिज़नेस शुरू करने के लिए पैसा चाहिए था। इस ऐप ने मेरी शुरुआत आसान कर दी।",
-      img: "https://i.pravatar.cc/150?img=5&u=a042581f4e29026704e",
+      img: "streetvendorfive.jpg",
     },
     {
       id: 3,
       text: "कोई hidden charges नहीं थे। सब कुछ साफ-साफ बताया गया।",
-      img: "https://i.pravatar.cc/150?img=8&u=a042581f4e29026704f",
+      img: "streetvendorsix.jpg",
     },
     {
       id: 4,
       text: "मैंने मोबाइल से ही पूरा प्रोसेस किया, agent की जरूरत नहीं पड़ी।",
-      img: "https://i.pravatar.cc/150?img=9&u=a042581f4e29026704g",
+      img: "streetvendorsthree.jpg",
     },
     {
       id: 5,
       text: "यहीं के स्टाफ ने पूरा समझाया और गाइड किया। सब कुछ आसान लगा और टाइम पर मदद भी मिल गई।",
-      img: "https://i.pravatar.cc/150?img=12&u=a042581f4e29026704h",
+      img: "streetvendorshop.jpg",
     },
   {
     id: 6,
     text: "कागज कम मांगे, टेंशन भी कम, और टाइम पर पैसा भी मिल गया।",
-    img: "https://i.pravatar.cc/150?img=15&u=a042581f4e29026704i",
+    img: "streetvendorsabji.jpg",
   },
 
 ];
@@ -97,8 +97,10 @@ const PublicReview = () => {
                   d="M17 19c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8-8-3.582-8-8zm0 0v6m16-6v6"
                 />
               </svg>
-              <p className="text-lg md:text-xl font-medium leading-relaxed relative before:content-['“'] after:content-['”'] before:text-5xl after:text-5xl after:relative after:top-4">
+              <p className="text-lg md:text-xl font-medium leading-relaxed relative">
+                <span className="text-5xl align-top text-white/60 mr-1">“</span>
                 {reviews[startIndex].text}
+                <span className="text-5xl align-bottom text-white/60 ml-1">”</span>
               </p>
             </div>
           </div>

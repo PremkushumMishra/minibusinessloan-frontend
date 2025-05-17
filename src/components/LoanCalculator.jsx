@@ -62,7 +62,7 @@ const LoanCalculator = () => {
               value={loanAmount}
               onChange={e => {
                 let val = Number(e.target.value);
-                if (val < 5000) val = 5000;
+                // if (val < 5000) val = 5000;
                 if (val > 1000000) val = 1000000;
                 setLoanAmount(val);
               }}
@@ -84,7 +84,7 @@ const LoanCalculator = () => {
             </label>
             <input
               type="number"
-              min="1"
+              min="7"
               max="100"
               step="1"
               value={days}
