@@ -56,28 +56,27 @@ const faqs = [
   //   answer:
   //     "Once approved, the loan amount is usually disbursed within 30 minutes to your bank account.",
   // },
-  // {
-  //   id: 11,
-  //   question: "Will this affect my credit score?",
-  //   answer:
-  //     "Yes, timely repayment will positively impact your credit history, while delays can hurt it.",
-  // },
+  {
+    id: 11,
+    question: "Will this affect my credit score?",
+    answer:
+      "Yes, timely repayment will positively impact your credit history, while delays can hurt it.",
+  },
 ];
 
 const Frequently = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <div className="bg-[#f4f4f4] min-h-screen flex items-center justify-center py-10">
-      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-12 md:gap-49">
+    <div className="bg-[#f4f4f4] min-h-0 flex items-start justify-center py-2 sm:py-6">
+      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8 md:gap-16 px-0 sm:px-4">
         {/* Left Column */}
-        <div className="md:w-1/3 flex flex-col justify-start">
+        <div className="md:w-1/3 flex flex-col justify-start mb-4 md:mb-0">
           <h2
-            className="mb-2"
+            className="mb-2 text-2xl sm:text-3xl md:text-4xl font-semibold"
             style={{
               fontFamily: "Poppins",
               fontWeight: 500,
-              fontSize: "40px",
               lineHeight: "140%",
               letterSpacing: 0,
               color: "#0D4183",
@@ -86,11 +85,10 @@ const Frequently = () => {
             Common question
           </h2>
           <p
-            className="mb-4"
+            className="mb-4 text-base sm:text-lg"
             style={{
               fontFamily: "Poppins",
               fontWeight: 200,
-              fontSize: "20px",
               lineHeight: "140%",
               letterSpacing: 0,
               color: "#000000",
@@ -99,11 +97,10 @@ const Frequently = () => {
             Find the answers to frequently asked question here.
           </p>
           <span
-            className="mb-6"
+            className="mb-6 text-base sm:text-lg"
             style={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 400,
-              fontSize: "20px",
               lineHeight: "140%",
               letterSpacing: 0,
               color: "#000000",
@@ -113,7 +110,7 @@ const Frequently = () => {
           </span>
         </div>
         {/* Right Column */}
-        <div className="md:w-2/4 flex flex-col gap-4">
+        <div className="md:w-2/4 flex flex-col gap-3 sm:gap-4">
           {faqs.map((faq) => {
             const isOpen = openIndex === faq.id;
             return (
@@ -124,17 +121,17 @@ const Frequently = () => {
                 }`}
               >
                 <button
-                  className={`w-full flex items-center justify-between px-6 py-5 focus:outline-none transition-all duration-200 ${
+                  className={`w-full flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 focus:outline-none transition-all duration-200 ${
                     isOpen ? "text-white" : "text-[#184785] hover:bg-[#e9eef6]"
-                  } font-semibold text-lg rounded-xl`}
+                  } font-semibold text-base sm:text-lg rounded-xl`}
                   onClick={() => setOpenIndex(isOpen ? null : faq.id)}
                 >
-                  <span>{faq.question}</span>
+                  <span className="text-left">{faq.question}</span>
                   <span
                     className={`ml-4 transition-all duration-200 ${
                       isOpen
-                        ? "bg-white text-[#0D4059] rounded-full w-10 h-10 flex items-center justify-center text-5xl"
-                        : "text-5xl text-[#0D4059] flex items-center justify-center"
+                        ? "bg-white text-[#0D4059] rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-3xl sm:text-5xl"
+                        : "text-3xl sm:text-5xl text-[#0D4059] flex items-center justify-center"
                     }`}
                     style={{ fontWeight: 400 }}
                   >
@@ -142,7 +139,7 @@ const Frequently = () => {
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-5 text-white text-base">
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-white text-sm sm:text-base">
                     <div className="whitespace-pre-line text-white/90">
                       {faq.answer}
                     </div>

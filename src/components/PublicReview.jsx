@@ -36,13 +36,12 @@ const NextArrow = (props) => {
   return (
     <button
       type="button"
-      className="group slick-arrow slick-next relative overflow-hidden !flex !items-center !justify-center !rounded-full !w-20 !h-20 !absolute !-right-20 mt-10 top-[70%] -translate-y-1/2 z-10 border border-gray-200"
+      className="group slick-arrow slick-next relative overflow-hidden !flex !items-center !justify-center !rounded-full !w-14 !h-14 sm:!w-20 sm:!h-20 !absolute !-right-4 sm:!-right-20 mt-6 sm:mt-10 top-[70%] -translate-y-1/2 z-10 border border-gray-200"
       onClick={onClick}
       aria-label="Next"
     >
-      {/* Animated Circle */}
       <span className="absolute inset-0 rounded-full bg-[#045382]/20 scale-0 group-hover:scale-100 transition-transform duration-300" />
-      <svg width="44" height="44" fill="none" viewBox="0 0 24 24" className="relative z-10">
+      <svg width="32" height="32" fill="none" viewBox="0 0 24 24" className="relative z-10">
         <path d="M9 6l6 6-6 6" stroke="#045382" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     </button>
@@ -54,13 +53,12 @@ const PrevArrow = (props) => {
   return (
     <button
       type="button"
-      className="group slick-arrow slick-prev relative overflow-hidden !flex !items-center !justify-center !rounded-full !w-20 !h-20 !absolute !-left-24 mt-10 top-[70%] -translate-y-1/2 z-10 border border-gray-200"
+      className="group slick-arrow slick-prev relative overflow-hidden !flex !items-center !justify-center !rounded-full !w-14 !h-14 sm:!w-20 sm:!h-20 !absolute !-left-4 sm:!-left-24 mt-6 sm:mt-10 top-[70%] -translate-y-1/2 z-10 border border-gray-200"
       onClick={onClick}
       aria-label="Previous"
     >
-      {/* Animated Circle */}
       <span className="absolute inset-0 rounded-full bg-[#045382]/20 scale-0 group-hover:scale-100 transition-transform duration-300" />
-      <svg width="44" height="44" fill="none" viewBox="0 0 24 24" className="relative z-10">
+      <svg width="32" height="32" fill="none" viewBox="0 0 24 24" className="relative z-10">
         <path d="M15 6l-6 6 6 6" stroke="#045382" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     </button>
@@ -72,31 +70,38 @@ const PublicReview = () => {
     dots: true,
     infinite: true,
     speed: 800,
-    // slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    // arrows: true,
     pauseOnHover: true,
     adaptiveHeight: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    slidesToShow: 1,
+    responsive: [
+      {
+        breakpoint: 640, // sm
+        settings: {
+          arrows: false,
+          slidesToShow: 1,
+          centerMode: false,
+        },
+      },
+    ],
   };
 
   return (
     <div className="bg-[#f4f4f4] py-2 min-h-[60vh] flex items-center">
-      <div className="max-w-7xl mx-auto px-4 w-full">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 w-full">
         <h2
-          className="mx-auto text-center mb-12"
+          className="mx-auto text-center mb-8 sm:mb-12"
           style={{
             fontFamily: "Poppins",
             fontWeight: 600,
-            fontSize: "40px",
-            lineHeight: "140%",
+            fontSize: "24px",
+            lineHeight: "130%",
             color: "#0D4183",
-            width: 509,
-            height: 56,
-           
+            maxWidth: 320,
           }}
         >
           Their Words speak for us
@@ -104,28 +109,28 @@ const PublicReview = () => {
 
         {/* Review Cards Slider */}
         <div className="flex justify-center items-center gap-4 min-h-[180px]">
-          <div className="w-full max-w-[600px]">
+          <div className="w-full max-w-[95vw] sm:max-w-[600px]">
             <Slider {...settings}>
               {reviews.map((review) => (
-                <div key={review.id} className="bg-[#045382] rounded-t-2xl rounded-bl-4xl p-1">
+                <div key={review.id} className="bg-[#045382] rounded-t-2xl rounded-bl-2xl p-1">
                   <div
                     className={
-                      "bg-white rounded-t-4xl rounded-bl-4xl shadow-md px-8 py-8 flex items-start gap-6 w-full min-h-[140px]"
+                      "bg-white rounded-t-4xl rounded-bl-4xl shadow-md px-4 sm:px-8 py-6 sm:py-8 flex items-start gap-4 sm:gap-6 w-full min-h-[120px] sm:min-h-[140px]"
                     }
                     style={{
                       boxShadow: "0 8px 32px 0 rgba(24,71,133,0.10)",
                     }}
                   >
-                    <div className="flex flex-col items-center min-w-[60px]">
+                    <div className="flex flex-col items-center min-w-[48px] sm:min-w-[60px]">
                       <img
                         src={review.img}
                         alt="reviewer"
-                        className="w-12 h-12 object-cover rounded-full border-2 border-white shadow"
+                        className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-full border-2 border-white shadow"
                       />
                     </div>
                     <div className="flex-1 flex flex-col justify-center">
                       <p
-                        className="text-base text-[#184785] mb-4"
+                        className="text-sm sm:text-base text-[#184785] mb-2 sm:mb-4"
                         style={{ fontFamily: "Poppins, sans-serif", fontWeight: 400, lineHeight: "150%" }}
                       >
                         {review.text}

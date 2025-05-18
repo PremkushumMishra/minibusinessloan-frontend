@@ -153,24 +153,22 @@ const Navbar = () => {
               onClick={toggleMobileMenu}
               className="block w-full"
             >
-{/*               
-             <div className="bg-[#003366] px-4 py-2 font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2">
-  <span className="text-base">Apply Now</span>
-  <svg
-    className="w-4 h-4 transition-transform duration-300"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path
-      // strokeLinecap="round"
-      // strokeLinejoin="round"
-      strokeWidth="2"
-      d="M13 7l5 5m0 0l-5 5m5-5H6"
-    />
-  </svg>
-</div> */}
-
+              <div className="bg-[#003366] px-4 py-2 font-bold text-white border border-[#003366] hover:bg-[#E53935] hover:border-[#E53935] transition-all duration-300 flex items-center justify-center gap-2 rounded-t-xl rounded-bl-xl rounded-br-none">
+                <span className="text-base">Apply Now</span>
+                <svg
+                  className="w-4 h-4 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </div>
             </Link>
           </div>
         </div>
