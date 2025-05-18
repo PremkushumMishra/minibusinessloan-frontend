@@ -27,7 +27,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-full bg-white border-b border-gray-100 font-poppins">
+      <nav className="w-full bg-[#EAEAEA] border-b border-[#EAEAEA] font-poppins">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center h-full">

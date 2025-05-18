@@ -681,7 +681,7 @@ const SanctionLatter = () => {
             <div className="ml-4 mr-4 space-y-1">
               <div>
                 <span>इस समझौते या किसी अन्य दस्तावेज़ में कुछ भी विपरीत होने के बावजूद, ऋणदाता बिना किसी कारण बताए उधारकर्ता को 7 दिनों की लिखित सूचना देकर इस समझौते को समाप्त कर सकता है। ऐसी सूचना पर, सभी बकाया राशि तुरंत उधारकर्ता द्वारा ऋणदाता को देय हो जाएगी।</span>              </div>
-            </div>
+              </div>
             <p className="font-bold mr-4 ml-4 text-sm mt-4 mb-2">8.3</p>
             <div className="ml-4 mr-4 space-y-1">
               <div>
@@ -1080,12 +1080,12 @@ const SanctionLatter = () => {
                     <td className="border px-3 py-2"></td>
                     <td className="border px-3 py-2"></td>
                     <td className="border px-3 py-2"></td>
-                  </tr>
+                </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          
+
           <div className="mb-8 mt-8">
             <div className="font-bold text-xs mx-4 md:text-sm mb-2">इस प्रमाण के रूप में, नीचे हस्ताक्षरकर्ता पक्षों ने इस समझौते पर ऊपर लिखित दिन, माह और वर्ष को हस्ताक्षर किए हैं।</div>
             <div className="flex flex-row justify-between mb-8">
@@ -1150,71 +1150,71 @@ const SanctionLatter = () => {
             </div>
           </div>
         </div>
-        
+
     {/* डिमांड प्रोमिसरी नोट सेक्शन */}
-<div className="my-12 border border-gray-400 rounded bg-white p-8 max-w-2xl mx-auto shadow-md">
-  <div className="flex justify-center mb-6">
+        <div className="my-12 border border-gray-400 rounded bg-white p-8 max-w-2xl mx-auto shadow-md">
+          <div className="flex justify-center mb-6">
     <span className="bg-black text-white px-6 py-2 rounded-full font-bold text-lg tracking-widest">डिमांड प्रोमिसरी नोट</span>
-  </div>
+          </div>
   <div className="text-xs mb-2 font-semibold">ऋण फाइल संख्या <span className="inline-block w-64 border-b border-gray-400 align-bottom"></span></div>
   <div className="text-xs mb-4">मूल्य प्राप्ति के लिए <span className="inline-block w-64 border-b border-gray-400 align-bottom"></span></div>
   <div className="text-xs mb-2">मैं/हम)
-    <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span> ii)
-    <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span> iii)
-    <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span>
-  </div>
-  <div className="text-xs mb-2">iv)
-    <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span> v)
-    <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span> vi)
-    <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span>
-  </div>
-  <div className="text-xs mb-2">
+            <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span> ii)
+            <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span> iii)
+            <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span>
+          </div>
+          <div className="text-xs mb-2">iv)
+            <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span> v)
+            <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span> vi)
+            <span className="inline-block w-32 border-b border-gray-400 align-bottom mx-1"></span>
+          </div>
+          <div className="text-xs mb-2">
     वचन देते हैं कि <span className="font-semibold">TECHAVIOM FINANCE PRIVATE LIMITED</span>, या उनके असाइन/उत्तराधिकारी को मांग पर, रु. (रुपये
     <span className="inline-block w-40 border-b border-gray-400 align-bottom"></span>) का भुगतान करेंगे।
-  </div>
-  <div className="border-b border-gray-400 my-2"></div>
-  <div className="text-xs mb-2">
-    इसके साथ-साथ <span className="inline-block w-8 border-b border-gray-400 align-bottom"></span>% प्रति वर्ष की चक्रवृद्धि ब्याज दर के साथ मासिक आधार पर या ऐसी अन्य दरों पर, जो समय-समय पर TECHAVIOM FINANCE PRIVATE LIMITED और RICHCREDIT FINANCE PRIVATE LIMITED द्वारा उस समय प्रचलित ब्याज दर के संदर्भ में निर्दिष्ट की जा सकती हैं, भुगतान करेंगे।
-  </div>
-  <div className="text-xs mb-2">
-    हस्ताक्षरकर्ता बिना शर्त इस नोट की मांग, प्रस्तुति और विरोध को माफ करता/करते हैं।
-  </div>
-  <div className="text-xs mb-2">
-    यह <span className="inline-block w-32 border-b border-gray-400 align-bottom"></span> दिनांक <span className="inline-block w-32 border-b border-gray-400 align-bottom"></span> 20<span className="inline-block w-8 border-b border-gray-400 align-bottom"></span> को दंड स्वरूप मुहरबंद और हस्ताक्षरित किया गया।
-  </div>
-  <div className="text-xs mb-8">आवेदक/आवेदकों का राजस्व स्टाम्प एवं हस्ताक्षर</div>
-  <div className="flex flex-row justify-between items-end mt-12">
-    <div className="flex flex-col items-center">
-      <span className="font-bold text-lg mb-8">X</span>
-      <div className="border border-gray-400 p-2 text-center text-xs w-28 mb-8">
-        राजस्व<br />स्टाम्प<br />एवं<br />हस्ताक्षर
-      </div>
-    </div>
-    <div className="flex flex-col items-center">
-      <span className="font-bold text-lg mb-16">X</span>
-    </div>
-  </div>
-  <div className="flex flex-row justify-between mt-8">
-    <div className="flex flex-col items-center">
-      <div className="border-t border-gray-400 w-48 mx-auto mb-1"></div>
-      <span className="text-xs">उधारकर्ता के हस्ताक्षर<br/>नाम:</span>
-    </div>
-    <div className="flex flex-col items-center">
-      <div className="border-t border-gray-400 w-48 mx-auto mb-1"></div>
-      <span className="text-xs">सह-उधारकर्ता के हस्ताक्षर<br/>नाम:</span>
-    </div>
-  </div>
-</div>
           </div>
+          <div className="border-b border-gray-400 my-2"></div>
+          <div className="text-xs mb-2">
+    इसके साथ-साथ <span className="inline-block w-8 border-b border-gray-400 align-bottom"></span>% प्रति वर्ष की चक्रवृद्धि ब्याज दर के साथ मासिक आधार पर या ऐसी अन्य दरों पर, जो समय-समय पर TECHAVIOM FINANCE PRIVATE LIMITED और RICHCREDIT FINANCE PRIVATE LIMITED द्वारा उस समय प्रचलित ब्याज दर के संदर्भ में निर्दिष्ट की जा सकती हैं, भुगतान करेंगे।
+          </div>
+          <div className="text-xs mb-2">
+    हस्ताक्षरकर्ता बिना शर्त इस नोट की मांग, प्रस्तुति और विरोध को माफ करता/करते हैं।
+          </div>
+          <div className="text-xs mb-2">
+    यह <span className="inline-block w-32 border-b border-gray-400 align-bottom"></span> दिनांक <span className="inline-block w-32 border-b border-gray-400 align-bottom"></span> 20<span className="inline-block w-8 border-b border-gray-400 align-bottom"></span> को दंड स्वरूप मुहरबंद और हस्ताक्षरित किया गया।
+          </div>
+  <div className="text-xs mb-8">आवेदक/आवेदकों का राजस्व स्टाम्प एवं हस्ताक्षर</div>
+          <div className="flex flex-row justify-between items-end mt-12">
+            <div className="flex flex-col items-center">
+              <span className="font-bold text-lg mb-8">X</span>
+              <div className="border border-gray-400 p-2 text-center text-xs w-28 mb-8">
+        राजस्व<br />स्टाम्प<br />एवं<br />हस्ताक्षर
+              </div>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="font-bold text-lg mb-16">X</span>
+            </div>
+          </div>
+          <div className="flex flex-row justify-between mt-8">
+            <div className="flex flex-col items-center">
+              <div className="border-t border-gray-400 w-48 mx-auto mb-1"></div>
+      <span className="text-xs">उधारकर्ता के हस्ताक्षर<br/>नाम:</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="border-t border-gray-400 w-48 mx-auto mb-1"></div>
+      <span className="text-xs">सह-उधारकर्ता के हस्ताक्षर<br/>नाम:</span>
+            </div>
+          </div>
+        </div>
+        </div>
 
       
 
       
+
 
 
       
           
-    
         {/* Footer Image */}
         <img src="/sanctionfooter.webp" alt="Sanction Letter Footer" className="w-full h-auto object-cover" />
       </div>

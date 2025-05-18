@@ -2,7 +2,7 @@ import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
 const images = [
-  { src: "/imagefifth.jpg" },
+  { src: "/amanimage.jpg" },
   { src: "/imagesixth.jpg" },
   { src: "/newstreetshop.jpg" },
   { src: "/imageforth.jpg" },
@@ -20,7 +20,7 @@ const EligibleProfile = () => {
       <div className="text-center">
         <div className="flex justify-center items-center">
           <h1
-            className="font-poppins font-medium mt-3 text-[#0D4183] text-center"
+            className="font-poppins font-medium mt-15 text-[#0D4183] text-center"
             style={{
               fontSize: '40px',
               lineHeight: '140%',
@@ -33,7 +33,7 @@ const EligibleProfile = () => {
           </h1>
         </div>
         <div
-          className="mx-auto mt-2 mb-2"
+          className="mx-auto mb-2"
           style={{
             width: 120,
             height: 6,
@@ -41,11 +41,29 @@ const EligibleProfile = () => {
             borderRadius: 6,
           }}
         />
-        <p className="text-[#222] text-base max-w-md mx-auto font-semibold">
+        <p
+          className="font-poppins text-[#222] font-normal mx-auto"
+          style={{
+            fontSize: '20px',
+            lineHeight: '140%',
+            letterSpacing: 0,
+            textAlign: 'center',
+            fontWeight: 400,
+            maxWidth: '28rem',
+          }}
+        >
           If you run a business or earn a steady income, <br /> you might be eligible!
         </p>
         {/* Profile Names */}
-        <div className="mt-9 text-center font-bold text-lg text-[#222]">
+        <div
+          className="font-poppins text-center mt-10"
+          style={{
+            fontWeight: 500,
+            fontSize: '20px',
+            lineHeight: '140%',
+            letterSpacing: 0,
+          }}
+        >
           Retail Shop Owner, Small Manufacturer, Service Provider, <br /> Wholesaler, Street Food Vendor
         </div>
       </div>
@@ -56,9 +74,9 @@ const EligibleProfile = () => {
           {images.map((img, idx) => {
             // Size classes based on index
             let sizeClass = "w-44 h-60"; // default
-            if (idx === 0 || idx === 4) sizeClass = "w-56 h-80"; // first & last: largest, more height
-            if (idx === 2) sizeClass = "w-50 h-50"; // 3rd: medium
-            if (idx === 1 || idx === 3) sizeClass = "w-48 h-64"; // 2nd & 4th: slightly smaller
+            if (idx === 0 || idx === 4) sizeClass = "w-58 h-84"; // first & last: largest, more height
+            if (idx === 2) sizeClass = "w-54 h-52"; // 3rd: medium
+            if (idx === 1 || idx === 3) sizeClass = "w-52 h-66"; // 2nd & 4th: slightly smaller
 
             // Remove margin for vertical alignment
             let marginClass = "";
@@ -79,7 +97,7 @@ const EligibleProfile = () => {
                       <img
                         src={img.src}
                         // alt={`Eligible ${idx + 1}`}
-                        className="w-full h-full object-cover rounded-2xl relative z-10"
+                        className="w-full h-full object-cover object-center rounded-2xl relative z-10"
                         style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
                       />
                     </div>

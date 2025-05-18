@@ -1,7 +1,7 @@
 import React from "react";
 // import Navbar from '../components/Navbar';
 import TalkingLoan from "../components/TalkingLoan";
-import Frequently from "../components/Frequently";
+// import Frequently from "../components/Frequently";
 import LoanCalculator from "../components/LoanCalculator";
 import GetAmount from "../components/GetAmount";
 import WhyChoose from "../components/WhyChoose";
@@ -20,7 +20,10 @@ import BsaRejectes from "../components/BsaRejectes";
 import SanctionLatter from "./SanctionLatter";
 import ChatBot from "../components/ChatBot";
 import NameEmailVerify from "../components/NameEmailVerify";
+// import Frequently from "../components/Frequently";
 import Hindi from "./Hindi";
+import Frequently from "../components/Frequently";
+import NewWhy from "../components/NewWhy"
 const Home = () => {
   return (
     <>
@@ -28,12 +31,14 @@ const Home = () => {
       <TalkingLoan />
       {/* <Hindi/> */}
       <EligibleProfile/>
-      <Lorem />
-      <LoanCalculator />
+      {/* <Lorem /> */}
+      {/* <NewWhy/> */}
+      {/* <LoanCalculator /> */}
       <WhyChoose />
-      <AppDownload/>
+      {/* <AppDownload/> */}
       {/* <BsaRejectes/> */}
       <PublicReview />
+      <Frequently/>
       {/* <NameEmailVerify/>   */}
       {/* <SanctionLatter/> */}
       {/* <GetAmount /> */}
