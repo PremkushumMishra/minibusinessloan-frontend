@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#F5F5F5] pt-4">
       {/* Outer Blue Box */}
-      <div className="max-w-7xl mx-2 md:mx-4 lg:mx-8 border-2 border-white rounded-t-2xl bg-[#0A3C7D] px-4 md:px-10 pt-6 pb-2" style={{boxShadow: "0 2px 8px 0 #e0e0e0"}}>
+      <div className="max-w-7xl mx-2 md:mx-4 lg:mx-8 border-2 border-white rounded-t-2xl bg-[#0D4183] px-4 md:px-10 pt-6 pb-2" style={{boxShadow: "0 2px 8px 0 #e0e0e0"}}>
         {/* 3 Columns */}
         <div
           className="w-full max-w-[1240px] min-h-[107px] mx-auto flex flex-col md:flex-row justify-between items-center md:items-start px-2 md:px-8"
@@ -60,14 +60,14 @@ const Footer = () => {
           {/* Social Icons */}
           <div className="flex gap-3">
            
-            <a href="#" className="bg-white rounded-lg p-2 hover:bg-[#E0BCF3] transition-all duration-200 shadow" title="YouTube">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" className="h-5 w-5" />
+            <a href="#" className="bg-white rounded-lg w-12 h-12 flex items-center justify-center hover:bg-[#E0BCF3] transition-all duration-200 border border-[#e0eafc]" title="YouTube">
+              <img src="/youtubeicon.png" alt="YouTube" className="h-6 w-6 object-contain" />
             </a>
-            <a href="#" className="bg-white rounded-lg p-2 hover:bg-[#E0BCF3] transition-all duration-200 shadow" title="Facebook">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" className="h-5 w-5" />
+            <a href="#" className="bg-white rounded-lg w-12 h-12 flex items-center justify-center hover:bg-[#E0BCF3] transition-all duration-200 border border-[#e0eafc]" title="Facebook">
+              <img src="/facebookicon.png" alt="Facebook" className="h-6 w-6 object-contain" />
             </a>
-            <a href="#" className="bg-white rounded-lg p-2 hover:bg-[#E0BCF3] transition-all duration-200 shadow" title="Instagram">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" className="h-5 w-5" />
+            <a href="#" className="bg-white rounded-lg w-12 h-12 flex items-center justify-center hover:bg-[#E0BCF3] transition-all duration-200 border border-[#e0eafc]" title="Instagram">
+              <img src="/instaicon.png" alt="Instagram" className="h-6 w-6 object-contain" />
             </a>
             
           </div>

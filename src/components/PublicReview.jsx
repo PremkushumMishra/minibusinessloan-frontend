@@ -112,7 +112,7 @@ const PublicReview = () => {
           <div className="w-full max-w-[95vw] sm:max-w-[600px]">
             <Slider {...settings}>
               {reviews.map((review) => (
-                <div key={review.id} className="bg-[#045382] rounded-t-2xl rounded-bl-2xl p-1">
+                <div key={review.id} className="bg-[#F0F0F0] rounded-t-2xl rounded-bl-2xl p-1">
                   <div
                     className={
                       "bg-white rounded-t-4xl rounded-bl-4xl shadow-md px-4 sm:px-8 py-6 sm:py-8 flex items-start gap-4 sm:gap-6 w-full min-h-[120px] sm:min-h-[140px]"

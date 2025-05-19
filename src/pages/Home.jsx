@@ -33,7 +33,7 @@ const Home = () => {
       <EligibleProfile/>
       {/* <Lorem /> */}
       {/* <NewWhy/> */}
-      {/* <LoanCalculator /> */}
+      <LoanCalculator />
       <WhyChoose />
       {/* <AppDownload/> */}
       {/* <BsaRejectes/> */}

@@ -151,6 +151,7 @@ const CoApplicant = () => {
         setTimeout(() => {
           navigate("/applicant-business-details");
         }, 1000);
+        fetchUserDetails();
       } else {
         setStatus("error");
         setError(response.data?.message || "Invalid OTP. Please try again.");
@@ -163,6 +164,24 @@ const CoApplicant = () => {
       );
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchUserDetails = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await axios.get(
+        // "http://10.6.3.90:3000/api/v1/get/user/details/web",
+        `${API_CONFIG.BASE_URL}/get/user/details/web`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("User Details API Response:", response.data);
+    } catch (err) {
+      console.error("User Details API Error:", err);
     }
   };
 

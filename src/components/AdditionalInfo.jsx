@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_CONFIG from "../config";
+
 const AdditionalInfo = () => {
   const [form, setForm] = useState({
     maritalStatus: "",
@@ -50,6 +51,7 @@ const AdditionalInfo = () => {
         response.data?.message === "SUCCESS"
       ) {
         setSuccess("Data submitted successfully!");
+        fetchUserDetails();
         // const clientId=response.data?.data?.client_id;
         // if(clientId){
         //   localStorage.setItem("clientId",clientId);
@@ -75,6 +77,24 @@ const AdditionalInfo = () => {
       setError("Submission failed. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchUserDetails = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await axios.get(
+        // "http://10.6.3.90:3000/api/v1/get/user/details/web",
+        `${API_CONFIG.BASE_URL}/get/user/details/web`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("User Details API Response:", response.data);
+    } catch (err) {
+      console.error("User Details API Error:", err);
     }
   };
 

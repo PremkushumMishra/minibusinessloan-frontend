@@ -197,7 +197,8 @@ const WhyChoose = () => {
         <br className="hidden md:block" />
         Transparent, reliable, and built for your success.
       </p>
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0 relative max-w-6xl mx-auto">
+      {/* Desktop/Laptop/Tablet layout */}
+      <div className="hidden md:flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-0 relative max-w-6xl mx-auto">
         {/* Left Features (2) */}
         <div className="flex-1 flex flex-col gap-4 md:gap-8 items-end justify-center mt-4 lg:mt-15 mr-0 lg:mr-13 w-full lg:w-auto px-2">
           {features.slice(0, 2).map((f, i) => (
@@ -246,7 +247,6 @@ const WhyChoose = () => {
               boxShadow: "0 0 0 6px #E6F0F7",
             }}
           />
-
           {/* Middle Full Circle Image */}
           <img
             src="/circleiconfull.png"
@@ -367,7 +367,7 @@ const WhyChoose = () => {
         </div>
       </div>
       {/* Bottom Features (2) */}
-      <div className="flex flex-col md:flex-row justify-center mt-4 md:mt-12 px-2 gap-0">
+      <div className="hidden md:flex flex-col md:flex-row justify-center mt-4 md:mt-12 px-2 gap-0">
         {features.slice(2, 4).map((f, i) => (
           <div key={i} className="flex items-start gap-1 max-w-xs w-full mx-auto">
             <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0 overflow-hidden -mt-1 md:-mt-2">
@@ -391,6 +391,137 @@ const WhyChoose = () => {
             </div>
           </div>
         ))}
+      </div>
+      {/* Mobile layout: circle graphic on top, 6 cards below */}
+      <div className="flex flex-col items-center md:hidden w-full mt-6">
+        {/* Circle graphic */}
+        <div
+          className="flex flex-col items-center justify-center relative mx-auto mb-4"
+          style={{ width: '220px', height: '220px' }}
+        >
+          {/* Outermost Small Circle Image */}
+          <img
+            src="/circleiconsmall.png"
+            alt="Full Circle"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-full"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: "cover",
+              boxShadow: "0 0 0 6px #E6F0F7",
+            }}
+          />
+          {/* Middle Full Circle Image */}
+          <img
+            src="/circleiconfull.png"
+            alt="Small Circle"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 rounded-full"
+            style={{
+              width: '67.5%',
+              height: '67.5%',
+              objectFit: "cover",
+            }}
+          />
+          {/* MBL Text Centered with White BG */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center z-30"
+            style={{
+              width: '37.5%',
+              height: '37.5%',
+              background: "#fff",
+              borderRadius: "50%",
+            }}
+          >
+            <span className="text-base font-bold text-[#17407C] font-poppins">
+              MBL
+            </span>
+          </div>
+          {/* Feature Icons Around (mathematically placed) */}
+          {iconAngles.map((deg, i) => {
+            const r = 50;
+            const angle = (deg * Math.PI) / 180;
+            const x = 50 + r * Math.cos(angle);
+            const y = 50 + r * Math.sin(angle);
+            const f = features[i];
+            return (
+              <span
+                key={i}
+                style={{
+                  position: "absolute",
+                  left: `${x}%`,
+                  top: `${y}%`,
+                  transform: "translate(-50%, -50%)",
+                  background: "#fff",
+                  borderRadius: "50%",
+                  width: '10%',
+                  height: '10%',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 50,
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
+                  border: `2px solid ${
+                    f.color === "text-[#3CB371]" ? "#E6F4EA" : "#E6F0F7"
+                  }`,
+                }}
+              >
+                {f.icon}
+              </span>
+            );
+          })}
+          {/* Inner circle icons */}
+          {innerIconAngles.map((deg, i) => {
+            const r = 33.75;
+            const angle = (deg * Math.PI) / 180;
+            const x = 50 + r * Math.cos(angle);
+            const y = 50 + r * Math.sin(angle);
+            const f = features[i];
+            return (
+              <span
+                key={i}
+                style={{
+                  position: "absolute",
+                  left: `${x}%`,
+                  top: `${y}%`,
+                  transform: "translate(-50%, -50%)",
+                  background: "#fff",
+                  borderRadius: "50%",
+                  width: '8%',
+                  height: '8%',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 35,
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.07)",
+                  border: `2px solid ${
+                    f.color === "text-[#3CB371]" ? "#E6F4EA" : "#E6F0F7"
+                  }`,
+                }}
+              >
+                {f.icon}
+              </span>
+            );
+          })}
+        </div>
+        {/* 6 cards, vertically stacked below the circle */}
+        <div className="flex flex-col items-center gap-4 w-full max-w-xs mx-auto mt-2">
+          {features.map((f, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center bg-white rounded-xl shadow-sm p-4 w-full"
+            >
+              <div className="w-10 h-10 flex items-center justify-center mb-2 bg-[#F5F5F5] rounded-full">
+                <span className="w-7 h-7 flex items-center justify-center">{f.icon}</span>
+              </div>
+              <h3 className="text-base font-semibold text-[#0D4059] text-center mb-1" style={{ fontFamily: "Poppins" }}>
+                {f.title}
+              </h3>
+              <p className="text-xs text-[#0D4059] text-center" style={{ fontFamily: "Poppins" }}>
+                {f.text}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

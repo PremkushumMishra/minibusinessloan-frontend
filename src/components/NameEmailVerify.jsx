@@ -91,6 +91,7 @@ const NameEmailVerify = () => {
         if (response.data?.status === true && response.data?.message === "SUCCESS") {
 
           const redirectUrl = response.data?.data?.url;
+          console.log("Redirect URL:", redirectUrl);
   
           if (redirectUrl) {
             window.open(redirectUrl, "_blank");
@@ -99,7 +100,16 @@ const NameEmailVerify = () => {
           }
 
           updateStep("kyc-process");
+          // navigate("/kyc-process");
+          fetchUserDetails();
+
+          if (response.data?.data?.client_id) {
+            const clientId = response.data.data.client_id;
+              (clientId);
+            localStorage.setItem("digilocker_client_id", clientId);
+          }
           navigate("/kyc-process");
+
         }
       } catch (error) {
         console.error("Error initiating digilocker:", error.response);
@@ -107,6 +117,25 @@ const NameEmailVerify = () => {
       } finally {
         setIsLoading(false);
       }
+    }
+  };
+
+  const fetchUserDetails = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await axios.get(
+        // "http://10.6.3.90:3000/api/v1/get/user/details/web",
+        `${API_CONFIG.BASE_URL}/get/user/details/web`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          // withCredentials: true, // If you want to send cookies
+        }
+      );
+      console.log("User Details API Response:", response.data);
+    } catch (err) {
+      console.error("User Details API Error:", err);
     }
   };
 

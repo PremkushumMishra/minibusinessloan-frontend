@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useStep } from "../context/StepContext";
 import axios from "axios";
 import API_CONFIG from "../config";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // protect routing
 // import { useStep } from "../context/useStep";
 const TERMS_CONTENT = (
@@ -29,9 +29,9 @@ const TERMS_CONTENT = (
     <h3 className="text-xl font-bold text-black mt-6 mb-2">DEFINITIONS</h3>
     <ul className="list-disc pl-6 mb-3 space-y-1">
       <li>
-        "Web Platform","Application" or "App" refers to "Mini Business Loan" the web
-        platform/ mobile software application developed and maintained by the
-        Company to facilitate access to its Services.
+        "Web Platform","Application" or "App" refers to "Mini Business Loan" the
+        web platform/ mobile software application developed and maintained by
+        the Company to facilitate access to its Services.
       </li>
       <li>
         "LENDER" denotes the financial institutions, including banks and
@@ -39,8 +39,8 @@ const TERMS_CONTENT = (
         sanction, process, and disburse loans via the Platform.
       </li>
       <li>
-        "Company" or "we" means RICHCREDIT, a platform managed by Techaviom Finance
-        Private Limited, incorporated under the Companies Act, 2013, and
+        "Company" or "we" means RICHCREDIT, a platform managed by Techaviom
+        Finance Private Limited, incorporated under the Companies Act, 2013, and
         administered by its appointed representatives.
       </li>
       <li>
@@ -79,8 +79,8 @@ const TERMS_CONTENT = (
         availing the Services.
       </li>
       <li>
-        "Website" refers to www.minibusinessloan.com, the official web portal managed
-        by the Company for rendering its Services.
+        "Website" refers to www.minibusinessloan.com, the official web portal
+        managed by the Company for rendering its Services.
       </li>
     </ul>
 
@@ -458,6 +458,23 @@ const Modal = ({ open, onClose, onAgree, children }) => {
   );
 };
 
+const fetchUserDetails = async (token) => {
+  try {
+    const response = await axios.get(
+      // "http://10.6.3.32:3000/api/v1/get/user/details/web",
+      `${API_CONFIG.BASE_URL}/get/user/details/web`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log("User Details API Response:", response.data);
+  } catch (err) {
+    console.error("User Details API Error:", err);
+  }
+};
+
 const MobileVerification = () => {
   const [mobileNumber, setMobileNumber] = useState("+91");
   const [otp, setOtp] = useState("");
@@ -473,7 +490,7 @@ const MobileVerification = () => {
   // API Configuration - Just change these URLs when switching APIs
   const API_CONFIG = {
     // local host url
-    // BASE_URL: "http://10.6.3.90:3000/api/v1",
+    // BASE_URL: "http://10.6.3.32:3000/api/v1",
     // live url
     BASE_URL: "http://103.104.73.107:3004/api/v1",
     ENDPOINTS: {
@@ -485,7 +502,7 @@ const MobileVerification = () => {
 
   const handleMobileChange = (e) => {
     const value = e.target.value;
-    
+
     // Only allow digits
     if (!/^\d*$/.test(value)) {
       return;
@@ -514,9 +531,14 @@ const MobileVerification = () => {
         {
           phone: mobileNumberWithoutPrefix,
           appliedMode: "web",
-          sourceBy: "null",
+          sourceBy:null,
         },
-        { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "" } }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "",
+          },
+        }
       );
 
       console.log("API Response:", response.data);
@@ -531,6 +553,7 @@ const MobileVerification = () => {
         setClientId(receivedClientId);
         setShowOtpInput(true);
         toast.success("OTP sent successfully!");
+        fetchUserDetails(receivedClientId);
       } else {
         toast.error(response.data.message || "Failed to send OTP");
       }
@@ -542,9 +565,9 @@ const MobileVerification = () => {
     }
   };
 
-// use protect routing
-  // const { setCurrentStep } = useStep(); 
-  
+  // use protect routing
+  // const { setCurrentStep } = useStep();
+
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
 
@@ -560,9 +583,6 @@ const MobileVerification = () => {
       const mobileNumberWithoutPrefix = mobileNumber.slice(3);
       // const client_id = "your_client_id_here";
       const response = await axios.post(
-        // "http://10.6.3.57:3000/api/v1/auth/verify-otp-customer",
-        // live url
-        // "http://103.104.73.107:3004/api/v1/auth/verify-otp-customer",
         `${API_CONFIG.BASE_URL}/auth/verify-otp-customer`,
         { phone: mobileNumberWithoutPrefix, otp: otp, client_id: clientId },
         {
@@ -572,7 +592,6 @@ const MobileVerification = () => {
       );
       console.log("OTP verify response:", response.data);
 
-      // if (response.data && response.data.status) {
       if (
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
@@ -582,6 +601,8 @@ const MobileVerification = () => {
         console.log("✅ Token to be saved:", token);
 
         localStorage.setItem("authToken", `${token}`);
+        // Call user details API
+        fetchUserDetails(token);
         // localStorage.setItem("authToken", `Bearer ${token}`);
 
         setVerificationStatus("success");
@@ -589,7 +610,9 @@ const MobileVerification = () => {
 
         setTimeout(() => {
           updateStep("name-email-verify");
-          navigate(`/name-email-verify?mobileNumber=${mobileNumberWithoutPrefix}`);
+          navigate(
+            `/name-email-verify?mobileNumber=${mobileNumberWithoutPrefix}`
+          );
         }, 1000);
       } else {
         setVerificationStatus("error");
@@ -608,8 +631,8 @@ const MobileVerification = () => {
     try {
       const mobileNumberWithoutPrefix = mobileNumber.slice(3);
       const response = await axios.post(
-        "http://10.6.3.57:3000/api/v1/auth/generate-otp-customer",
-        // `${API_CONFIG.BASE_URL}/auth/generate-otp-customer`,
+        // "http://10.6.3.57:3000/api/v1/auth/generate-otp-customer",
+        `${API_CONFIG.BASE_URL}/auth/generate-otp-customer`,
         { phone: mobileNumberWithoutPrefix, appliedMode: "web" },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -619,6 +642,7 @@ const MobileVerification = () => {
         response.data?.message === "SUCCESS"
       ) {
         toast.success("OTP resent successfully!");
+        fetchUserDetails(localStorage.getItem("authToken"));
       } else {
         toast.error(response.data.message || "Failed to resend OTP");
       }
@@ -658,16 +682,16 @@ const MobileVerification = () => {
                   <div className="flex items-center justify-center px-4 py-4 bg-[#003366] text-white font-medium rounded-l-2xl border-2 border-[#003366]">
                     +91
                   </div>
-                <input
-                  id="mobile"
-                  name="mobile"
-                  type="tel"
-                  required
+                  <input
+                    id="mobile"
+                    name="mobile"
+                    type="tel"
+                    required
                     value={mobileNumber.slice(3)}
-                  onChange={handleMobileChange}
+                    onChange={handleMobileChange}
                     className="appearance-none block w-full px-4 py-4 border-2 border-[#003366] rounded-r-2xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-lg font-medium tracking-wider group-hover:border-[#E53935]"
                     placeholder="Enter mobile number"
-                />
+                  />
                 </div>
               </div>
             </div>
@@ -688,7 +712,7 @@ const MobileVerification = () => {
                 style={{ color: "#b48b8b", fontWeight: 500 }}
                 onClick={() => setShowTermsModal(true)}
               >
-                I agree to the{' '}
+                I agree to the{" "}
                 <span
                   className="font-bold text-[#8B1A1A] hover:underline focus:outline-none cursor-pointer"
                   style={{ fontWeight: 700 }}

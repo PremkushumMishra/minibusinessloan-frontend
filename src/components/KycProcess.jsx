@@ -1,70 +1,195 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_CONFIG from "../config";
+
 const KycProcess = () => {
   const [kycComplete, setKycComplete] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [attemptCount, setAttemptCount] = useState(0);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [clientId, setClientId] = useState(
+    localStorage.getItem("digilocker_client_id")
+  );
+  const [phone, setPhone] = useState(""); // Will be set after fetching user details
+  const intervalRef = React.useRef(null);
+  const [loading, setLoading] = useState(false);
 
+  // Fetch phone number once on mount
   useEffect(() => {
-    let intervalId;
-    let isMounted = true;
-
-    const checkKycStatus = async () => {
-      setError(null);
+    const fetchUserDetails = async () => {
       try {
         const token = localStorage.getItem("authToken");
-        console.log("📦 Token being sent in Authorization header:", token);
-        const data = JSON.stringify({
-          digilocker_client_id: "digilocker_JLGfQroKvpUmgVgcghyQ",
-          customerNumber: "",
-        });
-        const response = await axios.post(
-          // `${API_CONFIG.BASE_URL}/sourcing/process-digilocker-data`,
-          data,
+        const response = await axios.get(
+          `${API_CONFIG.BASE_URL}/get/user/details/web`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
             },
           }
         );
-        console.log("📦 API Response:", response.data);
-        // Treat both 'PROCESSED' and 'COMPLETED' as KYC complete
-        if (
-          response.data &&
-          (response.data.kycStatus === "COMPLETED" ||
-            response.data.kycStatus === "PROCESSED")
-        ) {
-          if (isMounted) setKycComplete(true);
-          clearInterval(intervalId);
-        }
+        const phoneNumber = response.data?.data?.phoneNumber || "";
+        setPhone(phoneNumber);
       } catch {
-        if (isMounted) setError("Error checking KYC status.");
+        console.error("User Details API Error");
       }
     };
+    fetchUserDetails();
+  }, []);
 
-    // Initial check
-    checkKycStatus();
-    intervalId = setInterval(checkKycStatus, 30000);
+  // const fetchUser = useCallback(async () => {
+  //   setLoading(true);
+  //   try {
+  //     const token = localStorage.getItem("authToken");
+  //     const data = JSON.stringify({
+  //       digilocker_client_id: clientId,
+  //       customerNumber: phone,
+  //     });
+  //     const response = await axios.post(
+  //       `${API_CONFIG.BASE_URL}/sourcing/process-digilocker-data`,
+  //       data,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //       }
+  //     );
+  //     if (
+  //       response.data &&
+  //       response.data.status === true &&
+  //       response.data.message === "SUCCESS" &&
+  //       response.data.data === "SUCCESS"
+  //     ) {
+  //       setKycComplete(true);
+  //       setIsVerifying(false);
+  //       clearInterval(intervalRef.current);
+  //       intervalRef.current = null;
+  //     } else {
+  //       setError(
+  //         response.data && response.data.message
+  //           ? response.data.message
+  //           : "KYC verification failed."
+  //       );
+  //     }
+  //   } catch {
+  //     setError("Error checking KYC status.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, [clientId, phone]);
+
+
+// new code
+const fetchUser = useCallback(async () => {
+  if (kycComplete) return; // Don't run if already completed
+
+  setLoading(true);
+  try {
+    const token = localStorage.getItem("authToken");
+    const data = JSON.stringify({
+      digilocker_client_id: clientId,
+      customerNumber: phone,
+    });
+
+    const response = await axios.post(
+      `${API_CONFIG.BASE_URL}/sourcing/process-digilocker-data`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    );
+console.log("console one",response.data)
+    if (
+      response.data?.status === true &&
+      response.data.message === "SUCCESS" &&
+      response.data.data === "SUCCESS"
+    ) {
+      setKycComplete(true);
+      setIsVerifying(true);
+    } else {
+      setError(response.data?.message || "KYC verification failed.");
+    }
+  } catch {
+    setError("Error checking KYC status.");
+  } finally {
+    setLoading(false);
+  }
+}, [clientId, phone, kycComplete]);
+
+
+
+
+  useEffect(() => {
+    if (
+      phone &&
+      isVerifying &&
+      clientId &&
+      !intervalRef.current &&
+      attemptCount < 4 &&
+      !kycComplete
+    ) {
+      intervalRef.current = setInterval(() => {
+        // if (!loading) {
+        // new code
+        if (!loading && !kycComplete) {
+
+          fetchUser();
+          console.log("console second")
+          setAttemptCount((prev) => prev + 1);
+        }
+      }, 30000);
+    }
+
+    // if (attemptCount >= 10) {
+    //   clearInterval(intervalRef.current);
+    //   intervalRef.current = null;
+    //   setError("KYC verification timed out. Please try again.");
+    //   setIsVerifying(false);
+    //   setClientId(null);
+    // }
+
+    // new code
+    if (attemptCount >= 10 && intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+      setError("KYC verification timed out. Please try again.");
+      setIsVerifying(false);
+      setClientId(null);
+    }
+
+    
+    
+    if (kycComplete && intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
 
     return () => {
-      isMounted = false;
-      clearInterval(intervalId);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
-  }, []);
+  }, [phone, isVerifying, clientId, attemptCount, loading, fetchUser, kycComplete]);
 
   useEffect(() => {
     if (kycComplete) {
-      // Redirect to applicant-business-details after a short delay (optional)
-      const timeout = setTimeout(() => {
-        navigate("/additional-info");
-      }, 1200);
-      return () => clearTimeout(timeout);
+      console.log("console three")
+      navigate("/additional-info");
     }
-  }, [kycComplete, navigate]);
+  }, [kycComplete]);
+
+  useEffect(() => {
+    console.log("Attempt:", attemptCount);  
+    console.log("consolefour")
+  }, [attemptCount]);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] py-12 px-4 sm:px-6 lg:px-8">
@@ -194,11 +319,7 @@ const KycProcess = () => {
         )}
       </div>
     </div>
-  )
+  );
 };
 
 export default KycProcess;
-
-
-
-
