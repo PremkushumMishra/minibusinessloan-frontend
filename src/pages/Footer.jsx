@@ -28,7 +28,7 @@ const Footer = () => {
             <h2 className="text-lg font-semibold mb-1 md:mb-2 text-center" style={{ color: "#fff" }}>Contact</h2>
             <div className="text-base font-inter text-center text-white leading-tight">
               <p className="mb-0">info@minibusinessloan.com</p>
-              <p className="mb-0">+91-9365580811</p>
+              <p className="mb-0">+91-7814447895</p>
             </div>
           </div>
           {/* Reach Us */}
@@ -36,8 +36,8 @@ const Footer = () => {
             <h2 className="text-lg mb-1 mr-12 md:mb-2" style={{ color: "#fff" }}>Reach Us</h2>
             <div className="text-sm font-inter">
               <p style={{ color: "#fff" }}>
-                S-370, Panchsheel Park,<br />
-                New Delhi, 110017, India
+                Ganga Appartment Lalita Park,<br />
+                New Delhi, 110092, India
               </p>
             </div>
           </div>

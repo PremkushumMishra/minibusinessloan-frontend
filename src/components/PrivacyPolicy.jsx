@@ -76,7 +76,7 @@ we disclaim any liability for such third-party practices.</p>
           <div className="space-y-1">
             <p><span className="font-bold">Email:</span> info@minibusinessloan.com</p>
             <p><span className="font-bold">Phone:</span> +91 7814447895</p>
-            <p><span className="font-bold">Customer Support Hours:</span> 10:30 AM to 06:30 PM (Monday to Saturday)</p>
+            <p><span className="font-bold">Customer Support Hours:</span> 10:00 AM to 06:30 PM (Monday to Saturday)</p>
           </div>
         </section>
       </div>

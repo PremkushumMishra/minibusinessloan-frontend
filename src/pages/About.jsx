@@ -138,7 +138,7 @@ const About = () => {
             </div>
             {/* Sourcing Partner */}
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#E53935]">
-              <div className="w-25 h-20 mx-auto mb-4 flex items-center justify-center">
+              <div className="w-30 h-20 mx-auto mb-4 flex items-center justify-center">
                 <img src="/techaviomlogo.png" alt="Sourcing Partner" className="w-25 h-18 objec t-contain" />
               </div>
               <h4 className="text-xl font-bold text-[#003366] mb-2">Our Sourcing Partner</h4>

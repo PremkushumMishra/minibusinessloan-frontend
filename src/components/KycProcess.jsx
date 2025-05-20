@@ -8,7 +8,7 @@ const KycProcess = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [attemptCount, setAttemptCount] = useState(0);
-  const [isVerifying, setIsVerifying] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(true);
   const [clientId, setClientId] = useState(
     localStorage.getItem("digilocker_client_id")
   );
@@ -93,7 +93,7 @@ const fetchUser = useCallback(async () => {
       digilocker_client_id: clientId,
       customerNumber: phone,
     });
-
+    // debugger
     const response = await axios.post(
       `${API_CONFIG.BASE_URL}/sourcing/process-digilocker-data`,
       data,
@@ -105,14 +105,15 @@ const fetchUser = useCallback(async () => {
         },
       }
     );
-console.log("console one",response.data)
+
     if (
       response.data?.status === true &&
       response.data.message === "SUCCESS" &&
       response.data.data === "SUCCESS"
     ) {
       setKycComplete(true);
-      setIsVerifying(true);
+      setIsVerifying(false);
+      navigate("/additional-info");
     } else {
       setError(response.data?.message || "KYC verification failed.");
     }
@@ -121,7 +122,7 @@ console.log("console one",response.data)
   } finally {
     setLoading(false);
   }
-}, [clientId, phone, kycComplete]);
+}, [clientId, phone, kycComplete, navigate]);
 
 
 
@@ -132,28 +133,20 @@ console.log("console one",response.data)
       isVerifying &&
       clientId &&
       !intervalRef.current &&
-      attemptCount < 4 &&
+      attemptCount < 10 &&
       !kycComplete
     ) {
       intervalRef.current = setInterval(() => {
-        // if (!loading) {
+        // if (!loading) {p
         // new code
         if (!loading && !kycComplete) {
 
           fetchUser();
-          console.log("console second")
+          // console.log("console second")
           setAttemptCount((prev) => prev + 1);
         }
-      }, 30000);
+      },);
     }
-
-    // if (attemptCount >= 10) {
-    //   clearInterval(intervalRef.current);
-    //   intervalRef.current = null;
-    //   setError("KYC verification timed out. Please try again.");
-    //   setIsVerifying(false);
-    //   setClientId(null);
-    // }
 
     // new code
     if (attemptCount >= 10 && intervalRef.current) {
@@ -179,17 +172,12 @@ console.log("console one",response.data)
     };
   }, [phone, isVerifying, clientId, attemptCount, loading, fetchUser, kycComplete]);
 
-  useEffect(() => {
-    if (kycComplete) {
-      console.log("console three")
-      navigate("/additional-info");
-    }
-  }, [kycComplete]);
+ 
 
-  useEffect(() => {
-    console.log("Attempt:", attemptCount);  
-    console.log("consolefour")
-  }, [attemptCount]);
+  // useEffect(() => {
+  //   console.log("Attempt:", attemptCount);  
+  //   console.log("consolefour")
+  // }, [attemptCount]);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] py-12 px-4 sm:px-6 lg:px-8">

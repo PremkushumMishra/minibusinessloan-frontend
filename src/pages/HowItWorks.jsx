@@ -94,140 +94,107 @@ const HowItWorks = () => {
         </div>
       </div>
 
-      {/* Divider and Heading */}
-      <div className="mt-16 fade-in-up fade-in-up-delay-2 scroll-reveal" ref={addToRefs}>
-        <h2 className="text-3xl md:text-4xl font-bold text-[#003366] text-center mb-2 font-poppins">Why Choose Us?</h2>
-        <div className="w-24 h-1 bg-yellow-400 rounded-full mx-auto mb-10 animate-divider-draw" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Card 1: Mobile-Optimized */}
-          <div ref={addToRefs} className="relative flex items-center scroll-reveal card-hover-effect">
-            <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10 icon-container">
-              {/* New Mobile Icon */}
-              <svg width="70" height="70" fill="none" viewBox="0 0 70 70">
-                <rect x="18" y="8" width="34" height="54" rx="8" fill="#fff"/>
-                <rect x="22" y="12" width="26" height="46" rx="6" fill="#00BCD4"/>
-                <circle cx="35" cy="52" r="3" fill="#fff"/>
-                <rect x="28" y="18" width="14" height="2.5" rx="1.25" fill="#fff"/>
-                <rect x="28" y="24" width="14" height="2.5" rx="1.25" fill="#fff"/>
-              </svg>
+      {/* Why Choose Us Section */}
+      <div className="mt-16 fade-in-up fade-in-up-delay-2 scroll-reveal" ref={addToRefs} style={{ background: '#D9D9D9' }}>
+        <h2 
+          className="font-poppins text-center mb-8"
+          style={{
+            fontFamily: 'Poppins',
+            fontWeight: 500,
+            fontSize: '40px',
+            lineHeight: '140%',
+            letterSpacing: 0,
+            color: '#0D4183',
+          }}
+        >
+          Why Choose Us?
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            {
+              title: "Mobile-Optimized",
+              desc: "Access and manage your account easily from your mobile device, wherever you are.",
+              icon: "mobileicon.png",
+            },
+            {
+              title: "Quick Signup",
+              desc: "Register and get started in minutes—no longer waiting.",
+              icon: "mobileicon.png",
+            },
+            {
+              title: "Higher Credit Limits",
+              desc: "Get access to credit from ₹5,000 up to ₹10 lakhs as per your eligibility.",
+              icon: "mobileicon.png",
+            },
+            {
+              title: "Smooth Checkout",
+              desc: "Enjoy one-tap payments with top brands, thanks to direct merchant integration.",
+              icon: "mobileicon.png",
+            },
+            {
+              title: "Transparent Pricing",
+              desc: "No extra penalty charged if you repay within 100 days.",
+              icon: "mobileicon.png",
+            },
+            {
+              title: "Omni-Channel Support",
+              desc: "Use our platform on web or mobile – whichever suits you best.",
+              icon: "mobileicon.png",
+            },
+            {
+              title: "Easy Payments & Reconciliation",
+              desc: "No manual ledger work—returns and payment tracking are handled for you.",
+              icon: "mobileicon.png",
+            },
+            {
+              title: "Hasslefree payment and Reconciliation",
+              desc: "No need to maintain ledgers for returns/cancellations.",
+              icon: "mobileicon.png",
+            },
+          ].map((f, i) => (
+            <div
+              key={i}
+              className={`rounded-t-2xl rounded-bl-2xl shadow-md flex flex-col items-left p-6 ${i === 6 ? '' : 'bg-white'}`}
+              style={i === 6 ? { background: '#0D4183' } : {}}
+            >
+              {/* Icon */}
+              <div className="w-14 h-14 bg-[#0D418399] rounded-full flex items-center justify-center mb-4">
+                <img
+                  src={f.icon}
+                  alt={f.title + ' icon'}
+                  className="w-8 h-8 object-contain"
+                />
+              </div>
+              <div 
+                className="mb-2 text-left w-full"
+                style={{
+                  fontFamily: 'Poppins',
+                  fontWeight: 500,
+                  fontSize: '20px',
+                  lineHeight: '100%',
+                  letterSpacing: 0,
+                  color: i === 6 ? '#fff' : '#0D4183',
+                  textAlign: 'left',
+                }}
+              >
+                {f.title}
+              </div>
+              <div 
+                className="text-gray-600 text-sm"
+                style={{
+                  fontFamily: 'Poppins',
+                  fontWeight: 400,
+                  fontSize: '14px',
+                  lineHeight: '140%',
+                  letterSpacing: 0,
+                  color: i === 6 ? '#fff' : '#0D4183',
+                  textAlign: 'left',
+                }}
+              >
+                {f.desc}
+              </div>
             </div>
-            <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
-              <div className="font-bold text-2xl text-gray-800 mb-1 font-poppins">Mobile-Optimized</div>
-              <div className="text-gray-600 text-base">Access and manage your account easily from your mobile device, wherever you are.</div>
-            </div>
-          </div>
-          {/* Card 2: Quick Signup */}
-          <div ref={addToRefs} className="relative flex items-center scroll-reveal card-hover-effect">
-            <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10 icon-container">
-              {/* New Signup Icon */}
-              <svg width="70" height="70" fill="none" viewBox="0 0 70 70">
-                <circle cx="35" cy="28" r="12" fill="#00BCD4"/>
-                <rect x="16" y="44" width="38" height="14" rx="7" fill="#fff"/>
-                <rect x="22" y="50" width="26" height="4" rx="2" fill="#00BCD4"/>
-                <circle cx="35" cy="28" r="6" fill="#fff"/>
-              </svg>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
-              <div className="font-bold text-2xl text-gray-800 mb-1 font-poppins">Quick Signup</div>
-              <div className="text-gray-600 text-base">Register and get started in minutes—no paperwork, no waiting.</div>
-            </div>
-          </div>
-          {/* Card 3: Higher Credit Limits */}
-          <div ref={addToRefs} className="relative flex items-center scroll-reveal card-hover-effect">
-            <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10 icon-container">
-              {/* New Credit Icon */}
-              <svg width="70" height="70" fill="none" viewBox="0 0 70 70">
-                <rect x="14" y="22" width="42" height="26" rx="6" fill="#00BCD4"/>
-                <rect x="20" y="28" width="30" height="6" rx="3" fill="#fff"/>
-                <circle cx="35" cy="35" r="8" fill="#fff"/>
-                <text x="31" y="40" fontSize="1.5em" fill="#00BCD4" fontWeight="bold">₹</text>
-              </svg>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
-              <div className="font-bold text-2xl text-gray-800 mb-1 font-poppins">Higher Credit Limits</div>
-              <div className="text-gray-600 text-base">Get access to credit from ₹5,000 up to ₹10 lakhs as per your eligibility.</div>
-            </div>
-          </div>
-          {/* Card 4: Smooth Checkout */}
-          <div ref={addToRefs} className="relative flex items-center scroll-reveal card-hover-effect">
-            <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10 icon-container">
-              {/* New Checkout Icon */}
-              <svg width="70" height="70" fill="none" viewBox="0 0 70 70">
-                <rect x="18" y="24" width="34" height="22" rx="6" fill="#00BCD4"/>
-                <rect x="24" y="30" width="22" height="4" rx="2" fill="#fff"/>
-                <rect x="24" y="38" width="14" height="4" rx="2" fill="#fff"/>
-                <circle cx="53" cy="35" r="5" fill="#fff"/>
-                <rect x="30" y="44" width="10" height="2" rx="1" fill="#fff"/>
-              </svg>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
-              <div className="font-bold text-2xl text-gray-800 mb-1 font-poppins">Smooth Checkout</div>
-              <div className="text-gray-600 text-base">Enjoy one-tap payments with top brands, thanks to direct merchant integration.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Additional Features Section */}
-      <div className="mt-16 fade-in-up fade-in-up-delay-3">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* Card 1 */}
-          <div ref={addToRefs} className="relative flex items-center scroll-reveal card-hover-effect">
-            <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10 icon-container">
-              {/* New Transparent Pricing Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 100 100">
-                <rect x="25" y="25" width="50" height="50" rx="10" fill="#fff" stroke="#00BCD4" strokeWidth="3"/>
-                <rect x="35" y="35" width="30" height="8" rx="2" fill="#00BCD4"/>
-                <rect x="35" y="48" width="20" height="6" rx="2" fill="#00BCD4"/>
-                <circle cx="70" cy="70" r="10" fill="#00BCD4" stroke="#fff" strokeWidth="2"/>
-                <text x="65" y="75" fontSize="1.5em" fill="#fff" fontWeight="bold">₹</text>
-                <rect x="60" y="60" width="8" height="8" rx="2" fill="#fff" stroke="#00BCD4" strokeWidth="2"/>
-                <path d="M64 64 l4 4" stroke="#00BCD4" strokeWidth="2"/>
-              </svg>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
-              <div className="font-bold text-2xl text-gray-800 mb-1 font-poppins">Transparent Pricing</div>
-              <div className="text-gray-600 text-base">No extra interest charged if you repay within 100 days.</div>
-            </div>
-          </div>
-          {/* Card 2 */}
-          <div ref={addToRefs} className="relative flex items-center scroll-reveal card-hover-effect">
-            <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10 icon-container">
-              {/* New Omni-Channel Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 100 100">
-                <rect x="15" y="60" width="25" height="20" rx="4" fill="#00BCD4" stroke="#fff" strokeWidth="3"/>
-                <rect x="60" y="20" width="25" height="40" rx="6" fill="#00BCD4" stroke="#fff" strokeWidth="3"/>
-                <rect x="30" y="20" width="30" height="20" rx="4" fill="#fff" stroke="#00BCD4" strokeWidth="2"/>
-                <rect x="40" y="25" width="10" height="10" rx="2" fill="#00BCD4"/>
-                <circle cx="27" cy="70" r="3" fill="#fff"/>
-                <circle cx="72" cy="35" r="3" fill="#fff"/>
-                <path d="M40 80 Q50 90 60 80" stroke="#fff" strokeWidth="2" fill="none"/>
-                <path d="M45 40 L45 60" stroke="#00BCD4" strokeWidth="2"/>
-                <path d="M55 40 L55 60" stroke="#00BCD4" strokeWidth="2"/>
-              </svg>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
-              <div className="font-bold text-2xl text-gray-800 mb-1 font-poppins">Omni-Channel Support</div>
-              <div className="text-gray-600 text-base">Use our platform on web, mobile, or in-store—whichever suits you best.</div>
-            </div>
-          </div>
-          <div ref={addToRefs} className="relative flex items-center scroll-reveal card-hover-effect">
-            <div className="min-w-[120px] min-h-[120px] bg-[#003366] rounded-xl flex items-center justify-center z-10 icon-container">
-              {/* New Payments Icon */}
-              <svg width="100" height="100" fill="none" viewBox="0 0 100 100">
-                <rect x="20" y="30" width="60" height="40" rx="10" fill="#fff"/>
-                <circle cx="50" cy="50" r="18" fill="#00BCD4"/>
-                <text x="43" y="57" fontSize="2.5em" fill="#fff" fontWeight="bold">₹</text>
-                <path d="M60 60 l10 10 M70 60 l-10 10" stroke="#fff" strokeWidth="3" strokeLinecap="round"/>
-                <circle cx="70" cy="70" r="7" fill="#fff" stroke="#00BCD4" strokeWidth="2"/>
-                <path d="M67 70 l2 2 l4 -4" stroke="#00BCD4" strokeWidth="2" strokeLinecap="round" fill="none"/>
-              </svg>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg px-5 py-3 ml-[-15px] z-20 w-full">
-              <div className="font-bold text-2xl text-gray-800 mb-1 font-poppins">Easy Payments & Reconciliation</div>
-              <div className="text-gray-600 text-base">No manual ledger work—returns and payment tracking are handled for you.</div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
