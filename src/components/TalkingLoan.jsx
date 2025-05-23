@@ -37,14 +37,15 @@ function TalkingLoan() {
             style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.10))" }}
           />
           
-          <h2 className="font-poppins font-medium text-xl sm:text-2xl md:text-3xl text-center text-gray-800 mb-2">
-            Quick Loan
+          <h2 className="font-poppins font-poppins text-[30px] leading-[140%] text-center text-[#2D2D2D] mb-2">
+            Grow your Business
+            <br />
+            Get Loan in just 30 Minutes
           </h2>
           
-          <p className="font-poppins font-normal text-sm sm:text-base md:text-xl text-center text-blue-900 mb-6">
-          Get Business Loans from ₹5,000 to ₹5,00,000
-          <br />
-            Instantly In just 30 Minutes
+          <p className="font-poppins font-normal mb-6 text-[20px] leading-[140%] text-center text-[#0D4059]">
+            From 5 Thousand To 5 Lacs Instantly in your Bank Account
+            <br />
           </p>
           
           <Link to="/mobile-verification" className="w-full max-w-xs">

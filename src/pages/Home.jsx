@@ -36,20 +36,20 @@ const Home = () => {
       <WhyChoose />
     
       <LoanCalculator />
-      <BsaRejectes/>
+      {/* <BsaRejectes/> */}
       <PublicReview />
       <AppDownload/>  
 
       <Frequently/>
-      <NameEmailVerify/>  
+      {/* <NameEmailVerify/>   */}
       {/* <SanctionLatter/> */}
       {/* <GetAmount /> */}
       {/* <KycSuccess /> */}
-      <CoApplicant/>
+      {/* <CoApplicant/> */}
       {/* <ApplicantPersonalDetails/> */}
       {/* <ApplicantBusinessDetails /> */}
-      <LoanEligiblity/>
-      <AdditionalInfo/>
+      {/* <LoanEligiblity/> */}
+      {/* <AdditionalInfo/> */}
       {/* <BankStatement/> */}
       {/* <ChatBot/> */}
       </>

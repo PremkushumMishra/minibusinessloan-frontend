@@ -8,6 +8,8 @@ const ApplicantBusinessDetails = () => {
   // const navigate = useNavigate();
   // const { updateStep } = useStep();
 
+  console.log("applicant business details");
+
   const [formData, setFormData] = useState({
     udyamNumber: "",
     udyamRegistrationDate: "",
@@ -346,9 +348,26 @@ const ApplicantBusinessDetails = () => {
     }));
   };
 
+
+  // const fetchUserDetails = async () => {
+  //   try {
+  //     const token = localStorage.getItem("authToken");
+  //     const response = await axios.get(
+  //       `${API_CONFIG.BASE_URL}/get/user/details/web`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     console.log("User Details API Response:", response.data);
+  //   } catch (err) {
+  //     console.error("User Details API Error:", err);
+  //   }
+  // };
   
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitError("");
     // Validate all fields
@@ -359,10 +378,20 @@ const ApplicantBusinessDetails = () => {
     });
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) {
+      // await fetchUserDetails();
       console.log("Business Details submitted:", formData);
       // updateStep("application-processing");
       // navigate("/application-processing");
     }
+
+    const response=await axios.post(`${API_CONFIG.BASE_URL}/sourcing/business-details`,formData,{
+      headers:{
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+
   };
 
 
@@ -416,6 +445,7 @@ const ApplicantBusinessDetails = () => {
 
 
   // 1. Add file upload function
+
   const uploadElectricityBillFile = async (file) => {
     if (!file) return;
     setVerificationStatus((prev) => ({
@@ -504,9 +534,23 @@ const ApplicantBusinessDetails = () => {
   //   }
   // };
 
-
-
-
+  // Remove broken fetchUserDetails and add correct version
+  // const fetchUserDetails = async () => {
+  //   try {
+  //     const token = localStorage.getItem("authToken");
+  //     const response = await axios.get(
+  //       `${API_CONFIG.BASE_URL}/get/user/details/web`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     console.log("User Details API Response:", response.data);
+  //   } catch (err) {
+  //     console.error("User Details API Error:", err);
+  //   }
+  // };
 
   return (
     <div className="max-w-3xl mx-auto p-8 mt-30 mb-10 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl border border-gray-100">

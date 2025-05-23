@@ -45,7 +45,7 @@ const AdditionalInfo = () => {
           },
         }
       );
-console.log("additionl info response", response.data)
+      console.log("additionl info response", response.data);
       if (
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
@@ -67,7 +67,6 @@ console.log("additionl info response", response.data)
         response.data?.status === false &&
         response.data?.message === "Lead Rejected"
       ) {
-
         navigate("/co-applicant");
       } else {
         setError(
@@ -75,7 +74,7 @@ console.log("additionl info response", response.data)
         );
       }
     } catch (err) {
-      console.error("❌ Error:", err);
+      console.error("Error:", err);
       setError("Submission failed. Please try again.");
     } finally {
       setLoading(false);

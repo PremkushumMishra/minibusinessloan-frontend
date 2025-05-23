@@ -76,17 +76,6 @@ const CoApplicant = () => {
         response.data?.message === "SUCCESS"
       ) {
         console.log(response.data, "response.data");
-        // recieve clientId
-        // const recievedClientId = response.data?.clientId;
-        // setClientId(recievedClientId);
-
-        //recieve cliendid
-        //   const receivedClientId =
-        //   response.data?.client_id || response.data?.data?.client_id;
-        // if (receivedClientId) {
-        //   localStorage.setItem("client_id", receivedClientId);
-        //   console.log("🗃️ client_id saved to localStorage:", receivedClientId);
-        // }
 
         if (response.data?.customerID && response.data.customerID.length > 6) {
           setCustomerID(response.data.customerID);
@@ -131,7 +120,7 @@ const CoApplicant = () => {
           otp: otp,
           customerID: customerID,
         },
-        {  
+        {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -140,23 +129,29 @@ const CoApplicant = () => {
           withCredentials: true,
         }
       );
-
       if (
         response.data?.status === true &&
-        response.data?.message === "Success"
+        response.data?.message === "SUCCESS"
       ) {
-        fetchUserDetails();
-        console.log(
-          "✅ OTP verified successfully! Navigating to business details..."
-        );
         setStatus("success");
+        fetchUserDetails();
+        console.log("✅ OTP verified successfully! Navigating to business details..======>>.",
+          response.data
+        );
+        setTimeout(() => {
+          navigate("/applicant-business-details");
+        }, 1000);
+      } else if (
+        response.data?.status === false &&
+        response.data?.message === "Lead Rejected"
+      ) {
         navigate("/applicant-business-details");
       } else {
         setStatus("error");
         setError(response.data?.message || "Invalid OTP. Please try again.");
       }
     } catch (err) {
-      console.error("❌ Error:", err);
+      console.error("Error ye rha:", err);
       setStatus("error");
       setError(
         err.response?.data?.message || "Network error. Please try again."
@@ -167,6 +162,7 @@ const CoApplicant = () => {
   };
 
   const fetchUserDetails = async () => {
+    console.log("fetching user details", fetchUserDetails);
     try {
       const token = localStorage.getItem("authToken");
       const response = await axios.get(
@@ -179,6 +175,7 @@ const CoApplicant = () => {
         }
       );
       console.log("User Details API Response:", response.data);
+      // navigate("/applicant-business-details");
     } catch (err) {
       console.error("User Details API Error:", err);
     }
