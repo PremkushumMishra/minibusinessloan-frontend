@@ -2,53 +2,128 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-[#003366]">
+    <div className="min-h-screen py-6 bg-white">
+    {/* Hero Section */}
+<div
+  className="w-full bg-[#003366] max-w-6xl mx-auto mb-10 rounded-t-3xl rounded-bl-3xl overflow-hidden shadow-lg relative"
+  style={{ minHeight: 320 }}
+>
+  <img
+    src="/aboutus.png"
+    alt="About Hero"
+    className="w-full h-[320px] md:h-[420px] object-cover object-center opacity-60"
+  />
+  <div className="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-8 text-center">
+    <h1 className="text-white text-[24px] sm:text-[32px] md:text-[40px] leading-tight font-semibold font-poppins drop-shadow-lg">
+      A Journey Rooted in Trust, Innovation, and Growth
+    </h1>
+    <p className="text-white/90 text-[14px] sm:text-[16px] md:text-lg font-poppins mt-4 max-w-[700px] leading-relaxed">
+      Our journey began with a simple mission — to provide fast, flexible, and accessible loans tailored to the unique needs of MSMEs. We're committed to helping small businesses thrive, scale, and contribute to economic growth across the country. Over time, we've grown by understanding the real challenges MSMEs face, continuously innovating our offerings, and delivering financial support that truly makes a difference. From day one, our goal has been clear: to empower small businesses with the capital and confidence they need to succeed and grow.
+    </p>
+  </div>
+</div>
+
       {/* Main Content */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8  py-10">
-        {/* Our Story Section */}
-        <div className="mb-12 bg-white/90 backdrop-blur-sm rounded-xl p-6 sm:p-8 shadow-lg border-l-8 border-[#E53935]">
-          <h2 className="text-3xl font-bold text-[#003366] mb-6 mt-10 text-center">
-            Our Journey
+        {/* Core Values Section */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-[#003366] mb-8 text-center">
+            Our Core Values
           </h2>
-          <p className="text-gray-700 leading-relaxed text-lg">
-            Since our inception in 2024, We have been driven by a single mission: to empower businesses and individuals across India with seamless, technology-driven financial solutions. What started as a small team of visionaries has rapidly grown into a trusted brand, recognized for our commitment to transparency, innovation, and customer-centricity.
-          </p>
-          <p className="text-gray-700 leading-relaxed text-lg mt-4">
-            Over the years, we have helped thousands of entrepreneurs and families achieve their dreams by making finance accessible, simple, and secure. Our journey is defined by the success stories of our clients, the dedication of our team, and our relentless pursuit of excellence. As we continue to expand our reach and impact, we remain steadfast in our promise to deliver cutting-edge digital solutions and set new benchmarks in the fintech industry.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Innovation */}
+            <div className="bg-gray-200 rounded-2xl p-6 shadow-lg">
+              <h3 className="text-xl font-bold text-[#003366] mb-4">Innovation</h3>
+              <p
+                className="font-poppins font-light text-[16px] leading-[140%] text-center"
+                style={{ letterSpacing: 0, color: '#000000' }}
+              >
+                Embracing cutting-edge technologies while respecting traditional wisdom.
+              </p>
+            </div>
+            
+            {/* Excellence */}
+            <div className="bg-gray-200 rounded-2xl p-6 shadow-lg">
+              <h3 className="text-xl font-bold text-[#003366] mb-4">Excellence</h3>
+              <p
+                className="font-poppins font-light text-[16px] leading-[140%] text-center"
+                style={{ letterSpacing: 0, color: '#000000' }}
+              >
+                Delivering world-class solutions with Indian values and global standards.
+              </p>
+            </div>
+            
+            {/* Integrity */}
+            <div className="bg-gray-200 rounded-2xl p-6 shadow-lg">
+              <h3 className="text-xl font-bold text-[#003366] mb-4">Integrity</h3>
+              <p
+                className="font-poppins font-light text-[16px] leading-[140%] text-center"
+                style={{ letterSpacing: 0, color: '#000000' }}
+              >
+                Building trust through transparent and ethical business practices.
+              </p>
+            </div>
+          </div>
         </div>
+{/* Mission & Vision Section */}
+<div className="mb-16 px-4 md:px-8">
+  {/* Our Vision Section */}
+  <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-16 items-start">
+    {/* Vision Content - Left Side */}
+    <div className="order-2 md:order-1">
+      <h3 className="text-[#003366] text-[28px] md:text-[40px] font-poppins font-semibold mb-4 md:mb-6">
+        Our Vision
+      </h3>
+      <p className="font-poppins text-[16px] md:text-[20px] leading-[26px] md:leading-[32px] mb-4 md:mb-6 text-gray-800">
+        To empower Indian businesses with innovative technology solutions that drive growth, create employment opportunities, and contribute to India's digital transformation journey. We are committed to:
+      </p>
+      <ol className="list-decimal ml-5 font-poppins text-[15px] md:text-[18px] leading-[24px] md:leading-[30px] space-y-2 text-gray-700">
+        <li>Providing accessible financial solutions to small businesses</li>
+        <li>Supporting entrepreneurs in their growth journey</li>
+        <li>Creating sustainable employment opportunities</li>
+        <li>Building a stronger digital economy</li>
+      </ol>
+    </div>
 
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12 rounded-xl p-6 sm:p-8">
-          <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#E53935]">
-            <h3 className="text-2xl font-bold text-[#003366] mb-4">
-              Our Mission
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              To empower Indian businesses with innovative technology solutions that drive growth, create employment opportunities, and contribute to India's digital transformation journey. We are committed to:
-              <ul className="list-disc ml-6 mt-3 space-y-2">
-                <li>Providing accessible financial solutions to small businesses</li>
-                <li>Supporting entrepreneurs in their growth journey</li>
-                <li>Creating sustainable employment opportunities</li>
-                <li>Building a stronger digital economy</li>
-              </ul>
-            </p>
-          </div>
-          <div className="bg-white/90 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-8 border-[#E53935]">
-            <h3 className="text-2xl font-bold text-[#E53935] mb-4">
-              Our Vision
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              To become India's most trusted technology partner, known for excellence, innovation, and commitment to sustainable digital growth. We envision:
-              <ul className="list-disc ml-6 mt-3 space-y-2">
-                <li>A digitally empowered business ecosystem</li>
-                <li>Financial inclusion for all businesses</li>
-                <li>Innovation-driven economic growth</li>
-                <li>Building a future-ready India</li>
-              </ul>
-            </p>
-          </div>
-        </div>
+    {/* Vision Image - Right Side */}
+    <div className="order-1 md:order-2 flex justify-center mt-6 md:mt-0">
+      <img
+        src="/about-vision.png"
+        alt="Our Vision"
+        className="object-cover w-full max-w-[320px] sm:max-w-[400px] md:max-w-md h-[250px] sm:h-[350px] md:h-[500px] rounded-xl"
+      />
+    </div>
+  </div>
+
+  {/* Our Mission Section */}
+  <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+    {/* Mission Image - Left Side */}
+    <div className="order-1 md:order-1 flex justify-center mt-6 md:mt-0">
+      <img
+        src="/about-mission.png"
+        alt="Our Mission"
+        className="rounded-2xl object-cover w-full max-w-[320px] sm:max-w-[400px] md:max-w-md h-[250px] sm:h-[350px] md:h-[500px]"
+      />
+    </div>
+
+    {/* Mission Content - Right Side */}
+    <div className="order-2 md:order-2 flex flex-col justify-center">
+      <h3 className="text-[#003366] text-[28px] md:text-[40px] font-poppins font-semibold mb-4 md:mb-6">
+        Our Mission
+      </h3>
+      <p className="font-poppins text-[16px] md:text-[20px] leading-[26px] md:leading-[32px] mb-4 md:mb-6 text-gray-800">
+        To become India's most trusted technology partner, known for excellence, innovation, and commitment to sustainable digital growth. We envision:
+      </p>
+      <ol className="list-decimal ml-5 font-poppins text-[15px] md:text-[18px] leading-[24px] md:leading-[30px] space-y-2 text-gray-700">
+        <li>A digitally empowered business ecosystem</li>
+        <li>Financial inclusion for all businesses</li>
+        <li>Innovation-driven economic growth</li>
+        <li>Building a future-ready India</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
 
         {/* Achievements Section */}
         <div className="mb-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-xl p-8 text-white shadow-lg">
@@ -65,8 +140,6 @@ const About = () => {
               <p className="font-bold">Loan Disbursed</p>
             </div>
 
-
-
             <div>
               <div className="text-4xl font-bold mb-2">200+</div>
               <p className="font-bold">Team Members</p>
@@ -79,86 +152,79 @@ const About = () => {
           </div>
         </div>
 
-
-
-
-
-
-        {/* Core Values */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
-            Our Core Values
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#003366]">
-              <h4 className="text-xl font-bold text-[#003366] mb-3">
-                Innovation
-              </h4>
-              <p className="text-gray-700">
-                Embracing cutting-edge technologies while respecting traditional
-                wisdom.
-              </p>
+        {/* Our Story Section */}
+        <div className="mb-12 flex flex-col items-center justify-center">
+          <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center">
+            {/* Card 1 */}
+            <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
+              <div className="font-poppins font-semibold text-lg md:text-xl mb-2">Innovation</div>
+              <div className="font-poppins text-base text-[#222]">Embracing cutting-edge technologies while respecting traditional wisdom.</div>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#E53935]">
-              <h4 className="text-xl font-bold text-[#003366] mb-3">
-                Excellence
-              </h4>
-              <p className="text-gray-700">
-                Delivering world-class solutions with Indian values and global
-                standards.
-              </p>
+            {/* Card 2 */}
+            <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
+              <div className="font-poppins font-semibold text-lg md:text-xl mb-2">Excellence</div>
+              <div className="font-poppins text-base text-[#222]">Delivering world-class solutions with Indian values and global standards.</div>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border-l-8 border-[#003366]">
-              <h4 className="text-xl font-bold text-[#003366] mb-3">
-                Integrity
-              </h4>
-              <p className="text-gray-700">
-                Building trust through transparent and ethical business
-                practices.
-              </p>
+            {/* Card 3 */}
+            <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
+              <div className="font-poppins font-semibold text-lg md:text-xl mb-2">Integrity</div>
+              <div className="font-poppins text-base text-[#222]">Building trust through transparent and ethical business practices.</div>
             </div>
           </div>
         </div>
 
         {/* Partners Section */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
-           Our Partners
+          <h2 className="text-3xl font-poppins flex-between text-[#0D4183] mb-8 text-center">
+            Our Partners
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* NBFC Partner */}
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#003366]">
-              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                <img src="/sourcingpartner.png" alt="NBF Partner" className="w-22 h-22 object-contain" />
+            <div className="bg-white rounded-2xl shadow-md p-6 text-center border-l-8 border-[#003366]">
+              <div className="w-20 h-20 object-contain rounded-xl mx-auto mb-4">
+                <img
+                  src="/sourcingpartner.png"
+                  alt="NBF Partner"
+                  className="w-22 h-22 object-contain"
+                />
               </div>
-              <h4 className="text-xl font-bold text-[#003366]  mb-3">Our NBFC Partner</h4>
-              <p className="text-gray-700 mb-3 text-sm">
-                Leading financial institution providing innovative banking solutions and digital services to empower businesses across India.
+              <h4 className="text-xl font-bold text-[#003366]  mb-3">
+                Our NBFC Partner
+              </h4>
+              <p className="text-gray-700 text-sm">
+                Leading financial institution providing innovative banking
+                solutions and digital services to empower businesses across
+                India.
               </p>
             </div>
             {/* Sourcing Partner */}
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#E53935]">
-              <div className="w-30 h-20 mx-auto mb-4 flex items-center justify-center">
-                <img src="/techaviomlogo.png" alt="Sourcing Partner" className="w-25 h-18 objec t-contain" />
+            <div className="bg-white rounded-2xl shadow-md p-6 text-center border-l-8 border-[#E53935]">
+              <div className="w-30 h-20 object-contain rounded-xl mx-auto mb-4">
+                <img
+                  src="/techaviomlogo.png"
+                  alt="Sourcing Partner"
+                  className="w-25 h-18 objec t-contain"
+                />
               </div>
-              <h4 className="text-xl font-bold text-[#003366] mb-2">Our Sourcing Partner</h4>
+              <h4 className="text-xl font-bold text-[#003366] mb-2">
+                Our Sourcing Partner
+              </h4>
               <p className="text-gray-700 text-sm">
-                Trusted partner in business development and customer acquisition, helping us reach and serve more entrepreneurs nationwide.
+                Trusted partner in business development and customer
+                acquisition, helping us reach and serve more entrepreneurs
+                nationwide.
               </p>
             </div>
             {/* Tech Partner */}
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg text-center border-l-8 border-[#003366]">
-              <div className="w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                {/* <img src="/fintechcloud.png" alt="Tech Partner" className="w-22 h-22 object-contain" /> */}
+            {/* <div className="bg-white rounded-2xl shadow-md p-6 text-center border-l-8 border-[#003366]">
+              <div className="w-20 h-20 object-contain rounded-xl mx-auto mb-4">
+                <img src="/fintechcloud.png" alt="Tech Partner" className="w-22 h-22 object-contain" />
               </div>
               <h4 className="text-xl font-bold text-[#003366] mb-2">Our Tech Partner</h4>
               <p className="text-gray-700 text-sm">
                 Cutting-edge technology solutions provider ensuring secure, scalable, and efficient digital infrastructure for our services.
               </p>
-            </div>
-
-
-            
+            </div> */}
           </div>
         </div>
       </div>

@@ -2,197 +2,118 @@ import React from "react";
 
 const ContactUs = () => {
   return (
-    <div className="min-h-screen bg-[#003366] py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mt-15 mx-auto">
-        {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">Contact Us</h1>
-          <p className="text-lg text-gray-300">
-            Have questions? We'd love to hear from you. Send us a message and
-            we'll respond as soon as possible.
-          </p>
+    <div className="min-h-screen bg-[#D9D9D9] rounded-bl-5xl py-2 px-0">
+      {/* Header Image with Overlay Text */}
+      <div className="mt-3 rounded-bl-4 h-[220px] md:h-[500px] rounded-2xl overflow-hidden relative mb-8 mx-4 md:mx-8">
+        <img
+          src="/contactuspic.png"
+          alt="Contact Us"
+          className="w-full h-full object-cover"
+        />
+        
+        {/* <div className="absolute left-0 bottom-0 p-8 pb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">Contact Us</h1>
+        </div> */}
+      </div>
+
+      {/* Main Content: Two Columns */}
+      <div className="max-w-full py-13  mx-auto px-4 md:px-8 bg-[#ffffff] flex flex-col md:flex-row gap-8 mb-12">
+        {/* Left: Contact Info */}
+        <div className="flex-1 ml-4 flex flex-col justify-center gap-4">
+          <div className="mb-2">
+            <div className="text-xs font-semibold text-[#222] mb-1">Have questions?</div>
+            <div
+              className="font-poppins font-medium text-[40px] leading-[100%] tracking-[0] text-[#0D4183] mb-2"
+              style={{ letterSpacing: 0 }}
+            >
+              We are always ready<br />to help you and answer<br />your question
+            </div>
+            {/* <div
+              className="font-poppins font-light text-[20px] leading-[100%] tracking-[0] text-[#000000] mt-8 mb-4"
+              style={{ letterSpacing: 0 }}
+            >
+              Whether you're looking for help with your loan <br />application, need more information about our services, <br />or just want to connect – reach out to us anytime.
+            </div> */}
+          </div>
+          <div className="flex flex-col md:flex-row gap-6">
+            {/* Left: Support Team & Email */}
+            <div className="flex-1 flex flex-col gap-4">
+              <div className="font-poppins font-medium text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Support Team</div>
+              <div className="text-[#505050] text-base">+91 7814447895</div>
+              <div className="font-poppins font-medium text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Email</div>
+              <div className="text-[#505050] text-base">info@minibusinessloan.com</div>
+            </div>
+            {/* Right: Our Location & Social Media */}
+            <div className="flex-1 flex flex-col gap-4">
+              <div className="font-poppins font-medium text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Our Location</div>
+              <div className="text-[#505050] text-base leading-tight">
+                Lalita Park, Gurudwara, Lalita Park<br />New Delhi, East Delhi 110092 India
+              </div>
+              <div className="font-poppins font-medium text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Social Media</div>
+              <div className="flex flex-row gap-3 mt-1">
+                <a href="#" title="Email"><img src="/youtube.webp" alt="Email" className="h-6 w-6 object-contain" /></a>
+                <a href="#" title="Facebook"><img src="/facebook.png" alt="Facebook" className="h-6 w-6 object-contain" /></a>
+                <a href="#" title="Instagram"><img src="/Instagram_icon.png" alt="Instagram" className="h-6 w-6 object-contain" /></a>
+                {/* <a href="#" title="LinkedIn"><img src="/linkedinicon.png" alt="LinkedIn" className="h-6 w-6 object-contain" /></a> */}
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Contact Form */}
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h2 className="text-2xl font-bold text-[#003366] mb-6">
-              Send us a Message
-            </h2>
-            <form className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
-                  required
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows="4"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all"
-                  required
-                ></textarea>
-              </div>
-
+        {/* Right: Form */}
+        <div className="flex-1 flex flex-col items-center">
+          <div className="w-full max-w-md bg-[#E8E8E8] rounded-t-3xl rounded-bl-4xl shadow-lg p-4">
+            <h2 className="text-xl text-[#222] mb-4 mt-4">Get in Touch</h2>
+            <form className="space-y-3">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full bg-transparent border-0 border-b border-[#BDBDBD] rounded-none px-0 py-2 text-[#222] placeholder-[#8C8C8C] font-poppins focus:outline-none focus:border-[#003366] shadow-none"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full bg-transparent border-0 border-b border-[#BDBDBD] rounded-none px-0 py-2 text-[#222] placeholder-[#8C8C8C] font-poppins focus:outline-none focus:border-[#003366] shadow-none"
+              />
+              <input
+                type="tel"
+                placeholder="Your Number"
+                className="w-full bg-transparent border-0 border-b border-[#BDBDBD] rounded-none px-0 py-2 text-[#222] placeholder-[#8C8C8C] font-poppins focus:outline-none focus:border-[#003366] shadow-none"
+              />
+              <input
+                type="text"
+                placeholder="Subject"
+                className="w-full bg-transparent border-0 border-b border-[#BDBDBD] rounded-none px-0 py-2 text-[#222] placeholder-[#8C8C8C] font-poppins focus:outline-none focus:border-[#003366] shadow-none"
+              />
+              <textarea
+                placeholder="Message"
+                rows="3"
+                className="w-full bg-transparent border-0 border-b border-[#BDBDBD] rounded-none px-0 py-2 text-[#222] placeholder-[#8C8C8C] font-poppins focus:outline-none focus:border-[#003366] shadow-none"
+              />
               <button
                 type="submit"
-                className="w-full bg-[#E53935] text-white py-3 px-6 rounded-lg font-medium hover:bg-red-600 transition-all duration-300"
+                className="w-full bg-[#003366] text-white py-3 px-6 rounded-t-2xl rounded-bl-2xl font-bold font-poppins hover:bg-[#0D4183] transition-all duration-300"
               >
                 Send Message
               </button>
             </form>
           </div>
-
-          {/* Contact Information */}
-          <div className="space-y-6">
-            {/* Office Address */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-[#003366] mb-4">
-                Our Office
-              </h3>
-              <div className="space-y-2 text-gray-600">
-                <p>Lalita Park, Gurudwara, Lalita Park</p>
-                <p>New Delhi, East Delhi</p>
-                <p>Delhi, 110092</p>
-                <p>India</p>
-              </div>
-            </div>
-
-            {/* Contact Details */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-[#003366] mb-4">
-                Contact Details
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl">📞</span>
-                  <p className="text-gray-600">+91 7814447895</p>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl">✉️</span>
-                  <p className="text-gray-600">info@minibusinessloan.com</p>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl">⏰</span>
-                  <p className="text-gray-600">Monday to Saturday: 10:00 AM - 6:30 PM</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Media */}
-            {/* <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-[#003366] mb-4">
-                Connect With Us
-              </h3>
-              <div className="flex space-x-6">
-                <a
-                  href="#"
-                  className="text-2xl hover:text-[#003366] transition-colors duration-300"
-                >
-                  📱
-                </a>
-                <a
-                  href="#"
-                  className="text-2xl hover:text-[#003366] transition-colors duration-300"
-                >
-                  💼
-                </a>
-                <a
-                  href="#"
-                  className="text-2xl hover:text-[#003366] transition-colors duration-300"
-                >
-                  📸
-                </a>
-                <a
-                  href="#"
-                  className="text-2xl hover:text-[#003366] transition-colors duration-300"
-                >
-                  🐦
-                </a>
-              </div>
-            </div> */}
-          </div>
         </div>
+      </div>
 
-        {/* Map Section */}
-        {/* <div className="mt-12 bg-white rounded-2xl shadow-xl p-8">
-          <h3 className="text-2xl font-bold text-[#003366] mb-6 text-center">
-            Find Us
-          </h3>
-          <div className="aspect-w-16 aspect-h-9">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.2233913121413!2d77.4054523!3d28.5022296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce626851f7009%3A0x621185133cfd1ad1!2sGurugram%2C%20Haryana!5e0!3m2!1sen!2sin!4v1647880021744!5m2!1sen!2sin"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="rounded-lg"
-            ></iframe>
-          </div>
-        </div> */}
+      {/* Map Section */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12">
+        <div className="w-full bg-[#E8E8E8] rounded-t-2xl rounded-bl-2xl overflow-hidden flex items-center justify-center h-96 md:h-[500px]">
+          <iframe
+            title="Our Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.019282019994!2d77.2780!3d28.6270!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3a2e2e2e2e2%3A0x1234567890abcdef!2sLalita%20Park%2C%20Gurudwara%2C%20New%20Delhi%2C%20Delhi%20110092%2C%20India!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </div>
     </div>
   );

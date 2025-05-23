@@ -523,7 +523,7 @@ const ApplicantBusinessDetails = () => {
           {/* UDYAM Number */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              UDYAM Number
+              UDYAM Number <span className="text-gray-400 font-normal">(Optional)</span>
             </label>
             <div className="relative flex gap-2 items-center">
               <input

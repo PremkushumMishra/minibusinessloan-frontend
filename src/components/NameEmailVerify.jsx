@@ -16,9 +16,9 @@ const NameEmailVerify = () => {
     name: "",
     email: "",
     phone: "",
-    // redirectURL: "http://localhost:5173/kyc-process",
-    redirectURL: "https://minibusinessloan.com/kyc-process",
-    // redirectURL: "https://minibusinessloan.vercel.app/kyc-sucess",
+    redirectURL: "https://github.com/",
+    // redirectURL: "https://minibusinessloan.com/kyc-process",
+    // redirectURL: "https://minibusinessloan.vercel.app/kyc-sucess", 
     // /kyc-sucess",
 
   });
@@ -93,6 +93,8 @@ const NameEmailVerify = () => {
 
           const redirectUrl = response.data?.data?.url;
           console.log("Redirect URL:", redirectUrl);
+
+
   
           if (redirectUrl) {
             window.open(redirectUrl, "_blank");
@@ -101,6 +103,7 @@ const NameEmailVerify = () => {
           }
 
           updateStep("kyc-process");
+          localStorage.setItem("user_step", "kyc-process");
           // navigate("/kyc-process");
           fetchUserDetails();
 

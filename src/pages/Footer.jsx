@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#F5F5F5] pt-4">
+    <footer className="bg-[#ffffff] pt-4">
       {/* Outer Blue Box */}
-      <div className="max-w-7xl mx-2 md:mx-4 lg:mx-8 border-2 border-white rounded-t-2xl bg-[#0D4183] px-4 md:px-10 pt-6 pb-2" style={{boxShadow: "0 2px 8px 0 #e0e0e0"}}>
+      <div className="max-w-full mx-2 md:mx-4 lg:mx-8 border-2 border-white rounded-t-2xl bg-[#0D4183] px-4 md:px-10 pt-6 pb-2" style={{boxShadow: "0 2px 8px 0 #e0e0e0"}}>
         {/* 3 Columns */}
         <div
           className="w-full max-w-[1240px] min-h-[107px] mx-auto flex flex-col md:flex-row justify-between items-center md:items-start px-2 md:px-8"
@@ -32,8 +32,8 @@ const Footer = () => {
             </div>
           </div>
           {/* Reach Us */}
-          <div className="flex flex-col items-center md:items-end flex-1">
-            <h2 className="text-lg mb-1 mr-12 md:mb-2" style={{ color: "#fff" }}>Reach Us</h2>
+          <div className="flex flex-col items-center md:items-end md:flex-1">
+            <h2 className="text-lg mb-1 md:mb-2 md:mr-12" style={{ color: "#fff" }}>Reach Us</h2>
             <div className="text-sm font-inter">
               <p style={{ color: "#fff" }}>
                 Ganga Appartment Lalita Park,<br />
@@ -59,17 +59,15 @@ const Footer = () => {
           </div>
           {/* Social Icons */}
           <div className="flex gap-3">
-           
-            <a href="#" className="bg-white rounded-lg w-12 h-12 flex items-center justify-center hover:bg-[#E0BCF3] transition-all duration-200 border border-[#e0eafc]" title="YouTube">
-              <img src="/youtubeicon.png" alt="YouTube" className="h-6 w-6 object-contain" />
+            <a href="#" className=" w-12 h-12 flex items-center justify-center" title="YouTube">
+              <img src="/youtube.webp" alt="YouTube" className="h-10 w-10 object-contain" />
             </a>
-            <a href="#" className="bg-white rounded-lg w-12 h-12 flex items-center justify-center hover:bg-[#E0BCF3] transition-all duration-200 border border-[#e0eafc]" title="Facebook">
-              <img src="/facebookicon.png" alt="Facebook" className="h-6 w-6 object-contain" />
+            <a href="#" className="rounded-lg w-12 h-12 flex items-center justify-center" title="Facebook">
+              <img src="/facebook.png" alt="Facebook" className="h-10 w-10 object-contain" />
             </a>
-            <a href="#" className="bg-white rounded-lg w-12 h-12 flex items-center justify-center hover:bg-[#E0BCF3] transition-all duration-200 border border-[#e0eafc]" title="Instagram">
-              <img src="/instaicon.png" alt="Instagram" className="h-6 w-6 object-contain" />
+            <a href="#" className=" rounded-lg w-12 h-12 flex items-center justify-center" title="Instagram">
+              <img src="/Instagram_icon.png" alt="Instagram" className="h-10 w-10 object-contain" />
             </a>
-            
           </div>
         </div>
 
@@ -77,7 +75,7 @@ const Footer = () => {
         <div className="border-t border-white/30 my-3"></div>
       </div>
       {/* Bottom Copyright */}
-      <div className="bg-white text-center text-[#3A3838] text-xs md:text-sm py-2 font-bold border-x-2 border-b-2 border-white rounded-b-2xl max-w-7xl mx-2 md:mx-4 lg:mx-8 mb-4">
+      <div className="bg-[#D9D9D9] text-center text-[#3A3838] text-xs md:text-sm py-2 font-bold border-x-2 border-b-2 border-white rounded-b-2xl max-w-full mx-2 md:mx-4 lg:mx-8 mb-4">
         minibusinessloan. 2025 All rights reserved
       </div>
     </footer>

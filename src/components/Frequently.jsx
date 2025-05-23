@@ -12,7 +12,7 @@ const faqs = [
     id: 2,
     question: "What documents are required for a business loan?",
     answer:
-      "You need your Aadhaar card, business registration documents, bank statements of last 3 months, and basic KYC documents. The process is completely digital.",
+      "You need your Aadhaar card, business registration documents, bank statements of last 6 months, and basic KYC documents. The process is completely digital.",
   },
 
   {
@@ -24,7 +24,7 @@ const faqs = [
   {
     id: 6,
     question: "What documents are required?",
-    answer: `You need to provide:\n\n- Aadhaar card\n- PAN card\n- Bank statement (last 3 months)\n- Proof of business (GST certificate/shop license if available)`,
+    answer: `You need to provide:\n\n- Aadhaar card\n- PAN card\n- Bank statement (last 3 months)\n- UDHYAM_NO, Proof of business (GST certificate/shop license if available)`,
   },
 
   {
@@ -39,8 +39,8 @@ const Frequently = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <div className="bg-[#f4f4f4] min-h-0 flex items-start justify-center py-2 sm:py-6">
-      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-8 md:gap-16 px-0 sm:px-4">
+    <div className="bg-[#ffffff] min-h-0 flex items-start justify-center py-2 sm:py-6">
+      <div className="w-full max-w-6xl flex flex-col md:flex-row gap-4 md:gap-16 justify-between px-0 sm:px-4">
         {/* Left Column */}
         <div className="md:w-1/3 flex flex-col justify-start mb-4 md:mb-0 animate-slide-from-left mobile-center-text">
           <h2
@@ -87,14 +87,14 @@ const Frequently = () => {
             return (
               <div
                 key={faq.id}
-                className={`transition-all duration-300 rounded-xl overflow-hidden shadow-sm hover:shadow-md ${
-                  isOpen ? "bg-[#184785]" : "bg-white"
+                className={`transition-all duration-300  overflow-hidden rounded-t-2xl rounded-bl-2xl ${
+                  isOpen ? "bg-[#184785]" : "bg-[#D9D9D9]"
                 } animate-fade-in mobile-faq-card`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <button
                   className={`w-full flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 focus:outline-none transition-all duration-300 ${
-                    isOpen ? "text-white" : "text-[#184785] hover:bg-[#e9eef6]"
+                    isOpen ? "text-white" : "text-[#184785]"
                   } font-semibold text-base sm:text-lg rounded-xl`}
                   onClick={() => setOpenIndex(isOpen ? null : faq.id)}
                 >

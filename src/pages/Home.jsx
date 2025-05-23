@@ -33,21 +33,23 @@ const Home = () => {
       <EligibleProfile/>
       {/* <Lorem /> */}
       {/* <NewWhy/> */}
-      <LoanCalculator />
       <WhyChoose />
-      {/* <AppDownload/> */}
-      {/* <BsaRejectes/> */}
+    
+      <LoanCalculator />
+      <BsaRejectes/>
       <PublicReview />
+      <AppDownload/>  
+
       <Frequently/>
-      {/* <NameEmailVerify/>   */}
+      <NameEmailVerify/>  
       {/* <SanctionLatter/> */}
       {/* <GetAmount /> */}
-      {/* <KycSuccess />/ */}
-      {/* <CoApplicant/> */}
+      {/* <KycSuccess /> */}
+      <CoApplicant/>
       {/* <ApplicantPersonalDetails/> */}
       {/* <ApplicantBusinessDetails /> */}
-      {/* <LoanEligiblity/> */}
-      {/* <AdditionalInfo/> */}
+      <LoanEligiblity/>
+      <AdditionalInfo/>
       {/* <BankStatement/> */}
       {/* <ChatBot/> */}
       </>

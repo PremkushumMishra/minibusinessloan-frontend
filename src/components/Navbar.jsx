@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [showNavbar, setShowNavbar] = useState(true);
+  // const [showNavbar, setShowNavbar] = useState(true); // Removed unused variable
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleScroll = () => {
     if (window.scrollY > lastScrollY) {
-      setShowNavbar(false);
+      // setShowNavbar(false);
     } else {
-      setShowNavbar(true);
+      // setShowNavbar(true);
     }
     setLastScrollY(window.scrollY);
   };
@@ -27,8 +27,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="w-full bg-[#EAEAEA] border-b border-[#EAEAEA] font-poppins">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 h-20">
+      <div className="w-full bg-[#D9D9D9] py-2 px-8">
+        <nav className="max-w-7xl mx-auto bg-white rounded-t-3xl rounded-bl-3xl shadow flex items-center justify-between px-4 md:px-8 h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center h-full">
             <img
@@ -66,9 +66,8 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-        </div>
-        {/* Mobile menu overlay and drawer code (same as your current logic) */}
-      </nav>
+        </nav>
+      </div>
 
       {/* Mobile Menu Overlay */}
       <div

@@ -461,7 +461,6 @@ const Modal = ({ open, onClose, onAgree, children }) => {
 const fetchUserDetails = async (token) => {
   try {
     const response = await axios.get(
-      // "http://10.6.3.32:3000/api/v1/get/user/details/web",
       `${API_CONFIG.BASE_URL}/get/user/details/web`,
       {
         headers: {
@@ -491,8 +490,9 @@ const MobileVerification = () => {
   const API_CONFIG = {
     // local host url
     // BASE_URL: "http://10.6.3.32:3000/api/v1",
+    BASE_URL: "http://localhost:3000/api/v1",
     // live url
-    BASE_URL: "http://103.104.73.107:3004/api/v1",
+    // BASE_URL: "http://103.104.73.107:3004/api/v1",
     ENDPOINTS: {
       SEND_OTP: "/send-otp",
       VERIFY_OTP: "/verify-otp",
@@ -532,6 +532,7 @@ const MobileVerification = () => {
           phone: mobileNumberWithoutPrefix,
           appliedMode: "web",
           sourceBy:null,
+          // postingBranch:null 
         },
         {
           headers: {
@@ -553,7 +554,6 @@ const MobileVerification = () => {
         setClientId(receivedClientId);
         setShowOtpInput(true);
         toast.success("OTP sent successfully!");
-        fetchUserDetails(receivedClientId);
       } else {
         toast.error(response.data.message || "Failed to send OTP");
       }
@@ -584,7 +584,7 @@ const MobileVerification = () => {
       // const client_id = "your_client_id_here";
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/auth/verify-otp-customer`,
-        { phone: mobileNumberWithoutPrefix, otp: otp, client_id: clientId },
+        { phone: mobileNumberWithoutPrefix, otp: otp, client_id: clientId,},
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,

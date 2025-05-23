@@ -13,7 +13,7 @@ const stepsOrder = [
   "application-processing"
 ];
 
-const ProtectedRoute = ({ allowedStep, children }) => {
+const ProtectedRoute = ({ allowedStep , children }) => {
   const { currentStep } = useStep();
 
   const currentIndex = stepsOrder.indexOf(currentStep);

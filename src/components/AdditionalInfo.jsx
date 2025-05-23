@@ -45,13 +45,14 @@ const AdditionalInfo = () => {
           },
         }
       );
-
+console.log("additionl info response", response.data)
       if (
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
       ) {
         setSuccess("Data submitted successfully!");
         fetchUserDetails();
+
         // const clientId=response.data?.data?.client_id;
         // if(clientId){
         //   localStorage.setItem("clientId",clientId);
@@ -66,7 +67,8 @@ const AdditionalInfo = () => {
         response.data?.status === false &&
         response.data?.message === "Lead Rejected"
       ) {
-        navigate("/about");
+
+        navigate("/co-applicant");
       } else {
         setError(
           response.data?.message || "Submission failed. Please try again."

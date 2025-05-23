@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import API_CONFIG from "../config";
 import { useNavigate } from "react-router-dom";
@@ -25,14 +25,14 @@ const CoApplicant = () => {
   const isMobileValid = /^\d{10}$/.test(mobile);
   const isPanValid = panRegex.test(pan);
 
-  useEffect(() => {
-    if (status === "success") {
-      const timer = setTimeout(() => {
-        navigate("/applicant-business-details");
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [status, navigate]);
+  // useEffect(() => {
+  //   if (status === "success") {
+  //     const timer = setTimeout(() => {
+  //       navigate("/applicant-business-details");
+  //     }, 1000);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [status, navigate]);
 
   const handleSendOtp = async (e) => {
     e.preventDefault();
@@ -69,7 +69,7 @@ const CoApplicant = () => {
           withCredentials: true,
         }
       );
-      console.log(response, "response");
+      console.log(response, "co-applicant response");
 
       if (
         response.data?.status === true &&
@@ -94,6 +94,7 @@ const CoApplicant = () => {
         setShowOtpInput(true);
         setStatus(null);
         alert("OTP sent to co-applicant mobile number!");
+        fetchUserDetails();
       } else {
         setError(response.data.message || "Failed to send OTP.");
       }
@@ -110,8 +111,8 @@ const CoApplicant = () => {
     e.preventDefault();
     setError("");
     setStatus(null);
-    if (otp.length !== 6) {
-      setError("Please enter a valid 6-digit OTP.");
+    if (otp.length !== 6 && otp.length !== 4) {
+      setError("Please enter a valid 4 or 6-digit OTP.");
       return;
     }
     if (!customerID || customerID.length <= 6) {
@@ -144,14 +145,12 @@ const CoApplicant = () => {
         response.data?.status === true &&
         response.data?.message === "Success"
       ) {
+        fetchUserDetails();
         console.log(
           "✅ OTP verified successfully! Navigating to business details..."
         );
         setStatus("success");
-        setTimeout(() => {
-          navigate("/applicant-business-details");
-        }, 1000);
-        fetchUserDetails();
+        navigate("/applicant-business-details");
       } else {
         setStatus("error");
         setError(response.data?.message || "Invalid OTP. Please try again.");
@@ -234,7 +233,7 @@ const CoApplicant = () => {
                 value={otp}
                 onChange={(e) => setOtp(e.target.value.replace(/[^0-9]/g, ""))}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#E0BCF3] focus:border-transparent transition-all duration-200 text-lg tracking-widest text-center"
-                placeholder="6-digit OTP"
+                placeholder="Enter 4 or 6-digit OTP"
               />
             </div>
           )}

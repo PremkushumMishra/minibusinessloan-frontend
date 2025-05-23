@@ -1,71 +1,54 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import newheropic from "../assets/newheropic.jpg";
-import rupeeicon from "../assets/rupeeicon.png"; // Add your rupee icon here
+import rupeeicon from "../assets/rupeeicon.png";
 
-const TalkingLoan = () => {
-  const headingStyle = {
-    fontFamily: 'Poppins',
-    fontWeight: 500,
-    fontSize: '30px',
-    lineHeight: '140%',
-    letterSpacing: '0%',
-    textAlign: 'center',
-    color: '#2D2D2D'
-  };
-
-  const paragraphStyle = {
-    fontFamily: 'Poppins',
-    fontWeight: 400,
-    fontSize: '20px',
-    lineHeight: '140%',
-    letterSpacing: '0%',
-    textAlign: 'center',
-    color: '#0D4059'
-  };
-
+function TalkingLoan() {
   return (
-    <div className="max-w-7xl mx-auto px-2 md:px-8 bg-[#EAEAEA]">
+    <div className="max-w-full mx-auto px-2 md:px-8 rounded-bl-3xl py-4 bg-gray-300">
       <div
-        className="flex flex-col md:flex-row items-center justify-center md:justify-start bg-[#EAEAEA] md:bg-cover md:bg-center relative rounded-t-4xl rounded-bl-4xl rounded-br-none min-h-[350px] md:min-h-[600px]"
-        style={{
-          backgroundImage: `url(${newheropic})`,
-        }}
+        className="flex flex-col md:flex-row items-center justify-center md:justify-start bg-gray-200 relative rounded-t-3xl md:rounded-t-3xl rounded-bl-3xl rounded-br-none min-h-[350px] md:min-h-[600px] overflow-hidden"
       >
+        {/* Background Image - Hidden on mobile, visible on desktop */}
+        <div className="hidden md:block absolute inset-0 w-full h-full">
+          <img
+            src={newheropic}
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/20 z-0"></div>
+        </div>
+
         {/* Mobile Only: Show image as banner on top */}
         <div className="block md:hidden w-full">
           <img
             src={newheropic}
             alt="Hero"
-            className="w-full h-40 object-cover object-center rounded-t-2xl"
+            className="w-full h-48 object-cover object-center rounded-t-3xl"
           />
         </div>
-        {/* Overlay for better text visibility on desktop */}
-        <div className="hidden md:block absolute inset-0 bg-black/10 md:bg-black/20 z-0 rounded-t-4xl rounded-bl-4xl rounded-br-none" />
 
         {/* Card */}
-        <div className="relative z-10 w-full max-w-sm min-h-[450px] bg-[#EAEAEA] rounded-t-2xl rounded-bl-2xl rounded-br-none shadow-xl p-4 sm:p-6 md:p-8 m-2 sm:m-4 md:m-6 flex flex-col items-center justify-center md:ml-20 mt-0">
+        <div className="relative z-10 w-full max-w-xs sm:max-w-sm md:max-w-md bg-gray-100 rounded-t-2xl rounded-bl-2xl rounded-br-none shadow-xl p-4 sm:p-6 md:p-8 mx-auto md:mx-0 md:ml-16 my-4 md:my-8 flex flex-col items-center justify-center">
           <img
             src={rupeeicon}
             alt="Rupee"
-            className="w-14 h-14 md:w-16 md:h-16 mb-4"
+            className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-4"
             style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.10))" }}
           />
-          <h2 className="text-xl md:text-2xl text-center mb-2 font-poppins text-[#222]">
-            Grow your Business
-            <br />
-            Get Loan in just 30 Minutes
+          
+          <h2 className="font-poppins font-medium text-xl sm:text-2xl md:text-3xl text-center text-gray-800 mb-2">
+            Quick Loan
           </h2>
-          <p 
-            style={paragraphStyle}
-            className="text-sm md:text-base text-center text-[#444] mb-6 font-poppins"
-          >
-            Get Loan upto 5 Thousand to 10 Lakhs
-            <br />
+          
+          <p className="font-poppins font-normal text-sm sm:text-base md:text-xl text-center text-blue-900 mb-6">
+          Get Business Loans from ₹5,000 to ₹5,00,000
+          <br />
             Instantly In just 30 Minutes
           </p>
-          <Link to="/mobile-verification">
-            <button className="bg-[#11468F] text-white px-12 md:px-16 py-2.5 font-semibold text-base rounded-t-xl rounded-bl-xl rounded-br-none hover:bg-[#003366] transition-all mx-auto block w-48 md:w-56">
+          
+          <Link to="/mobile-verification" className="w-full max-w-xs">
+            <button className="bg-blue-800 text-white px-6 py-3 font-semibold text-sm sm:text-base rounded-t-xl rounded-bl-xl rounded-br-none hover:bg-blue-900 transition-all duration-300 w-full">
               Apply Now
             </button>
           </Link>

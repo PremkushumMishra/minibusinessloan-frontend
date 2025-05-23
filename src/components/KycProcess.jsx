@@ -4,17 +4,19 @@ import { useNavigate } from "react-router-dom";
 import API_CONFIG from "../config";
 
 const KycProcess = () => {
+
+
   const [kycComplete, setKycComplete] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
   const [attemptCount, setAttemptCount] = useState(0);
   const [isVerifying, setIsVerifying] = useState(true);
   const [clientId, setClientId] = useState(
     localStorage.getItem("digilocker_client_id")
   );
   const [phone, setPhone] = useState(""); // Will be set after fetching user details
-  const intervalRef = React.useRef(null);
   const [loading, setLoading] = useState(false);
+  const intervalRef = React.useRef(null);
+  const navigate = useNavigate();
 
   // Fetch phone number once on mount
   useEffect(() => {
@@ -94,6 +96,14 @@ const fetchUser = useCallback(async () => {
       customerNumber: phone,
     });
     // debugger
+    
+
+    // Add the kyc-process from local storage and if if exists then add then call the api
+
+    const step = localStorage.getItem("user_step");
+    console.log("step", step);
+    
+if( step === "kyc-process"){
     const response = await axios.post(
       `${API_CONFIG.BASE_URL}/sourcing/process-digilocker-data`,
       data,
@@ -106,6 +116,26 @@ const fetchUser = useCallback(async () => {
       }
     );
 
+    // Call the second API after the first one succeeds
+    const fetchUserDetails = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+        const response = await axios.get(
+          // "http://10.6.3.90:3000/api/v1/get/user/details/web",
+          `${API_CONFIG.BASE_URL}/get/user/details/web`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            // withCredentials: true, // If you want to send cookies
+          }
+        );
+        console.log("User Details API Response:", response.data);
+      } catch (err) {
+        console.error("User Details API Error:", err);
+      }
+    };
+
     if (
       response.data?.status === true &&
       response.data.message === "SUCCESS" &&
@@ -113,10 +143,13 @@ const fetchUser = useCallback(async () => {
     ) {
       setKycComplete(true);
       setIsVerifying(false);
+      fetchUserDetails()
       navigate("/additional-info");
     } else {
       setError(response.data?.message || "KYC verification failed.");
     }
+
+  }
   } catch {
     setError("Error checking KYC status.");
   } finally {
@@ -136,7 +169,8 @@ const fetchUser = useCallback(async () => {
       attemptCount < 10 &&
       !kycComplete
     ) {
-      intervalRef.current = setInterval(() => {
+      intervalRef.current = 
+      setInterval(() => {
         // if (!loading) {p
         // new code
         if (!loading && !kycComplete) {
@@ -145,7 +179,7 @@ const fetchUser = useCallback(async () => {
           // console.log("console second")
           setAttemptCount((prev) => prev + 1);
         }
-      },);
+      },30000);
     }
 
     // new code

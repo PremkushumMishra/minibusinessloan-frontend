@@ -12,13 +12,13 @@ const EligibleProfile = () => {
   return (
     <div
       className="w-full min-h-screen px-4 py-8 md:py-12 flex flex-col justify-center items-center"
-      style={{ background: "#EAEAEA" }}
+      style={{ background: "#FFFFFF" }}
     >
       {/* Heading */}
       <div className="text-center mb-8 md:mb-12">
         <div className="flex justify-center items-center">
           <h1
-            className="font-poppins font-medium text-2xl md:text-3xl lg:text-4xl text-[#0D4183] text-center"
+            className="font-poppins font-medium text-2xl md:text-3xl lg:text-4xl text-[#0D4183] mb-2 text-center"
             style={{
               lineHeight: '140%',
               letterSpacing: 0,
@@ -28,7 +28,7 @@ const EligibleProfile = () => {
             Who Can Apply for This Loan?
           </h1>
         </div>
-        <div
+        {/* <div
           className="mx-auto mb-2 mt-2"
           style={{
             width: 120,
@@ -36,7 +36,7 @@ const EligibleProfile = () => {
             borderRadius: 6,
             backgroundColor: "#003366",
           }}
-        />
+        /> */}
         <p
           className="font-poppins text-base md:text-lg lg:text-xl text-[#222] font-normal mx-auto"
           style={{
@@ -58,7 +58,12 @@ const EligibleProfile = () => {
             letterSpacing: 0,
           }}
         >
-          Retail Shop Owner, Small Manufacturer, Service Provider, <br className="hidden sm:block" /> Wholesaler, Street Food Vendor
+          <span
+            className="font-poppins font-medium text-[20px] leading-[140%] text-center"
+            style={{ letterSpacing: 0, color: '#0D4059', display: 'block' }}
+          >
+            Retail Shop Owner, Small Manufacturer, Service Provider, <br className="hidden sm:block" /> Wholesaler, Street Food Vendor
+          </span>
         </div>
       </div>
 

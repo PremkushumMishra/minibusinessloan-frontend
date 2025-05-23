@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const LoanCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(5000);
   const [days, setDays] = useState(30);
@@ -9,9 +12,9 @@ const LoanCalculator = () => {
   const payableAmount = loanAmount + totalInterest;
 
   return (
-    <div className="min-h-[40vh] flex items-center justify-center bg-[#f4f6fa] py-4">
+    <div className="min-h-[40vh] flex items-center justify-center mt-10 bg-white py-4">
 <div className="w-full max-w-6xl mx-auto px-1">
-<div className="flex flex-col md:flex-row bg-white rounded-3xl shadow-xl overflow-hidden md:h-[480px]">
+<div className="flex flex-col md:flex-row bg-[#E8E8E8] rounded-3xl shadow-xl overflow-hidden md:h-[480px]">
           {/* Left Side */}
           <div className="flex-1 flex flex-col justify-center gap-3 px-4 py-6 h-full">
             <h2
@@ -37,20 +40,29 @@ const LoanCalculator = () => {
               <input
                 type="number"
                 min="5000"
-                max="1000000"
+                max="500000"
                 step="1"
                 value={loanAmount}
                 onChange={(e) => {
+                  setLoanAmount(e.target.value === "" ? "" : Number(e.target.value));
+                }}
+                onBlur={(e) => {
                   let val = Number(e.target.value);
-                  if (val > 1000000) val = 1000000;
-                  setLoanAmount(val);
+                  if (val < 5000) {
+                    setLoanAmount(5000);
+                    toast.error("Please enter minimum 5000");
+                  } else if (val > 500000) {
+                    setLoanAmount(500000);
+                  } else {
+                    setLoanAmount(val);
+                  }
                 }}
                 className="w-full max-w-md h-12 px-3 py-1 border border-[#003366] rounded-lg text-[#003366] font-semibold text-base focus:outline-none focus:ring-2 focus:ring-[#505050] bg-[#F0F0F0] mb-1"
               />
               <input
                 type="range"
                 min="5000"
-                max="1000000"
+                max="500000"
                 step="1"
                 value={loanAmount}
                 onChange={(e) => setLoanAmount(Number(e.target.value))}
@@ -155,6 +167,7 @@ const LoanCalculator = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center" />
     </div>
   );
 };

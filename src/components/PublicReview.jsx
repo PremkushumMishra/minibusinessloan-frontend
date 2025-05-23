@@ -91,10 +91,10 @@ const PublicReview = () => {
   };
 
   return (
-    <div className="bg-[#f4f4f4] py-2 min-h-[60vh] flex items-center">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 w-full">
+    <div className="bg-[#ffffff] py-2 min-h-[60vh] flex items-center">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 mt-10 mb-10 w-full">
         <h2
-          className="mx-auto text-center mb-8 sm:mb-12"
+          className="mx-auto text-center mb-4 sm:mb-12"
           style={{
             fontFamily: "Poppins",
             fontWeight: 600,
@@ -112,26 +112,33 @@ const PublicReview = () => {
           <div className="w-full max-w-[95vw] sm:max-w-[600px]">
             <Slider {...settings}>
               {reviews.map((review) => (
-                <div key={review.id} className="bg-[#F0F0F0] rounded-t-2xl rounded-bl-2xl p-1">
+                <div key={review.id} className="bg-[#ffffff] rounded-t-2xl rounded-bl-2xl p-1">
                   <div
                     className={
-                      "bg-white rounded-t-4xl rounded-bl-4xl shadow-md px-4 sm:px-8 py-6 sm:py-8 flex items-start gap-4 sm:gap-6 w-full min-h-[120px] sm:min-h-[140px]"
+                      "bg-[#E8E8E8] rounded-t-4xl rounded-bl-4xl shadow-md px-4 sm:px-8 py-6 sm:py-8 flex items-start gap-4 sm:gap-6 w-full min-h-[120px] sm:min-h-[140px]"
                     }
                     style={{
-                      boxShadow: "0 8px 32px 0 rgba(24,71,133,0.10)",
+                      // boxShadow: "0 8px 32px 0 rgba(24,71,133,0.10)",
                     }}
                   >
                     <div className="flex flex-col items-center min-w-[48px] sm:min-w-[60px]">
                       <img
                         src={review.img}
                         alt="reviewer"
-                        className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-full border-2 border-white shadow"
+                        className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-full border-2"
                       />
                     </div>
                     <div className="flex-1 flex flex-col justify-center">
                       <p
-                        className="text-sm sm:text-base text-[#184785] mb-2 sm:mb-4"
-                        style={{ fontFamily: "Poppins, sans-serif", fontWeight: 400, lineHeight: "150%" }}
+                        className="text-sm sm:text-base"
+                        style={{
+                          fontFamily: "Poppins, sans-serif",
+                          fontWeight: 300,
+                          fontSize: "20px",
+                          lineHeight: "36px",
+                          letterSpacing: "-0.41px",
+                          color: "#0D4059",
+                        }}
                       >
                         {review.text}
                       </p>
