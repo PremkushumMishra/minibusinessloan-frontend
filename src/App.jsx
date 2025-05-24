@@ -22,6 +22,7 @@ import CoApplicant from "./components/CoApplicant";
 import TermsCondition from "./components/TermsCondition";  
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Faqs from "./components/Faqs";
+import BankStatement from "./components/BankStatement";
 // import HowItWorks from "./components/HowItWorks";
 function App() {
   return (
@@ -107,7 +108,8 @@ function App() {
           }
         />
 
-
+        <Route path="/bank-statement" element={<BankStatement/>}/>
+        
         {/* optional */}
         {/* <Route path="/applicant-business-details-optional" element={<ApplicantBusinessDetails/>} /> */}
 

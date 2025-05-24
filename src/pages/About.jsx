@@ -26,45 +26,7 @@ const About = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8  py-10">
         {/* Core Values Section */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-[#003366] mb-8 text-center">
-            Our Core Values
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Innovation */}
-            <div className="bg-gray-200 rounded-2xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-[#003366] mb-4">Innovation</h3>
-              <p
-                className="font-poppins font-light text-[16px] leading-[140%] text-center"
-                style={{ letterSpacing: 0, color: '#000000' }}
-              >
-                Embracing cutting-edge technologies while respecting traditional wisdom.
-              </p>
-            </div>
-            
-            {/* Excellence */}
-            <div className="bg-gray-200 rounded-2xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-[#003366] mb-4">Excellence</h3>
-              <p
-                className="font-poppins font-light text-[16px] leading-[140%] text-center"
-                style={{ letterSpacing: 0, color: '#000000' }}
-              >
-                Delivering world-class solutions with Indian values and global standards.
-              </p>
-            </div>
-            
-            {/* Integrity */}
-            <div className="bg-gray-200 rounded-2xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-[#003366] mb-4">Integrity</h3>
-              <p
-                className="font-poppins font-light text-[16px] leading-[140%] text-center"
-                style={{ letterSpacing: 0, color: '#000000' }}
-              >
-                Building trust through transparent and ethical business practices.
-              </p>
-            </div>
-          </div>
-        </div>
+      
 {/* Mission & Vision Section */}
 <div className="mb-16 px-4 md:px-8">
   {/* Our Vision Section */}
@@ -154,6 +116,7 @@ const About = () => {
 
         {/* Our Story Section */}
         <div className="mb-12 flex flex-col items-center justify-center">
+          <h2 className="text-3xl text-[#003366] mb-8 text-center">Our Core Values</h2>
           <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center">
             {/* Card 1 */}
             <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
@@ -174,12 +137,11 @@ const About = () => {
         </div>
 
         {/* Partners Section */}
-        <div className="mb-12">
+        {/* <div className="mb-12">
           <h2 className="text-3xl font-poppins flex-between text-[#0D4183] mb-8 text-center">
             Our Partners
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {/* NBFC Partner */}
             <div className="bg-white rounded-2xl shadow-md p-6 text-center border-l-8 border-[#003366]">
               <div className="w-20 h-20 object-contain rounded-xl mx-auto mb-4">
                 <img
@@ -197,7 +159,6 @@ const About = () => {
                 India.
               </p>
             </div>
-            {/* Sourcing Partner */}
             <div className="bg-white rounded-2xl shadow-md p-6 text-center border-l-8 border-[#E53935]">
               <div className="w-30 h-20 object-contain rounded-xl mx-auto mb-4">
                 <img
@@ -215,18 +176,12 @@ const About = () => {
                 nationwide.
               </p>
             </div>
-            {/* Tech Partner */}
-            {/* <div className="bg-white rounded-2xl shadow-md p-6 text-center border-l-8 border-[#003366]">
-              <div className="w-20 h-20 object-contain rounded-xl mx-auto mb-4">
-                <img src="/fintechcloud.png" alt="Tech Partner" className="w-22 h-22 object-contain" />
-              </div>
-              <h4 className="text-xl font-bold text-[#003366] mb-2">Our Tech Partner</h4>
-              <p className="text-gray-700 text-sm">
-                Cutting-edge technology solutions provider ensuring secure, scalable, and efficient digital infrastructure for our services.
-              </p>
-            </div> */}
+           
           </div>
-        </div>
+        </div> */}
+
+
+        
       </div>
     </div>
   );

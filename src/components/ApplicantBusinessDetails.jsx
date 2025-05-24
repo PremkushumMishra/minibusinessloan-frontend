@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { useStep } from "../context/useStep";
 import axios from "axios";
 import API_CONFIG from "../config";
 
 const ApplicantBusinessDetails = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const { updateStep } = useStep();
 
   console.log("applicant business details");
@@ -49,13 +49,11 @@ const ApplicantBusinessDetails = () => {
 
   // Add state for electricity bill input type and bill number
 
-    const [electricityBillInputType, setElectricityBillInputType] = useState("upload");
+  const [electricityBillInputType, setElectricityBillInputType] =
+    useState("upload");
 
   const [userEnteredBillNumber, setUserEnteredBillNumber] = useState("");
   const [selectedOperatorCode, setSelectedOperatorCode] = useState("");
-
-
-
 
   const customerID = "TABL004"; // Change to "TABL004" when needed
 
@@ -65,7 +63,6 @@ const ApplicantBusinessDetails = () => {
   // };
   // verify udyam number
 
-  
   const verifyUdyamNumber = async (number) => {
     if (!number) return;
 
@@ -220,13 +217,6 @@ const ApplicantBusinessDetails = () => {
     }
   };
 
-
-
- 
- 
- 
- 
- 
   const fetchBusinessNatureAndPurpose = async () => {
     try {
       const token = localStorage.getItem("authToken");
@@ -240,9 +230,9 @@ const ApplicantBusinessDetails = () => {
           },
         }
       );
-  
+
       console.log("Dropdown response:", response.data); // Debug line
-  
+
       if (
         response.data?.status === true &&
         response.data?.message === "SUCCESS" &&
@@ -261,11 +251,6 @@ const ApplicantBusinessDetails = () => {
       setLoanPurposeOptions([]);
     }
   };
-  
-
-
-
-
 
   const validateField = (name, value) => {
     let error = "";
@@ -285,7 +270,8 @@ const ApplicantBusinessDetails = () => {
       case "gstNumber":
         if (value) {
           // GST format: 22AAAAA0000A1Z5
-          const gstRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
+          const gstRegex =
+            /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$/;
           if (!gstRegex.test(value.trim().toUpperCase())) {
             error = "Invalid GST number format (e.g. 22AAAAA0000A1Z5)";
           }
@@ -312,7 +298,7 @@ const ApplicantBusinessDetails = () => {
       case "averageTurnoverLakhs":
         if (!/^[0-9]+$/.test(value)) error = "Please enter a valid amount";
         break;
-     
+
       case "businessPhoto":
         if (!value) error = "Business Photo is required";
         break;
@@ -348,54 +334,52 @@ const ApplicantBusinessDetails = () => {
     }));
   };
 
-
-  // const fetchUserDetails = async () => {
-  //   try {
-  //     const token = localStorage.getItem("authToken");
-  //     const response = await axios.get(
-  //       `${API_CONFIG.BASE_URL}/get/user/details/web`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     console.log("User Details API Response:", response.data);
-  //   } catch (err) {
-  //     console.error("User Details API Error:", err);
-  //   }
-  // };
-  
+  const fetchUserDetails = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await axios.get(
+        `${API_CONFIG.BASE_URL}/get/user/details/web`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("User Details API Response:", response.data);
+    } catch (err) {
+      console.error("User Details API Error:", err);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitError("");
-    // Validate all fields
-    const newErrors = {};
-    Object.keys(formData).forEach((key) => {
-      const error = validateField(key, formData[key]);
-      if (error) newErrors[key] = error;
-    });
-    setErrors(newErrors);
-    if (Object.keys(newErrors).length === 0) {
-      // await fetchUserDetails();
-      console.log("Business Details submitted:", formData);
-      // updateStep("application-processing");
-      // navigate("/application-processing");
+    console.log("Testing");
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await axios.post(
+        `${API_CONFIG.BASE_URL}/sourcing/save-business-details`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+
+      console.log(response);
+
+      if (
+        response.data?.status === true &&
+        response.data?.message === "SUCCESS"
+      ) {
+        navigate("/bank-statement");
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    const response=await axios.post(`${API_CONFIG.BASE_URL}/sourcing/business-details`,formData,{
-      headers:{
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-
   };
-
-
-
 
   const verifyElectricityBill = async (input, selectedOperatorCode) => {
     // Bill number is now optional, so only operator code is required
@@ -422,7 +406,10 @@ const ApplicantBusinessDetails = () => {
           },
         }
       );
-      if (response.data?.status === true && response.data?.message === "SUCCESS") {
+      if (
+        response.data?.status === true &&
+        response.data?.message === "SUCCESS"
+      ) {
         setVerificationStatus((prev) => ({
           ...prev,
           electricityBill: { loading: false, verified: true, error: null },
@@ -441,8 +428,6 @@ const ApplicantBusinessDetails = () => {
       }));
     }
   };
-  
-
 
   // 1. Add file upload function
 
@@ -469,7 +454,10 @@ const ApplicantBusinessDetails = () => {
           },
         }
       );
-      if (response.data?.status === true && response.data?.message === "SUCCESS") {
+      if (
+        response.data?.status === true &&
+        response.data?.message === "SUCCESS"
+      ) {
         setVerificationStatus((prev) => ({
           ...prev,
           electricityBill: { loading: false, verified: true, error: null },
@@ -562,12 +550,13 @@ const ApplicantBusinessDetails = () => {
           <p className="text-red-600 text-center">{submitError}</p>
         </div>
       )}
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} method="POST" className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* UDYAM Number */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              UDYAM Number <span className="text-gray-400 font-normal">(Optional)</span>
+              UDYAM Number{" "}
+              <span className="text-gray-400 font-normal">(Optional)</span>
             </label>
             <div className="relative flex gap-2 items-center">
               <input
@@ -579,7 +568,7 @@ const ApplicantBusinessDetails = () => {
                 className={`w-full px-4 py-2.5 rounded-lg border ${
                   errors.udyamNumber ? "border-red-500" : "border-gray-300"
                 } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none`}
-                style={{ textTransform: 'uppercase' }}
+                style={{ textTransform: "uppercase" }}
               />
               <button
                 type="button"
@@ -592,7 +581,11 @@ const ApplicantBusinessDetails = () => {
                   verificationStatus.udyamNumber.verified
                 }
               >
-                {verificationStatus.udyamNumber.loading ? 'Verifying...' : verificationStatus.udyamNumber.verified ? 'Verified' : 'Verify'}
+                {verificationStatus.udyamNumber.loading
+                  ? "Verifying..."
+                  : verificationStatus.udyamNumber.verified
+                  ? "Verified"
+                  : "Verify"}
               </button>
               {verificationStatus.udyamNumber.verified && (
                 <span className="text-green-500 ml-2">✓</span>
@@ -687,7 +680,7 @@ const ApplicantBusinessDetails = () => {
                 className={`w-full px-4 py-2.5 rounded-lg border ${
                   errors.gstNumber ? "border-red-500" : "border-gray-300"
                 } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none`}
-                style={{ textTransform: 'uppercase' }}
+                style={{ textTransform: "uppercase" }}
               />
               <button
                 type="button"
@@ -700,7 +693,11 @@ const ApplicantBusinessDetails = () => {
                   verificationStatus.gstNumber.verified
                 }
               >
-                {verificationStatus.gstNumber.loading ? 'Verifying...' : verificationStatus.gstNumber.verified ? 'Verified' : 'Verify'}
+                {verificationStatus.gstNumber.loading
+                  ? "Verifying..."
+                  : verificationStatus.gstNumber.verified
+                  ? "Verified"
+                  : "Verify"}
               </button>
               {verificationStatus.gstNumber.verified && (
                 <span className="text-green-500 ml-2">✓</span>
@@ -869,124 +866,124 @@ const ApplicantBusinessDetails = () => {
             )}
           </div>
 
+          {/* after bill number verification */}
 
-
-{/* after bill number verification */}
-
-<div className="md:col-span-2">
+          <div className="md:col-span-2">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-    Electricity Bill (Home/Business)
-  </label>
-
-  <div className="flex gap-4 mb-2">
-    <label className="flex items-center">
-      <input
-        type="radio"
-        name="electricityBillInputType"
-        value="upload"
-        checked={electricityBillInputType === "upload"}
-        onChange={() => setElectricityBillInputType("upload")}
-        className="mr-2"
-      />
-      Upload Document
-    </label>
-    <label className="flex items-center">
-      <input
-        type="radio"
-        name="electricityBillInputType"
-        value="number"
-        checked={electricityBillInputType === "number"}
-        onChange={() => setElectricityBillInputType("number")}
-        className="mr-2"
-      />
-      Enter Bill Number
+              Electricity Bill (Home/Business)
             </label>
-  </div>
 
-  {electricityBillInputType === "upload" ? (
-    <div className="relative">
-      <input
-        type="file"
-        name="electricityBill"
-        accept="application/pdf,image/*"
-        onChange={(e) => {
-          setFormData((prev) => ({
-            ...prev,
-            electricityBill: e.target.files[0],
-          }));
-          uploadElectricityBillFile(e.target.files[0]);
-        }}
-        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white"
-      />
-      {verificationStatus.electricityBill.loading && (
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
-        </div>
-      )}
-      {verificationStatus.electricityBill.verified && (
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-500">
-          ✓
-        </div>
-      )}
-      {verificationStatus.electricityBill.error && (
-        <p className="text-red-500 text-sm mt-1">
-          {verificationStatus.electricityBill.error}
-        </p>
-      )}
-    </div>
-  ) : (
-    <div className="space-y-4">
-      <div className="flex flex-wrap gap-2 items-end">
-        <div className="flex-1 min-w-[120px]">
-          <label className="block font-semibold mb-1">Bill Number (Optional)</label>
-            <input
-            type="text"
-            value={userEnteredBillNumber}
-            onChange={(e) => setUserEnteredBillNumber(e.target.value)}
-            className="w-full px-4 py-2 border rounded"
-            placeholder="Enter bill number (optional)"
-            />
+            <div className="flex gap-4 mb-2">
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  name="electricityBillInputType"
+                  value="upload"
+                  checked={electricityBillInputType === "upload"}
+                  onChange={() => setElectricityBillInputType("upload")}
+                  className="mr-2"
+                />
+                Upload Document
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  name="electricityBillInputType"
+                  value="number"
+                  checked={electricityBillInputType === "number"}
+                  onChange={() => setElectricityBillInputType("number")}
+                  className="mr-2"
+                />
+                Enter Bill Number
+              </label>
+            </div>
+
+            {electricityBillInputType === "upload" ? (
+              <div className="relative">
+                <input
+                  type="file"
+                  name="electricityBill"
+                  accept="application/pdf,image/*"
+                  onChange={(e) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      electricityBill: e.target.files[0],
+                    }));
+                    uploadElectricityBillFile(e.target.files[0]);
+                  }}
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white"
+                />
+                {verificationStatus.electricityBill.loading && (
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
+                  </div>
+                )}
+                {verificationStatus.electricityBill.verified && (
+                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-500">
+                    ✓
+                  </div>
+                )}
+                {verificationStatus.electricityBill.error && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {verificationStatus.electricityBill.error}
+                  </p>
+                )}
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-2 items-end">
+                  <div className="flex-1 min-w-[120px]">
+                    <label className="block font-semibold mb-1">
+                      Bill Number (Optional)
+                    </label>
+                    <input
+                      type="text"
+                      value={userEnteredBillNumber}
+                      onChange={(e) => setUserEnteredBillNumber(e.target.value)}
+                      className="w-full px-4 py-2 border rounded"
+                      placeholder="Enter bill number (optional)"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-[120px]">
+                    <label className="block font-semibold mb-1">Operator</label>
+                    <select
+                      value={selectedOperatorCode}
+                      onChange={(e) => setSelectedOperatorCode(e.target.value)}
+                      className="w-full px-4 py-2 border rounded"
+                    >
+                      <option value="">Select Operator</option>
+                      <option value="UP">Uttar Pradesh</option>
+                      <option value="MH">Maharashtra</option>
+                      {/* Add other states as needed */}
+                    </select>
+                  </div>
+                  <button
+                    onClick={() =>
+                      verifyElectricityBill(
+                        userEnteredBillNumber,
+                        selectedOperatorCode
+                      )
+                    }
+                    className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-all mt-6"
+                    disabled={!selectedOperatorCode}
+                  >
+                    Verify Bill
+                  </button>
+                  {verificationStatus.electricityBill.loading && (
+                    <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500 inline-block mt-6"></span>
+                  )}
+                  {verificationStatus.electricityBill.verified && (
+                    <span className="text-green-500 mt-6">✓</span>
+                  )}
+                  {verificationStatus.electricityBill.error && (
+                    <p className="text-red-500 text-sm mt-6">
+                      {verificationStatus.electricityBill.error}
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
-        <div className="flex-1 min-w-[120px]">
-          <label className="block font-semibold mb-1">Operator</label>
-          <select
-            value={selectedOperatorCode}
-            onChange={(e) => setSelectedOperatorCode(e.target.value)}
-            className="w-full px-4 py-2 border rounded"
-          >
-            <option value="">Select Operator</option>
-            <option value="UP">Uttar Pradesh</option>
-            <option value="MH">Maharashtra</option>
-            {/* Add other states as needed */}
-          </select>
-        </div>
-        <button
-          onClick={() => verifyElectricityBill(userEnteredBillNumber, selectedOperatorCode)}
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-all mt-6"
-          disabled={!selectedOperatorCode}
-        >
-          Verify Bill
-        </button>
-        {verificationStatus.electricityBill.loading && (
-          <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500 inline-block mt-6"></span>
-        )}
-        {verificationStatus.electricityBill.verified && (
-          <span className="text-green-500 mt-6">✓</span>
-        )}
-        {verificationStatus.electricityBill.error && (
-          <p className="text-red-500 text-sm mt-6">{verificationStatus.electricityBill.error}</p>
-        )}
-      </div>
-    </div>
-  )}
-</div>
-
-
-
-
-
-
-
 
           {/* Business Photo Upload */}
           <div className="md:col-span-2">

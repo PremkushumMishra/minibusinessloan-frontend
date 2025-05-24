@@ -1,56 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_CONFIG from "../config";
-const CUSTOMER_ID = "TABL004"; // TODO: Make dynamic if needed
+const CUSTOMER_ID = "MBLC0028"; 
+// TODO: Make dynamic if needed
+
+
 
 const BankStatement = () => {
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isDropdownClicked, setIsDropdownClicked] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [pendingValue, setPendingValue] = useState('');
 
-  const fetchOptions = async () => {
-    if (options.length > 0) return;
-    setLoading(true);
-    setError('');
-    try {
-      const token = localStorage.getItem("authToken");
-      const response = await axios.get(
-        `${API_CONFIG.BASE_URL}/sourcing/get-statement-options`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
+  // Fetch options on mount
+  useEffect(() => {
+    const fetchOptions = async () => {
+      setLoading(true);
+      setError('');
+      try {
+        const token = localStorage.getItem("authToken");
+        const response = await axios.get(
+          `${API_CONFIG.BASE_URL}/sourcing/get-statement-options`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        );
+        if (
+          response.data?.status === true &&
+          response.data?.message === "SUCCESS"
+        ) {
+          setOptions(response.data.data);
+        } else {
+          setOptions([]);
+          setError("Failed to fetch statement options.");
         }
-      );
-      console.log('Bank statement options API response:', response);
-      if (
-        response.data?.status === true &&
-        response.data?.message === "SUCCESS" &&
-        Array.isArray(response.data?.data)
-      ) {
-        setOptions(response.data.data);
-      } else {
+      } catch {
         setOptions([]);
-        setError("Failed to fetch statement options.");
+        setError("Network error. Please try again.");
       }
-    } catch {
-      setOptions([]);
-      setError("Network error. Please try again.");
-    }
-    setLoading(false);
-  };
+      setLoading(false);
+    };
+    fetchOptions();
+  }, []);
 
-  const handleSelect = (e) => {
-    const value = e.target.value;
-    setPendingValue(value);
-    setSuccess('');
-    setError('');
-  };
+  console.log("options >>>> ", options);
 
   const handleContinue = async () => {
     if (!pendingValue) return;
@@ -75,7 +73,6 @@ const BankStatement = () => {
           },
         }
       );
-      console.log('Initiate bank statement API response:', response);
       if (response.data?.status === true && response.data?.message === "SUCCESS") {
         if (response.data?.data?.tempUrl) {
           window.open(response.data.data.tempUrl, '_blank');
@@ -92,53 +89,43 @@ const BankStatement = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-200 via-purple-100 to-blue-100 py-16 px-2">
-      <div className="max-w-lg w-full mx-auto">
-        <div className="text-center mb-12 animate-bounce-in">
-          <span className="text-7xl md:text-8xl drop-shadow-xl mb-2 block">📄</span>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 tracking-tight mb-2 font-sans">Upload Your Bank Statement</h1>
-          <span className="text-lg font-semibold text-blue-500">(last 6 months)</span>
-          <div className="w-16 h-1 mx-auto my-4 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 rounded-full opacity-60"></div>
-          <div className="mt-2 text-lg md:text-xl text-gray-700 font-medium">Select your preferred method to continue</div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-200 via-purple-100 to-blue-100 py-8 px-2">
+      <div className="max-w-md w-full mx-auto">
+        <div className="text-center mb-8 animate-bounce-in">
+          <span className="text-4xl md:text-5xl drop-shadow-xl mb-1 block">📄</span>
+          <h1 className="text-2xl md:text-3xl font-bold text-blue-900 tracking-tight mb-1 font-sans">Borrower Bank Statement</h1>
+          <span className="text-sm font-medium text-blue-500">Please Provide Bank Statement For At Least 6 Months.</span>
+          <div className="w-12 h-1 mx-auto my-2 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 rounded-full opacity-60"></div>
+          <div className="mt-1 text-base md:text-lg text-gray-700 font-medium">Select Bank Statement Method</div>
         </div>
-        <div className="p-10 bg-white/80 backdrop-blur-2xl rounded-3xl shadow-2xl border border-blue-100">
-          <label className="block text-lg font-bold mb-4 text-[#003366] text-center">
-            Select Bank Statement Method
-          </label>
-          <div className="relative">
-            <select
-              className="w-full px-5 py-3 rounded-lg border border-blue-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white text-gray-800 text-base appearance-none shadow-sm"
-              value={pendingValue}
-              onChange={handleSelect}
-              onClick={() => {
-                if (!isDropdownClicked) {
-                  fetchOptions();
-                  setIsDropdownClicked(true);
-                }
-              }}
-            >
-              <option value="">Choose Method</option>
-              {loading && <option disabled>Loading...</option>}
-              {options.map((opt) => (
-                <option key={opt.id} value={opt.code}>{opt.serviceType}</option>
-              ))}
-            </select>
-            {/* Custom dropdown arrow */}
-            <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-blue-600">
-              <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
-                <path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-          </div>
+        <div className="p-5">
           {error && (
-            <p className="text-red-600 text-sm font-semibold mt-2 text-center">{error}</p>
+            <p className="text-red-600 text-xs font-semibold mb-2 text-center">{error}</p>
           )}
           {success && (
-            <p className="text-green-600 text-sm font-semibold mt-2 text-center">{success}</p>
+            <p className="text-green-600 text-xs font-semibold mb-2 text-center">{success}</p>
           )}
+          <div className="flex flex-row gap-4 justify-center items-stretch w-full">
+            {loading && (
+              <div className="text-center text-blue-600 font-medium py-2 text-sm">Loading...</div>
+            )}
+            {!loading && options.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-all duration-200 shadow-sm bg-white hover:border-blue-500 hover:shadow-md border-gray-200"
+                onClick={() => setPendingValue(item.serviceType)}
+              >
+                <div className="flex items-center gap-2">
+                <span className="text-xl">{item.serviceType==="Account Aggregator" ? "🔗" : item.serviceType==="Net Banking" ? "🏛️" : "📄"}</span>
+                  <span className="font-medium text-base">{item.serviceType}</span>
+                </div>
+
+              </div>
+            ))}
+          </div>
           {pendingValue && (
             <button
-              className="mt-8 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-3 rounded-2xl font-bold text-lg shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 glow-btn"
+              className="mt-6 w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-xl font-bold text-base shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 glow-btn"
               onClick={handleContinue}
               disabled={loading}
             >

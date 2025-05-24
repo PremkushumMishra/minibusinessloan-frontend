@@ -58,7 +58,7 @@ const AdditionalInfo = () => {
         //   localStorage.setItem("clientId",clientId);
         //   console.log("✅ Success! Navigating to co-applicant...");
         // }
-        // setSuccess("data submitted successfylly");
+        setSuccess("data submitted successfylly");
         console.log("✅ Success! Navigating to co-applicant...");
         setTimeout(() => {
           navigate("/co-applicant");
@@ -85,7 +85,6 @@ const AdditionalInfo = () => {
     try {
       const token = localStorage.getItem("authToken");
       const response = await axios.get(
-        // "http://10.6.3.90:3000/api/v1/get/user/details/web",
         `${API_CONFIG.BASE_URL}/get/user/details/web`,
         {
           headers: {
