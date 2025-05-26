@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const LoanCalculator = () => {
+const   LoanCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(5000);
   const [days, setDays] = useState(30);
   const interestRate = 20; // 20% flat interest
@@ -57,7 +57,7 @@ const LoanCalculator = () => {
                     setLoanAmount(val);
                   }
                 }}
-                className="w-full max-w-md h-12 px-3 py-1 border border-[#003366] rounded-lg text-[#003366] font-semibold text-base focus:outline-none focus:ring-2 focus:ring-[#505050] bg-[#F0F0F0] mb-1"
+                className="w-full max-w-lg h-12 px-3 py-1 border border-[#003366] rounded-lg text-[#003366] font-semibold text-base focus:outline-none focus:ring-2 focus:ring-[#505050] bg-[#F0F0F0] mb-1"
               />
               <input
                 type="range"
@@ -66,7 +66,7 @@ const LoanCalculator = () => {
                 step="1"
                 value={loanAmount}
                 onChange={(e) => setLoanAmount(Number(e.target.value))}
-                className="w-full max-w-md accent-[#505050] h-1 bg-gray-200 rounded-lg"
+                className="w-full max-w-lg accent-[#505050] h-1 bg-gray-200 rounded-lg"
               />
             </div>
 
@@ -87,7 +87,7 @@ const LoanCalculator = () => {
                   if (val > 100) val = 100;
                   setDays(val);
                 }}
-                className="w-full max-w-md px-3 py-2 h-12 border border-[#003366] rounded-lg text-[#003366] font-semibold text-base focus:outline-none focus:ring-2 focus:ring-[#E53935] bg-[#F0F0F0] mb-1"
+                className="w-full max-w-lg px-3 py-2 h-12 border border-[#003366] rounded-lg text-[#003366] font-semibold text-base focus:outline-none focus:ring-2 focus:ring-[#E53935] bg-[#F0F0F0] mb-1"
               />
               <input
                 type="range"
@@ -96,7 +96,7 @@ const LoanCalculator = () => {
                 step="1"
                 value={days}
                 onChange={(e) => setDays(Number(e.target.value))}
-                className="w-full max-w-md accent-[#505050] h-1 bg-gray-200 rounded-lg"
+                className="w-full max-w-lg accent-[#505050] h-1 bg-gray-200 rounded-lg"
               />
             </div>
 
@@ -140,13 +140,13 @@ const LoanCalculator = () => {
                   </div>
                 </div>
                 {/* Right side: Apply Now button with double circle */}
-                <div className="relative flex items-center justify-center ml-2">
+                <div className="relative flex items-center justify-center ml-4">
                   {/* Back circle */}
-                  <div className="absolute -left-3 top-3 w-20 h-20 md:w-26 md:h-26 bg-[#1575E5CC] rounded-full z-0 animate-pulse-custom"></div>
+                  <div className="absolute -left-13 top-3 w-20 h-20 md:w-26 md:h-25 bg-[#1575E5CC] rounded-full z-0 animate-pulse-custom"></div>
                   {/* Front circle with button */}
                   <Link to="/mobile-verification">
                     <button
-                      className="relative w-20 h-20 md:w-26 md:h-26 bg-[#045382] rounded-full flex items-center justify-center text-white font-medium z-10 shadow-lg text-sm md:text-base transition-transform transition-shadow duration-200 hover:scale-105 hover:shadow-2xl active:scale-95"
+                      className="relative w-20 h-20 md:w-26 md:h-26 bg-[#045382] rounded-full flex items-center -left-12 justify-center text-white font-medium z-10 shadow-lg text-sm md:text-base transition-transform transition-shadow duration-200 hover:scale-105 hover:shadow-2xl active:scale-95"
                       style={{ fontFamily: 'Poppins' }}
                     >
                       Apply Now

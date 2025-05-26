@@ -24,10 +24,12 @@ import NameEmailVerify from "../components/NameEmailVerify";
 import Hindi from "./Hindi";
 import Frequently from "../components/Frequently";
 import NewWhy from "../components/NewWhy"
+import MblSanctionlatter from "./MblSanctionlatter";
 const Home = () => {
   return (
     <>
       {/* <div className="pt-20">  */}
+      {/* <MblSanctionlatter/> */}
       <TalkingLoan />
       {/* <Hindi/> */}
       <EligibleProfile/>
@@ -35,7 +37,7 @@ const Home = () => {
       {/* <NewWhy/> */}
       <WhyChoose />
     
-      <LoanCalculator />
+          <LoanCalculator />
       {/* <BsaRejectes/> */}
       <PublicReview />
       <AppDownload/>  

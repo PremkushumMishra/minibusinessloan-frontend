@@ -105,7 +105,7 @@ const ContactUs = () => {
         <div className="w-full bg-[#E8E8E8] rounded-t-2xl rounded-bl-2xl overflow-hidden flex items-center justify-center h-96 md:h-[500px]">
           <iframe
             title="Our Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.019282019994!2d77.2780!3d28.6270!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3a2e2e2e2e2%3A0x1234567890abcdef!2sLalita%20Park%2C%20Gurudwara%2C%20New%20Delhi%2C%20Delhi%20110092%2C%20India!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1752.7652272189698!2d77.14594892047522!3d28.52377151197654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1e800fc85b13%3A0x56939bf707597244!2sGanga%20Apartments!5e0!3m2!1sen!2sin!4v1748089679741!5m2!1sen!2sin"
             width="100%"
             height="100%"
             style={{ border: 0 }}
