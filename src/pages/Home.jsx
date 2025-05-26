@@ -39,7 +39,8 @@ const Home = () => {
     
           <LoanCalculator />
       {/* <BsaRejectes/> */}
-      <PublicReview />
+       <PublicReview /> *
+
       <AppDownload/>  
 
       <Frequently/>
@@ -53,7 +54,7 @@ const Home = () => {
       {/* <LoanEligiblity/> */}
       {/* <AdditionalInfo/> */}
       {/* <BankStatement/> */}
-      {/* <ChatBot/> */}
+      <ChatBot/>
       </>
   );
 };

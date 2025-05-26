@@ -490,9 +490,12 @@ const MobileVerification = () => {
   const API_CONFIG = {
     // local host url
     // BASE_URL: "http://10.6.3.32:3000/api/v1",
-    BASE_URL: "http://localhost:3000/api/v1",
+    // BASE_URL: "http://localhost:3000/api/v1",
     // live url
     // BASE_URL: "http://103.104.73.107:3004/api/v1",
+    // prod url
+    BASE_URL: "https://backend.minibusinessloan.com",
+    
     ENDPOINTS: {
       SEND_OTP: "/send-otp",
       VERIFY_OTP: "/verify-otp",
@@ -549,6 +552,8 @@ const MobileVerification = () => {
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
       ) {
+        // using local storage
+        // localStorage.setItem("client_id", response.data?.data?.client_id);
         // receive client_id
         const receivedClientId = response.data?.data?.client_id;
         setClientId(receivedClientId);

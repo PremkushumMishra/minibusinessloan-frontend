@@ -25,6 +25,12 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+
+const handleApplyNow=()=>{
+console.log('apply now clicked') 
+
+}
+
   return (
     <>
       <div className="w-full bg-[#D9D9D9] py-2 px-8">
@@ -50,7 +56,7 @@ const Navbar = () => {
             </div>
             {/* Right Side Apply Now Button */}
             <Link to="/mobile-verification" className="ml-4">
-              <button className="bg-[#003366] text-white px-6 py-2 font-bold hover:bg-[#E53935] transition-all rounded-t-xl rounded-bl-xl rounded-br-none">
+              <button onClick ={handleApplyNow} className="bg-[#003366] text-white px-6 py-2 font-bold hover:bg-[#E53935] transition-all rounded-t-xl rounded-bl-xl rounded-br-none">
                 Apply Now
               </button>
             </Link>

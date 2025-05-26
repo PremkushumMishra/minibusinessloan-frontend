@@ -44,7 +44,7 @@ const AppDownload = () => {
       {/* Right: Mobile Image (Desktop) */}
       <div className="hidden md:block absolute right-4 bottom-0 translate-x-2 z-0 max-w-[35%]">
         <img
-          src="/appdownload.png"
+          src="/appdownloadpic.png"
           alt="App Download"
           className="w-full h-auto object-contain"
         />

@@ -36,7 +36,7 @@ const NextArrow = (props) => {
   return (
     <button
       type="button"
-      className="group slick-arrow slick-next relative overflow-hidden !flex !items-center !justify-center !rounded-full !w-14 !h-14 sm:!w-20 sm:!h-20 !absolute !-right-4 sm:!-right-20 mt-6 sm:mt-10 top-[70%] -translate-y-1/2 z-10 border border-gray-200"
+      className="group slick-arrow slick-next relative overflow-hidden !flex !items-center !justify-center !rounded-full !w-14 !h-14 sm:!w-20 sm:!h-20 !absolute !-right-4 sm:!-right-20 mt-6  sm:mt-10 top-[70%] -translate-y-1/2 z-10 border border-gray-200"
       onClick={onClick}
       aria-label="Next"
     >
@@ -69,7 +69,7 @@ const PublicReview = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 800,
+    speed: 1000,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
@@ -92,7 +92,7 @@ const PublicReview = () => {
 
   return (
     <div className="bg-[#ffffff] py-2 min-h-[60vh] flex items-center">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 mt-10 mb-10 w-full">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 mt-10 mb-12 w-full">
         <h2
           className="mx-auto text-center mb-4 sm:mb-12"
           style={{
