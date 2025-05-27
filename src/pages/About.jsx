@@ -5,11 +5,13 @@ const About = () => {
     <div className="min-h-screen py-6 bg-white">
       {/* Hero Section */}
       <div
-        className="w-full bg-[#003366] max-w-6xl mx-auto mb-10 rounded-t-3xl rounded-bl-3xl overflow-hidden shadow-lg relative"
+        // className="w-full bg-[#003366] max-w-screen-lg mx-auto mb-10 rounded-t-3xl rounded-bl-3xl overflow-hidden shadow-lg relative"
+
+        className="w-full bg-[#003366] max-w-[95%] mx-auto mb-10 rounded-t-3xl rounded-bl-3xl overflow-hidden shadow-lg relative"
         style={{ minHeight: 320 }}
       >
         <img
-          src="/aboutus.png"
+          src="/abouheropic.png"
           alt="About Hero"
           className="w-full h-[320px] md:h-[420px] object-cover object-center opacity-60"
         />
@@ -28,6 +30,44 @@ const About = () => {
             empower small businesses with the capital and confidence they need
             to succeed and grow.
           </p>
+        </div>
+      </div>
+
+      {/* Our Story Section */}
+      <div className="mb-12 flex flex-col items-center justify-center">
+        <h2 className="text-3xl text-[#003366] mb-8 text-center">
+          Our Core Values
+        </h2>
+        <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center">
+          {/* Card 1 */}
+          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
+            <div className="font-poppins font-semibold text-lg md:text-xl mb-2">
+              Innovation
+            </div>
+            <div className="font-poppins text-base text-[#222]">
+              Embracing cutting-edge technologies while respecting traditional
+              wisdom.
+            </div>
+          </div>
+          {/* Card 2 */}
+          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
+            <div className="font-poppins font-semibold text-lg md:text-xl mb-2">
+              Excellence
+            </div>
+            <div className="font-poppins text-base text-[#222]">
+              Delivering world-class solutions with Indian values and global
+              standards.
+            </div>
+          </div>
+          {/* Card 3 */}
+          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
+            <div className="font-poppins font-semibold text-lg md:text-xl mb-2">
+              Integrity
+            </div>
+            <div className="font-poppins text-base text-[#222]">
+              Building trust through transparent and ethical business practices.
+            </div>
+          </div>
         </div>
       </div>
 
@@ -124,45 +164,6 @@ const About = () => {
             <div>
               <div className="text-4xl font-bold mb-2">20+</div>
               <p className="font-bold">Branches</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Our Story Section */}
-        <div className="mb-12 flex flex-col items-center justify-center">
-          <h2 className="text-3xl text-[#003366] mb-8 text-center">
-            Our Core Values
-          </h2>
-          <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center">
-            {/* Card 1 */}
-            <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
-              <div className="font-poppins font-semibold text-lg md:text-xl mb-2">
-                Innovation
-              </div>
-              <div className="font-poppins text-base text-[#222]">
-                Embracing cutting-edge technologies while respecting traditional
-                wisdom.
-              </div>
-            </div>
-            {/* Card 2 */}
-            <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
-              <div className="font-poppins font-semibold text-lg md:text-xl mb-2">
-                Excellence
-              </div>
-              <div className="font-poppins text-base text-[#222]">
-                Delivering world-class solutions with Indian values and global
-                standards.
-              </div>
-            </div>
-            {/* Card 3 */}
-            <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
-              <div className="font-poppins font-semibold text-lg md:text-xl mb-2">
-                Integrity
-              </div>
-              <div className="font-poppins text-base text-[#222]">
-                Building trust through transparent and ethical business
-                practices.
-              </div>
             </div>
           </div>
         </div>

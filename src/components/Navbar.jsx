@@ -45,7 +45,7 @@ const Navbar = () => {
     <>
       {/* Top container with responsive padding */}
       <div className="w-full bg-[#D9D9D9] py-1 sm:py-2 px-2 sm:px-4 lg:px-8">
-        <nav className="max-w-7xl mx-auto bg-white rounded-t-2xl sm:rounded-t-3xl rounded-bl-2xl sm:rounded-bl-3xl shadow flex items-center justify-between px-2 sm:px-4 md:px-6 lg:px-8 h-16 sm:h-18 md:h-20">
+        <nav className="max-w-full mx-auto bg-white rounded-t-2xl sm:rounded-t-3xl rounded-bl-2xl sm:rounded-bl-3xl shadow flex items-center justify-between px-2 sm:px-4 md:px-6 lg:px-8 h-16 sm:h-18 md:h-20">
           
           {/* Logo - Responsive sizing */}
           <Link to="/" className="flex items-center h-full flex-shrink-0">
