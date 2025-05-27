@@ -34,7 +34,7 @@ const About = () => {
       </div>
 
       {/* Our Story Section */}
-      <div className="mb-12 flex flex-col items-center justify-center">
+      <div className="mb-12 w-full flex flex-col items-center justify-center">
         <h2 className="text-3xl text-[#003366] mb-8 text-center">
           Our Core Values
         </h2>
