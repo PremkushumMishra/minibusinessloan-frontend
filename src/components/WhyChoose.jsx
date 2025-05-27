@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 // Inline SVGs for pixel-perfect match (replace with your own SVGs if needed)
 const icons = [
@@ -274,32 +275,73 @@ const WhyChoose = () => {
     color: '#fff',
   };
 
+  // Animation variants
+  const fadeSlideUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+  };
+  const fadeScale = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1 },
+  };
+  const slideLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+  };
+  const slideRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+  };
+  const slideBottom = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="bg-[#0D4183] py-6 md:py-12 rounded-t-3xl rounded-bl-3xl text-[#FFFFFF] px-3 md:px-8 overflow-hidden">
-      <h2
+      <motion.h2
         className="text-center mb-2 md:mb-4 animate-grow"
         style={headingStyle}
+        variants={fadeSlideUp}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.7, delay: 0.1 }}
       >
         Why Choose Us?
-      </h2>
-      <p
+      </motion.h2>
+      <motion.p
         style={subheadingStyle}
         className="mb-4 md:mb-10 px-2 animate-slide-up"
+        variants={fadeSlideUp}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.7, delay: 0.25 }}
       >
         Smart financing solutions for every business.
         Transparent, reliable, and built for your success.
-      </p>
+      </motion.p>
       {/* Desktop/Laptop/Tablet layout */}
       <div className="hidden md:flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 relative max-w-6xl mx-auto">
         {/* Left Features (2) */}
         <div className="flex-1 flex flex-col gap-4 md:gap-8 items-end justify-center mt-4 lg:mt-15 mr-0 lg:mr-13 w-full lg:w-auto px-2">
           {features.slice(0, 2).map((f, i) => (
-            <div key={i} className="flex items-start gap-1 max-w-xs w-full animate-slide-from-left" style={{ animationDelay: `${i * 0.2}s` }}>
-              <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0 overflow-hidden -mt-1 md:-mt-2">
+            <motion.div
+              key={i}
+              className="flex items-start gap-1 max-w-xs w-full animate-slide-from-left"
+              variants={slideLeft}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.7, delay: 0.3 + i * 0.2 }}
+            >
+              <motion.div
+                className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0 overflow-hidden -mt-1 md:-mt-2"
+                whileHover={{ scale: 1.15, rotate: 8 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <span className="w-5 h-5 md:w-7 md:h-7 flex items-center justify-center desktop-icon">
                   {f.whiteIcon}
                 </span>
-              </div>
+              </motion.div>
               <div className="flex flex-col justify-center min-h-[40px] md:min-h-[48px]">
                 <div className="flex items-center gap-1">
                   <h3
@@ -316,27 +358,44 @@ const WhyChoose = () => {
                   {f.text}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         {/* Center: Replace circle with image */}
-        <div className="flex flex-col items-center justify-center relative mx-1 md:mx-5 my-4 md:my-8">
+        <motion.div
+          className="flex flex-col items-center justify-center relative mx-1 md:mx-5 my-4 md:my-8"
+          variants={fadeScale}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
           <img
             src="/whycircle.png"
             alt="Why Choose Us Circle"
             className="max-w-full h-auto object-contain"
             style={{ width: 'min(400px, 95vw)' }}
           />
-        </div>
+        </motion.div>
         {/* Right Features (2) */}
         <div className="flex-1 flex flex-col gap-4 md:gap-8 mt-4 lg:mt-15 items-start justify-center ml-0 lg:ml-13 w-full lg:w-auto px-2">
           {features.slice(3, 5).map((f, i) => (
-            <div key={i} className="flex items-start gap-1 max-w-xs w-full animate-slide-from-right" style={{ animationDelay: `${i * 0.2}s` }}>
-              <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0 overflow-hidden -mt-1 md:-mt-2">
+            <motion.div
+              key={i}
+              className="flex items-start gap-1 max-w-xs w-full animate-slide-from-right"
+              variants={slideRight}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.7, delay: 0.3 + i * 0.2 }}
+            >
+              <motion.div
+                className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0 overflow-hidden -mt-1 md:-mt-2"
+                whileHover={{ scale: 1.15, rotate: -8 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <span className="w-5 h-5 md:w-7 md:h-7 flex items-center justify-center desktop-icon">
                   {f.whiteIcon}
                 </span>
-              </div>
+              </motion.div>
               <div className="flex flex-col justify-center min-h-[40px] md:min-h-[48px]">
                 <div className="flex items-center gap-1">
                   <h3
@@ -353,19 +412,30 @@ const WhyChoose = () => {
                   {f.text}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
       {/* Bottom Features (2) */}
       <div className="hidden md:flex flex-col md:flex-row justify-center mt-4 md:mt-12 px-2 gap-0">
         {features.slice(2, 4).map((f, i) => (
-          <div key={i} className="flex items-start gap-1 max-w-xs w-full mx-auto animate-slide-from-bottom" style={{ animationDelay: `${i * 0.2}s` }}>
-            <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0 overflow-hidden -mt-1 md:-mt-2">
+          <motion.div
+            key={i}
+            className="flex items-start gap-1 max-w-xs w-full mx-auto animate-slide-from-bottom"
+            variants={slideBottom}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.7, delay: 0.7 + i * 0.2 }}
+          >
+            <motion.div
+              className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0 overflow-hidden -mt-1 md:-mt-2"
+              whileHover={{ scale: 1.15 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
               <span className="w-5 h-5 md:w-7 md:h-7 flex items-center justify-center desktop-icon">
                 {f.whiteIcon}
               </span>
-            </div>
+            </motion.div>
             <div className="flex flex-col justify-center min-h-[40px] md:min-h-[48px]">
               <div className="flex items-center gap-1">
                 <h3
@@ -382,40 +452,53 @@ const WhyChoose = () => {
                 {f.text}
               </p>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       {/* Mobile layout: image on top, 6 cards below */}
       <div className="flex flex-col items-center md:hidden w-full mt-6">
         {/* Circle graphic replaced with image */}
-        <div className="flex flex-col items-center justify-center relative mx-auto mb-4">
+        <motion.div
+          className="flex flex-col items-center justify-center relative mx-auto mb-4"
+          variants={fadeScale}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <img
             src="/whycircle.png"
             alt="Why Choose Us Circle"
             className="max-w-full h-auto object-contain"
             style={{ width: '220px', height: '220px' }}
           />
-        </div>
+        </motion.div>
         {/* 6 cards, vertically stacked below the image */}
         <div className="flex flex-col items-center gap-4 w-full max-w-xs mx-auto mt-2">
           {features.map((f, i) => (
-            <div
+            <motion.div
               key={i}
               className="flex flex-col items-center bg-white rounded-xl shadow-sm p-4 w-full animate-slide-from-bottom"
-              style={{ animationDelay: `${i * 0.2}s` }}
+              variants={slideBottom}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.7, delay: 0.3 + i * 0.15 }}
             >
-              <div className="w-10 h-10 flex items-center justify-center mb-2 bg-[#F5F5F5] rounded-full">
+              <motion.div
+                className="w-10 h-10 flex items-center justify-center mb-2 bg-[#F5F5F5] rounded-full"
+                whileHover={{ scale: 1.18, rotate: 8 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <span className="w-7 h-7 flex items-center justify-center">
                   {f.icon}
                 </span>
-              </div>
+              </motion.div>
               <h3 className="text-base font-semibold text-[#0D4183] text-center mb-1" style={{ fontFamily: 'Poppins' }}>
                 {f.title}
               </h3>
               <p className="text-xs text-[#0D4183] text-center" style={{ fontFamily: 'Poppins' }}>
                 {f.text}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

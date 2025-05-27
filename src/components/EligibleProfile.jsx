@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const images = [
   { src: "/amanimage.jpg" },
@@ -20,7 +21,7 @@ const EligibleProfile = () => {
           <h1
             className="font-poppins font-medium text-2xl md:text-3xl lg:text-4xl text-[#0D4183] mb-2 text-center"
             style={{
-              lineHeight: '140%',
+              lineHeight: "140%",
               letterSpacing: 0,
               fontWeight: 500,
             }}
@@ -28,39 +29,32 @@ const EligibleProfile = () => {
             Who Can Apply for This Loan?
           </h1>
         </div>
-        {/* <div
-          className="mx-auto mb-2 mt-2"
-          style={{
-            width: 120,
-            height: 6,
-            borderRadius: 6,
-            backgroundColor: "#003366",
-          }}
-        /> */}
+
         <p
           className="font-poppins text-base md:text-lg lg:text-xl text-[#222] font-normal mx-auto"
           style={{
-            lineHeight: '140%',
+            lineHeight: "140%",
             letterSpacing: 0,
-            textAlign: 'center',
+            textAlign: "center",
             fontWeight: 400,
-            maxWidth: '28rem',
+            maxWidth: "28rem",
           }}
         >
           If you run a business or earn a steady income, <br className="hidden sm:block" /> you might be eligible!
         </p>
+
         {/* Profile Names */}
         <div
           className="font-poppins text-center mt-4 md:mt-10 text-sm sm:text-base md:text-lg lg:text-xl"
           style={{
             fontWeight: 500,
-            lineHeight: '140%',
+            lineHeight: "140%",
             letterSpacing: 0,
           }}
         >
           <span
             className="font-poppins font-medium text-[20px] leading-[140%] text-center"
-            style={{ letterSpacing: 0, color: '#0D4059', display: 'block' }}
+            style={{ letterSpacing: 0, color: "#0D4059", display: "block" }}
           >
             Retail Shop Owner, Small Manufacturer, Service Provider, <br className="hidden sm:block" /> Wholesaler, Street Food Vendor
           </span>
@@ -72,13 +66,19 @@ const EligibleProfile = () => {
         {/* Mobile view (single column) */}
         <div className="grid grid-cols-1 gap-6 sm:hidden">
           {images.map((img, idx) => (
-            <div key={idx} className="flex justify-center">
-              <div
-                className="relative rounded-3xl w-full max-w-xs"
-                style={{
-                  animation: `fadeInUp 0.7s ease ${0.1 * idx + 0.2}s both`,
-                }}
-              >
+            <motion.div
+              key={idx}
+              className="flex justify-center"
+              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              whileHover={{ scale: 1.05, y: -10 }} // Hover effect
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+                delay: 0.3 * idx,
+              }}
+            >
+              <div className="relative rounded-3xl w-full max-w-xs">
                 <div className="relative group flex justify-center">
                   <div className="w-full h-48 md:h-60 rounded-2xl flex justify-center items-center mx-auto">
                     <img
@@ -90,20 +90,26 @@ const EligibleProfile = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Tablet view (3 columns) */}
         <div className="hidden sm:grid md:hidden grid-cols-3 gap-6">
           {images.map((img, idx) => (
-            <div key={idx} className="flex justify-center px-2">
-              <div
-                className="relative rounded-3xl w-full"
-                style={{
-                  animation: `fadeInUp 0.7s ease ${0.1 * idx + 0.2}s both`,
-                }}
-              >
+            <motion.div
+              key={idx}
+              className="flex justify-center px-2"
+              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              whileHover={{ scale: 1.05, y: -10 }} // Hover effect
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+                delay: 0.3 * idx,
+              }}
+            >
+              <div className="relative rounded-3xl w-full">
                 <div className="relative group flex justify-center">
                   <div className="w-full h-40 rounded-2xl flex justify-center items-center mx-auto">
                     <img
@@ -115,7 +121,7 @@ const EligibleProfile = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -129,13 +135,19 @@ const EligibleProfile = () => {
             if (idx === 1 || idx === 3) sizeClass = "h-52 lg:h-64"; // 2nd & 4th: slightly smaller
 
             return (
-              <div key={idx} className="flex justify-center px-1">
-                <div
-                  className="relative rounded-3xl w-full"
-                  style={{
-                    animation: `fadeInUp 0.7s ease ${0.1 * idx + 0.2}s both`,
-                  }}
-                >
+              <motion.div
+                key={idx}
+                className="flex justify-center px-1"
+                initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                whileHover={{ scale: 1.05, y: -10 }} // Hover effect
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  delay: 0.3 * idx,
+                }}
+              >
+                <div className="relative rounded-3xl w-full">
                   <div className="relative group flex justify-center">
                     <div
                       className={`w-full rounded-2xl flex justify-center items-center mx-auto ${sizeClass}`}
@@ -149,25 +161,11 @@ const EligibleProfile = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
       </div>
-
-      {/* CSS Animation */}
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   );
 };

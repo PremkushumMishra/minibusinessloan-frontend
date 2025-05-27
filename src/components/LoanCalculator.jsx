@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
+import { motion } from "framer-motion";
 import 'react-toastify/dist/ReactToastify.css';
 
-const   LoanCalculator = () => {
+const LoanCalculator = () => {
   const [loanAmount, setLoanAmount] = useState(5000);
   const [days, setDays] = useState(30);
   const interestRate = 20; // 20% flat interest
@@ -11,13 +12,55 @@ const   LoanCalculator = () => {
   const totalInterest = (loanAmount * interestRate) / 100;
   const payableAmount = loanAmount + totalInterest;
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { 
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <div className="min-h-[40vh] flex items-center justify-center mt-10 bg-white py-4">
-<div className="w-full max-w-6xl mx-auto px-1">
-<div className="flex flex-col md:flex-row bg-[#E8E8E8] rounded-3xl shadow-xl overflow-hidden md:h-[480px]">
+      <div className="w-full max-w-6xl mx-auto px-1">
+        <motion.div 
+          className="flex flex-col md:flex-row bg-[#E8E8E8] rounded-3xl shadow-xl overflow-hidden md:h-[480px]"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Left Side */}
-          <div className="flex-1 flex flex-col justify-center gap-3 px-4 py-6 h-full">
-            <h2
+          <motion.div 
+            className="flex-1 flex flex-col justify-center gap-3 px-4 py-6 h-full"
+            variants={itemVariants}
+          >
+            <motion.h2
               className="mb-1"
               style={{
                 fontFamily: 'Poppins',
@@ -27,10 +70,11 @@ const   LoanCalculator = () => {
                 letterSpacing: 0,
                 color: '#045382',
               }}
+              variants={itemVariants}
             >
               EMI Calculator
-            </h2>
-            <div className="mb-1">
+            </motion.h2>
+            <motion.div className="mb-1" variants={itemVariants}>
               <label className="flex justify-between font-medium text-[#003366] mb-1 text-sm md:text-base">
                 Loan Amount
                 <span className="font-bold text-[#E53935] ml-2">
@@ -68,9 +112,9 @@ const   LoanCalculator = () => {
                 onChange={(e) => setLoanAmount(Number(e.target.value))}
                 className="w-full max-w-lg accent-[#505050] h-1 bg-gray-200 rounded-lg"
               />
-            </div>
+            </motion.div>
 
-            <div className="mb-1">
+            <motion.div className="mb-1" variants={itemVariants}>
               <label className="flex justify-between font-medium text-[#003366] mb-1 text-sm md:text-base">
                 Number of Days
                 <span className="font-bold text-[#505050] ml-2"></span>
@@ -98,9 +142,9 @@ const   LoanCalculator = () => {
                 onChange={(e) => setDays(Number(e.target.value))}
                 className="w-full max-w-lg accent-[#505050] h-1 bg-gray-200 rounded-lg"
               />
-            </div>
+            </motion.div>
 
-            <div className="mb-1">
+            <motion.div className="mb-1" variants={itemVariants}>
               <label
                 className="flex font-medium mb-1 mt-1 ml-3 text-sm md:text-base"
                 style={{
@@ -112,14 +156,16 @@ const   LoanCalculator = () => {
                   color: '#505050',
                 }}
               >
-                {/* Interest Rate: */}
                 <span className="font-bold ml-2" style={{ color: '#505050' }}>
                   {/* 20% per month (fixed) */}
                 </span>
               </label>
               <div className="flex flex-row items-center justify-between gap-4 mt-6 mb-2 w-full">
                 {/* Left side: summary */}
-                <div className="flex flex-col gap-2">
+                <motion.div 
+                  className="flex flex-col gap-2"
+                  variants={itemVariants}
+                >
                   <div className="flex flex-row font-medium whitespace-nowrap" style={{ fontFamily: 'Poppins', fontWeight: 500, fontSize: '16px', lineHeight: '140%', letterSpacing: 0, color: '#505050' }}>
                     <span>Interest Rate:</span>
                     <span className="ml-2 font-bold" style={{ color: '#505050' }}>
@@ -138,34 +184,58 @@ const   LoanCalculator = () => {
                       ₹{totalInterest.toFixed(2)}
                     </span>
                   </div>
-                </div>
+                </motion.div>
                 {/* Right side: Apply Now button with double circle */}
-                <div className="relative flex items-center justify-center ml-4">
+                <motion.div 
+                  className="relative flex items-center justify-center ml-4"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   {/* Back circle */}
-                  <div className="absolute -left-13 top-3 w-20 h-20 md:w-26 md:h-25 bg-[#1575E5CC] rounded-full z-0 animate-pulse-custom"></div>
+                  <motion.div 
+                    className="absolute -left-13 top-3 w-20 h-20 md:w-26 md:h-25 bg-[#1575E5CC] rounded-full z-0"
+                    animate={{ 
+                      scale: [1, 1.1, 1],
+                      opacity: [0.7, 0.9, 0.7]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
                   {/* Front circle with button */}
                   <Link to="/mobile-verification">
-                    <button
-                      className="relative w-20 h-20 md:w-26 md:h-26 bg-[#045382] rounded-full flex items-center -left-12 justify-center text-white font-medium z-10 shadow-lg text-sm md:text-base transition-transform transition-shadow duration-200 hover:scale-105 hover:shadow-2xl active:scale-95"
+                    <motion.button
+                      className="relative w-20 h-20 md:w-26 md:h-26 bg-[#045382] rounded-full flex items-center -left-12 justify-center text-white font-medium z-10 shadow-lg text-sm md:text-base"
                       style={{ fontFamily: 'Poppins' }}
+                      whileHover={{ 
+                        scale: 1.1,
+                        boxShadow: "0 0 20px rgba(4, 83, 130, 0.5)"
+                      }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       Apply Now
-                    </button>
+                    </motion.button>
                   </Link>
-                </div>
+                </motion.div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Right Side - Image */}
-          <div className="flex-1 h-full">
+          <motion.div 
+            className="flex-1 h-full"
+            variants={imageVariants}
+          >
             <img
               src="/Callculator.png"
               alt="Shopkeeper with loan approval"
               className="w-full h-full object-cover rounded-3xl"
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
       <ToastContainer position="top-center" />
     </div>

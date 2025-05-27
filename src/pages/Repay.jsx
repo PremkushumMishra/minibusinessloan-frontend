@@ -155,12 +155,10 @@ const Repay = () => {
           </div>
 
           {/* Payment Methods */}
-          <div className="bg-gradient-to-r from-[#003366] to-[#E53935] rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
+          {/* <div className="bg-gradient-to-r from-[#003366] to-[#E53935] rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
             <h2 className="text-2xl font-bold text-white mb-6">
-              Available Payment Methods
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {/* Net Banking */}
               <div
                 className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
                 onClick={() => setOpenModal('netbanking')}
@@ -170,7 +168,6 @@ const Repay = () => {
                 </div>
                 <p className="font-bold text-[#003366]">Net Banking</p>
               </div>
-              {/* UPI with real logo */}
               <div
                 className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
                 onClick={() => setOpenModal('upi')}
@@ -180,7 +177,6 @@ const Repay = () => {
                 </div>
                 <p className="font-bold text-[#003366]">UPI</p>
               </div>
-              {/* ATM/Debit Card */}
               <div
                 className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
                 onClick={() => setOpenModal('card')}
@@ -188,7 +184,6 @@ const Repay = () => {
                 <div className="text-3xl mb-2 text-[#003366]">💳</div>
                 <p className="font-bold text-[#003366]">ATM/Debit Card</p>
               </div>
-              {/* Wallet */}
               <div
                 className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
               >
@@ -214,7 +209,7 @@ const Repay = () => {
                 <p className="font-bold text-[#003366]"> Wallet</p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Important Information */}
           <div className="bg-gradient-to-r from-[#003366] to-[#E53935] rounded-lg shadow-lg p-6 transform hover:scale-[1.02] transition-all duration-300">
