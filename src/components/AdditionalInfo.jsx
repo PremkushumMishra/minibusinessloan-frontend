@@ -53,11 +53,7 @@ const AdditionalInfo = () => {
         setSuccess("Data submitted successfully!");
         fetchUserDetails();
 
-        // const clientId=response.data?.data?.client_id;
-        // if(clientId){
-        //   localStorage.setItem("clientId",clientId);
-        //   console.log("✅ Success! Navigating to co-applicant...");
-        // }
+     
         setSuccess("data submitted successfylly");
         console.log("✅ Success! Navigating to co-applicant...");
         setTimeout(() => {

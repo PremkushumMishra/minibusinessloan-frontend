@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import API_CONFIG from "../config";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,8 @@ const CoApplicant = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
   const [error, setError] = useState("");
-  let customerID = null;
-
+  const [customerID, setCustomerID] = useState(null);
+  // const customerID = "MBLC0050";
   const navigate = useNavigate();
 
   // PAN validation: 5 letters, 4 digits, 1 letter
@@ -21,8 +21,12 @@ const CoApplicant = () => {
   const isMobileValid = /^\d{10}$/.test(mobile);
   const isPanValid = panRegex.test(pan);
 
+  // Fetch user details on component mount
+  useEffect(() => {
+    fetchUserDetails();
+  }, []);
+
   const fetchUserDetails = async () => {
-    console.log("fetching user details", fetchUserDetails);
     try {
       const token = localStorage.getItem("authToken");
       const response = await axios.get(
@@ -33,12 +37,17 @@ const CoApplicant = () => {
           },
         }
       );
-      console.log("User Details API Response:", response.data);
-      if (response.data?.customerID) {
-        customerID = response.data.customerID;
+      
+      if (response.data?.status && response.data?.data?.customerID) {
+        setCustomerID(response.data.data.customerID);
+        console.log("CustomerID set:", response.data.data.customerID);
+      } else if (response.data?.customerID) {
+        setCustomerID(response.data.customerID);
+        console.log("CustomerID set:", response.data.customerID);
       }
     } catch (err) {
       console.error("User Details API Error:", err);
+      setError("Failed to fetch user details. Please try again.");
     }
   };
 
@@ -46,6 +55,7 @@ const CoApplicant = () => {
     e.preventDefault();
     setError("");
     setStatus(null);
+    
     if (!isMobileValid) {
       setError("Please enter a valid 10-digit mobile number.");
       return;
@@ -54,17 +64,25 @@ const CoApplicant = () => {
       setError("Please enter a valid PAN number.");
       return;
     }
+    
+    if (!customerID) {
+      setError("Customer ID not found. Please refresh and try again.");
+      await fetchUserDetails(); // Try to fetch again
+      return;
+    }
+    
     setIsLoading(true);
     try {
       const token = localStorage.getItem("authToken");
       console.log("📦 Token being sent in Authorization header:", token);
+      console.log("📦 CustomerID being sent:", customerID);
 
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/send-otp-co-applicant`,
         {
           phone: mobile,
           pan: pan,
-          customerID: customerID,
+          customerID: customerID, // Using the customerID from state
         },
         {
           headers: {
@@ -83,13 +101,14 @@ const CoApplicant = () => {
       ) {
         console.log(response.data, "response.data");
 
+        // Update customerID if a new one is returned
         if (response.data?.customerID && response.data.customerID.length > 6) {
-          customerID = response.data.customerID;
+          setCustomerID(response.data.customerID);
         }
+        
         setShowOtpInput(true);
         setStatus(null);
         alert("OTP sent to co-applicant mobile number!");
-        fetchUserDetails();
       } else {
         setError(response.data.message || "Failed to send OTP.");
       }
@@ -106,24 +125,31 @@ const CoApplicant = () => {
     e.preventDefault();
     setError("");
     setStatus(null);
+    
     if (otp.length !== 6 && otp.length !== 4) {
       setError("Please enter a valid 4 or 6-digit OTP.");
       return;
     }
+    
+    // Check if customerID is available
     if (!customerID || customerID.length <= 6) {
       setError("CustomerID is missing or invalid.");
+      await fetchUserDetails(); // Try to fetch again
       return;
     }
+    
     setIsLoading(true);
     try {
       const token = localStorage.getItem("authToken");
       console.log("📦 Token being sent in Authorization header:", token);
+      console.log("📦 CustomerID being sent for verification:", customerID);
+      
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/verify-otp-co-applicant`,
         {
           phone: mobile,
           otp: otp,
-          customerID: customerID,
+          customerID: customerID, // Using the customerID from state
         },
         {
           headers: {
@@ -134,12 +160,12 @@ const CoApplicant = () => {
           withCredentials: true,
         }
       );
+      
       if (
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
       ) {
         setStatus("success");
-        fetchUserDetails();
         console.log("✅ OTP verified successfully! Navigating to business details..======>>.",
           response.data
         );
@@ -172,6 +198,14 @@ const CoApplicant = () => {
         <h2 className="text-2xl font-bold text-center text-[#003366] mb-6">
           Co-Applicant Verification
         </h2>
+        
+        {/* Show customerID for debugging (remove in production) */}
+        {customerID && (
+          <p className="text-xs text-gray-500 mb-4 text-center">
+            Customer ID: {customerID}
+          </p>
+        )}
+        
         <form
           onSubmit={showOtpInput ? handleVerifyOtp : handleSendOtp}
           className="space-y-6"
