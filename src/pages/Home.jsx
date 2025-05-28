@@ -57,7 +57,7 @@ const Home = () => {
       {/* <ApplicantBusinessDetails /> */}
       {/* <LoanEligiblity/> */}
       {/* <AdditionalInfo/> */}
-      <BankStatement/>
+      {/* <BankStatement/> */}
       <ChatBot/>
       </>
   );
