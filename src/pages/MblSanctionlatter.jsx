@@ -358,7 +358,7 @@ const LoanAgreement = () => {
 
         <div className="text-center font-semibold">BETWEEN</div>
 
-        <p>
+        <p className="text-justify">
           <strong>RICHCREDIT FINANCE PRIVATE LIMITED</strong>, a company
           incorporated under the Companies Act, 1956, having its registered
           office at 1/50, 2nd Floor, Ganga Apartment, Lalita Park, Laxmi Nagar,
@@ -370,7 +370,7 @@ const LoanAgreement = () => {
 
         <div className="text-center font-semibold">AND</div>
 
-        <p>
+        <p className="text-justify">
           The Borrower(s) whose name(s) and address(es) is/are stated in
           Schedule A, (hereinafter referred to / collectively referred to as
           "the Borrower(s)" which expression shall, unless it be repugnant to
@@ -1896,116 +1896,155 @@ const LoanSanctionLetter = () => {
 
 
 const EmiSheet = () => {
+  // Dynamic variables
+  const loanNo = "MBL2024-001";
+  const loanTenure = "100 Days";
+  const loanAmount = 100000; // Changed to number for calculations
+  const emiStartDate = "6/8/2025";
+  
+  // Calculate total interest (20% of loan amount)
+  const totalInterest = loanAmount * 0.20;
+  const totalAmount = loanAmount + totalInterest;
+  
+  // Calculate weekly EMI (total amount divided by number of weeks)
+  const numberOfWeeks = 14; // 100 days = ~14 weeks
+  const weeklyEmi = Math.round(totalAmount / numberOfWeeks);
+  
+  // Generate EMI table
+  const emiTable = Array.from({ length: numberOfWeeks }, (_, i) => {
+    const weekNumber = i + 1;
+    const date = new Date(emiStartDate);
+    date.setDate(date.getDate() + (i * 7));
+    const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    
+    // Calculate remaining principal
+    const remainingPrincipal = Math.round(loanAmount - (loanAmount * (i / numberOfWeeks)));
+    // Calculate principal component
+    const principalComponent = Math.round(loanAmount / numberOfWeeks);
+    // Calculate interest component
+    const interestComponent = Math.round(totalInterest / numberOfWeeks);
+    
+    return [
+      weekNumber.toString(),
+      formattedDate,
+      remainingPrincipal.toLocaleString(),
+      principalComponent.toLocaleString(),
+      interestComponent.toLocaleString(),
+      weeklyEmi.toLocaleString()
+    ];
+  });
+
+  const signatory = "Authorized Signatory";
+  const signatoryDate = "01-05-2025";
+  const signatoryPlace = "Delhi";
+  const borrowerName = "Amit Kumar";
+  const borrowerFirm = "Amit Enterprises";
+  const borrowerSign = "Amit Kumar";
+  const coBorrowerName = "Sunita Devi";
+  const coBorrowerSign = "Sunita Devi";
+
   return (
-    <div className="mt-10 border border-black p-4 text-sm">
+    <div className="mt-10 border border-black p-4 text-sm max-w-4xl mx-auto">
       <h2 className="text-center font-bold text-lg mb-4 uppercase">
         New EMI Schedule as per Disbursal Date
       </h2>
 
-      <div className="grid grid-cols-2 text-sm mb-4">
-        <div>
+      <div className="grid grid-cols-2 text-sm mb-4 gap-4">
+        <div className="flex flex-col items-start">
           <p>
-            Loan No.:{" "}
-            <span className="inline-block border-b border-black w-48"></span>
+            Loan No.: <span className="inline-block border-b border-black w-48 px-2">{loanNo}</span>
           </p>
-          <p>Loan Tenure: 100 Days</p>
+          <p>Loan Tenure: {loanTenure}</p>
         </div>
-        <div>
-          <p>Loan Amount: ₹25,000</p>
-          <p>EMI Start Date: 6/8/2025</p>
+        <div className="flex flex-col items-end text-right">
+          <p>Loan Amount: <span className="ml-2">₹{loanAmount.toLocaleString()}</span></p>
+          <p>EMI Start Date: <span className="ml-2">{emiStartDate}</span></p>
         </div>
       </div>
 
-      <table className="w-full border text-xs text-center">
-        <thead className="bg-yellow-300 font-semibold">
-          <tr>
-            <th className="border px-1">Instalment No.</th>
-            <th className="border px-1">Instalment Date</th>
-            <th className="border px-1">
-              Outstanding Principal
-              <br /> (in Rupees)
-            </th>
-            <th className="border px-1">
-              Principal
-              <br /> (in Rupees)
-            </th>
-            <th className="border px-1">
-              Interest
-              <br /> (in Rupees)
-            </th>
-            <th className="border px-1">
-              Instalment
-              <br /> (in Rupees)
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            ["1", "6/8/2025", "25,000", "1,510", "632", "2,143"],
-            ["2", "6/22/2025", "23,490", "1,543", "594", "2,143"],
-            ["3", "7/6/2025", "21,947", "1,588", "555", "2,143"],
-            ["4", "7/20/2025", "20,353", "1,628", "515", "2,143"],
-            ["5", "8/3/2025", "18,725", "1,663", "474", "2,143"],
-            ["6", "8/17/2025", "17,056", "1,711", "432", "2,143"],
-            ["7", "8/31/2025", "15,345", "1,755", "388", "2,143"],
-            ["8", "9/14/2025", "13,590", "1,793", "344", "2,143"],
-            ["9", "9/28/2025", "11,797", "1,845", "298", "2,143"],
-            ["10", "10/12/2025", "9,947", "1,891", "252", "2,143"],
-            ["11", "10/26/2025", "8,056", "1,933", "204", "2,143"],
-            ["12", "11/9/2025", "6,116", "1,983", "155", "2,143"],
-            ["13", "11/23/2025", "4,128", "2,038", "104", "2,143"],
-            ["14", "12/7/2025", "2,090", "2,090", "53", "2,143"],
-          ].map(([no, date, outPrincipal, principal, interest, emi], i) => (
-            <tr key={i}>
-              <td className="border px-1">{no}</td>
-              <td className="border px-1">{date}</td>
-              <td className="border px-1">{outPrincipal}</td>
-              <td className="border px-1">{principal}</td>
-              <td className="border px-1">{interest}</td>
-              <td className="border px-1">{emi}</td>
+      <div className="overflow-x-auto">
+        <table className="w-full border text-xs text-center">
+          <thead className="bg-yellow-300 font-semibold">
+            <tr>
+              <th className="border px-1">Instalment No.</th>
+              <th className="border px-1">Instalment Date</th>
+              <th className="border px-1">
+                Outstanding Principal
+                <br /> (in Rupees)
+              </th>
+              <th className="border px-1">
+                Principal
+                <br /> (in Rupees)
+              </th>
+              <th className="border px-1">
+                Interest
+                <br /> (in Rupees)
+              </th>
+              <th className="border px-1">
+                Instalment
+                <br /> (in Rupees)
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {emiTable.map(([no, date, outPrincipal, principal, interest, emi], i) => (
+              <tr key={i}>
+                <td className="border px-1">{no}</td>
+                <td className="border px-1">{date}</td>
+                <td className="border px-1">{outPrincipal}</td>
+                <td className="border px-1">{principal}</td>
+                <td className="border px-1">{interest}</td>
+                <td className="border px-1">{emi}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-      <div className="mt-6 text-sm">
+      <div className="mt-6 text-sm text-center">
         <p>For Richcredit Finance Pvt. Ltd.</p>
-        <p className="mt-4">Authorized Signatory</p>
-        <p className="mt-4">Date: 01-05-2025</p>
-        <p>Place: Delhi</p>
+        <p className="mt-4">{signatory}</p>
+        <div className="flex flex-col md:flex-row md:justify-center md:gap-8 mt-4">
+          <p>Date: {signatoryDate}</p>
+          <p>Place: {signatoryPlace}</p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-10 mt-6">
-        <div>
+      <div className="grid grid-cols-2 gap-10 mt-6 items-center">
+        <div className="flex flex-col items-start">
           <p>Borrower Name:</p>
-          <div className="h-8 border-b border-black w-64 mt-1"></div>
+          <div className="h-8 border-b border-black w-64 mt-1 px-2 flex items-center">{borrowerName}</div>
           <p className="mt-4">Prop. of M/s:</p>
-          <div className="h-8 border-b border-black w-64 mt-1"></div>
+          <div className="h-8 border-b border-black w-64 mt-1 px-2 flex items-center">{borrowerFirm}</div>
         </div>
-        <div>
+        <div className="flex flex-col items-end text-right">
           <p>Borrower Sign.:</p>
-          <div className="h-8 border-b border-black w-64 mt-1"></div>
+          <div className="h-8 border-b border-black w-64 mt-1 px-2 flex items-center justify-end">{borrowerSign}</div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-10 mt-6">
-        <div>
+      <div className="grid grid-cols-2 gap-10 mt-6 items-center">
+        <div className="flex flex-col items-start">
           <p>Co-Borrower Name:</p>
-          <div className="h-8 border-b border-black w-64 mt-1"></div>
+          <div className="h-8 border-b border-black w-64 mt-1 px-2 flex items-center">{coBorrowerName}</div>
         </div>
-        <div>
+        <div className="flex flex-col items-end text-right">
           <p>Co-Borrower Sign.:</p>
-          <div className="h-8 border-b border-black w-64 mt-1"></div>
+          <div className="h-8 border-b border-black w-64 mt-1 px-2 flex items-center justify-end">{coBorrowerSign}</div>
         </div>
       </div>
       <img
         src="/sanctionfooter.webp"
         alt="Sanction Letter Footer"
-        className="w-full h-auto object-cover"
+        className="w-full h-auto object-cover mt-8"
       />
     </div>
   );
 };
+
+
+
+
 
 const MblSanctionlatterPage = () => {
   const [entityName, setEntityName] = useState("");

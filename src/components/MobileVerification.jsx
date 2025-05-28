@@ -485,6 +485,7 @@ const MobileVerification = () => {
   const navigate = useNavigate();
   const { updateStep } = useStep();
   const [clientId, setClientId] = useState("");
+  const [referralCode, setReferralCode] = useState("");
 
   // API Configuration - Just change these URLs when switching APIs
   const API_CONFIG = {
@@ -517,8 +518,6 @@ const MobileVerification = () => {
     }
   };
 
-
-
   const handleMobileSubmit = async (e) => {
     e.preventDefault();
     if (mobileNumber.length !== 13) {
@@ -539,7 +538,9 @@ const MobileVerification = () => {
         {
           phone: mobileNumberWithoutPrefix,
           appliedMode: "web",
-          sourceBy: null,
+          sourceBy: referralCode || null,
+          postingBranch: null,
+          branchName: null,
         },
         {
           headers: {
@@ -700,6 +701,24 @@ const MobileVerification = () => {
                   />
                 </div>
               </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="referralCode"
+                className="block text-sm font-semibold text-gray-700 mb-2"
+              >
+                Referral Code (Optional)
+              </label>
+              <input
+                id="referralCode"
+                name="referralCode"
+                type="text"
+                value={referralCode}
+                onChange={(e) => setReferralCode(e.target.value)}
+                className="appearance-none block w-1/2 px-2 py-2 border-2 border-[#003366] rounded-2xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-center tracking-[0.5em] text-2xl font-semibold group-hover:border-[#E53935]"
+                placeholder=""
+              />
             </div>
 
             {/* Consent Section with Modal Link */}

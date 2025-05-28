@@ -131,16 +131,16 @@ const ChatBot = () => {
       return;
     }
 
-    const dailyInterestRate = monthlyInterestRate / 30;
-    const totalInterest = (principal * dailyInterestRate * days) / 100;
+    // Calculate flat 20% interest
+    const totalInterest = principal * 0.20; // 20% of principal amount
     const totalAmount = principal + totalInterest;
-    const emi = totalAmount / days;
+    const dailyEmi = totalAmount / days;
 
     setMessages((prev) => [
       ...prev,
       {
         type: "bot",
-        content: `💰 दैनिक EMI: ₹${Math.round(emi)}\n💵 कुल ब्याज: ₹${Math.round(
+        content: `💰 दैनिक EMI: ₹${Math.round(dailyEmi)}\n💵 कुल ब्याज: ₹${Math.round(
           totalInterest
         )}\n📊 कुल राशि: ₹${Math.round(totalAmount)}`,
         options: ["मुख्य मेनू पर वापस जाएं"],

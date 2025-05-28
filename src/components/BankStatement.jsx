@@ -84,10 +84,12 @@ const BankStatement = () => {
       fetchUserDetails();
 
       const token = localStorage.getItem("authToken");
+      const fileNo = response.data.CUSTOMER_ID;
+      console.log('fileNo:', fileNo);
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`,
         {
-          fileNo: response.data.CUSTOMER_ID,
+          fileNo: fileNo,
           bank: "",
           defaultScreen: pendingValue.code,
           accountType: "Saving"
