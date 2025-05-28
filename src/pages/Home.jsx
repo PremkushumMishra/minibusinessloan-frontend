@@ -25,11 +25,15 @@ import Hindi from "./Hindi";
 import Frequently from "../components/Frequently";
 import NewWhy from "../components/NewWhy"
 import MblSanctionlatter from "./MblSanctionlatter";
+import BankVerificationProcess from "./BankVerificationProcess";
+import BankVerificationGlobalModal from "./BankVerificationGlobalModal";
 const Home = () => {
   return (
     <>
       {/* <div className="pt-20">  */}
       {/* <MblSanctionlatter/> */}
+      {/* <BankVerificationProcess/> */}
+{/* <BankVerificationGlobalModal visible={true} onClose={() => {}} /> */}
       <TalkingLoan />
       {/* <Hindi/> */}
       <EligibleProfile/>
@@ -53,7 +57,7 @@ const Home = () => {
       {/* <ApplicantBusinessDetails /> */}
       {/* <LoanEligiblity/> */}
       {/* <AdditionalInfo/> */}
-      {/* <BankStatement/> */}
+      <BankStatement/>
       <ChatBot/>
       </>
   );

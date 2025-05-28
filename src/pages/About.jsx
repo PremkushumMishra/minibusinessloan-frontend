@@ -7,7 +7,7 @@ const About = () => {
       <div
         // className="w-full bg-[#003366] max-w-screen-lg mx-auto mb-10 rounded-t-3xl rounded-bl-3xl overflow-hidden shadow-lg relative"
 
-        className="w-full bg-[#003366] max-w-[95%] mx-auto mb-10 rounded-t-3xl rounded-bl-3xl overflow-hidden shadow-lg relative"
+        className="w-full bg-[#003366] mx-auto mb-10 rounded-t-3xl rounded-bl-3xl overflow-hidden shadow-lg relative"
         style={{ minHeight: 320 }}
       >
         <img
@@ -40,7 +40,7 @@ const About = () => {
         </h2>
         <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center">
           {/* Card 1 */}
-          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
+          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 w-xs sm:w-full sm:ml-10 text-left">
             <div className="font-poppins font-semibold text-lg md:text-xl mb-2">
               Innovation
             </div>
@@ -50,7 +50,7 @@ const About = () => {
             </div>
           </div>
           {/* Card 2 */}
-          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
+          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 w-xs sm:w-full text-left">
             <div className="font-poppins font-semibold text-lg md:text-xl mb-2">
               Excellence
             </div>
@@ -60,7 +60,7 @@ const About = () => {
             </div>
           </div>
           {/* Card 3 */}
-          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 max-w-xs text-left">
+          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 w-xs sm:w-full sm:mr-10 text-left">
             <div className="font-poppins font-semibold text-lg md:text-xl mb-2">
               Integrity
             </div>

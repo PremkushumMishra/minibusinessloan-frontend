@@ -16,7 +16,7 @@ const NameEmailVerify = () => {
     name: "",
     email: "",
     phone: "",
-    redirectURL: "https://github.com/",
+    redirectURL: "https://google.com/",
     // redirectURL: "https://minibusinessloan.com/kyc-process",
     // redirectURL: "https://minibusinessloan.vercel.app/kyc-sucess", 
     // /kyc-sucess",

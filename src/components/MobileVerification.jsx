@@ -494,8 +494,8 @@ const MobileVerification = () => {
     // live url
     // BASE_URL: "http://103.104.73.107:3004/api/v1",
     // prod url
-    BASE_URL: "https://backend.minibusinessloan.com",
-    
+    BASE_URL:"https://backend.minibusinessloan.com/api/v1",
+
     ENDPOINTS: {
       SEND_OTP: "/send-otp",
       VERIFY_OTP: "/verify-otp",
@@ -517,25 +517,29 @@ const MobileVerification = () => {
     }
   };
 
+
+
   const handleMobileSubmit = async (e) => {
     e.preventDefault();
     if (mobileNumber.length !== 13) {
       toast.error("Please enter a valid 10-digit mobile number");
       return;
     }
-
+  
     setIsLoading(true);
     try {
-      // Send OTP using axios to the new API endpoint
       const mobileNumberWithoutPrefix = mobileNumber.slice(3);
+  
+      // Full API URL print
+      const fullApiUrl = `${API_CONFIG.BASE_URL}/auth/generate-otp-customer`;
+      console.log("API URL:", fullApiUrl);
+  
       const response = await axios.post(
-        // 'http://103.104.73.107:3004/api/v1/auth/generate-otp-customer',
-        `${API_CONFIG.BASE_URL}/auth/generate-otp-customer`,
+        fullApiUrl,
         {
           phone: mobileNumberWithoutPrefix,
           appliedMode: "web",
-          sourceBy:null,
-          // postingBranch:null 
+          sourceBy: null,
         },
         {
           headers: {
@@ -544,17 +548,13 @@ const MobileVerification = () => {
           },
         }
       );
-
+  
       console.log("API Response:", response.data);
-
-      // You can check response.data for success or error
+  
       if (
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
       ) {
-        // using local storage
-        // localStorage.setItem("client_id", response.data?.data?.client_id);
-        // receive client_id
         const receivedClientId = response.data?.data?.client_id;
         setClientId(receivedClientId);
         setShowOtpInput(true);
@@ -569,6 +569,7 @@ const MobileVerification = () => {
       setIsLoading(false);
     }
   };
+  
 
   // use protect routing
   // const { setCurrentStep } = useStep();

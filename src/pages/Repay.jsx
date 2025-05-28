@@ -155,7 +155,7 @@ const Repay = () => {
           </div>
 
           {/* Payment Methods */}
-          {/* <div className="bg-gradient-to-r from-[#003366] to-[#E53935] rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
+          <div className="bg-gradient-to-r from-[#003366] to-[#E53935] rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
             <h2 className="text-2xl font-bold text-white mb-6">
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -209,7 +209,7 @@ const Repay = () => {
                 <p className="font-bold text-[#003366]"> Wallet</p>
               </div>
             </div>
-          </div> */}
+          </div>
 
           {/* Important Information */}
           <div className="bg-gradient-to-r from-[#003366] to-[#E53935] rounded-lg shadow-lg p-6 transform hover:scale-[1.02] transition-all duration-300">

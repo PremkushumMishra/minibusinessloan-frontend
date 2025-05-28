@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_CONFIG from "../config";
-const CUSTOMER_ID = "MBLC0028"; 
+// const CUSTOMER_ID = "MBLC0039"; 
+import BankVerificationGlobalModal from "../pages/BankVerificationGlobalModal";
 // TODO: Make dynamic if needed
 
 
@@ -11,14 +12,17 @@ const BankStatement = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [pendingValue, setPendingValue] = useState('');
+  const [pendingValue, setPendingValue] = useState(null);
 
   // Fetch options on mount
+
   useEffect(() => {
     const fetchOptions = async () => {
       setLoading(true);
       setError('');
       try {
+
+       
         const token = localStorage.getItem("authToken");
         const response = await axios.get(
           `${API_CONFIG.BASE_URL}/sourcing/get-statement-options`,
@@ -56,13 +60,36 @@ const BankStatement = () => {
     setSuccess('');
     setError('');
     try {
+
+      const fetchUserDetails = async () => {
+        try {
+          const token = localStorage.getItem("authToken");
+          const response = await axios.get(
+            // "http://10.6.3.90:3000/api/v1/get/user/details/web",
+            `${API_CONFIG.BASE_URL}/get/user/details/web`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              // withCredentials: true, // If you want to send cookies
+            }
+          );
+          console.log("User Details API Response:", response.data);
+          
+        } catch (err) {
+          console.error("User Details API Error:", err);
+        }
+      };
+
+      fetchUserDetails();
+
       const token = localStorage.getItem("authToken");
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`,
         {
-          fileNo: CUSTOMER_ID,
+          fileNo: response.data.CUSTOMER_ID,
           bank: "",
-          defaultScreen: pendingValue,
+          defaultScreen: pendingValue.code,
           accountType: "Saving"
         },
         {
@@ -75,6 +102,7 @@ const BankStatement = () => {
       );
       if (response.data?.status === true && response.data?.message === "SUCCESS") {
         if (response.data?.data?.tempUrl) {
+          <BankVerificationGlobalModal visible={true} onClose={() => {}} />
           window.open(response.data.data.tempUrl, '_blank');
           return;
         }
@@ -87,6 +115,9 @@ const BankStatement = () => {
     }
     setLoading(false);
   };
+
+
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-200 via-purple-100 to-blue-100 py-8 px-2">
@@ -113,13 +144,12 @@ const BankStatement = () => {
               <div
                 key={item.id}
                 className="flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-all duration-200 shadow-sm bg-white hover:border-blue-500 hover:shadow-md border-gray-200"
-                onClick={() => setPendingValue(item.serviceType)}
+                onClick={() => setPendingValue(item)}
               >
                 <div className="flex items-center gap-2">
-                <span className="text-xl">{item.serviceType==="Account Aggregator" ? "🔗" : item.serviceType==="Net Banking" ? "🏛️" : "📄"}</span>
+                  <span className="text-xl">{item.serviceType === "Account Aggregator" ? "🔗" : item.serviceType === "Net Banking" ? "🏛️" : "📄"}</span>
                   <span className="font-medium text-base">{item.serviceType}</span>
                 </div>
-
               </div>
             ))}
           </div>
