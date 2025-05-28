@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import API_CONFIG from "../config";
 import { useNavigate } from "react-router-dom";
-// const [clientId, setClientId] = useState(null); // <-- state for storing client_id
-
-const CUSTOMER_ID = "TABL004"; // TODO: Make dynamic if needed
 
 const CoApplicant = () => {
   const [mobile, setMobile] = useState("");
@@ -14,8 +11,7 @@ const CoApplicant = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
   const [error, setError] = useState("");
-  // const [clientId, setClientId] = useState("");
-  const [customerID, setCustomerID] = useState(CUSTOMER_ID);
+  let customerID = null;
 
   const navigate = useNavigate();
 
@@ -25,14 +21,26 @@ const CoApplicant = () => {
   const isMobileValid = /^\d{10}$/.test(mobile);
   const isPanValid = panRegex.test(pan);
 
-  // useEffect(() => {
-  //   if (status === "success") {
-  //     const timer = setTimeout(() => {
-  //       navigate("/applicant-business-details");
-  //     }, 1000);
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [status, navigate]);
+  const fetchUserDetails = async () => {
+    console.log("fetching user details", fetchUserDetails);
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await axios.get(
+        `${API_CONFIG.BASE_URL}/get/user/details/web`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("User Details API Response:", response.data);
+      if (response.data?.customerID) {
+        customerID = response.data.customerID;
+      }
+    } catch (err) {
+      console.error("User Details API Error:", err);
+    }
+  };
 
   const handleSendOtp = async (e) => {
     e.preventDefault();
@@ -48,13 +56,11 @@ const CoApplicant = () => {
     }
     setIsLoading(true);
     try {
-      const token = localStorage.getItem("authToken"); // already has "Bearer ..."
-      console.log("📦 Token being sent in Authorization header:", token); // 👈 Debug line
+      const token = localStorage.getItem("authToken");
+      console.log("📦 Token being sent in Authorization header:", token);
 
       const response = await axios.post(
-        // "http://10.6.3.135:3000/api/v1/sourcing/send-otp-co-applicant",
         `${API_CONFIG.BASE_URL}/sourcing/send-otp-co-applicant`,
-
         {
           phone: mobile,
           pan: pan,
@@ -78,7 +84,7 @@ const CoApplicant = () => {
         console.log(response.data, "response.data");
 
         if (response.data?.customerID && response.data.customerID.length > 6) {
-          setCustomerID(response.data.customerID);
+          customerID = response.data.customerID;
         }
         setShowOtpInput(true);
         setStatus(null);
@@ -112,7 +118,6 @@ const CoApplicant = () => {
     try {
       const token = localStorage.getItem("authToken");
       console.log("📦 Token being sent in Authorization header:", token);
-
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/verify-otp-co-applicant`,
         {
@@ -158,26 +163,6 @@ const CoApplicant = () => {
       );
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const fetchUserDetails = async () => {
-    console.log("fetching user details", fetchUserDetails);
-    try {
-      const token = localStorage.getItem("authToken");
-      const response = await axios.get(
-        // "http://10.6.3.90:3000/api/v1/get/user/details/web",
-        `${API_CONFIG.BASE_URL}/get/user/details/web`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("User Details API Response:", response.data);
-      // navigate("/applicant-business-details");
-    } catch (err) {
-      console.error("User Details API Error:", err);
     }
   };
 

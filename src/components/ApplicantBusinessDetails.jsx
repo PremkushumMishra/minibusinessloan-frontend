@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import { useStep } from "../context/useStep";
 import axios from "axios";
@@ -55,7 +55,7 @@ const ApplicantBusinessDetails = () => {
   const [userEnteredBillNumber, setUserEnteredBillNumber] = useState("");
   const [selectedOperatorCode, setSelectedOperatorCode] = useState("");
 
-  const customerID = "TABL004"; // Change to "TABL004" when needed
+  const [customerID, setCustomerID] = useState(null);
 
   // const getAuthToken = () => {
   //   // Get token from localStorage (should already have 'Bearer ...')
@@ -346,6 +346,9 @@ const ApplicantBusinessDetails = () => {
         }
       );
       console.log("User Details API Response:", response.data);
+      if (response.data?.data?.customerID) {
+        setCustomerID(response.data.data.customerID);
+      }
     } catch (err) {
       console.error("User Details API Error:", err);
     }
@@ -539,6 +542,10 @@ const ApplicantBusinessDetails = () => {
   //     console.error("User Details API Error:", err);
   //   }
   // };
+
+  useEffect(() => {
+    fetchUserDetails();
+  }, []);
 
   return (
     <div className="max-w-3xl mx-auto p-8 mt-30 mb-10 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl border border-gray-100">
