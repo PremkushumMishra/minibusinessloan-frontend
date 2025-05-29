@@ -640,8 +640,14 @@ const MobileVerification = () => {
       const response = await axios.post(
         // "http://10.6.3.57:3000/api/v1/auth/generate-otp-customer",
         `${API_CONFIG.BASE_URL}/auth/generate-otp-customer`,
-        { phone: mobileNumberWithoutPrefix, appliedMode: "web" },
-        { headers: { "Content-Type": "application/json" } }
+      {  phone: mobileNumberWithoutPrefix,
+        appliedMode: "web",
+        sourceBy: referralCode || null,
+        postingBranch: null,
+        branchName: null,
+      }
+        // { phone: mobileNumberWithoutPrefix, appliedMode: "web" },
+        // { headers: { "Content-Type": "application/json" } }
       );
       console.log("OTP resend response:", response.data);
       if (

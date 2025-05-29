@@ -106,7 +106,9 @@ const Footer = () => {
               <img src="/youtube.webp" alt="YouTube" className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
             </motion.a>
             <motion.a
-              href="#"
+              href="https://www.facebook.com/profile.php?id=61576580291499"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center hover:opacity-80 transition-opacity"
               title="Facebook"
               aria-label="Facebook"
@@ -115,7 +117,9 @@ const Footer = () => {
               <img src="/facebook.png" alt="Facebook" className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
             </motion.a>
             <motion.a
-              href="#"
+              href="https://www.instagram.com/minibusinessloan?igsh=MW5zcGt6Z2praHVldw=="
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center hover:opacity-80 transition-opacity"
               title="Instagram"
               aria-label="Instagram"

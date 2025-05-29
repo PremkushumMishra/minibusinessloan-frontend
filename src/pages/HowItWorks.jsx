@@ -517,7 +517,13 @@ const HowItWorks = () => {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              <span>Good credit history (CIBIL score considered).</span>
+              <span>
+                Credit score
+                (
+                <img src="/cibilpic.png" alt="CIBIL" style={{ display: "inline", height: "35px", marginLeft: "8px" }} />
+                <img src="/equifaxlogo.png" alt="Equifax" style={{ display: "inline", height: "50px", marginLeft: "4px" }} />
+                )
+                </span>
             </div>
           </div>
           <p className="text-center text-gray-500 mt-8 text-sm">

@@ -40,51 +40,6 @@ const KycProcess = () => {
     fetchUserDetails();
   }, []);
 
-  // const fetchUser = useCallback(async () => {
-  //   setLoading(true);
-  //   try {
-  //     const token = localStorage.getItem("authToken");
-  //     const data = JSON.stringify({
-  //       digilocker_client_id: clientId,
-  //       customerNumber: phone,
-  //     });
-  //     const response = await axios.post(
-  //       `${API_CONFIG.BASE_URL}/sourcing/process-digilocker-data`,
-  //       data,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //           "Access-Control-Allow-Origin": "*",
-  //         },
-  //       }
-  //     );
-  //     if (
-  //       response.data &&
-  //       response.data.status === true &&
-  //       response.data.message === "SUCCESS" &&
-  //       response.data.data === "SUCCESS"
-  //     ) {
-  //       setKycComplete(true);
-  //       setIsVerifying(false);
-  //       clearInterval(intervalRef.current);
-  //       intervalRef.current = null;
-  //     } else {
-  //       setError(
-  //         response.data && response.data.message
-  //           ? response.data.message
-  //           : "KYC verification failed."
-  //       );
-  //     }
-  //   } catch {
-  //     setError("Error checking KYC status.");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }, [clientId, phone]);
-
-
-// new code
 const fetchUser = useCallback(async () => {
   if (kycComplete) return; // Don't run if already completed
 
