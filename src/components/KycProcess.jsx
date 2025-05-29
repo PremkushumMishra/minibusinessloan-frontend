@@ -2,10 +2,11 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_CONFIG from "../config";
+import { useStep } from "../context/StepContext";
 
 const KycProcess = () => {
 
-
+  const { currentStep } = useStep();
   const [kycComplete, setKycComplete] = useState(false);
   const [error, setError] = useState(null);
   const [attemptCount, setAttemptCount] = useState(0);
@@ -17,7 +18,6 @@ const KycProcess = () => {
   const [loading, setLoading] = useState(false);
   const intervalRef = React.useRef(null);
   const navigate = useNavigate();
-
   // Fetch phone number once on mount
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -40,6 +40,64 @@ const KycProcess = () => {
     fetchUserDetails();
   }, []);
 
+<<<<<<< HEAD
+=======
+
+  useEffect(() => {
+    if (currentStep !== "kyc-process") {
+      // Redirect to the correct step/page
+      navigate(`/${currentStep}`);
+    }
+  }, [currentStep, navigate]);
+
+
+
+  // const fetchUser = useCallback(async () => {
+  //   setLoading(true);
+  //   try {
+  //     const token = localStorage.getItem("authToken");
+  //     const data = JSON.stringify({
+  //       digilocker_client_id: clientId,
+  //       customerNumber: phone,
+  //     });
+  //     const response = await axios.post(
+  //       `${API_CONFIG.BASE_URL}/sourcing/process-digilocker-data`,
+  //       data,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //       }
+  //     );
+  //     if (
+  //       response.data &&
+  //       response.data.status === true &&
+  //       response.data.message === "SUCCESS" &&
+  //       response.data.data === "SUCCESS"
+  //     ) {
+  //       setKycComplete(true);
+  //       setIsVerifying(false);
+  //       clearInterval(intervalRef.current);
+  //       intervalRef.current = null;
+  //     } else {
+  //       setError(
+  //         response.data && response.data.message
+  //           ? response.data.message
+  //           : "KYC verification failed."
+  //       );
+  //     }
+  //   } catch {
+  //     setError("Error checking KYC status.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, [clientId, phone]);
+
+
+// new code
+>>>>>>> 49ef24b7ef235b78ad6c6f5d37576d8d2ec223b5
 const fetchUser = useCallback(async () => {
   if (kycComplete) return; // Don't run if already completed
 
@@ -99,6 +157,7 @@ if( step === "kyc-process"){
       setKycComplete(true);
       setIsVerifying(false);
       fetchUserDetails()
+      localStorage.setItem("user_step", "additional-info");
       navigate("/additional-info");
     } else {
       setError(response.data?.message || "KYC verification failed.");

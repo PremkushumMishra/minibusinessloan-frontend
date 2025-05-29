@@ -40,7 +40,8 @@ const EligibleProfile = () => {
             maxWidth: "28rem",
           }}
         >
-          If you run a business or earn a steady income, <br className="hidden sm:block" /> you might be eligible!
+          If you run a business or earn steady income,{" "}
+          <br className="hidden sm:block" /> you might be eligible!
         </p>
 
         {/* Profile Names */}
@@ -56,8 +57,11 @@ const EligibleProfile = () => {
             className="font-poppins font-medium text-[20px] leading-[140%] text-center"
             style={{ letterSpacing: 0, color: "#0D4059", display: "block" }}
           >
-            Retail Shop Owner, Small Manufacturer, Service Provider, <br className="hidden sm:block" /> Wholesaler, Street Food Vendor
+            Retail Shop Owner, Small Manufacturer, Service Provider,
+            <br className="hidden sm:block" />
+            Wholesaler, Street Vendors<sup className="text-xs"><i>*Conditions apply</i></sup>
           </span>
+
         </div>
       </div>
 

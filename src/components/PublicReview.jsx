@@ -41,8 +41,20 @@ const NextArrow = (props) => {
       aria-label="Next"
     >
       <span className="absolute inset-0 rounded-full bg-[#045382]/20 scale-0 group-hover:scale-100 transition-transform duration-300" />
-      <svg width="32" height="32" fill="none" viewBox="0 0 24 24" className="relative z-10">
-        <path d="M9 6l6 6-6 6" stroke="#045382" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg
+        width="32"
+        height="32"
+        fill="none"
+        viewBox="0 0 24 24"
+        className="relative z-10"
+      >
+        <path
+          d="M9 6l6 6-6 6"
+          stroke="#045382"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </button>
   );
@@ -58,8 +70,20 @@ const PrevArrow = (props) => {
       aria-label="Previous"
     >
       <span className="absolute inset-0 rounded-full bg-[#045382]/20 scale-0 group-hover:scale-100 transition-transform duration-300" />
-      <svg width="32" height="32" fill="none" viewBox="0 0 24 24" className="relative z-10">
-        <path d="M15 6l-6 6 6 6" stroke="#045382" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <svg
+        width="32"
+        height="32"
+        fill="none"
+        viewBox="0 0 24 24"
+        className="relative z-10"
+      >
+        <path
+          d="M15 6l-6 6 6 6"
+          stroke="#045382"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </button>
   );
@@ -94,17 +118,17 @@ const PublicReview = () => {
     <div className="bg-[#ffffff] py-2 min-h-[60vh] flex items-center">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 mt-10 mb-12 w-full">
         <h2
-          className="mx-auto text-center mb-4 sm:mb-12"
+          className="mx-auto text-center mb-2 sm:mb-8"
           style={{
             fontFamily: "Poppins",
             fontWeight: 600,
             fontSize: "24px",
             lineHeight: "130%",
             color: "#0D4183",
-            maxWidth: 320,
+            maxWidth: 450,
           }}
         >
-          Their Words speak for us
+          Our customers feedback is our voice{" "}
         </h2>
 
         {/* Review Cards Slider */}
@@ -112,14 +136,19 @@ const PublicReview = () => {
           <div className="w-full max-w-[95vw] sm:max-w-[600px]">
             <Slider {...settings}>
               {reviews.map((review) => (
-                <div key={review.id} className="bg-[#ffffff] rounded-t-2xl rounded-bl-2xl p-1">
+                <div
+                  key={review.id}
+                  className="bg-[#ffffff] rounded-t-2xl rounded-bl-2xl p-1"
+                >
                   <div
                     className={
                       "bg-[#E8E8E8] rounded-t-4xl rounded-bl-4xl shadow-md px-4 sm:px-8 py-6 sm:py-8 flex items-start gap-4 sm:gap-6 w-full min-h-[120px] sm:min-h-[140px]"
                     }
-                    style={{
-                      // boxShadow: "0 8px 32px 0 rgba(24,71,133,0.10)",
-                    }}
+                    style={
+                      {
+                        // boxShadow: "0 8px 32px 0 rgba(24,71,133,0.10)",
+                      }
+                    }
                   >
                     <div className="flex flex-col items-center min-w-[48px] sm:min-w-[60px]">
                       <img
@@ -130,11 +159,11 @@ const PublicReview = () => {
                     </div>
                     <div className="flex-1 flex flex-col justify-center">
                       <p
-                        className="text-sm sm:text-base"
+                        className="text-xs sm:text-base"
                         style={{
                           fontFamily: "Poppins, sans-serif",
                           fontWeight: 300,
-                          fontSize: "20px",
+                          fontSize: "15px",
                           lineHeight: "36px",
                           letterSpacing: "-0.41px",
                           color: "#0D4059",

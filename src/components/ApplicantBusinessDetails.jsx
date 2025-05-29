@@ -3,34 +3,34 @@ import { useNavigate } from "react-router-dom";
 // import { useStep } from "../context/useStep";
 import axios from "axios";
 import API_CONFIG from "../config";
-
+import { useStep } from "../context/StepContext";
 const ApplicantBusinessDetails = () => {
+  const { currentStep } = useStep();
   const navigate = useNavigate();
   // const { updateStep } = useStep();
 
   console.log("applicant business details");
 
   const [formData, setFormData] = useState({
-    udyamNumber: "",
-    udyamRegistrationDate: "",
-    gstNumber: "",
-    businessName: "",
-    businessNature: "",
-    loanPurpose: "",
-    businessVintage: "",
-    businessAddress: "",
-    noOfStaff: "",
-    averageTurnoverLakhs: "",
+    udyamNumber: null,
+    udyamRegistrationDate: null,
+    gstNumber: null,
+    businessName: null,
+    businessNature: null,
+    businessPurpose: null,
+    businessVintage: null,
+    businessAddress: null,
+    staffCount: null,
+    avgTurnover: "",
     electricityBill: null,
     billScanned: false,
     businessPhoto: null,
-    itrNumber: "",
-    udyamPhone: "",
-    udyamOtp: "",
+    itrNumber: null,
+    phoneNumberRegisterWithUdym: null,
+    otp: null,
   });
 
   const [errors, setErrors] = useState({});
-  const [submitError, setSubmitError] = useState("");
   const [businessNatureOptions, setBusinessNatureOptions] = useState([]);
   const [loanPurposeOptions, setLoanPurposeOptions] = useState([]);
   const [isDropdownClicked, setIsDropdownClicked] = useState(false);
@@ -48,7 +48,6 @@ const ApplicantBusinessDetails = () => {
   });
 
   // Add state for electricity bill input type and bill number
-
   const [electricityBillInputType, setElectricityBillInputType] =
     useState("upload");
 
@@ -57,12 +56,7 @@ const ApplicantBusinessDetails = () => {
 
   const [customerID, setCustomerID] = useState(null);
 
-  // const getAuthToken = () => {
-  //   // Get token from localStorage (should already have 'Bearer ...')
-  //   return localStorage.getItem("authToken") || "";
-  // };
   // verify udyam number
-
   const verifyUdyamNumber = async (number) => {
     if (!number) return;
 
@@ -83,7 +77,7 @@ const ApplicantBusinessDetails = () => {
         `${API_CONFIG.BASE_URL}/sourcing/send-otp-udyam`,
         {
           registration_number: number,
-          phone: formData.udyamPhone,
+          phone: formData.phoneNumberRegisterWithUdym, // Updated to match formData
         },
         {
           headers: {
@@ -121,7 +115,7 @@ const ApplicantBusinessDetails = () => {
 
   // Verify UDYAM OTP
   const verifyUdyamOtp = async () => {
-    if (!formData.udyamOtp) return;
+    if (!formData.otp) return; // Updated to use formData.otp
 
     setVerificationStatus((prev) => ({
       ...prev,
@@ -134,7 +128,7 @@ const ApplicantBusinessDetails = () => {
         `${API_CONFIG.BASE_URL}/sourcing/verify-otp-udyam`,
         {
           client_id: "udyam_otp_pDompboGAwibgt",
-          otp: formData.udyamOtp,
+          otp: formData.otp, // Updated to use formData.otp
         },
         {
           headers: {
@@ -190,7 +184,6 @@ const ApplicantBusinessDetails = () => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            // Authorization: getAuthToken(),
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
           },
@@ -283,7 +276,7 @@ const ApplicantBusinessDetails = () => {
       case "businessNature":
         // Optional field - no validation
         break;
-      case "loanPurpose":
+      case "businessPurpose": // Updated from loanPurpose
         // Optional field - no validation
         break;
       case "businessVintage":
@@ -292,13 +285,12 @@ const ApplicantBusinessDetails = () => {
       case "businessAddress":
         if (!value.trim()) error = "Business Address is required";
         break;
-      case "noOfStaff":
+      case "staffCount": // Updated from noOfStaff
         if (!/^[0-9]+$/.test(value)) error = "Please enter a valid number";
         break;
-      case "averageTurnoverLakhs":
+      case "avgTurnover": // Updated from averageTurnoverLakhs
         if (!/^[0-9]+$/.test(value)) error = "Please enter a valid amount";
         break;
-
       case "businessPhoto":
         if (!value) error = "Business Photo is required";
         break;
@@ -432,8 +424,7 @@ const ApplicantBusinessDetails = () => {
     }
   };
 
-  // 1. Add file upload function
-
+  // File upload function
   const uploadElectricityBillFile = async (file) => {
     if (!file) return;
     setVerificationStatus((prev) => ({
@@ -445,7 +436,6 @@ const ApplicantBusinessDetails = () => {
       const formData = new FormData();
       formData.append("file", file);
       formData.append("customerID", customerID);
-      // Add more fields if required by backend
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/upload-file`,
         formData,
@@ -480,83 +470,23 @@ const ApplicantBusinessDetails = () => {
     }
   };
 
-  // 2. Add bank statement upload function
-  // const uploadBankStatementFile = async (file) => {
-  //   if (!file) return;
-  //   setVerificationStatus((prev) => ({
-  //     ...prev,
-  //     bankStatement: { loading: true, verified: false, error: null },
-  //   }));
-  //   try {
-  //     const token = localStorage.getItem("authToken");
-  //     const formData = new FormData();
-  //     formData.append("file", file);
-  //     formData.append("customerID", customerID);
-  //     // Add more fields if required by backend
-  //     console.log(`${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`);
-  //     const response = await axios.post(
-  //       `${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`,
-  //       formData,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "multipart/form-data",
-  //           "Access-Control-Allow-Origin": "*",
-  //         },
-  //       }
-  //     );
-  //     if (response.data?.status === true && response.data?.message === "SUCCESS") {
-  //       setVerificationStatus((prev) => ({
-  //         ...prev,
-  //         bankStatement: { loading: false, verified: true, error: null },
-  //       }));
-  //     } else {
-  //       throw new Error(response.data?.message || "File upload failed");
-  //     }
-  //   } catch (error) {
-  //     setVerificationStatus((prev) => ({
-  //       ...prev,
-  //       bankStatement: {
-  //         loading: false,
-  //         verified: false,
-  //         error: error.response?.data?.message || "File upload failed",
-  //       },
-  //     }));
-  //   }
-  // };
-
-  // Remove broken fetchUserDetails and add correct version
-  // const fetchUserDetails = async () => {
-  //   try {
-  //     const token = localStorage.getItem("authToken");
-  //     const response = await axios.get(
-  //       `${API_CONFIG.BASE_URL}/get/user/details/web`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       }
-  //     );
-  //     console.log("User Details API Response:", response.data);
-  //   } catch (err) {
-  //     console.error("User Details API Error:", err);
-  //   }
-  // };
-
   useEffect(() => {
     fetchUserDetails();
   }, []);
+
+
+  useEffect(() => {
+    if (currentStep !== "applicant-business-details") {
+      // Redirect to the correct step/page
+      navigate(`/${currentStep}`);
+    }
+  }, [currentStep, navigate]);
 
   return (
     <div className="max-w-3xl mx-auto p-8 mt-30 mb-10 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl border border-gray-100">
       <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
         Business Details
       </h2>
-      {submitError && (
-        <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-600 text-center">{submitError}</p>
-        </div>
-      )}
       <form onSubmit={handleSubmit} method="POST" className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* UDYAM Number */}
@@ -569,7 +499,7 @@ const ApplicantBusinessDetails = () => {
               <input
                 type="text"
                 name="udyamNumber"
-                value={formData.udyamNumber}
+                value={formData.udyamNumber || ""}
                 onChange={handleChange}
                 placeholder="UDYAM-XX-00-0000000"
                 className={`w-full px-4 py-2.5 rounded-lg border ${
@@ -614,8 +544,8 @@ const ApplicantBusinessDetails = () => {
               </label>
               <input
                 type="tel"
-                name="udyamPhone"
-                value={formData.udyamPhone}
+                name="phoneNumberRegisterWithUdym"
+                value={formData.phoneNumberRegisterWithUdym || ""}
                 onChange={handleChange}
                 placeholder="Enter phone number"
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
@@ -632,8 +562,8 @@ const ApplicantBusinessDetails = () => {
                   <div className="flex gap-2">
                     <input
                       type="text"
-                      name="udyamOtp"
-                      value={formData.udyamOtp}
+                      name="otp"
+                      value={formData.otp || ""}
                       onChange={handleChange}
                       placeholder="Enter OTP"
                       className="flex-1 px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
@@ -650,6 +580,7 @@ const ApplicantBusinessDetails = () => {
               </div>
             )}
           </div>
+          
           {/* Udyam Date of Registration */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -658,7 +589,7 @@ const ApplicantBusinessDetails = () => {
             <input
               type="date"
               name="udyamRegistrationDate"
-              value={formData.udyamRegistrationDate}
+              value={formData.udyamRegistrationDate || ""}
               onChange={handleChange}
               className={`w-full px-4 py-2.5 rounded-lg border ${
                 errors.udyamRegistrationDate
@@ -672,6 +603,7 @@ const ApplicantBusinessDetails = () => {
               </p>
             )}
           </div>
+          
           {/* GST Number */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -681,7 +613,7 @@ const ApplicantBusinessDetails = () => {
               <input
                 type="text"
                 name="gstNumber"
-                value={formData.gstNumber}
+                value={formData.gstNumber || ""}
                 onChange={handleChange}
                 placeholder="22AAAAA0000A1Z5"
                 className={`w-full px-4 py-2.5 rounded-lg border ${
@@ -719,6 +651,7 @@ const ApplicantBusinessDetails = () => {
               </p>
             )}
           </div>
+          
           {/* Business Name */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -727,7 +660,7 @@ const ApplicantBusinessDetails = () => {
             <input
               type="text"
               name="businessName"
-              value={formData.businessName}
+              value={formData.businessName || ""}
               onChange={handleChange}
               className={`w-full px-4 py-2.5 rounded-lg border ${
                 errors.businessName ? "border-red-500" : "border-gray-300"
@@ -738,6 +671,7 @@ const ApplicantBusinessDetails = () => {
               <p className="text-red-500 text-sm mt-1">{errors.businessName}</p>
             )}
           </div>
+          
           {/* Business Nature */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -745,7 +679,7 @@ const ApplicantBusinessDetails = () => {
             </label>
             <select
               name="businessNature"
-              value={formData.businessNature}
+              value={formData.businessNature || ""}
               onChange={handleChange}
               onClick={() => {
                 if (!isDropdownClicked) {
@@ -763,14 +697,15 @@ const ApplicantBusinessDetails = () => {
               ))}
             </select>
           </div>
-          {/* Loan Purpose */}
+          
+          {/* Business Purpose */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Loan Purpose
+              Business Purpose
             </label>
             <select
-              name="loanPurpose"
-              value={formData.loanPurpose}
+              name="businessPurpose"
+              value={formData.businessPurpose || ""}
               onChange={handleChange}
               onClick={() => {
                 if (!isDropdownClicked) {
@@ -788,6 +723,7 @@ const ApplicantBusinessDetails = () => {
               ))}
             </select>
           </div>
+          
           {/* Business Vintage */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -796,7 +732,7 @@ const ApplicantBusinessDetails = () => {
             <input
               type="text"
               name="businessVintage"
-              value={formData.businessVintage}
+              value={formData.businessVintage || ""}
               onChange={handleChange}
               className={`w-full px-4 py-2.5 rounded-lg border ${
                 errors.businessVintage ? "border-red-500" : "border-gray-300"
@@ -809,6 +745,7 @@ const ApplicantBusinessDetails = () => {
               </p>
             )}
           </div>
+          
           {/* Business Address */}
           <div className="md:col-span-2">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -816,7 +753,7 @@ const ApplicantBusinessDetails = () => {
             </label>
             <textarea
               name="businessAddress"
-              value={formData.businessAddress}
+              value={formData.businessAddress || ""}
               onChange={handleChange}
               rows="2"
               className={`w-full px-4 py-2.5 rounded-lg border ${
@@ -830,51 +767,52 @@ const ApplicantBusinessDetails = () => {
               </p>
             )}
           </div>
-          {/* No. of Staff */}
+          
+          {/* Staff Count */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               No. of Staff
             </label>
             <input
               type="number"
-              name="noOfStaff"
-              value={formData.noOfStaff}
+              name="staffCount"
+              value={formData.staffCount || ""}
               onChange={handleChange}
               className={`w-full px-4 py-2.5 rounded-lg border ${
-                errors.noOfStaff ? "border-red-500" : "border-gray-300"
+                errors.staffCount ? "border-red-500" : "border-gray-300"
               } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none`}
               required
             />
-            {errors.noOfStaff && (
-              <p className="text-red-500 text-sm mt-1">{errors.noOfStaff}</p>
+            {errors.staffCount && (
+              <p className="text-red-500 text-sm mt-1">{errors.staffCount}</p>
             )}
           </div>
-          {/* Average TurnOver In Lakhs */}
+          
+          {/* Average Turnover */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Average TurnOver In Lakhs
             </label>
             <input
               type="number"
-              name="averageTurnoverLakhs"
-              value={formData.averageTurnoverLakhs}
+              name="avgTurnover"
+              value={formData.avgTurnover}
               onChange={handleChange}
               className={`w-full px-4 py-2.5 rounded-lg border ${
-                errors.averageTurnoverLakhs
+                errors.avgTurnover
                   ? "border-red-500"
                   : "border-gray-300"
               } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none`}
               required
             />
-            {errors.averageTurnoverLakhs && (
+            {errors.avgTurnover && (
               <p className="text-red-500 text-sm mt-1">
-                {errors.averageTurnoverLakhs}
+                {errors.avgTurnover}
               </p>
             )}
           </div>
 
-          {/* after bill number verification */}
-
+          {/* Electricity Bill */}
           <div className="md:col-span-2">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Electricity Bill (Home/Business)
@@ -906,123 +844,142 @@ const ApplicantBusinessDetails = () => {
             </div>
 
             {electricityBillInputType === "upload" ? (
-              <div className="relative">
+              <div className="flex gap-2 items-center">
                 <input
                   type="file"
                   name="electricityBill"
-                  accept="application/pdf,image/*"
                   onChange={(e) => {
-                    setFormData((prev) => ({
-                      ...prev,
-                      electricityBill: e.target.files[0],
-                    }));
-                    uploadElectricityBillFile(e.target.files[0]);
+                    handleChange(e);
+                    if (e.target.files?.[0]) {
+                      uploadElectricityBillFile(e.target.files[0]);
+                    }
                   }}
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
                 />
-                {verificationStatus.electricityBill.loading && (
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
-                  </div>
-                )}
                 {verificationStatus.electricityBill.verified && (
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-500">
-                    ✓
-                  </div>
-                )}
-                {verificationStatus.electricityBill.error && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {verificationStatus.electricityBill.error}
-                  </p>
+                  <span className="text-green-500 ml-2">✓</span>
                 )}
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="flex flex-wrap gap-2 items-end">
-                  <div className="flex-1 min-w-[120px]">
-                    <label className="block font-semibold mb-1">
-                      Bill Number (Optional)
-                    </label>
+                {/* Operator Selection */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Select Electricity Board/Operator
+                  </label>
+                  <select
+                    value={selectedOperatorCode}
+                    onChange={(e) => setSelectedOperatorCode(e.target.value)}
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
+                    required
+                  >
+                    <option value="">Select Operator</option>
+                    <option value="MSEB">MSEB Maharashtra</option>
+                    <option value="BSES">BSES Delhi</option>
+                    <option value="TSNPDCL">TSNPDCL Telangana</option>
+                    <option value="KSEB">KSEB Kerala</option>
+                    <option value="PSPCL">PSPCL Punjab</option>
+                    <option value="WBSEDCL">WBSEDCL West Bengal</option>
+                    <option value="TNEB">TNEB Tamil Nadu</option>
+                    <option value="KESCO">KESCO Karnataka</option>
+                    <option value="DHBVN">DHBVN Haryana</option>
+                    <option value="UPPCL">UPPCL Uttar Pradesh</option>
+                  </select>
+                </div>
+    
+                {/* Bill Number Input */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Bill Number <span className="text-gray-400 font-normal">(Optional)</span>
+                  </label>
+                  <div className="flex gap-2 items-center">
                     <input
                       type="text"
                       value={userEnteredBillNumber}
                       onChange={(e) => setUserEnteredBillNumber(e.target.value)}
-                      className="w-full px-4 py-2 border rounded"
-                      placeholder="Enter bill number (optional)"
+                      placeholder="Enter electricity bill number"
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
                     />
-                  </div>
-                  <div className="flex-1 min-w-[120px]">
-                    <label className="block font-semibold mb-1">Operator</label>
-                    <select
-                      value={selectedOperatorCode}
-                      onChange={(e) => setSelectedOperatorCode(e.target.value)}
-                      className="w-full px-4 py-2 border rounded"
+                    <button
+                      type="button"
+                      onClick={() => verifyElectricityBill(userEnteredBillNumber, selectedOperatorCode)}
+                      disabled={
+                        !selectedOperatorCode ||
+                        verificationStatus.electricityBill.loading ||
+                        verificationStatus.electricityBill.verified
+                      }
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:opacity-50"
                     >
-                      <option value="">Select Operator</option>
-                      <option value="UP">Uttar Pradesh</option>
-                      <option value="MH">Maharashtra</option>
-                      {/* Add other states as needed */}
-                    </select>
+                      {verificationStatus.electricityBill.loading
+                        ? "Verifying..."
+                        : verificationStatus.electricityBill.verified
+                        ? "Verified"
+                        : "Verify"}
+                    </button>
+                    {verificationStatus.electricityBill.verified && (
+                      <span className="text-green-500 ml-2">✓</span>
+                    )}
                   </div>
-                  <button
-                    onClick={() =>
-                      verifyElectricityBill(
-                        userEnteredBillNumber,
-                        selectedOperatorCode
-                      )
-                    }
-                    className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-all mt-6"
-                    disabled={!selectedOperatorCode}
-                  >
-                    Verify Bill
-                  </button>
-                  {verificationStatus.electricityBill.loading && (
-                    <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500 inline-block mt-6"></span>
-                  )}
-                  {verificationStatus.electricityBill.verified && (
-                    <span className="text-green-500 mt-6">✓</span>
-                  )}
-                  {verificationStatus.electricityBill.error && (
-                    <p className="text-red-500 text-sm mt-6">
-                      {verificationStatus.electricityBill.error}
-                    </p>
-                  )}
                 </div>
               </div>
             )}
+    
+            {verificationStatus.electricityBill.error && (
+              <p className="text-red-500 text-sm mt-1">
+                {verificationStatus.electricityBill.error}
+              </p>
+            )}
           </div>
-
-          {/* Business Photo Upload */}
-          <div className="md:col-span-2">
+  
+          {/* Business Photo */}
+          <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Business Photo
             </label>
             <input
               type="file"
               name="businessPhoto"
-              accept="image/*"
               onChange={handleChange}
-              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white"
+              accept=".jpg,.jpeg,.png"
+              className={`w-full px-4 py-2.5 rounded-lg border ${
+                errors.businessPhoto ? "border-red-500" : "border-gray-300"
+              } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none`}
               required
             />
             {errors.businessPhoto && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.businessPhoto}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.businessPhoto}</p>
             )}
           </div>
+  
+          {/* ITR Number */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              ITR Number <span className="text-gray-400 font-normal">(Optional)</span>
+            </label>
+            <input
+              type="text"
+              name="itrNumber"
+              value={formData.itrNumber || ""}
+              onChange={handleChange}
+              placeholder="Enter ITR number"
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none"
+            />
+          </div>
         </div>
-        <div className="flex justify-center mt-8">
+  
+        {/* Submit Button */}
+        <div className="flex justify-center pt-6">
           <button
             type="submit"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 shadow-lg"
+            className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
-            Submit
+            Save & Continue
           </button>
         </div>
       </form>
     </div>
   );
 };
-
+  
 export default ApplicantBusinessDetails;

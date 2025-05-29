@@ -41,25 +41,28 @@ const Frequently = () => {
         {/* Left Column */}
         <div className="lg:w-1/3 flex flex-col justify-start mb-6 lg:mb-0 animate-slide-from-left text-center lg:text-left">
           <h2
-            className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold animate-grow leading-tight"
+            className="mb-3 sm:mb-4 text-xl sm:text-xl md:text-xl lg:text-4xl font-semibold animate-grow leading-tight"
             style={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 500,
               color: "#0D4183",
             }}
           >
-            Common Questions
+            {/* Common Questions */}
+            सामान्य प्रश्न
+
           </h2>
           <p
-            className="mb-4 sm:mb-6 text-sm sm:text-base md:text-lg animate-fade-in leading-relaxed max-w-md mx-auto lg:mx-0"
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 300,
-              color: "#000000",
-            }}
-          >
-            Find the answers to frequently asked questions here.
-          </p>
+  className="mb-4 text-[15px] animate-fade-in leading-relaxed max-w-md mx-auto lg:mx-0"
+  style={{
+    fontFamily: "Poppins, sans-serif",
+    fontWeight: 300,
+    color: "#000000",
+  }}
+>
+  Frequently Asked Questions
+</p>
+
         </div>
         
         {/* Right Column */}

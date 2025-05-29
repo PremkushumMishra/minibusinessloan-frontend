@@ -76,7 +76,8 @@ const NameEmailVerify = () => {
           {
             name: formData.name,
             email: formData.email,
-            phone: formData.phone,
+            phone: localStorage.getItem('mobile') || '',
+            // formData.phone,
             redirectURL: formData.redirectURL,
           },
           {
@@ -142,6 +143,14 @@ const NameEmailVerify = () => {
       console.error("User Details API Error:", err);
     }
   };
+
+  useEffect(() => {
+    const step = localStorage.getItem('user_step');
+    if (step === 'name-email-verify') {
+    //  stay on the same page
+    navigate(window.location.pathname);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] py-12 px-4 sm:px-6 lg:px-8">

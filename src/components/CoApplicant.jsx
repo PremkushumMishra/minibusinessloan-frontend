@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import API_CONFIG from "../config";
 import { useNavigate } from "react-router-dom";
-
+import { useStep } from "../context/StepContext";
 const CoApplicant = () => {
+  const { currentStep } = useStep();
   const [mobile, setMobile] = useState("");
   const [pan, setPan] = useState("");
   const [otp, setOtp] = useState("");
@@ -169,6 +170,8 @@ const CoApplicant = () => {
         console.log("✅ OTP verified successfully! Navigating to business details..======>>.",
           response.data
         );
+        localStorage.setItem("user_step", "applicant-business-details");
+        // console.log("✅ OTP verified successfully! Navigating to business details..======>>.",
         setTimeout(() => {
           navigate("/applicant-business-details");
         }, 1000);
@@ -192,10 +195,17 @@ const CoApplicant = () => {
     }
   };
 
+  useEffect(() => {
+    if (currentStep !== "co-applicant") {
+      // Redirect to the correct step/page
+      navigate(`/${currentStep}`);
+    }
+  }, [currentStep, navigate]);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#E0BCF3] to-[#7EE7EE] py-12 px-4">
-      <div className="max-w-md w-full bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 mt-20">
-        <h2 className="text-2xl font-bold text-center text-[#003366] mb-6">
+      <div className="max-w-md w-full bg-white/90 backdrop-blur-sm rounded-t-3xl rounded-bl-3xl shadow-xl p-8 mt-20">
+        <h2 className="text-2xl fon text-center text-[#003366] mb-6">
           Co-Applicant Verification
         </h2>
         

@@ -130,7 +130,11 @@ const AppDownload = () => {
         whileHover="hover"
       >
         <img
+<<<<<<< HEAD
           src="/appdownloadlogo.png"
+=======
+          src="/calulator.png"
+>>>>>>> 49ef24b7ef235b78ad6c6f5d37576d8d2ec223b5
           alt="App Download"
           className="w-full h-auto object-contain"
         />
@@ -183,7 +187,7 @@ const AppDownload = () => {
                 className="text-gray-700 text-center mb-4"
                 variants={itemVariants}
               >
-                We're working hard to bring our app to the App Store. Stay tuned!
+                {/* We're working hard to bring our app to the App Store. Stay tuned! */}
               </motion.p>
               <motion.button
                 onClick={() => setShowModal(false)}

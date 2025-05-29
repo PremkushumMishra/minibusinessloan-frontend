@@ -107,8 +107,11 @@ const Footer = () => {
             </motion.a>
             <motion.a
               href="https://www.facebook.com/profile.php?id=61576580291499"
+<<<<<<< HEAD
               target="_blank"
               rel="noopener noreferrer"
+=======
+>>>>>>> 49ef24b7ef235b78ad6c6f5d37576d8d2ec223b5
               className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center hover:opacity-80 transition-opacity"
               title="Facebook"
               aria-label="Facebook"
@@ -118,8 +121,11 @@ const Footer = () => {
             </motion.a>
             <motion.a
               href="https://www.instagram.com/minibusinessloan?igsh=MW5zcGt6Z2praHVldw=="
+<<<<<<< HEAD
               target="_blank"
               rel="noopener noreferrer"
+=======
+>>>>>>> 49ef24b7ef235b78ad6c6f5d37576d8d2ec223b5
               className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center hover:opacity-80 transition-opacity"
               title="Instagram"
               aria-label="Instagram"

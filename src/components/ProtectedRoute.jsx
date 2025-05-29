@@ -20,9 +20,14 @@ const ProtectedRoute = ({ allowedStep , children }) => {
   const allowedIndex = stepsOrder.indexOf(allowedStep);
 
   if (allowedIndex > currentIndex) {
+    console.log("Allowed Index:", allowedIndex);
     return <Navigate to={`/${currentStep}`} />;
   }
+  else if( allowedIndex  === currentIndex){
+    <Navigate to={`/${currentStep}`} />
+  }
 
+  console.log("Current Index:", currentIndex);
   return children;
 };
 
