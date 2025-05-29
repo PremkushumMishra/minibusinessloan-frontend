@@ -373,7 +373,7 @@ const WhyChoose = () => {
             src="/whycircle.png"
             alt="Why Choose Us Circle"
             className="max-w-full h-auto object-contain"
-            style={{ width: 'min(400px, 95vw)' }}
+            // style={{ width: '100%', maxWidth: '900px' }}
           />
         </motion.div>
         {/* Right Features (2) */}

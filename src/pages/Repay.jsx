@@ -26,30 +26,9 @@ const Repay = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header Section */}/{/* Main Content */}
-      <div className="container mx-auto px-4 mt-15 py-12">
+      <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           {/* Loan Summary Card */}
-          {/* <div className="bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-lg shadow-lg p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-              Your Loan Summary
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-200 backdrop-blur-sm p-4 rounded-lg">
-                <p className="text-sm text-gray-700">Total Loan Amount</p>
-                <p className="text-2xl font-bold text-gray-800">₹2,00,000</p>
-              </div>
-              <div className="bg-gray-200 backdrop-blur-sm p-4 rounded-lg">
-                <p className="text-sm text-gray-700">Remaining Amount</p>
-                <p className="text-2xl font-bold text-gray-800">₹1,50,000</p>
-              </div>
-              <div className="bg-gray-200 backdrop-blur-sm p-4 rounded-lg">
-                <p className="text-sm text-gray-700">Monthly EMI</p>
-                <p className="text-2xl font-bold text-gray-800">₹5,000</p>
-                <p className="text-sm text-gray-600">Due on 15th every month</p>
-              </div>
-            </div>
-          </div> */}
-
           {/* Payment Options */}
           <div className="bg-to-blac rounded-lg  p-6 mb-8 transform hover:scale-[1.02] transition-all duration-300">
             <h2 className="text-2xl font-bold text-black mb-6">
@@ -57,7 +36,7 @@ const Repay = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Daily Payment */}
-              <div className="bg-bg-gray-200 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <div className="bg-gray-200 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full flex items-center justify-center mr-4">
                     <span className="text-2xl">📅</span>
@@ -73,7 +52,7 @@ const Repay = () => {
               </div>
 
               {/* Weekly Payment */}
-              <div className="bg-bg-gray-200 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <div className="bg-gray-200 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full flex items-center justify-center mr-4">
                     <span className="text-2xl">📊</span>
@@ -89,7 +68,7 @@ const Repay = () => {
               </div>
 
               {/* Regular EMI Payment */}
-              <div className="bg-bg-gray-200 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <div className="bg-gray-200 backdrop-blur-sm rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 <div className="flex items-center mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-full flex items-center justify-center mr-4">
                     <span className="text-2xl">₹</span>

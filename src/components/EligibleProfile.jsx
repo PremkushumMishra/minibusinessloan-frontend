@@ -43,22 +43,29 @@ const EligibleProfile = () => {
           If you run a business or earn a steady income, <br className="hidden sm:block" /> you might be eligible!
         </p>
 
-        {/* Profile Names */}
+
+
+
         <div
-          className="font-poppins text-center mt-4 md:mt-10 text-sm sm:text-base md:text-lg lg:text-xl"
-          style={{
-            fontWeight: 500,
-            lineHeight: "140%",
-            letterSpacing: 0,
-          }}
-        >
-          <span
-            className="font-poppins font-medium text-[20px] leading-[140%] text-center"
-            style={{ letterSpacing: 0, color: "#0D4059", display: "block" }}
-          >
-            Retail Shop Owner, Small Manufacturer, Service Provider, <br className="hidden sm:block" /> Wholesaler, Street Food Vendor
-          </span>
-        </div>
+  className="font-poppins text-center mt-4 md:mt-10 text-sm sm:text-base md:text-lg lg:text-xl"
+  style={{
+    fontWeight: 500,
+    lineHeight: "140%",
+    letterSpacing: 0,
+  }}
+>
+  <span
+    className="font-poppins font-medium text-[20px] leading-[140%] text-center"
+    style={{ color: "#0D4059", display: "inline-block" }}
+  >
+    Retail Shop Owner, Small Manufacturer, Service Provider,
+    <br className="hidden sm:block" />
+    Wholesaler, Street Vendor
+    <sup className="text-[10px] text-gray-500 ml-1">*conditions apply</sup>
+  </span>
+  {/* <div className="text-[10px] text-gray-500 mt-1">conditions apply</div> */}
+</div>
+
       </div>
 
       {/* Cards Container - Made fully responsive */}

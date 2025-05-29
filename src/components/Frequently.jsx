@@ -41,14 +41,14 @@ const Frequently = () => {
         {/* Left Column */}
         <div className="lg:w-1/3 flex flex-col justify-start mb-6 lg:mb-0 animate-slide-from-left text-center lg:text-left">
           <h2
-            className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold animate-grow leading-tight"
+            className="mb-3 sm:mb-4 text-2xl sm:text-2xl md:text-2xl lg:text-4xl font-semibold animate-grow leading-tight"
             style={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 500,
               color: "#0D4183",
             }}
           >
-            Common Questions
+            सामान्य प्रश्न{" "}
           </h2>
           <p
             className="mb-4 sm:mb-6 text-sm sm:text-base md:text-lg animate-fade-in leading-relaxed max-w-md mx-auto lg:mx-0"
@@ -58,10 +58,10 @@ const Frequently = () => {
               color: "#000000",
             }}
           >
-            Find the answers to frequently asked questions here.
+            Frequently asked questions here.
           </p>
         </div>
-        
+
         {/* Right Column */}
         <div className="lg:w-2/3 flex flex-col gap-3 sm:gap-4 animate-slide-from-right">
           {faqs.map((faq, index) => {
@@ -82,7 +82,9 @@ const Frequently = () => {
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
                 >
-                  <span className="flex-1 pr-4 leading-relaxed">{faq.question}</span>
+                  <span className="flex-1 pr-4 leading-relaxed">
+                    {faq.question}
+                  </span>
                   <span
                     className={`flex-shrink-0 transition-all duration-300 transform ${
                       isOpen
@@ -94,9 +96,9 @@ const Frequently = () => {
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
-                
+
                 {isOpen && (
-                  <div 
+                  <div
                     id={`faq-answer-${faq.id}`}
                     className="px-4 sm:px-6 lg:px-8 pb-4 sm:pb-5 lg:pb-6 text-white text-xs sm:text-sm lg:text-base animate-slide-down"
                   >
@@ -110,7 +112,7 @@ const Frequently = () => {
           })}
         </div>
       </div>
-      
+
       <style jsx>{`
         @keyframes slide-from-left {
           0% {
@@ -122,7 +124,7 @@ const Frequently = () => {
             transform: translateX(0);
           }
         }
-        
+
         @keyframes slide-from-right {
           0% {
             opacity: 0;
@@ -133,7 +135,7 @@ const Frequently = () => {
             transform: translateX(0);
           }
         }
-        
+
         @keyframes slide-down {
           0% {
             opacity: 0;
@@ -146,7 +148,7 @@ const Frequently = () => {
             max-height: 500px;
           }
         }
-        
+
         @keyframes fade-in {
           0% {
             opacity: 0;
@@ -157,7 +159,7 @@ const Frequently = () => {
             transform: translateY(0);
           }
         }
-        
+
         @keyframes grow {
           0% {
             transform: scale(0.95);
@@ -168,27 +170,27 @@ const Frequently = () => {
             opacity: 1;
           }
         }
-        
+
         .animate-slide-from-left {
           animation: slide-from-left 0.6s ease-out forwards;
         }
-        
+
         .animate-slide-from-right {
           animation: slide-from-right 0.6s ease-out forwards;
         }
-        
+
         .animate-slide-down {
           animation: slide-down 0.4s ease-out forwards;
         }
-        
+
         .animate-fade-in {
           animation: fade-in 0.6s ease-out forwards;
         }
-        
+
         .animate-grow {
           animation: grow 0.6s ease-out forwards;
         }
-        
+
         /* Enhanced mobile responsiveness */
         @media (max-width: 640px) {
           .animate-slide-from-left,
@@ -196,7 +198,7 @@ const Frequently = () => {
             animation: fade-in 0.5s ease-out forwards;
           }
         }
-        
+
         /* Tablet specific adjustments */
         @media (min-width: 641px) and (max-width: 1023px) {
           .animate-slide-from-left {
@@ -206,14 +208,14 @@ const Frequently = () => {
             animation-delay: 0.2s;
           }
         }
-        
+
         /* Improve touch targets on mobile */
         @media (max-width: 640px) {
           button {
             min-height: 60px;
           }
         }
-        
+
         /* Reduce motion for users who prefer it */
         @media (prefers-reduced-motion: reduce) {
           * {

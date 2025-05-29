@@ -194,7 +194,7 @@ const LoanCalculator = () => {
                 >
                   {/* Back circle */}
                   <motion.div 
-                    className="absolute -left-13 top-3 w-20 h-20 md:w-26 md:h-25 bg-[#1575E5CC] rounded-full z-0"
+                    className="absolute ml-2 top-3 w-20 h-20 md:w-26 md:h-25 bg-[#1575E5CC] rounded-full z-0"
                     animate={{ 
                       scale: [1, 1.1, 1],
                       opacity: [0.7, 0.9, 0.7]
@@ -208,7 +208,7 @@ const LoanCalculator = () => {
                   {/* Front circle with button */}
                   <Link to="/mobile-verification">
                     <motion.button
-                      className="relative w-20 h-20 md:w-26 md:h-26 bg-[#045382] rounded-full flex items-center -left-12 justify-center text-white font-medium z-10 shadow-lg text-sm md:text-base"
+                      className="relative w-20 h-20 md:w-26 md:h-26 bg-[#045382] rounded-full flex items-center ml-2 justify-center text-white font-medium z-10 shadow-lg text-sm md:text-base"
                       style={{ fontFamily: 'Poppins' }}
                       whileHover={{ 
                         scale: 1.1,
