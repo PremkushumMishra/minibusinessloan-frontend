@@ -40,7 +40,8 @@ const EligibleProfile = () => {
             maxWidth: "28rem",
           }}
         >
-          If you run a business or earn a steady income, <br className="hidden sm:block" /> you might be eligible!
+          If you run a business or earn steady income,{" "}
+          <br className="hidden sm:block" /> you might be eligible!
         </p>
 
 

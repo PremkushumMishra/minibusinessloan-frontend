@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import API_CONFIG from "../config";
 // const CUSTOMER_ID = "MBLC0039"; 
 import BankVerificationGlobalModal from "../pages/BankVerificationGlobalModal";
 // TODO: Make dynamic if needed
 
-
+import { useStep } from "../context/StepContext";
 
 const BankStatement = () => {
+  const { currentStep } = useStep();
+  const navigate = useNavigate();
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [pendingValue, setPendingValue] = useState(null);
+
+
+
+
 
   // Fetch options on mount
 
@@ -118,7 +125,12 @@ const BankStatement = () => {
     setLoading(false);
   };
 
-
+useEffect(() => {
+  if (currentStep !== "bank-statement") {
+    // Redirect to the correct step/page
+    navigate(`/${currentStep}`);
+  }
+}, [currentStep, navigate]);
 
 
   return (

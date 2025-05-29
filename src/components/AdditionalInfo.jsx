@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_CONFIG from "../config";
-
+import { useStep } from "../context/StepContext";
 const AdditionalInfo = () => {
+  const { currentStep, setCurrentStep } = useStep();
   const [form, setForm] = useState({
     maritalStatus: "",
     relation: "",
@@ -53,12 +54,10 @@ const AdditionalInfo = () => {
         setSuccess("Data submitted successfully!");
         fetchUserDetails();
 
-     
-        setSuccess("data submitted successfylly");
+        setCurrentStep("co-applicant");
+        localStorage.setItem("user_step", "co-applicant");
         console.log("✅ Success! Navigating to co-applicant...");
-        setTimeout(() => {
-          navigate("/co-applicant");
-        }, 1000);
+        navigate("/co-applicant");
       } else if (
         response.data?.status === false &&
         response.data?.message === "Lead Rejected"
@@ -75,8 +74,7 @@ const AdditionalInfo = () => {
     } finally {
       setLoading(false);
     }
-  };
-
+  }
   const fetchUserDetails = async () => {
     try {
       const token = localStorage.getItem("authToken");
@@ -93,6 +91,14 @@ const AdditionalInfo = () => {
       console.error("User Details API Error:", err);
     }
   };
+
+  useEffect(() => {
+    if (currentStep !== "additional-info") {
+      // Redirect to the correct step/page
+      navigate(`/${currentStep}`);
+    }
+  }, [currentStep, navigate]);
+
 
   return (
     <div className="max-w-lg mx-auto mt-32 p-6 bg-white rounded shadow">
@@ -123,17 +129,7 @@ const AdditionalInfo = () => {
             required
           />
         </div>
-        {/* <div>
-          <label className="block font-medium mb-1">Email ID</label>
-          <input
-            type="email"
-            name="emailID"
-            value={form.emailID}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div> */}
+     
         <div>
           <label className="block font-medium mb-1">First Reference Name</label>
           <input
@@ -234,8 +230,11 @@ const AdditionalInfo = () => {
         >
           {loading ? "Submitting..." : "Submit"}
         </button>
-        {success && <div className="text-green-600 mt-2">{success}</div>}
-        {error && <div className="text-red-600 mt-2">{error}</div>}
+        {success ? (
+          <div className="text-green-600 mt-2">{success}</div>
+        ) : error ? (
+          <div className="text-red-600 mt-2">{error}</div>
+        ) : null}
       </form>
     </div>
   );

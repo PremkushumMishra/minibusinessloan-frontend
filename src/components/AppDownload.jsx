@@ -130,7 +130,11 @@ const AppDownload = () => {
         whileHover="hover"
       >
         <img
-          src="/appdownload.png"
+<<<<<<< HEAD
+          src="/appdownloadlogo.png"
+=======
+          src="/calulator.png"
+>>>>>>> 49ef24b7ef235b78ad6c6f5d37576d8d2ec223b5
           alt="App Download"
           className="w-full h-auto object-contain"
         />
