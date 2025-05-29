@@ -7,3 +7,7 @@
 .animate-pulse-custom {
   animation: pulse-custom 1.6s infinite;
 }
+
+body {
+  font-family: 'Poppins', sans-serif;
+}

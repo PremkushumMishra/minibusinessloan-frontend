@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState  , useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { useStep } from "../context/StepContext";
 import axios from "axios";
@@ -484,18 +484,20 @@ const MobileVerification = () => {
   const [showTermsModal, setShowTermsModal] = useState(false);
   const navigate = useNavigate();
   const { updateStep } = useStep();
-  const [clientId, setClientId] = useState("");
+  // const [clientId, setClientId] = useState("");
   const [referralCode, setReferralCode] = useState("");
+  const { currentStep } = useStep();
+
 
   // API Configuration - Just change these URLs when switching APIs
   const API_CONFIG = {
     // local host url
-    // BASE_URL: "http://10.6.3.32:3000/api/v1",
+    BASE_URL: "http://10.6.3.64:8080/api/v1",
     // BASE_URL: "http://localhost:3000/api/v1",
     // live url
     // BASE_URL: "http://103.104.73.107:3004/api/v1",
     // prod url
-    BASE_URL:"https://backend.minibusinessloan.com/api/v1",
+    // BASE_URL:"https://backend.minibusinessloan.com/api/v1",
 
     ENDPOINTS: {
       SEND_OTP: "/send-otp",
@@ -503,6 +505,13 @@ const MobileVerification = () => {
       RESEND_OTP: "/resend-otp",
     },
   };
+
+  useEffect(() => {
+    if (currentStep !== "mobile-verification") {
+      // Redirect to the correct step/page
+      navigate(`/${currentStep}`);
+    }
+  }, [currentStep, navigate]);
 
   const handleMobileChange = (e) => {
     const value = e.target.value;
@@ -556,8 +565,11 @@ const MobileVerification = () => {
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
       ) {
-        const receivedClientId = response.data?.data?.client_id;
-        setClientId(receivedClientId);
+        localStorage.setItem('otpStep', 'showOtp');
+        localStorage.setItem('mobile', mobileNumber.slice(3)); // Save mobile if needed
+        localStorage.setItem('clientID', response.data?.data?.client_id);
+        // const receivedClientId = response.data?.data?.client_id;
+        // setClientId(receivedClientId);
         setShowOtpInput(true);
         toast.success("OTP sent successfully!");
       } else {
@@ -571,7 +583,12 @@ const MobileVerification = () => {
     }
   };
   
-
+  useEffect(() => {
+    const step = localStorage.getItem('otpStep');
+    if (step === 'showOtp') {
+      setShowOtpInput(true);
+    }
+  }, []);
   // use protect routing
   // const { setCurrentStep } = useStep();
 
@@ -587,11 +604,15 @@ const MobileVerification = () => {
 
     setIsLoading(true);
     try {
-      const mobileNumberWithoutPrefix = mobileNumber.slice(3);
+      const mobileNumberWithoutPrefix = localStorage.getItem('mobile') || '';
+      const client_id = localStorage.getItem('clientID') || '';
+      // mobileNumber.slice(3);
+      console.log("Mobile Number Without Prefix:", mobileNumberWithoutPrefix);
+
       // const client_id = "your_client_id_here";
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/auth/verify-otp-customer`,
-        { phone: mobileNumberWithoutPrefix, otp: otp, client_id: clientId,},
+        { phone: mobileNumberWithoutPrefix, otp: otp, client_id: client_id,},
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -662,15 +683,37 @@ const MobileVerification = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#003366] flex items-center justify-center py-8 px-2  sm:px-4">
+    <div className="min-h-screen w-full bg-[url('/enterphone.gif')] bg-cover bg-center flex items-center justify-center py-8 px-2 sm:px-4">
       <ToastContainer position="top-center" />
-      <div className="w-full max-w-sm space-y-5 bg-white p-3 sm:p-5 sm:mt-14 rounded-3xl shadow-2xl border-2 border-[#003366]">
+      <div className="w-full max-w-sm space-y-5 bg-white p-3 sm:p-5 sm:mt-14 rounded-t-3xl rounded-bl-3xl shadow-2xl border-2 border-[#003366]">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-[#003366]">
+          <h2
+            className="text-3xl font-bold text-[#003366]"
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: 400,
+              fontSize: '24px',
+              lineHeight: '100%',
+              letterSpacing: 0,
+              color: 'black',
+            }}
+          >
             Enter Your Mobile Number
           </h2>
-          <p className="mt-3 text-[#003366] text-lg font-medium">
-            Please provide your Aadhaar-linked mobile number.
+          <p
+            className="mt-3 text-[#003366] text-lg font-medium"
+            style={{
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: 300,
+              fontSize: '16px',
+              lineHeight: '100%',
+              letterSpacing: 1,
+              textAlign: 'center',
+              color: 'black',
+            }}
+          >
+            Please provide your Addhar-linked <br />
+            <span style={{ display: "inline-block", marginTop: "8px" }}>mobile no</span>
           </p>
         </div>
 
@@ -685,8 +728,8 @@ const MobileVerification = () => {
                 Mobile Number
               </label>
               <div className="relative group">
-                <div className="flex">
-                  <div className="flex items-center justify-center px-4 py-4 bg-[#003366] text-white font-medium rounded-l-2xl border-2 border-[#003366]">
+                <div className="flex items-center">
+                  <div className="flex items-center justify-center px-4 py-2 bg-[#003366] text-white font-medium rounded-l-[16px] rounded-r-none border-t-2 border-b-2 border-l-2 border-[#003366] h-12">
                     +91
                   </div>
                   <input
@@ -696,8 +739,16 @@ const MobileVerification = () => {
                     required
                     value={mobileNumber.slice(3)}
                     onChange={handleMobileChange}
-                    className="appearance-none block w-full px-4 py-4 border-2 border-[#003366] rounded-r-2xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-lg font-medium tracking-wider group-hover:border-[#E53935]"
-                    placeholder="Enter mobile number"
+                    className="appearance-none block w-56 px-4 py-2 border-t-2 border-b-2 border-r-2 border-l-0 border-[#003366] rounded-r-[16px] rounded-l-none placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-lg tracking-wider"
+                    placeholder="Enter Aadhar Registered Number"
+                    style={{
+                      fontFamily: 'Poppins, sans-serif',
+                      fontWeight: 300,
+                      fontSize: '16px',
+                      lineHeight: '100%',
+                      letterSpacing: 0,
+                      // textAlign: 'center',
+                    }}
                   />
                 </div>
               </div>
@@ -707,8 +758,9 @@ const MobileVerification = () => {
               <label
                 htmlFor="referralCode"
                 className="block text-sm font-semibold text-gray-700 mb-2"
+                
               >
-                Referral Code (Optional)
+                Agent Code (Optional)
               </label>
               <input
                 id="referralCode"
@@ -716,8 +768,16 @@ const MobileVerification = () => {
                 type="text"
                 value={referralCode}
                 onChange={(e) => setReferralCode(e.target.value)}
-                className="appearance-none block w-1/2 px-2 py-2 border-2 border-[#003366] rounded-2xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-center tracking-[0.5em] text-2xl font-semibold group-hover:border-[#E53935]"
+                className="appearance-none block w-1/2 px-2 py-1 border-2 border-[#003366] rounded-2xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-center tracking-[0.5em] text-2xl font-semibold group-hover:border-[#E53935]"
                 placeholder=""
+                style={{
+                  fontFamily: 'Poppins, sans-serif',
+                  fontWeight: 300,
+                  fontSize: '16px',
+                  lineHeight: '100%',
+                  letterSpacing: 0,
+                  textAlign: 'center',
+                }}
               />
             </div>
 
@@ -734,16 +794,17 @@ const MobileVerification = () => {
               <label
                 htmlFor="consent"
                 className="ml-2 block text-base select-none cursor-pointer"
-                style={{ color: "#b48b8b", fontWeight: 500 }}
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: 400,
+                  fontSize: '14px',
+                  lineHeight: '100%',
+                  letterSpacing: 0,
+                  color: '#0D4059',
+                }}
                 onClick={() => setShowTermsModal(true)}
               >
-                I agree to the{" "}
-                <span
-                  className="font-bold text-[#8B1A1A] hover:underline focus:outline-none cursor-pointer"
-                  style={{ fontWeight: 700 }}
-                >
-                  terms and conditions
-                </span>
+                I agree the <span className="font-bold text-[#8B1A1A] hover:underline focus:outline-none cursor-pointer" style={{ fontWeight: 700 }}>Terms and Condition</span>
               </label>
             </div>
 
@@ -764,7 +825,7 @@ const MobileVerification = () => {
                 disabled={
                   isLoading || mobileNumber.length !== 13 || !hasConsented
                 }
-                className={`w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl text-base font-medium text-white bg-gradient-to-r from-[#003366] to-[#E53935] hover:from-[#002244] hover:to-[#b71c1c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E53935] transform hover:scale-[1.02] transition-all duration-200 shadow-lg ${
+                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-2xl text-base font-medium text-white bg-[#FF2D23] hover:bg-[#e53935] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E53935] transform hover:scale-[1.02] transition-all duration-200 shadow-lg ${
                   isLoading || mobileNumber.length !== 13 || !hasConsented
                     ? "opacity-50 cursor-not-allowed"
                     : ""

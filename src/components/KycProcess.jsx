@@ -2,10 +2,11 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_CONFIG from "../config";
+import { useStep } from "../context/StepContext";
 
 const KycProcess = () => {
 
-
+  const { currentStep } = useStep();
   const [kycComplete, setKycComplete] = useState(false);
   const [error, setError] = useState(null);
   const [attemptCount, setAttemptCount] = useState(0);
@@ -17,7 +18,6 @@ const KycProcess = () => {
   const [loading, setLoading] = useState(false);
   const intervalRef = React.useRef(null);
   const navigate = useNavigate();
-
   // Fetch phone number once on mount
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -39,6 +39,16 @@ const KycProcess = () => {
     };
     fetchUserDetails();
   }, []);
+
+
+  useEffect(() => {
+    if (currentStep !== "kyc-process") {
+      // Redirect to the correct step/page
+      navigate(`/${currentStep}`);
+    }
+  }, [currentStep, navigate]);
+
+
 
   // const fetchUser = useCallback(async () => {
   //   setLoading(true);
@@ -144,6 +154,7 @@ if( step === "kyc-process"){
       setKycComplete(true);
       setIsVerifying(false);
       fetchUserDetails()
+      localStorage.setItem("user_step", "additional-info");
       navigate("/additional-info");
     } else {
       setError(response.data?.message || "KYC verification failed.");
