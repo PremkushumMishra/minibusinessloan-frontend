@@ -487,7 +487,7 @@ const MobileVerification = () => {
   const [clientId, setClientId] = useState("");
   const [referralCode, setReferralCode] = useState("");
 
-  // API Configuration - Just change these URLs when switching APIs
+  // API Configuration -change  Just change these URLs when switching APIs
   const API_CONFIG = {
     // local host url
     // BASE_URL: "http://10.6.3.32:3000/api/v1",
