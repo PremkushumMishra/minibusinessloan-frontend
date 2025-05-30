@@ -23,7 +23,7 @@ const ContactUs = () => {
           <div className="mb-2">
             <div className="text-xs font-semibold text-[#222] mb-1">Have questions?</div>
             <div
-              className="font-poppins font-medium text-[40px] leading-[100%] tracking-[0] text-[#0D4183] mb-2"
+              className="font-poppins font-poppins text-[40px] leading-[100%] tracking-[0] text-[#0D4183] mb-2"
               style={{ letterSpacing: 0 }}
             >
               We are always ready<br />to help you and answer<br />your question
@@ -38,22 +38,24 @@ const ContactUs = () => {
           <div className="flex flex-col md:flex-row gap-6">
             {/* Left: Support Team & Email */}
             <div className="flex-1 flex flex-col gap-4">
-              <div className="font-poppins font-medium text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Support Team</div>
+              <div className="font-poppins font-poppins text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Support Team</div>
               <div className="text-[#505050] text-base">+91 7814447895</div>
-              <div className="font-poppins font-medium text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Email</div>
+              <div className="font-poppins font-poppins text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Email</div>
               <div className="text-[#505050] text-base">info@minibusinessloan.com</div>
+              <div className="font-poppins font-poppins text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Customer Care</div>
+              <div className="text-[#505050] text-base">customercare@techaviom.in</div>
             </div>
             {/* Right: Our Location & Social Media */}
             <div className="flex-1 flex flex-col gap-4">
-              <div className="font-poppins font-medium text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Our Location</div>
+              <div className="font-poppins font-poppins text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Our Location</div>
               <div className="text-[#505050] text-base leading-tight">
                 Lalita Park, Gurudwara, Lalita Park<br />New Delhi, East Delhi 110092 India
               </div>
-              <div className="font-poppins font-medium text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Social Media</div>
+              <div className="font-poppins font-poppins text-[20px] leading-[100%] tracking-[0] text-[#000000]" style={{ letterSpacing: 0 }}>Social Media</div>
               <div className="flex flex-row gap-3 mt-1">
-                <a href="#" title="Email"><img src="/youtube.webp" alt="Email" className="h-6 w-6 object-contain" /></a>
-                <a href="#" title="Facebook"><img src="/facebook.png" alt="Facebook" className="h-6 w-6 object-contain" /></a>
-                <a href="#" title="Instagram"><img src="/Instagram_icon.png" alt="Instagram" className="h-6 w-6 object-contain" /></a>
+                <a href="#" title="Email"><img src="/youtube.webp" alt="Email" className="h-7 w-7 object-contain" /></a>
+                <a href="https://www.facebook.com/profile.php?id=61576580291499" target="_blank" rel="noopener noreferrer" title="Facebook"><img src="/facebook.png" alt="Facebook" className="h-7 w-7 object-contain" /></a>
+                <a href="https://www.instagram.com/minibusinessloan?igsh=MW5zcGt6Z2praHVldw==" target="_blank" rel="noopener noreferrer" title="Instagram"><img src="/Instagram_icon.png" alt="Instagram" className="h-7 w-7 object-contain" /></a>
                 {/* <a href="#" title="LinkedIn"><img src="/linkedinicon.png" alt="LinkedIn" className="h-6 w-6 object-contain" /></a> */}
               </div>
             </div>

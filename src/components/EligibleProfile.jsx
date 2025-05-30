@@ -19,7 +19,7 @@ const EligibleProfile = () => {
       <div className="text-center mb-8 md:mb-12">
         <div className="flex justify-center items-center">
           <h1
-            className="font-poppins font-medium text-2xl md:text-3xl lg:text-4xl text-[#0D4183] mb-2 text-center"
+            className="font-poppins text-2xl md:text-3xl lg:text-4xl text-[#0D4183] mb-2 text-center"
             style={{
               lineHeight: "140%",
               letterSpacing: 0,
@@ -31,7 +31,7 @@ const EligibleProfile = () => {
         </div>
 
         <p
-          className="font-poppins text-base md:text-lg lg:text-xl text-[#222] font-normal mx-auto"
+          className="font-poppins text-base md:text-lg lg:text-xl text-[#222]  mx-auto"
           style={{
             lineHeight: "140%",
             letterSpacing: 0,

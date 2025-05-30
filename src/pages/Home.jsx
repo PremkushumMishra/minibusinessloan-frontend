@@ -27,6 +27,7 @@ import NewWhy from "../components/NewWhy"
 import MblSanctionlatter from "./MblSanctionlatter";
 import BankVerificationProcess from "./BankVerificationProcess";
 import BankVerificationGlobalModal from "./BankVerificationGlobalModal";
+import Razorpay from "../components/Razorpay";
 const Home = () => {
   return (
     <>
@@ -35,6 +36,7 @@ const Home = () => {
       {/* <BankVerificationProcess/> */}
 {/* <BankVerificationGlobalModal visible={true} onClose={() => {}} /> */}
       <TalkingLoan />
+      {/* <Razorpay /> */}
       {/* <Hindi/> */}
       <EligibleProfile/>
       {/* <Lorem /> */}

@@ -181,6 +181,8 @@ const features = [
       iconBg: "bg-[#E6F4EA]",
       color: "text-[#FFFFFF]",
       side: "left",
+      fontFamily: 'Poppins',
+      textAlign: 'justify',
     },
     {
       icon: icons[1],
@@ -273,6 +275,7 @@ const WhyChoose = () => {
     lineHeight: '140%',
     letterSpacing: '0%',
     color: '#fff',
+    textAlign: 'justify',
   };
 
   // Animation variants
@@ -300,7 +303,7 @@ const WhyChoose = () => {
   return (
     <div className="bg-[#0D4183] py-6 md:py-12 rounded-t-3xl rounded-bl-3xl text-[#FFFFFF] px-3 md:px-8 overflow-hidden">
       <motion.h2
-        className="text-center mb-2 md:mb-4 animate-grow"
+        className="text-center font-poppins mb-2 md:mb-4 animate-grow"
         style={headingStyle}
         variants={fadeSlideUp}
         initial="hidden"
@@ -311,7 +314,7 @@ const WhyChoose = () => {
       </motion.h2>
       <motion.p
         style={subheadingStyle}
-        className="mb-4 md:mb-10 px-2 animate-slide-up"
+        className="mb-4 md:mb-10 font-poppins px-2 animate-slide-up"
         variants={fadeSlideUp}
         initial="hidden"
         animate="visible"
@@ -351,12 +354,16 @@ const WhyChoose = () => {
                     {f.title}
                   </h3>
                 </div>
-                <p
+                <motion.p
                   style={featureTextStyle}
-                  className="mt-0.5 md:mt-1 feature-text-clamp"
+                  className="mt-0.5 md:mt-1 text-justify"
+                  variants={fadeSlideUp}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ duration: 0.7, delay: 0.5 + i * 0.15 }}
                 >
                   {f.text}
-                </p>
+                </motion.p>
               </div>
             </motion.div>
           ))}
@@ -405,12 +412,16 @@ const WhyChoose = () => {
                     {f.title}
                   </h3>
                 </div>
-                <p
+                <motion.p
                   style={featureTextStyle}
-                  className="mt-0.5 md:mt-1 feature-text-clamp"
+                  className="mt-0.5 md:mt-1 text-justify"
+                  variants={fadeSlideUp}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ duration: 0.7, delay: 0.5 + i * 0.15 }}
                 >
                   {f.text}
-                </p>
+                </motion.p>
               </div>
             </motion.div>
           ))}
@@ -445,12 +456,16 @@ const WhyChoose = () => {
                   {f.title}
                 </h3>
               </div>
-              <p
+              <motion.p
                 style={featureTextStyle}
-                className="mt-0.5 md:mt-1 feature-text-clamp"
+                className="mt-0.5 md:mt-1 text-justify"
+                variants={fadeSlideUp}
+                initial="hidden"
+                animate="visible"
+                transition={{ duration: 0.7, delay: 0.5 + i * 0.15 }}
               >
                 {f.text}
-              </p>
+              </motion.p>
             </div>
           </motion.div>
         ))}
@@ -495,9 +510,16 @@ const WhyChoose = () => {
               <h3 className="text-base font-semibold text-[#0D4183] text-center mb-1" style={{ fontFamily: 'Poppins' }}>
                 {f.title}
               </h3>
-              <p className="text-xs text-[#0D4183] text-center" style={{ fontFamily: 'Poppins' }}>
+              <motion.p
+                style={featureTextStyle}
+                className="mt-0.5 md:mt-1 text-justify"
+                variants={fadeSlideUp}
+                initial="hidden"
+                animate="visible"
+                transition={{ duration: 0.7, delay: 0.5 + i * 0.15 }}
+              >
                 {f.text}
-              </p>
+              </motion.p>
             </motion.div>
           ))}
         </div>

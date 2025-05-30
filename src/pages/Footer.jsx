@@ -36,6 +36,7 @@ const Footer = () => {
               <h2 className="text-base sm:text-lg font-semibold">Contact</h2>
               <div className="text-sm space-y-1">
                 <p>info@minibusinessloan.com</p>
+                <p>customercare@techaviom.in</p>
                 <p>+91-7814447895</p>
               </div>
             </div>
@@ -64,6 +65,7 @@ const Footer = () => {
               <h2 className="text-lg font-semibold mb-2">Contact</h2>
               <div className="text-base text-center space-y-1">
                 <p>info@minibusinessloan.com</p>
+                <p>customercare@techaviom.in</p>
                 <p>+91-7814447895</p>
               </div>
             </div>

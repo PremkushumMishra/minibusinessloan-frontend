@@ -500,7 +500,7 @@ const MobileVerification = () => {
   // API Configuration -change  Just change these URLs when switching APIs
   const API_CONFIG = {
     // local host url
-    // BASE_URL: "http://10.6.3.32:3000/api/v1",
+    // BASE_URL: "http://10.6.3.64:8080/api/v1",
     // BASE_URL: "http://localhost:3000/api/v1",
     // live url
     // BASE_URL: "http://103.104.73.107:3004/api/v1",
@@ -688,52 +688,42 @@ const MobileVerification = () => {
   }, [currentStep, navigate]);
 
   return (
-    <div className="min-h-screen w-full bg-[#003366] flex items-center justify-center py-8 px-2  sm:px-4">
+    <div className="min-h-screen w-full bg-[#003366] flex items-center justify-center py-2 px-2 sm:px-2">
       <ToastContainer position="top-center" />
-      <div className="w-full max-w-sm space-y-5 bg-white p-3 sm:p-5 sm:mt-14 rounded-3xl shadow-2xl border-2 border-[#003366]">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-[#003366]">
-            Enter Your Mobile Number
-          </h2>
-          <p className="mt-3 text-[#003366] text-lg font-medium">
-            Please provide your Aadhaar-linked mobile number.
+      <div className="w-full max-w-sm bg-white p-6 rounded-t-3xl rounded-bl-3xl shadow-2xl border-2 border-[#003366] flex flex-col items-center" style={{marginTop: '0'}}>
+        <div className="text-center w-full">
+          <h2 className="text-2xl mt-2 sm:text-2xl" style={{ fontFamily: 'Poppins', color: '#222', letterSpacing: 0, lineHeight: '110%' }}>Enter Your Mobile Number</h2>
+          <p className="mt-2" style={{ fontFamily: 'Poppins', fontWeight: 300, fontSize: 16, lineHeight: '100%',  letterSpacing: 0, color: '##000000' }}>
+            Please provide your Addhar-linked <br/>
+            <span style={{ display: 'block', marginTop: 6 }}>mobile no</span>
           </p>
         </div>
-
         {!showOtpInput ? (
-          // Mobile Number Input Form
-          <form className="mt-8 space-y-6" onSubmit={handleMobileSubmit}>
-            <div>
-              <label
-                htmlFor="mobile"
-                className="block text-sm font-semibold text-gray-700 mb-2"
-              >
-                Mobile Number
-              </label>
-              <div className="relative group">
-                <div className="flex">
-                  <div className="flex items-center justify-center px-4 py-4 bg-[#003366] text-white font-medium rounded-l-2xl border-2 border-[#003366]">
-                    +91
-                  </div>
-                  <input
-                    id="mobile"
-                    name="mobile"
-                    type="tel"
-                    required
-                    value={mobileNumber.slice(3)}
-                    onChange={handleMobileChange}
-                    className="appearance-none block w-full px-4 py-4 border-2 border-[#003366] rounded-r-2xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-lg font-medium tracking-wider group-hover:border-[#E53935]"
-                    placeholder="Enter mobile number"
-                  />
-                </div>
-              </div>
+          <form className="w-full mt-6 space-y-5" onSubmit={handleMobileSubmit}>
+            <div className="flex items-center border rounded-t-xl rounded-bl-xl px-3 py-2 bg-white" style={{ borderColor: '#434244', borderWidth: 1 }}>
+              <span className="text-[#003366] font-semibold mr-2">+91</span>
+              <input
+                id="mobile"
+                name="mobile"
+                type="tel"
+                value={mobileNumber.slice(3)}
+                onChange={handleMobileChange}
+                className="flex-1 outline-none bg-transparent text-black text-base sm:text-xl"
+                // placeholder="Enter Aadhar Registered Number"
+                maxLength={10}
+                required
+                style={{
+                  fontFamily: 'Poppins',
+                  fontWeight: 400,
+                  letterSpacing: 0,
+                  lineHeight: '100%',
+                  maxWidth: 160,
+                  minWidth: 100
+                }}
+              />
             </div>
-
             <div>
-              <label
-                htmlFor="referralCode"
-                className="block text-sm font-semibold text-gray-700 mb-2"
-              >
+              <label htmlFor="referralCode" className="block text-sm font-poppins text-gray-700 mb-1" style={{ fontFamily: 'Poppins' }}>
                 Referral Code (Optional)
               </label>
               <input
@@ -742,37 +732,25 @@ const MobileVerification = () => {
                 type="text"
                 value={referralCode}
                 onChange={(e) => setReferralCode(e.target.value)}
-                className="appearance-none block w-1/2 px-2 py-2 border-2 border-[#003366] rounded-2xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-center tracking-[0.5em] text-2xl font-semibold group-hover:border-[#E53935]"
+                className="appearance-none block w-1/2 px-2 py-2 border rounded-t-xl rounded-bl-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#003366] focus:border-transparent transition-all duration-200 text-center text-base font-medium"
                 placeholder=""
+                style={{ borderColor: '#434244', borderWidth: 1, fontFamily: 'Poppins', fontWeight: 400, letterSpacing: 0, lineHeight: '100%' }}
               />
             </div>
-
-            {/* Consent Section with Modal Link */}
-            <div className="mt-6 flex items-center">
+            <div className="flex items-center mt-2">
               <input
                 id="consent"
                 type="checkbox"
                 checked={hasConsented}
                 readOnly
                 onClick={() => setShowTermsModal(true)}
-                className="h-5 w-5 text-[#E53935] focus:ring-[#E53935] border-[#003366] rounded cursor-pointer"
+                className="h-4 w-4 accent-[#003366] border-gray-300 rounded mr-2 cursor-pointer"
+                required
               />
-              <label
-                htmlFor="consent"
-                className="ml-2 block text-base select-none cursor-pointer"
-                style={{ color: "#b48b8b", fontWeight: 500 }}
-                onClick={() => setShowTermsModal(true)}
-              >
-                I agree to the{" "}
-                <span
-                  className="font-bold text-[#8B1A1A] hover:underline focus:outline-none cursor-pointer"
-                  style={{ fontWeight: 700 }}
-                >
-                  terms and conditions
-                </span>
+              <label htmlFor="consent" className="text-sm select-none cursor-pointer" style={{ fontFamily: 'Poppins', color: '#222' }} onClick={() => setShowTermsModal(true)}>
+                I agreee the <span className="font-poppins text-[#0D4183] underline cursor-pointer">Terms and Condition</span>
               </label>
             </div>
-
             <Modal
               open={showTermsModal}
               onClose={() => setShowTermsModal(false)}
@@ -783,56 +761,21 @@ const MobileVerification = () => {
             >
               {TERMS_CONTENT}
             </Modal>
-
-            <div>
-              <button
-                type="submit"
-                disabled={
-                  isLoading || mobileNumber.length !== 13 || !hasConsented
-                }
-                className={`w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl text-base font-medium text-white bg-gradient-to-r from-[#003366] to-[#E53935] hover:from-[#002244] hover:to-[#b71c1c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E53935] transform hover:scale-[1.02] transition-all duration-200 shadow-lg ${
-                  isLoading || mobileNumber.length !== 13 || !hasConsented
-                    ? "opacity-50 cursor-not-allowed"
-                    : ""
-                }`}
-              >
-                {isLoading ? (
-                  <span className="flex items-center">
-                    <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Sending OTP...
-                  </span>
-                ) : (
-                  "Send OTP"
-                )}
-              </button>
-            </div>
+            <button
+              type="submit"
+              disabled={isLoading || mobileNumber.length !== 13 || !hasConsented}
+              className={`w-full py-3 rounded-t-xl rounded-bl-xl text-base font-poppins text-white bg-[#FF3B2E] hover:bg-[#e53935] transition-colors duration-200 shadow-md mt-2 ${isLoading || mobileNumber.length !== 13 || !hasConsented ? 'opacity-50 cursor-not-allowed' : ''}`}
+              style={{ fontFamily: 'Poppins', letterSpacing: 0 }}
+            >
+              {isLoading ? 'Sending...' : 'Send OTP'}
+            </button>
           </form>
         ) : (
-          // OTP Input Form
           <form className="mt-8 space-y-6" onSubmit={handleOtpSubmit}>
             <div>
               <label
                 htmlFor="otp"
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-poppins text-gray-700 mb-2"
               >
                 Enter OTP
               </label>
@@ -845,8 +788,9 @@ const MobileVerification = () => {
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
                   maxLength="6"
-                  className="appearance-none block w-full px-4 py-4 border-2 border-[#003366] rounded-2xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#E53935] focus:border-transparent transition-all duration-200 text-center tracking-[0.5em] text-2xl font-semibold group-hover:border-[#E53935]"
+                  className="appearance-none block px-3 py-4 border-1 border-[#434244] rounded-t-xl rounded-bl-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2  focus:border-transparent transition-all duration-200 text-center tracking-[0.5em] text-xl font-poppins"
                   placeholder="Enter OTP"
+                  style={{ maxWidth: 260, minWidth: 80 }}
                 />
               </div>
             </div>
@@ -856,16 +800,17 @@ const MobileVerification = () => {
                 type="button"
                 onClick={handleResendOtp}
                 disabled={isLoading}
-                className="text-sm font-medium text-purple-600 hover:text-purple-500 transition-colors duration-200"
+                className="text-sm font-poppins text-purple-600 hover:text-purple-500 transition-colors duration-200"
               >
                 Resend OTP
               </button>
               <button
                 type="submit"
                 disabled={isLoading}
-                className={`w-full flex justify-center py-4 px-4 border border-transparent rounded-2xl text-base font-medium text-white bg-gradient-to-r from-[#003366] to-[#E53935] hover:from-[#002244] hover:to-[#b71c1c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E53935] transform hover:scale-[1.02] transition-all duration-200 shadow-lg ${
+                className={`mx-auto flex justify-center py-2 px-2 border border-transparent rounded-t-xl rounded-bl-xl text-base font-poppins text-white bg-gradient-to-r from-[#003366] to-[#E53935] hover:from-[#002244] hover:to-[#b71c1c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E53935] transform hover:scale-[1.02] transition-all duration-200 shadow-lg ${
                   isLoading ? "opacity-50 cursor-not-allowed" : ""
                 }`}
+                style={{ fontFamily: 'Poppins', letterSpacing: 0, maxWidth: 160 }}
               >
                 {isLoading ? (
                   <span className="flex items-center">

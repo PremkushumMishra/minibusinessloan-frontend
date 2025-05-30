@@ -150,6 +150,7 @@ const CoApplicant = () => {
           phone: mobile,
           otp: otp,
           customerID: customerID, // Using the customerID from state
+          // clientID: clientID,
         },
         {
           headers: {

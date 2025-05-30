@@ -94,14 +94,16 @@ const PublicReview = () => {
     <div className="bg-[#ffffff] py-2 min-h-[60vh] flex items-center">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 mt-10 mb-12 w-full">
         <h2
-          className="mx-auto text-center mb-4 sm:mb-12"
+                    // className="font-poppins text-2xl md:text-3xl  lg:text-4xl text-[#0D4183] mb-2 text-center"
+
+          className="mx-auto text-center text-2xl md:text-3xl font-poppins  lg:text-3xl text-[#0D4183] mb-4 sm:mb-12"
           style={{
-            fontFamily: "Poppins",
-            fontWeight: 600,
-            fontSize: "24px",
-            lineHeight: "130%",
+            // fontFamily: "Poppins",
+            fontWeight: 500,
+            // fontSize: "25px",
+            // lineHeight: "130%",
             color: "#0D4183",
-            maxWidth: 320,
+            maxWidth:400,
           }}
         >
           Their Words speak for us

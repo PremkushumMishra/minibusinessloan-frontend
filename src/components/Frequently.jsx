@@ -41,9 +41,9 @@ const Frequently = () => {
         {/* Left Column */}
         <div className="lg:w-1/3 flex flex-col justify-start mb-6 lg:mb-0 animate-slide-from-left text-center lg:text-left">
           <h2
-            className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold animate-grow leading-tight"
+            className="mb-3 sm:mb-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-poppins animate-grow whitespace-nowrap"
             style={{
-              fontFamily: "Poppins, sans-serif",
+              // fontFamily: "Poppins, sans-serif",
               fontWeight: 500,
               color: "#0D4183",
             }}

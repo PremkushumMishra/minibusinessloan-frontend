@@ -75,7 +75,7 @@ const LoanCalculator = () => {
               EMI Calculator
             </motion.h2>
             <motion.div className="mb-1" variants={itemVariants}>
-              <label className="flex justify-between font-medium text-[#003366] mb-1 text-sm md:text-base">
+              <label className="flex justify-between font-poppins font-medium text-[#003366] mb-1 text-sm md:text-base">
                 Loan Amount
                 <span className="font-bold text-[#E53935] ml-2">
                   {/* ₹{loanAmount.toLocaleString()} */}
@@ -115,7 +115,7 @@ const LoanCalculator = () => {
             </motion.div>
 
             <motion.div className="mb-1" variants={itemVariants}>
-              <label className="flex justify-between font-medium text-[#003366] mb-1 text-sm md:text-base">
+              <label className="flex justify-between font-poppins font-medium text-[#003366] mb-1 text-sm md:text-base">
                 Number of Days
                 <span className="font-bold text-[#505050] ml-2"></span>
               </label>
