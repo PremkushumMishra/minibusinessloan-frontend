@@ -54,18 +54,18 @@ function App() {
         <Route
           path="/kyc-process"
           element={
-            // <ProtectedRoute allowedStep="kyc-process">
+            <ProtectedRoute allowedStep="kyc-process">
               <KycProcess />
-            // </ProtectedRoute>
+             </ProtectedRoute>
           }
         />
 
         <Route
           path="/kyc-sucess"
           element={
-            // <ProtectedRoute allowedStep="kyc-sucess">
+            <ProtectedRoute allowedStep="kyc-sucess">
               <KycSuccess />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
@@ -84,31 +84,37 @@ function App() {
         <Route
           path="/additional-info"
           element={
-            // <ProtectedRoute allowedStep="additional-info">
+             <ProtectedRoute allowedStep="additional-info">
               <AdditionalInfo />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/co-applicant"
           element={
-            // <ProtectedRoute allowedStep="co-applicant">
+            <ProtectedRoute allowedStep="co-applicant">
               <CoApplicant />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/applicant-business-details"
           element={
-            // <ProtectedRoute allowedStep="applicant-business-details">
+            <ProtectedRoute allowedStep="applicant-business-details">
               <ApplicantBusinessDetails />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
-        <Route path="/bank-statement" element={<BankStatement/>}/>
+        <Route path="/bank-statement" element={
+          <ProtectedRoute allowedStep="bank-statement">
+          <BankStatement/>
+          </ProtectedRoute>
+          }
+          
+          />
         
         {/* optional */}
         {/* <Route path="/applicant-business-details-optional" element={<ApplicantBusinessDetails/>} /> */}
@@ -116,9 +122,9 @@ function App() {
         <Route
           path="/application-processing"
           element={
-            // <ProtectedRoute allowedStep="application-processing">
+            <ProtectedRoute allowedStep="application-processing">
               <ApplicationProcessing />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
       </Routes>

@@ -76,7 +76,7 @@ const NameEmailVerify = () => {
           {
             name: formData.name,
             email: formData.email,
-            phone: formData.phone,
+            phone: localStorage.getItem("mobileNumber"),
             redirectURL: formData.redirectURL,
           },
           {

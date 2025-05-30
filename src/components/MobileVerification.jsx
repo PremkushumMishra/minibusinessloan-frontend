@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // protect routing
 // import { useStep } from "../context/useStep";
+import { useEffect } from "react";
+
 const TERMS_CONTENT = (
   <div className="max-h-[60vh] overflow-y-auto px-2 py-4 bg-white border-l-8 border-black rounded-xl shadow-lg text-black">
     {/* <h2 className="text-2xl font-bold text-black mb-4">Terms and Conditions</h2> */}
@@ -474,17 +476,25 @@ const fetchUserDetails = async (token) => {
   }
 };
 
+
 const MobileVerification = () => {
-  const [mobileNumber, setMobileNumber] = useState("+91");
+  const [mobileNumber, setMobileNumber] = useState(() => {
+    const savedMobile = localStorage.getItem('mobileNumber');
+    return savedMobile || "+91";
+  });
   const [otp, setOtp] = useState("");
-  const [showOtpInput, setShowOtpInput] = useState(false);
+  const [showOtpInput, setShowOtpInput] = useState(() => {
+    return localStorage.getItem('showOtpInput') === 'true';
+  });
   const [verificationStatus, setVerificationStatus] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [hasConsented, setHasConsented] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
   const navigate = useNavigate();
-  const { updateStep } = useStep();
-  const [clientId, setClientId] = useState("");
+  const { updateStep, currentStep } = useStep();
+  const [clientId, setClientId] = useState(() => {
+    return localStorage.getItem('clientId') || "";
+  });
   const [referralCode, setReferralCode] = useState("");
 
   // API Configuration -change  Just change these URLs when switching APIs
@@ -558,7 +568,10 @@ const MobileVerification = () => {
       ) {
         const receivedClientId = response.data?.data?.client_id;
         setClientId(receivedClientId);
+        localStorage.setItem('clientId', receivedClientId);
+        localStorage.setItem('mobileNumber', mobileNumberWithoutPrefix);
         setShowOtpInput(true);
+        localStorage.setItem('showOtpInput', 'true');
         toast.success("OTP sent successfully!");
       } else {
         toast.error(response.data.message || "Failed to send OTP");
@@ -638,22 +651,23 @@ const MobileVerification = () => {
     try {
       const mobileNumberWithoutPrefix = mobileNumber.slice(3);
       const response = await axios.post(
-        // "http://10.6.3.57:3000/api/v1/auth/generate-otp-customer",
         `${API_CONFIG.BASE_URL}/auth/generate-otp-customer`,
-      {  phone: mobileNumberWithoutPrefix,
-        appliedMode: "web",
-        sourceBy: referralCode || null,
-        postingBranch: null,
-        branchName: null,
-      }
-        // { phone: mobileNumberWithoutPrefix, appliedMode: "web" },
-        // { headers: { "Content-Type": "application/json" } }
+        {
+          phone: mobileNumberWithoutPrefix,
+          appliedMode: "web",
+          sourceBy: referralCode || null,
+          postingBranch: null,
+          branchName: null,
+        }
       );
       console.log("OTP resend response:", response.data);
       if (
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
       ) {
+        const receivedClientId = response.data?.data?.client_id;
+        setClientId(receivedClientId);
+        localStorage.setItem('clientId', receivedClientId);
         toast.success("OTP resent successfully!");
         fetchUserDetails(localStorage.getItem("authToken"));
       } else {
@@ -666,6 +680,12 @@ const MobileVerification = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (currentStep !== "mobile-verification") {
+      navigate(`/${currentStep}`);
+    }
+  }, [currentStep, navigate]);
 
   return (
     <div className="min-h-screen w-full bg-[#003366] flex items-center justify-center py-8 px-2  sm:px-4">
@@ -922,6 +942,9 @@ const MobileVerification = () => {
             <button
               onClick={() => {
                 setShowOtpInput(false);
+                localStorage.removeItem('showOtpInput');
+                localStorage.removeItem('clientId');
+                localStorage.removeItem('mobileNumber');
                 setOtp("");
                 setVerificationStatus(null);
               }}
