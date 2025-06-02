@@ -325,7 +325,7 @@ const ApplicantBusinessDetails = () => {
     if (name === "gstNumber" && value) {
       verifyGSTNumber(value);
     } else if (name === "electricityBill" && files?.[0]) {
-      verifyElectricityBill(files[0]);
+      verifyElectricFile(files[0]);
     }
 
     setErrors((prevState) => ({
@@ -356,6 +356,10 @@ const ApplicantBusinessDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.electricityBill || !formData.electricityBill.startsWith('http')) {
+      alert("Please upload and verify the electricity bill before submitting.");
+      return;
+    }
     console.log("Testing");
     try {
       const token = localStorage.getItem("authToken");
@@ -385,103 +389,153 @@ const ApplicantBusinessDetails = () => {
     }
   };
 
-  const verifyElectricityBill = async (input, selectedOperatorCode) => {
-    // Bill number is now optional, so only operator code is required
-    if (!selectedOperatorCode) return;
-    setVerificationStatus((prev) => ({
-      ...prev,
-      electricityBill: { loading: true, verified: false, error: null },
-    }));
-    try {
-      const token = localStorage.getItem("authToken");
-      const payload = {
-        customerID: customerID,
-        id_number: input || "", // input (bill number) is optional
-        operator_code: selectedOperatorCode,
-      };
-      const response = await axios.post(
-        `${API_CONFIG.BASE_URL}/sourcing/validate-electricity-bill`,
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      );
-      if (
-        response.data?.status === true &&
-        response.data?.message === "SUCCESS"
-      ) {
-        setVerificationStatus((prev) => ({
-          ...prev,
-          electricityBill: { loading: false, verified: true, error: null },
-        }));
-      } else {
-        throw new Error(response.data?.message || "Verification failed");
+const verifyElectricFile = async (file) => {
+  if (!file) return;
+  setVerificationStatus((prev) => ({
+    ...prev,
+    electricityBill: { loading: true, verified: false, error: null },
+  }));
+
+  try {
+    const token = localStorage.getItem("authToken");
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await axios.post(
+      `${API_CONFIG.BASE_URL}/sourcing/upload-file`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+          'Access-Control-Allow-Origin': '*',
+        },
       }
-    } catch (error) {
+    );
+    console.log("Electricity Bill response", response);
+
+    if (response.data?.status === true && response.data?.message === "SUCCESS") {
       setVerificationStatus((prev) => ({
         ...prev,
-        electricityBill: {
-          loading: false,
-          verified: false,
-          error: error.response?.data?.message || "Verification failed",
-        },
+        electricityBill: { loading: false, verified: true, error: null },
+      }));
+      setFormData(prev => ({
+        ...prev,
+        // electricityBill: response.data
+
+        electricityBill: response.data.data.Location
       }));
     }
-  };
+  } catch (error) {
+    setVerificationStatus((prev) => ({
+      ...prev,
+      electricityBill: {
+        loading: false,
+        verified: false,
+        error: error.response?.data?.message || "File upload failed",
+      },
+    }));
+  }
+};
+
+
+  // const verifyElectricityBill = async (input, selectedOperatorCode) => {
+  //   // Bill number is now optional, so only operator code is required
+  //   if (!selectedOperatorCode) return;
+  //   setVerificationStatus((prev) => ({
+  //     ...prev,
+  //     electricityBill: { loading: true, verified: false, error: null },
+  //   }));
+  //   try {
+  //     const token = localStorage.getItem("authToken");
+  //     const payload = {
+  //       customerID: customerID,
+  //       id_number: input || "", // input (bill number) is optional
+  //       operator_code: selectedOperatorCode,
+  //     };
+  //     const response = await axios.post(
+  //       `${API_CONFIG.BASE_URL}/sourcing/validate-electricity-bill`,
+  //       payload,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "Content-Type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //       }
+  //     );
+  //     if (
+  //       response.data?.status === true &&
+  //       response.data?.message === "SUCCESS"
+  //     ) {
+  //       setVerificationStatus((prev) => ({
+  //         ...prev,
+  //         electricityBill: { loading: false, verified: true, error: null },
+  //       }));
+  //     } else {
+  //       throw new Error(response.data?.message || "Verification failed");
+  //     }
+  //   } catch (error) {
+  //     setVerificationStatus((prev) => ({
+  //       ...prev,
+  //       electricityBill: {
+  //         loading: false,
+  //         verified: false,
+  //         error: error.response?.data?.message || "Verification failed",
+  //       },
+  //     }));
+  //   }
+  // };
 
   // 1. Add file upload function
 
-  const uploadElectricityBillFile = async (file) => {
-    if (!file) return;
-    setVerificationStatus((prev) => ({
-      ...prev,
-      electricityBill: { loading: true, verified: false, error: null },
-    }));
-    try {
-      const token = localStorage.getItem("authToken");
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("customerID", customerID);
-      // Add more fields if required by backend
-      const response = await axios.post(
-        `${API_CONFIG.BASE_URL}/sourcing/upload-file`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      );
-      if (
-        response.data?.status === true &&
-        response.data?.message === "SUCCESS"
-      ) {
-        setVerificationStatus((prev) => ({
-          ...prev,
-          electricityBill: { loading: false, verified: true, error: null },
-        }));
-      } else {
-        throw new Error(response.data?.message || "File upload failed");
-      }
-    } catch (error) {
-      setVerificationStatus((prev) => ({
-        ...prev,
-        electricityBill: {
-          loading: false,
-          verified: false,
-          error: error.response?.data?.message || "File upload failed",
-        },
-      }));
-    }
-  };
+  // const uploadElectricityBillFile = async (file) => {
+  //   if (!file) return;
+  //   setVerificationStatus((prev) => ({
+  //     ...prev,
+  //     electricityBill: { loading: true, verified: false, error: null },
+  //   }));
+  //   try {
+  //     const token = localStorage.getItem("authToken");
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     formData.append("customerID", customerID);
+  //     // Add more fields if required by backend
+  //     const response = await axios.post(
+  //       `${API_CONFIG.BASE_URL}/sourcing/upload-file`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           "Content-Type": "multipart/form-data",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //       }
+  //     );
+  //     if (
+  //       response.data?.status === true &&
+  //       response.data?.message === "SUCCESS"
+  //     ) {
+  //       setVerificationStatus((prev) => ({
+  //         ...prev,
+  //         electricityBill: { loading: false, verified: true, error: null },
+  //       }));
+  //     } else {
+  //       throw new Error(response.data?.message || "File upload failed");
+  //     }
+  //   } catch (error) {
+  //     setVerificationStatus((prev) => ({
+  //       ...prev,
+  //       electricityBill: {
+  //         loading: false,
+  //         verified: false,
+  //         error: error.response?.data?.message || "File upload failed",
+  //       },
+  //     }));
+  //   }
+  // };
 
-  // 2. Add bank statement upload function
+ 
   // const uploadBankStatementFile = async (file) => {
   //   if (!file) return;
   //   setVerificationStatus((prev) => ({
@@ -876,7 +930,7 @@ const ApplicantBusinessDetails = () => {
 
           {/* after bill number verification */}
 
-          <div className="md:col-span-2">
+          {/* <div className="md:col-span-2">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Electricity Bill (Home/Business)
             </label>
@@ -962,7 +1016,6 @@ const ApplicantBusinessDetails = () => {
                       <option value="">Select Operator</option>
                       <option value="UP">Uttar Pradesh</option>
                       <option value="MH">Maharashtra</option>
-                      {/* Add other states as needed */}
                     </select>
                   </div>
                   <button
@@ -991,7 +1044,7 @@ const ApplicantBusinessDetails = () => {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* Business Photo Upload */}
           <div className="md:col-span-2">
@@ -1012,11 +1065,43 @@ const ApplicantBusinessDetails = () => {
               </p>
             )}
           </div>
+
+          {/* Electricity Bill (Home/Business) */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Electricity Bill
+            </label>
+            <div className="relative">
+              <input
+                type="file"
+                name="electricityBill"
+                accept="application/pdf,image/*"
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none bg-white"
+              />
+              {verificationStatus.electricityBill.loading && (
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
+                </div>
+              )}
+              {verificationStatus.electricityBill.verified && (
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-500">
+                  ✓
+                </div>
+              )}
+              {verificationStatus.electricityBill.error && (
+                <p className="text-red-500 text-sm mt-1">
+                  {verificationStatus.electricityBill.error}
+                </p>
+              )}
+            </div>
+          </div>
         </div>
         <div className="flex justify-center mt-8">
           <button
             type="submit"
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 shadow-lg"
+            disabled={verificationStatus.electricityBill.loading}
           >
             Submit
           </button>
