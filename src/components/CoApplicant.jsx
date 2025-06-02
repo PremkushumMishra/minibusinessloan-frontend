@@ -141,16 +141,20 @@ const CoApplicant = () => {
     setIsLoading(true);
     try {
       const token = localStorage.getItem("authToken");
+      // Get clientId from localStorage
+      const clientId = localStorage.getItem('clientId');
+      
       console.log("📦 Token being sent in Authorization header:", token);
       console.log("📦 CustomerID being sent for verification:", customerID);
+      console.log("📦 ClientID being sent for verification:", clientId);
       
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/verify-otp-co-applicant`,
         {
           phone: mobile,
           otp: otp,
-          customerID: customerID, // Using the customerID from state
-          // clientID: clientID,
+          customerID: customerID,
+          client_id: clientId, // Add clientId from localStorage
         },
         {
           headers: {

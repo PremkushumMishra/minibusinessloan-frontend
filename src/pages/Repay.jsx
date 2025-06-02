@@ -99,9 +99,7 @@ const Repay = () => {
                     </p>
                   </div>
                 </div>
-                <button className="w-full bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-2 rounded-lg font-bold hover:bg-[#E53935] hover:text-white transition-all duration-300">
-                  Pay Daily
-                </button>
+                
               </div>
 
               {/* Weekly Payment */}
@@ -119,9 +117,7 @@ const Repay = () => {
                     </p>
                   </div>
                 </div>
-                <button className="w-full bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-2 rounded-lg font-bold hover:bg-[#E53935] hover:text-white transition-all duration-300">
-                  Pay Weekly
-                </button>
+               
               </div>
 
               {/* Regular EMI Payment */}
@@ -137,9 +133,7 @@ const Repay = () => {
                     </p>
                   </div>
                 </div>
-                <button className="w-full bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-2 rounded-lg font-bold hover:bg-[#E53935] hover:text-white transition-all duration-300">
-                  Pay in Advance
-                </button>
+                
               </div>
 
               {/* Renewal or Top Up */}
@@ -157,9 +151,7 @@ const Repay = () => {
                     </p>
                   </div>
                 </div>
-                <button className="w-full bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-2 rounded-lg font-bold hover:bg-[#E53935] hover:text-white transition-all duration-300">
-                  Renew/Top Up
-                </button>
+              
               </div>
 
               {/* Early Payment */}
@@ -173,9 +165,7 @@ const Repay = () => {
                     <p className="text-sm text-gray-700">Pay before due date</p>
                   </div>
                 </div>
-                <button className="w-full bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-2 rounded-lg font-bold hover:bg-[#E53935] hover:text-white transition-all duration-300">
-                  Pay Early
-                </button>
+                
               </div>
 
               {/* Loan for Closure */}
@@ -193,9 +183,7 @@ const Repay = () => {
                     </p>
                   </div>
                 </div>
-                <button className="w-full bg-gradient-to-r from-[#003366] to-[#E53935] text-white py-2 rounded-lg font-bold hover:bg-[#E53935] hover:text-white transition-all duration-300">
-                  Close Loan
-                </button>
+             
               </div>
             </div>
             <Razorpay />

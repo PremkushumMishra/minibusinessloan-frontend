@@ -377,6 +377,7 @@ const ApplicantBusinessDetails = () => {
         response.data?.status === true &&
         response.data?.message === "SUCCESS"
       ) {
+        await fetchUserDetails();
         navigate("/bank-statement");
       }
     } catch (error) {

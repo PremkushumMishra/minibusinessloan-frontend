@@ -601,10 +601,16 @@ const MobileVerification = () => {
     setIsLoading(true);
     try {
       const mobileNumberWithoutPrefix = mobileNumber.slice(3);
-      // const client_id = "your_client_id_here";
+      // Get clientId from localStorage
+      const storedClientId = localStorage.getItem('clientId');
+      
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/auth/verify-otp-customer`,
-        { phone: mobileNumberWithoutPrefix, otp: otp, client_id: clientId,},
+        { 
+          phone: mobileNumberWithoutPrefix, 
+          otp: otp, 
+          client_id: storedClientId 
+        },
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -612,27 +618,25 @@ const MobileVerification = () => {
       );
       console.log("OTP verify response:", response.data);
 
-      if (
-        response.data?.status === true &&
-        response.data?.message === "SUCCESS"
-      ) {
-        // ✅ Save the JWT token in localStorage
+      if (response.data?.status === true && response.data?.message === "SUCCESS") {
+        // Store the token
         const token = response.data.data;
-        console.log("✅ Token to be saved:", token);
-
         localStorage.setItem("authToken", `${token}`);
+        
+        // Store clientId in localStorage if it's in the response
+        if (response.data?.data?.client_id) {
+          localStorage.setItem('clientId', response.data.data.client_id);
+        }
+
         // Call user details API
         fetchUserDetails(token);
-        // localStorage.setItem("authToken", `Bearer ${token}`);
 
         setVerificationStatus("success");
         toast.success("OTP Verified Successfully!");
 
         setTimeout(() => {
           updateStep("name-email-verify");
-          navigate(
-            `/name-email-verify?mobileNumber=${mobileNumberWithoutPrefix}`
-          );
+          navigate(`/name-email-verify?mobileNumber=${mobileNumberWithoutPrefix}`);
         }, 1000);
       } else {
         setVerificationStatus("error");

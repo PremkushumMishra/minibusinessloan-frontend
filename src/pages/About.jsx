@@ -396,8 +396,7 @@ const About = () => {
       </div>
 
       {/* Animation CSS */}
-      <style>{`
-        @keyframes partner-fadeup {
+      <style>{`        @keyframes partner-fadeup {
           0% { opacity: 0; transform: translateY(40px) scale(0.97); }
           60% { opacity: 0.7; transform: translateY(-8px) scale(1.03); }
           100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -450,3 +449,4 @@ const About = () => {
 };
 
 export default About;
+

@@ -28,6 +28,8 @@ import MblSanctionlatter from "./MblSanctionlatter";
 import BankVerificationProcess from "./BankVerificationProcess";
 import BankVerificationGlobalModal from "./BankVerificationGlobalModal";
 import Razorpay from "../components/Razorpay";
+import BankStatementComplted from "../components/BankStatementComplted";
+
 const Home = () => {
   return (
     <>
@@ -36,6 +38,8 @@ const Home = () => {
       {/* <BankVerificationProcess/> */}
 {/* <BankVerificationGlobalModal visible={true} onClose={() => {}} /> */}
       <TalkingLoan />
+      <BankStatementComplted/>
+      {/* <BankVerificationGlobalModal visible={true} onClose={() => {}} /> */}
       {/* <Razorpay /> */}
       {/* <Hindi/> */}
       <EligibleProfile/>
