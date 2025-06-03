@@ -4,12 +4,10 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
 
   // Handle window resize for better responsiveness
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
       // Close mobile menu if screen becomes large
       if (window.innerWidth >= 768 && isMobileMenuOpen) {
         setIsMobileMenuOpen(false);

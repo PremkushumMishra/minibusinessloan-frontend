@@ -430,14 +430,13 @@ const HowItWorks = () => {
 
       <Frequently />
       {/* Eligibility Criteria Section */}
-      <div ref={addToRefs} className="mt-16 scroll-reveal">
-        <div className="max-w-4xl mx-auto px-4 py-12 bg-white rounded-t-2xl rounded-bl-2xl shadow-xl">
+      <div ref={addToRefs} className="mt-8 sm:mt-12 md:mt-16 scroll-reveal px-4 sm:px-6 md:px-8">
+        <div className="max-w-4xl mx-auto px-4 py-8 sm:py-10 md:py-12 bg-white rounded-t-3xl rounded-bl-3xl shadow-xl">
           <h2
-            className="font-poppins text-center mb-3"
+            className="font-poppins text-center mb-3 text-2xl sm:text-3xl md:text-4xl"
             style={{
               fontFamily: "Poppins",
               fontWeight: 500,
-              fontSize: "40px",
               lineHeight: "140%",
               letterSpacing: 0,
               color: "#0D4183",
@@ -445,11 +444,11 @@ const HowItWorks = () => {
           >
             Are You Eligible?
           </h2>
-          <div className="w-20 h-1 bg-yellow-400 rounded-full mx-auto mb-10 animate-divider-draw" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-lg text-gray-700 px-4 md:px-8">
+          <div className="w-16 sm:w-20 h-1 bg-yellow-400 rounded-full mx-auto mb-6 sm:mb-8 md:mb-10 animate-divider-draw" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-base sm:text-lg text-gray-700 px-2 sm:px-4 md:px-8">
             <div className="flex items-start space-x-3">
               <svg
-                className="flex-shrink-0 h-6 w-6 text-[#00BCD4] mt-1"
+                className="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 text-[#00BCD4] mt-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -463,11 +462,11 @@ const HowItWorks = () => {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              <span>Indian Citizen residing in India.</span>
+              <span className="text-sm sm:text-base">Indian Citizen residing in India.</span>
             </div>
             <div className="flex items-start space-x-3">
               <svg
-                className="flex-shrink-0 h-6 w-6 text-[#00BCD4] mt-1"
+                className="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 text-[#00BCD4] mt-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -481,11 +480,11 @@ const HowItWorks = () => {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              <span>Age between 21 to 60 years.</span>
+              <span className="text-sm sm:text-base">Age between 21 to 60 years.</span>
             </div>
             <div className="flex items-start space-x-3">
               <svg
-                className="flex-shrink-0 h-6 w-6 text-[#00BCD4] mt-1"
+                className="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 text-[#00BCD4] mt-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -499,11 +498,11 @@ const HowItWorks = () => {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              <span>Self-Employed with regular income.</span>
+              <span className="text-sm sm:text-base">Self-Employed with regular income.</span>
             </div>
             <div className="flex items-start space-x-3">
               <svg
-                className="flex-shrink-0 h-6 w-6 text-[#00BCD4] mt-1"
+                className="flex-shrink-0 h-5 w-5 sm:h-6 sm:w-6 text-[#00BCD4] mt-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -517,16 +516,14 @@ const HowItWorks = () => {
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              <span>
+              <span className="text-sm sm:text-base flex items-center flex-wrap">
                 Credit score
-                (
-                <img src="/cibilpic.png" alt="CIBIL" style={{ display: "inline", height: "35px", marginLeft: "8px" }} />
-                <img src="/equifaxlogo.png" alt="Equifax" style={{ display: "inline", height: "50px", marginLeft: "4px" }} />
-                )
-                </span>
+                <img src="/cibilpic.png" alt="CIBIL" className="h-6 sm:h-8 ml-2 inline" />
+                <img src="/equifaxlogo.png" alt="Equifax" className="h-8 sm:h-10 ml-1 inline" />
+              </span>
             </div>
           </div>
-          <p className="text-center text-gray-500 mt-8 text-sm">
+          <p className="text-center text-xs sm:text-sm text-gray-500 mt-6 sm:mt-8 px-4">
             *Eligibility criteria may vary based on the loan amount and other
             factors. Final approval is subject to our credit assessment.
           </p>
@@ -534,14 +531,14 @@ const HowItWorks = () => {
       </div>
 
       {/* Call to Action Section */}
-      <div ref={addToRefs} className="mt-16 scroll-reveal">
-        <div className="max-w-5xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8 bg-gradient-to-r from-[#003366] to-[#004080] rounded-t-3xl rounded-bl-3xl shadow-2xl">
-          <h2 className="text-3xl text-white sm:text-4xl font-poppins">
+      <div ref={addToRefs} className="mt-8 sm:mt-12 md:mt-16 scroll-reveal px-4 sm:px-6 md:px-8">
+        <div className="max-w-5xl mx-auto text-center py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#003366] to-[#004080] rounded-t-2xl sm:rounded-t-3xl rounded-bl-2xl sm:rounded-bl-3xl shadow-lg sm:shadow-xl md:shadow-2xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl text-white font-poppins leading-tight sm:leading-snug">
             <span className="block">
               Ready to fuel your business for growth?
             </span>
           </h2>
-          <p className="mt-4 text-lg leading-6 text-indigo-100">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg leading-relaxed text-indigo-100 max-w-2xl mx-auto">
             Our streamlined process makes getting a business loan faster and
             easier than ever. Take the next step today!
           </p>

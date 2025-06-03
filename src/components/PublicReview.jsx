@@ -91,43 +91,34 @@ const PublicReview = () => {
   };
 
   return (
-    <div className="bg-[#ffffff] py-2 min-h-[60vh] flex items-center">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 mt-10 mb-12 w-full">
+    <div className="bg-[#ffffff] py-2 sm:py-6 flex items-center">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 mt-4 mb-6 w-full">
         <h2
-                    // className="font-poppins text-2xl md:text-3xl  lg:text-4xl text-[#0D4183] mb-2 text-center"
-
-          className="mx-auto text-center text-2xl md:text-3xl font-poppins  lg:text-3xl text-[#0D4183] mb-4 sm:mb-12"
+          className="mx-auto text-center text-2xl md:text-3xl font-poppins lg:text-3xl text-[#0D4183] mb-2 sm:mb-8"
           style={{
-            // fontFamily: "Poppins",
             fontWeight: 500,
-            // fontSize: "25px",
-            // lineHeight: "130%",
             color: "#0D4183",
-            maxWidth:400,
+            maxWidth: 400,
           }}
         >
           Their Words speak for us
         </h2>
-
         {/* Review Cards Slider */}
-        <div className="flex justify-center items-center gap-4 min-h-[180px]">
-          <div className="w-full max-w-[95vw] sm:max-w-[600px]">
+        <div className="flex justify-center items-center gap-4">
+          <div className="w-full max-w-xs sm:max-w-[600px]">
             <Slider {...settings}>
               {reviews.map((review) => (
                 <div key={review.id} className="bg-[#ffffff] rounded-t-2xl rounded-bl-2xl p-1">
                   <div
                     className={
-                      "bg-[#E8E8E8] rounded-t-4xl rounded-bl-4xl shadow-md px-4 sm:px-8 py-6 sm:py-8 flex items-start gap-4 sm:gap-6 w-full min-h-[120px] sm:min-h-[140px]"
+                      "bg-[#E8E8E8] rounded-t-3xl rounded-bl-3xl shadow-md px-3 sm:px-8 py-3 sm:py-8 flex items-start gap-3 sm:gap-6 w-full min-h-[80px] sm:min-h-[140px]"
                     }
-                    style={{
-                      // boxShadow: "0 8px 32px 0 rgba(24,71,133,0.10)",
-                    }}
                   >
-                    <div className="flex flex-col items-center min-w-[48px] sm:min-w-[60px]">
+                    <div className="flex flex-col items-center min-w-[40px] sm:min-w-[60px]">
                       <img
                         src={review.img}
                         alt="reviewer"
-                        className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-full border-2"
+                        className="w-9 h-9 sm:w-12 sm:h-12 object-cover rounded-full border-2"
                       />
                     </div>
                     <div className="flex-1 flex flex-col justify-center">
@@ -136,8 +127,8 @@ const PublicReview = () => {
                         style={{
                           fontFamily: "Poppins, sans-serif",
                           fontWeight: 300,
-                          fontSize: "20px",
-                          lineHeight: "36px",
+                          fontSize: "16px",
+                          lineHeight: "28px",
                           letterSpacing: "-0.41px",
                           color: "#0D4059",
                         }}
@@ -157,3 +148,13 @@ const PublicReview = () => {
 };
 
 export default PublicReview;
+
+<style>
+{`
+  @media (max-width: 640px) {
+    .slick-dots {
+      margin-top: 18px !important;
+    }
+  }
+`}
+</style>

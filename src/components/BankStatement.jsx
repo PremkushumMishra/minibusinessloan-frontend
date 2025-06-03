@@ -129,12 +129,15 @@ const BankStatement = () => {
                 },
               }
             );
-            if (statusResponse.data?.userBSAStatus === 'SUCCESS') {
+
+            console.log("Status ",statusResponse)
+            if (statusResponse?.data?.data?.userBSAStatus === 'SUCCESS') {
+
               navigate('/bsa-success');
               return true;
             } else if (
-              statusResponse.data?.userBSAStatus &&
-              statusResponse.data?.userBSAStatus !== 'Pending'
+              statusResponse?.data?.data?.userBSAStatus &&
+              statusResponse?.data?.data?.userBSAStatus !== 'Pending'
             ) {
               navigate('/bsa-rejected');
               return true;
