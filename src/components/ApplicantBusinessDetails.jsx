@@ -47,14 +47,6 @@ const ApplicantBusinessDetails = () => {
     electricityBill: { loading: false, verified: false, error: null },
   });
 
-  // Add state for electricity bill input type and bill number
-
-  const [electricityBillInputType, setElectricityBillInputType] =
-    useState("upload");
-
-  const [userEnteredBillNumber, setUserEnteredBillNumber] = useState("");
-  const [selectedOperatorCode, setSelectedOperatorCode] = useState("");
-
   const [customerID, setCustomerID] = useState(null);
 
   // const getAuthToken = () => {
@@ -345,12 +337,17 @@ const ApplicantBusinessDetails = () => {
           },
         }
       );
-      console.log("User Details API Response:", response.data);
-      if (response.data?.data?.customerID) {
+      
+      if (response.data?.status && response.data?.data?.customerID) {
         setCustomerID(response.data.data.customerID);
+        console.log("CustomerID set:", response.data.data.customerID);
+      } else if (response.data?.customerID) {
+        setCustomerID(response.data.customerID);
+        console.log("CustomerID set:", response.data.customerID);
       }
     } catch (err) {
       console.error("User Details API Error:", err);
+      setSubmitError("Failed to fetch user details. Please try again.");
     }
   };
 
@@ -363,9 +360,13 @@ const ApplicantBusinessDetails = () => {
     console.log("Testing");
     try {
       const token = localStorage.getItem("authToken");
+      const payload = {
+        ...formData,
+        customerID: customerID
+      };
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/save-business-details`,
-        formData,
+        payload,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -375,7 +376,7 @@ const ApplicantBusinessDetails = () => {
         }
       );
 
-      console.log(response);
+      console.log("Submit Response:", response);
 
       if (
         response.data?.status === true &&
@@ -603,8 +604,9 @@ const verifyElectricFile = async (file) => {
   }, []);
 
   return (
-    <div className="max-w-3xl mx-auto p-8 mt-30 mb-10 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl border border-gray-100">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
+    <div className="bg-[#0D4183] py-10">
+    <div className="max-w-3xl mx-auto p-8 -mt-4 bg-white rounded-t-3xl rounded-bl-3xl border border-gray-100">
+      <h2 className="text-3xl font-poppins text-center mb-8 text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text">
         Business Details
       </h2>
       {submitError && (
@@ -616,7 +618,7 @@ const verifyElectricFile = async (file) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* UDYAM Number */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               UDYAM Number{" "}
               <span className="text-gray-400 font-normal">(Optional)</span>
             </label>
@@ -634,7 +636,7 @@ const verifyElectricFile = async (file) => {
               />
               <button
                 type="button"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:opacity-50"
+                className="px-4 py-2 bg-blue-600 text-white rounded-t-2xl rounded-bl-2xl hover:bg-blue-700 transition-colors duration-300 disabled:opacity-50"
                 onClick={() => verifyUdyamNumber(formData.udyamNumber)}
                 disabled={
                   !formData.udyamNumber ||
@@ -664,7 +666,7 @@ const verifyElectricFile = async (file) => {
 
             {/* Phone Number Input */}
             <div className="mt-4">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-sm font-poppins text-gray-700 mb-2">
                 Phone Number for OTP
               </label>
               <input
@@ -681,7 +683,7 @@ const verifyElectricFile = async (file) => {
             {verificationStatus.udyamNumber.showOtpInput && (
               <div className="mt-4 space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-poppins text-gray-700 mb-2">
                     Enter OTP sent to your phone
                   </label>
                   <div className="flex gap-2">
@@ -707,7 +709,7 @@ const verifyElectricFile = async (file) => {
           </div>
           {/* Udyam Date of Registration */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Udyam Date Of Registration
             </label>
             <input
@@ -729,9 +731,8 @@ const verifyElectricFile = async (file) => {
           </div>
           {/* GST Number */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              GST Number
-            </label>
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
+            Gst Number            </label>
             <div className="relative flex gap-2 items-center">
               <input
                 type="text"
@@ -776,7 +777,7 @@ const verifyElectricFile = async (file) => {
           </div>
           {/* Business Name */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Business Name
             </label>
             <input
@@ -795,7 +796,7 @@ const verifyElectricFile = async (file) => {
           </div>
           {/* Business Nature */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Business Nature
             </label>
             <select
@@ -820,7 +821,7 @@ const verifyElectricFile = async (file) => {
           </div>
           {/* Loan Purpose */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Loan Purpose
             </label>
             <select
@@ -845,14 +846,20 @@ const verifyElectricFile = async (file) => {
           </div>
           {/* Business Vintage */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Business Vintage
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
+              Business Vintage (How Much Years Old Your Business)
             </label>
             <input
-              type="text"
+              type="number"
               name="businessVintage"
               value={formData.businessVintage}
-              onChange={handleChange}
+              onChange={(e) => {
+                // Only allow up to 2 digits
+                let value = e.target.value.replace(/[^0-9]/g, '').slice(0, 2);
+                handleChange({ target: { name: 'businessVintage', value } });
+              }}
+              min={0}
+              max={99}
               className={`w-full px-4 py-2.5 rounded-lg border ${
                 errors.businessVintage ? "border-red-500" : "border-gray-300"
               } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 outline-none`}
@@ -866,7 +873,7 @@ const verifyElectricFile = async (file) => {
           </div>
           {/* Business Address */}
           <div className="md:col-span-2">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Business Address
             </label>
             <textarea
@@ -887,7 +894,7 @@ const verifyElectricFile = async (file) => {
           </div>
           {/* No. of Staff */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               No. of Staff
             </label>
             <input
@@ -906,7 +913,7 @@ const verifyElectricFile = async (file) => {
           </div>
           {/* Average TurnOver In Lakhs */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Average TurnOver In Lakhs
             </label>
             <input
@@ -931,7 +938,7 @@ const verifyElectricFile = async (file) => {
           {/* after bill number verification */}
 
           {/* <div className="md:col-span-2">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Electricity Bill (Home/Business)
             </label>
 
@@ -995,7 +1002,7 @@ const verifyElectricFile = async (file) => {
               <div className="space-y-4">
                 <div className="flex flex-wrap gap-2 items-end">
                   <div className="flex-1 min-w-[120px]">
-                    <label className="block font-semibold mb-1">
+                    <label className="block font-poppins mb-1">
                       Bill Number (Optional)
                     </label>
                     <input
@@ -1007,7 +1014,7 @@ const verifyElectricFile = async (file) => {
                     />
                   </div>
                   <div className="flex-1 min-w-[120px]">
-                    <label className="block font-semibold mb-1">Operator</label>
+                    <label className="block font-poppins mb-1">Operator</label>
                     <select
                       value={selectedOperatorCode}
                       onChange={(e) => setSelectedOperatorCode(e.target.value)}
@@ -1048,7 +1055,7 @@ const verifyElectricFile = async (file) => {
 
           {/* Business Photo Upload */}
           <div className="md:col-span-2">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Business Photo
             </label>
             <input
@@ -1068,7 +1075,7 @@ const verifyElectricFile = async (file) => {
 
           {/* Electricity Bill (Home/Business) */}
           <div className="md:col-span-2">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Electricity Bill
             </label>
             <div className="relative">
@@ -1100,13 +1107,14 @@ const verifyElectricFile = async (file) => {
         <div className="flex justify-center mt-8">
           <button
             type="submit"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 shadow-lg"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-t-xl rounded-bl-xl font-poppins hover:from-blue-700 hover:to-purple-700 transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 shadow-lg"
             disabled={verificationStatus.electricityBill.loading}
           >
             Submit
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };

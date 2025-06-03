@@ -38,7 +38,7 @@ const Home = () => {
       {/* <BankVerificationProcess/> */}
 {/* <BankVerificationGlobalModal visible={true} onClose={() => {}} /> */}
       <TalkingLoan />
-      <BankStatementComplted/>
+      {/* <BankStatementComplted/> */}
       {/* <BankVerificationGlobalModal visible={true} onClose={() => {}} /> */}
       {/* <Razorpay /> */}
       {/* <Hindi/> */}

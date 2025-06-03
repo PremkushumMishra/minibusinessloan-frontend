@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import API_CONFIG from "../config";
 // const CUSTOMER_ID = "MBLC0039"; 
 import BankVerificationGlobalModal from "../pages/BankVerificationGlobalModal";
+import { useNavigate } from 'react-router-dom';
 // TODO: Make dynamic if needed
 
 
@@ -13,6 +14,8 @@ const BankStatement = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [pendingValue, setPendingValue] = useState(null);
+  const navigate = useNavigate();
+  const intervalRef = useRef();
 
   // Fetch options on mount
 
@@ -60,32 +63,28 @@ const BankStatement = () => {
     setSuccess('');
     setError('');
     try {
-
       const fetchUserDetails = async () => {
         try {
           const token = localStorage.getItem("authToken");
           const response = await axios.get(
-            // "http://10.6.3.90:3000/api/v1/get/user/details/web",
             `${API_CONFIG.BASE_URL}/get/user/details/web`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
-              // withCredentials: true, // If you want to send cookies
             }
           );
-          console.log("User Details API Response:", response.data);
-          
+          return response.data;
         } catch (err) {
           console.error("User Details API Error:", err);
         }
       };
 
-      fetchUserDetails();
-
+      const data = await fetchUserDetails();
       const token = localStorage.getItem("authToken");
-      const fileNo = response.data.CUSTOMER_ID;
-      console.log('fileNo:', fileNo);
+      const fileNo = data.data.customerID;
+
+      // 1. Initiate bank statement
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`,
         {
@@ -102,13 +101,63 @@ const BankStatement = () => {
           },
         }
       );
+
       if (response.data?.status === true && response.data?.message === "SUCCESS") {
         if (response.data?.data?.tempUrl) {
-          <BankVerificationGlobalModal visible={true} onClose={() => {}} />
           window.open(response.data.data.tempUrl, '_blank');
-          return;
+          // return;
+           // Stop further execution
         }
         setSuccess("Bank statement process initiated successfully.");
+        // 2. Get requestId and fileNo from response
+        const { requestId, fileNo: returnedFileNo } = response.data.data;
+
+        // 3. Polling function
+        const pollBSAStatus = async () => {
+          try {
+            const statusResponse = await axios.post(
+              `${API_CONFIG.BASE_URL}/sourcing/check-bsa-status`,
+              {
+                fileNo: returnedFileNo,
+                requestId: requestId
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            );
+            if (statusResponse.data?.userBSAStatus === 'SUCCESS') {
+              navigate('/bsa-success');
+              return true;
+            } else if (
+              statusResponse.data?.userBSAStatus &&
+              statusResponse.data?.userBSAStatus !== 'Pending'
+            ) {
+              navigate('/bsa-rejected');
+              return true;
+            }
+            return false;
+          } catch (error) {
+            console.log("BSA status API error:", error);
+            setError("Network error. Please try again.");
+            return false;
+          }
+        };
+
+        // 4. Start polling every 20 seconds
+        intervalRef.current = setInterval(async () => {
+          const done = await pollBSAStatus();
+          if (done) {
+            clearInterval(intervalRef.current);
+          }
+        }, 30000);
+
+        // Optionally, check immediately first time
+        await pollBSAStatus();
+
       } else {
         setError(response.data?.message || "Failed to initiate bank statement process.");
       }
@@ -118,8 +167,12 @@ const BankStatement = () => {
     setLoading(false);
   };
 
-
-
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-200 via-purple-100 to-blue-100 py-8 px-2">

@@ -144,10 +144,10 @@ const NameEmailVerify = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto bg-white/90 backdrop-blur-sm rounded-2xl mt-20 shadow-xl p-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+    <div className="min-h-screen bg-[#0D4183] py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md mx-auto bg-white/90 backdrop-blur-sm rounded-t-3xl rounded-bl-3xl shadow-xl p-8">
+        <div className="text-center mb-15">
+          <h2 className="text-3xl font-poppins text-gray-800 mb-2">
             Verify Your Details
           </h2>
           <p className="text-gray-600">
@@ -159,7 +159,7 @@ const NameEmailVerify = () => {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-bold text-gray-700 mb-2"
+              className="block text-sm font-poppins text-gray-700 mb-2"
             >
               Full Name
             </label>
@@ -182,7 +182,7 @@ const NameEmailVerify = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-bold text-gray-700 mb-2"
+              className="block text-sm font-poppins text-gray-700 mb-2"
             >
               Email Address
             </label>
@@ -207,8 +207,8 @@ const NameEmailVerify = () => {
             className="w-full relative group"
             disabled={isLoading}
           >
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-            <div className="relative bg-white px-6 py-3 rounded-lg font-bold text-gray-800 hover:text-[#E0BCF3] transition-all duration-300 group-hover:scale-105 shadow-lg">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] rounded-t-3xl rounded-bl-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <div className="relative bg-white px-6 py-3 rounded-t-2xl rounded-bl-2xl font-poppins text-gray-800 hover:text-[#E0BCF3] transition-all duration-300 group-hover:scale-105 shadow-lg">
               {isLoading ? "Processing..." : "Start KYC Verification"}
             </div>
           </button>

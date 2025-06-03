@@ -169,11 +169,11 @@ if( step === "kyc-process"){
   // }, [attemptCount]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#E0BCF3] to-[#7EE7EE] py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-2xl mx-auto bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 mt-20">
+    <div className="min-h-screen bg-[#0D4183] py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-2xl mx-auto bg-white/90 backdrop-blur-sm rounded-t-3xl rounded-bl-3xl shadow-xl p-8 mt-2">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl font-poppins text-gray-800 mb-4">
             KYC Verification in Progress
           </h2>
           <p className="text-gray-600 text-lg">
@@ -211,7 +211,7 @@ if( step === "kyc-process"){
                   />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-green-700">
+              <h3 className="text-2xl font-poppins text-green-700">
                 KYC Complete!
               </h3>
               <p className="text-green-600 mt-2">
@@ -225,11 +225,11 @@ if( step === "kyc-process"){
         {!kycComplete && (
           <div className="space-y-6 mb-8">
             <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 rounded-full bg-[#E0BCF3] flex items-center justify-center text-white font-bold">
+              <div className="w-8 h-8 rounded-full bg-[#E0BCF3] flex items-center justify-center text-white font-poppins">
                 1
               </div>
               <div>
-                <h3 className="font-bold text-gray-800">
+                <h3 className="font-poppins text-gray-800">
                   Document Verification
                 </h3>
                 <p className="text-gray-600">
@@ -238,22 +238,22 @@ if( step === "kyc-process"){
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 rounded-full bg-[#7EE7EE] flex items-center justify-center text-white font-bold">
+              <div className="w-8 h-8 rounded-full bg-[#7EE7EE] flex items-center justify-center text-white font-poppins">
                 2
               </div>
               <div>
-                <h3 className="font-bold text-gray-800">Identity Check</h3>
+                <h3 className="font-poppins text-gray-800">Identity Check</h3>
                 <p className="text-gray-600">
                   Validating your identity information
                 </p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 rounded-full bg-[#E0BCF3] flex items-center justify-center text-white font-bold">
+              <div className="w-8 h-8 rounded-full bg-[#E0BCF3] flex items-center justify-center text-white font-poppins">
                 3
               </div>
               <div>
-                <h3 className="font-bold text-gray-800">Final Verification</h3>
+                <h3 className="font-poppins text-gray-800">Final Verification</h3>
                 <p className="text-gray-600">
                   Completing the verification process
                 </p>
@@ -281,7 +281,7 @@ if( step === "kyc-process"){
               </div>
               <div className="ml-3">
                 <p className="text-sm text-yellow-700">
-                  <strong className="font-bold">Important:</strong> Please do
+                  <strong className="font-poppins">Important:</strong> Please do
                   not refresh or close this page while the verification is in
                   progress. This may take a few minutes to complete.
                 </p>

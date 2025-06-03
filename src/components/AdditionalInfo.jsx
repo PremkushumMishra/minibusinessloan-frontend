@@ -27,6 +27,14 @@ const AdditionalInfo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Validation: First and Second Reference Name and Contact must not be the same
+    if (
+      form.firstReferenceName.trim().toLowerCase() === form.secondReferenceName.trim().toLowerCase() ||
+      form.firstReferenceContact.trim() === form.secondReferenceContact.trim()
+    ) {
+      window.alert("First and Second Reference Name and Contact Number must not be the same.");
+      return;
+    }
     setLoading(true);
     setSuccess(null);
     setError(null);
@@ -95,149 +103,153 @@ const AdditionalInfo = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-32 p-6 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-6">Additional Information</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block font-medium mb-1">Marital Status</label>
-          <select
-            name="maritalStatus"
-            value={form.maritalStatus}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
+    <div className="min-h-screen bg-[#0D4183] flex items-center justify-center py-8">
+
+    <div className="max-w-xl mx-auto p-8 mb-1 bg-white rounded-t-3xl rounded-bl-3xl shadow-xl border border-gray-100">
+      <h2 className="text-3xl font-poppins text-center mb-8 text-[#0D4183]">
+        Additional Information
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-poppins text-[#0D4183] mb-2">Marital Status</label>
+            <select
+              name="maritalStatus"
+              value={form.maritalStatus}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-[#0D4183] focus:ring-2 focus:ring-[#0D4183] transition-all duration-300 outline-none bg-white text-[#0D4183] placeholder-[#0D4183]"
+              required
+            >
+              <option value="">Select</option>
+              <option value="Married">Married</option>
+              <option value="Unmarried">Unmarried</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-[#0D4183] mb-2">Relation</label>
+            <input
+              type="text"
+              name="relation"
+              value={form.relation}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-[#0D4183] focus:ring-2 focus:ring-[#0D4183] transition-all duration-300 outline-none bg-white text-[#0D4183] placeholder-[#0D4183]"
+              required
+            />
+          </div>
+          {/* <div>
+            <label className="block font-medium mb-1">Email ID</label>
+            <input
+              type="email"
+              name="emailID"
+              value={form.emailID}
+              onChange={handleChange}
+              className="w-full border rounded px-3 py-2"
+              required
+            />
+          </div> */}
+          <div>
+            <label className="block text-sm font-poppins text-[#0D4183] mb-2">First Reference Name</label>
+            <input
+              type="text"
+              name="firstReferenceName"
+              value={form.firstReferenceName}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-[#0D4183] focus:ring-2 focus:ring-[#0D4183] transition-all duration-300 outline-none bg-white text-[#0D4183] placeholder-[#0D4183]"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-[#0D4183] mb-2">First Reference Relation</label>
+            <input
+              type="text"
+              name="firstReferenceRelation"
+              value={form.firstReferenceRelation}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-[#0D4183] focus:ring-2 focus:ring-[#0D4183] transition-all duration-300 outline-none bg-white text-[#0D4183] placeholder-[#0D4183]"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-[#0D4183] mb-2">First Reference Contact</label>
+            <input
+              type="tel"
+              name="firstReferenceContact"
+              value={form.firstReferenceContact}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-[#0D4183] focus:ring-2 focus:ring-[#0D4183] transition-all duration-300 outline-none bg-white text-[#0D4183] placeholder-[#0D4183]"
+              required
+              pattern="[0-9]{10}"
+              maxLength={10}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-[#0D4183] mb-2">Second Reference Name</label>
+            <input
+              type="text"
+              name="secondReferenceName"
+              value={form.secondReferenceName}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-[#0D4183] focus:ring-2 focus:ring-[#0D4183] transition-all duration-300 outline-none bg-white text-[#0D4183] placeholder-[#0D4183]"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-[#0D4183] mb-2">Second Reference Relation</label>
+            <input
+              type="text"
+              name="secondReferenceRelation"
+              value={form.secondReferenceRelation}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-[#0D4183] focus:ring-2 focus:ring-[#0D4183] transition-all duration-300 outline-none bg-white text-[#0D4183] placeholder-[#0D4183]"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-[#0D4183] mb-2">Second Reference Contact</label>
+            <input
+              type="tel"
+              name="secondReferenceContact"
+              value={form.secondReferenceContact}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-[#0D4183] focus:ring-2 focus:ring-[#0D4183] transition-all duration-300 outline-none bg-white text-[#0D4183] placeholder-[#0D4183]"
+              required
+              pattern="[0-9]{10}"
+              maxLength={10}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-poppins text-[#0D4183] mb-2">Phone Number</label>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={form.phoneNumber}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-[#0D4183] focus:ring-2 focus:ring-[#0D4183] transition-all duration-300 outline-none bg-white text-[#0D4183] placeholder-[#0D4183]"
+              required
+              pattern="[0-9]{10}"
+              maxLength={10}
+            />
+          </div>
+        </div>
+        <div className="flex justify-center mt-8">
+          <button
+            type="submit"
+            className="bg-[#0D4183] text-white px-8 py-3 rounded-lg font-poppins hover:bg-[#1556ad] transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#0D4183] focus:ring-offset-2 shadow-lg disabled:opacity-50"
+            disabled={loading}
           >
-            <option value="">Select</option>
-            <option value="Married">Married</option>
-            <option value="Unmarried">Unmarried</option>
-          </select>
+            {loading ? "Submitting..." : "Submit"}
+          </button>
         </div>
-        <div>
-          <label className="block font-medium mb-1">Relation</label>
-          <input
-            type="text"
-            name="relation"
-            value={form.relation}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        {/* <div>
-          <label className="block font-medium mb-1">Email ID</label>
-          <input
-            type="email"
-            name="emailID"
-            value={form.emailID}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div> */}
-        <div>
-          <label className="block font-medium mb-1">First Reference Name</label>
-          <input
-            type="text"
-            name="firstReferenceName"
-            value={form.firstReferenceName}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">
-            First Reference Relation
-          </label>
-          <input
-            type="text"
-            name="firstReferenceRelation"
-            value={form.firstReferenceRelation}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">
-            First Reference Contact
-          </label>
-          <input
-            type="tel"
-            name="firstReferenceContact"
-            value={form.firstReferenceContact}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-            pattern="[0-9]{10}"
-            maxLength={10}
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">
-            Second Reference Name
-          </label>
-          <input
-            type="text"
-            name="secondReferenceName"
-            value={form.secondReferenceName}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">
-            Second Reference Relation
-          </label>
-          <input
-            type="text"
-            name="secondReferenceRelation"
-            value={form.secondReferenceRelation}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">
-            Second Reference Contact
-          </label>
-          <input
-            type="tel"
-            name="secondReferenceContact"
-            value={form.secondReferenceContact}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-            pattern="[0-9]{10}"
-            maxLength={10}
-          />
-        </div>
-        <div>
-          <label className="block font-medium mb-1">Phone Number</label>
-          <input
-            type="tel"
-            name="phoneNumber"
-            value={form.phoneNumber}
-            onChange={handleChange}
-            className="w-full border rounded px-3 py-2"
-            required
-            pattern="[0-9]{10}"
-            maxLength={10}
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-[#0099FF] text-white font-bold py-2 px-4 rounded hover:bg-blue-600 transition"
-          disabled={loading}
-        >
-          {loading ? "Submitting..." : "Submit"}
-        </button>
-        {success && <div className="text-green-600 mt-2">{success}</div>}
-        {error && <div className="text-red-600 mt-2">{error}</div>}
+        {success && (
+          <div className="text-center text-[#0D4183] mt-4 font-medium">{success}</div>
+        )}
+        {error && (
+          <div className="text-center text-[#0D4183] mt-4 font-medium">{error}</div>
+        )}
       </form>
     </div>
+    </div>
+
   );
 };
 

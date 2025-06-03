@@ -198,16 +198,16 @@ const CoApplicant = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#E0BCF3] to-[#7EE7EE] py-12 px-4">
-      <div className="max-w-md w-full bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 mt-20">
-        <h2 className="text-2xl font-bold text-center text-[#003366] mb-6">
+    <div className="min-h-screen flex items-center justify-center bg-[#0D4183] py-12 px-4">
+      <div className="max-w-md w-full bg-white/90 backdrop-blur-sm rounded-t-3xl rounded-bl-3xl shadow-xl p-8 mt-2">
+        <h2 className="text-2xl font-poppins text-center text-[#003366] mb-6">
           Co-Applicant Verification
         </h2>
         
         {/* Show customerID for debugging (remove in production) */}
         {customerID && (
           <p className="text-xs text-gray-500 mb-4 text-center">
-            Customer ID: {customerID}
+            {/* Customer ID: {customerID} */}
           </p>
         )}
         
@@ -216,7 +216,7 @@ const CoApplicant = () => {
           className="space-y-6"
         >
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               Mobile Number
             </label>
             <input
@@ -230,7 +230,7 @@ const CoApplicant = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-bold text-gray-700 mb-2">
+            <label className="block text-sm font-poppins text-gray-700 mb-2">
               PAN Number
             </label>
             <input
@@ -245,7 +245,7 @@ const CoApplicant = () => {
           </div>
           {showOtpInput && (
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-2">
+              <label className="block text-sm font-poppins text-gray-700 mb-2">
                 Enter OTP
               </label>
               <input
@@ -271,7 +271,7 @@ const CoApplicant = () => {
           )}
           <button
             type="submit"
-            className={`w-full py-3 rounded-lg font-bold text-white transition-all duration-300 shadow-lg ${
+            className={`w-full py-3 rounded-t-2xl rounded-bl-2xl font-poppins text-white transition-all duration-300 shadow-lg ${
               showOtpInput
                 ? "bg-[#003366] hover:bg-[#E53935]"
                 : "bg-[#E53935] hover:bg-[#003366]"

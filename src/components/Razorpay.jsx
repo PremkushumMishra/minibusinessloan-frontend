@@ -47,20 +47,27 @@ const RazorpayButton = () => {
   };
 
   return (
-    <div className="text-center mt-10">
-      <button
-        className="flex items-center justify-center gap-3 bg-[#003366] text-white px-8 py-4 rounded-xl shadow-lg hover:bg-[#0250a3] hover:scale-105 focus:ring-4 focus:ring-[#003366]/30 transition-all duration-300 font-semibold text-lg mx-auto"
-        style={{ minWidth: 240 }}
-        onClick={loadRazorpay}
-      >
-        <img
-          src="/razorpaylogo.png"
-          alt="Razorpay"
-          className="h-7 w-7 object-contain"
-          style={{ background: "#fff", borderRadius: "6px", padding: "2px" }}
-        />
-        Pay with Razorpay
-      </button>
+    <div className="min-h-screen bg-[#0D4183] flex items-center justify-center py-10 px-2">
+      <div className="w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12">
+        <h2 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-poppins">
+          Business Details
+        </h2>
+        <div className="text-center mt-10">
+          <button
+            className="flex items-center justify-center gap-3 bg-[#003366] text-white px-8 py-4 rounded-xl shadow-lg hover:bg-[#0250a3] hover:scale-105 focus:ring-4 focus:ring-[#003366]/30 transition-all duration-300 font-semibold text-lg mx-auto"
+            style={{ minWidth: 240 }}
+            onClick={loadRazorpay}
+          >
+            <img
+              src="/razorpaylogo.png"
+              alt="Razorpay"
+              className="h-7 w-7 object-contain"
+              style={{ background: "#fff", borderRadius: "6px", padding: "2px" }}
+            />
+            Pay with Razorpay
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

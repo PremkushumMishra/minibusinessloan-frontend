@@ -24,6 +24,10 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import Faqs from "./components/Faqs";
 import BankStatement from "./components/BankStatement";
 // import HowItWorks from "./components/HowItWorks";
+import EsignPage from "./pages/EsignPage";
+import BankStatementComplted from "./components/BankStatementComplted";
+import BsaRejectes from "./components/BsaRejectes";
+
 function App() {
   return (
     <Router>
@@ -45,9 +49,9 @@ function App() {
         <Route
           path="/name-email-verify"
           element={
-            <ProtectedRoute allowedStep="name-email-verify">
+            // <ProtectedRoute allowedStep="name-email-verify">
               <NameEmailVerify />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
 
@@ -115,7 +119,24 @@ function App() {
           }
           
           />
-        
+          <Route path="/bsa-success" element={
+            // <ProtectedRoute allowedStep="bsa-success">  
+            <BankStatementComplted/>
+            // </ProtectedRoute>
+          }
+/>
+
+<Route  path="/bsa-rejected" element={
+  // <ProtectedRoute allowedStep="bsa-rejected">
+    <BsaRejectes/>
+  //  </ProtectedRoute> 
+}
+  />
+
+
+
+                <Route path="/esign-page" element={<EsignPage/>}/>
+
         {/* optional */}
         {/* <Route path="/applicant-business-details-optional" element={<ApplicantBusinessDetails/>} /> */}
 
