@@ -17,10 +17,10 @@ const About = () => {
         {/* Overlay for mobile */}
         <div className="absolute inset-0 bg-[#003366] opacity-80 md:opacity-0"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-8 text-center">
-          <h1 className="text-white text-[24px] sm:text-[32px] md:text-[40px] leading-tight font-poppins drop-shadow-lg">
+          <h1 className="text-white text-justify text-[24px] sm:text-[32px] md:text-[40px] leading-tight font-poppins drop-shadow-lg">
             A Journey Rooted in Trust, Innovation, and Growth
           </h1>
-          <p className="text-white/90 text-[14px] sm:text-[16px] md:text-lg font-poppins text-mt-4 max-w-[700px] leading-relaxed">
+          <p className="text-white/90 text-[14px] sm:text-[16px] md:text-lg font-poppins text-justify text-mt-4 max-w-[700px] leading-relaxed">
             Our journey began with a simple mission — to provide fast, flexible,
             and accessible loans tailored to the unique needs of MSMEs. We're
             committed to helping small businesses thrive, scale, and contribute
@@ -40,9 +40,9 @@ const About = () => {
         <h2 className="text-[#003366] text-[28px] md:text-[40px] font-poppins mb-4 md:mb-6">
           Our Core Values
         </h2>
-        <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-center">
+        <div className="w-full flex rounded-t-2xl rounded-bl-2xl flex-col md:flex-row gap-6 md:gap-8 items-center justify-center">
           {/* Card 1 */}
-          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 w-xs sm:w-full sm:ml-10 text-left">
+          <div className="bg-[#E5E5E5] rounded-t-2xl rounded-bl-2xl px-8 py-6 flex-1 w-xs sm:w-full sm:ml-10 text-left">
             <div className="font-poppins  text-lg md:text-xl mb-2">
               Innovation
             </div>
@@ -52,7 +52,7 @@ const About = () => {
             </div>
           </div>
           {/* Card 2 */}
-          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 w-xs sm:w-full text-left">
+          <div className="bg-[#E5E5E5] rounded-t-2xl rounded-bl-2xl px-8 py-6 flex-1 w-xs sm:w-full text-left">
             <div className="font-poppins text-lg md:text-xl mb-2">
               Excellence
             </div>
@@ -62,7 +62,7 @@ const About = () => {
             </div>
           </div>
           {/* Card 3 */}
-          <div className="bg-[#E5E5E5] rounded-xl px-8 py-6 flex-1 w-xs sm:w-full sm:mr-10 text-left">
+          <div className="bg-[#E5E5E5] rounded-t-2xl rounded-bl-2xl px-8 py-6 flex-1 w-xs sm:w-full sm:mr-10 text-left">
             <div className="font-poppins  text-lg md:text-xl mb-2">
               Integrity
             </div>
@@ -86,19 +86,17 @@ const About = () => {
               <h3 className="text-[#003366] text-[28px] md:text-[40px] font-poppins  mb-4 md:mb-6">
                 Our Vision
               </h3>
-              <p className="font-poppins text-[16px] md:text-[20px] leading-[26px] md:leading-[32px] mb-4 md:mb-6 text-gray-800">
+              <p className="font-poppins text-justify text-[16px] md:text-[20px] leading-[26px] md:leading-[32px] mb-4 md:mb-6 text-gray-800">
                 To empower Indian businesses with innovative technology
                 solutions that drive growth, create employment opportunities,
                 and contribute to India's digital transformation journey. We are
                 committed to:
               </p>
               <ol className="list-decimal ml-5 font-poppins text-[15px] md:text-[18px] leading-[24px] md:leading-[30px] space-y-2 text-gray-700">
-                <li>
-                  Providing accessible financial solutions to small businesses
-                </li>
-                <li>Supporting entrepreneurs in their growth journey</li>
-                <li>Creating sustainable employment opportunities</li>
-                <li>Building a stronger digital economy</li>
+                <li className="text-justif">Providing accessible financial solutions to small businesses</li>
+                <li className="text-justify">Supporting entrepreneurs in their growth journey</li>
+                <li className="text-justify">Creating sustainable employment opportunities</li>
+                <li className="text-justify">Building a stronger digital economy</li>
               </ol>
             </div>
 
@@ -107,7 +105,7 @@ const About = () => {
               <img
                 src="/ourvissionpic.jpg"
                 alt="Our Vision"
-                className="object-cover w-full max-w-[320px] sm:max-w-[400px] md:max-w-md h-[250px] sm:h-[350px] md:h-[500px] rounded-xl"
+                className="object-cover w-full max-w-[320px] sm:max-w-[400px] md:max-w-md h-[250px] sm:h-[350px] md:h-[500px] rounded-t-3xl rounded-bl-3xl"
               />
             </div>
           </div>
@@ -119,7 +117,7 @@ const About = () => {
               <img
                 src="/about-mission.png"
                 alt="Our Mission"
-                className="rounded-2xl object-cover w-full max-w-[320px] sm:max-w-[400px] md:max-w-md h-[250px] sm:h-[350px] md:h-[500px]"
+                className="rounded-t-3xl rounded-bl-3xl object-cover w-full max-w-[320px] sm:max-w-[400px] md:max-w-md h-[250px] sm:h-[350px] md:h-[500px]"
               />
             </div>
 
@@ -128,12 +126,12 @@ const About = () => {
               <h3 className="text-[#003366] text-[28px] md:text-[40px] font-poppins mb-4 md:mb-6">
                 Our Mission
               </h3>
-              <p className="font-poppins text-[16px] md:text-[20px] leading-[26px] md:leading-[32px] mb-4 md:mb-6 text-gray-800">
+              <p className="font-poppins  text-justify text-[16px] md:text-[20px] leading-[26px] md:leading-[32px] mb-4 md:mb-6 text-gray-800">
                 To become India's most trusted technology partner, known for
                 excellence, innovation, and commitment to sustainable digital
                 growth. We envision:
               </p>
-              <ol className="list-decimal ml-5 font-poppins text-[15px] md:text-[18px] leading-[24px] md:leading-[30px] space-y-2 text-gray-700">
+              <ol className="list-decimal text-justify ml-5 font-poppins text-[15px] md:text-[18px] leading-[24px] md:leading-[30px] space-y-2 text-gray-700">
                 <li>A digitally empowered business ecosystem</li>
                 <li>Financial inclusion for all businesses</li>
                 <li>Innovation-driven economic growth</li>
@@ -144,7 +142,7 @@ const About = () => {
         </div>
 
         {/* Achievements Section */}
-        <div className="mb-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-xl p-8 text-white shadow-lg">
+        <div className="mb-12 bg-gradient-to-r from-[#003366] to-[#E53935] rounded-t-3xl rounded-bl-3xl p-8 text-white shadow-lg">
           <h2 className="text-3xl font-bold mb-8 text-center text-white">
             Our Achievements
           </h2>
@@ -171,7 +169,6 @@ const About = () => {
         </div>
 
         <div className="mb-12">
-          {/* <h2 className="text-3xl font-poppins flex-between text-[#0D4183] mb-8 text-center"> */}
           <h2 className="text-[#003366] text-[28px] md:text-[40px] font-poppins text-center mb-4 md:mb-6">
             Our Partners
           </h2>
@@ -179,8 +176,8 @@ const About = () => {
             {/* Mobile Layout */}
             <div className="md:hidden space-y-0">
               {/* First Partner Card */}
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border-l-8 border-[#003366] relative">
-                <div className="w-20 h-20 object-contain rounded-xl mx-auto mb-4 animate-float delay-100">
+              <div className="bg-white rounded-t-2xl rounded-bl-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center border-l-8 border-[#003366] relative">
+                <div className="w-20 h-20 object-contain rounded-t-2xl rounded-bl-2xl mx-auto mb-4 animate-float delay-100">
                   <img
                     src="/sourcingpartner.png"
                     alt="NBF Partner"
@@ -237,8 +234,8 @@ const About = () => {
               </div>
 
               {/* Second Partner Card */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 text-center border-l-4 border-[#E53935] mb-6">
-                <div className="w-30 h-20 object-contain rounded-xl mx-auto mb-4 animate-float delay-200">
+              <div className="bg-white rounded-t-2xl rounded-bl-2xl shadow-lg p-6 text-center border-l-4 border-[#E53935] mb-6">
+                <div className="w-30 h-20 object-contain rounded-t-2xl rounded-bl-2xl mx-auto mb-4 animate-float delay-200">
                   <img
                     src="/techaviomlogo.png"
                     alt="Sourcing Partner"
@@ -256,8 +253,8 @@ const About = () => {
               </div>
 
               {/* Third Partner Card */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 text-center border-l-4 border-[#0D4183]">
-                <div className="w-30 h-20 object-contain rounded-xl mx-auto mb-4 animate-float delay-300">
+              <div className="bg-white rounded-t-2xl rounded-bl-2xl shadow-lg p-6 text-center border-l-4 border-[#0D4183]">
+                <div className="w-30 h-20 object-contain rounded-t-2xl rounded-bl-2xl mx-auto mb-4 animate-float delay-300">
                   <img
                     src="/techpartner.png"
                     alt="Tech Partner"
@@ -278,8 +275,8 @@ const About = () => {
             {/* Desktop Layout */}
             <div className="hidden md:flex md:flex-row md:gap-x-8">
               {/* NBFC Partner */}
-              <div className="flex-1 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-4 text-center border-l-8 border-[#003366] relative animate-partner-fadeup delay-100 hover:scale-105 transition-transform">
-                <div className="w-16 h-16 object-contain rounded-xl mx-auto mb-3 animate-float delay-100">
+              <div className="flex-1 bg-white rounded-t-2xl rounded-bl-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-4 text-center border-l-8 border-[#003366] relative animate-partner-fadeup delay-100 hover:scale-105 transition-transform">
+                <div className="w-16 h-16 object-contain rounded-t-2xl rounded-bl-2xl mx-auto mb-3 animate-float delay-100">
                   <img
                     src="/sourcingpartner.png"
                     alt="NBF Partner"
@@ -338,8 +335,8 @@ const About = () => {
               </div>
 
               {/* Sourcing Partner */}
-              <div className="flex-1 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-4 text-center border-l-8 border-[#E53935] relative animate-partner-fadeup delay-300 hover:scale-105 transition-transform">
-                <div className="w-16 h-16 object-contain rounded-xl mx-auto mb-3 animate-float delay-200">
+              <div className="flex-1 bg-white rounded-t-2xl rounded-bl-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-4 text-center border-l-8 border-[#E53935] relative animate-partner-fadeup delay-300 hover:scale-105 transition-transform">
+                <div className="w-16 h-16 object-contain rounded-t-2xl rounded-bl-2xl mx-auto mb-3 animate-float delay-200">
                   <img
                     src="/techaviomlogo.png"
                     alt="Sourcing Partner"
@@ -364,8 +361,8 @@ const About = () => {
               </div>
 
               {/* Tech Partner */}
-              <div className="flex-1 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-4 text-center border-l-8 border-[#0D4183] relative animate-partner-fadeup delay-400 hover:scale-105 transition-transform">
-                <div className="w-16 h-16 object-contain rounded-xl mx-auto mb-3 animate-float delay-300">
+              <div className="flex-1 bg-white rounded-t-2xl rounded-bl-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-4 text-center border-l-8 border-[#0D4183] relative animate-partner-fadeup delay-400 hover:scale-105 transition-transform">
+                <div className="w-16 h-16 object-contain rounded-t-2xl rounded-bl-2xl mx-auto mb-3 animate-float delay-300">
                   <img
                     src="/techpartner.png"
                     alt="Tech Partner"

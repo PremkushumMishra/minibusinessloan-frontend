@@ -78,13 +78,13 @@ const EligibleProfile = () => {
                 delay: 0.3 * idx,
               }}
             >
-              <div className="relative rounded-3xl w-full max-w-xs">
+              <div className="relative rounded-t-3xl rounded-bl-3xl w-full max-w-xs">
                 <div className="relative group flex justify-center">
-                  <div className="w-full h-48 md:h-60 rounded-2xl flex justify-center items-center mx-auto">
+                  <div className="w-full h-48 md:h-60  rounded-t-3xl rounded-bl-3xl flex justify-center items-center mx-auto">
                     <img
                       src={img.src}
                       alt={`Eligible profile ${idx + 1}`}
-                      className="w-full h-full object-cover object-center rounded-2xl relative z-10"
+                      className="w-full h-full object-cover object-center rounded-t-3xl rounded-bl-3xl relative z-10"
                       style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
                     />
                   </div>
@@ -95,7 +95,7 @@ const EligibleProfile = () => {
         </div>
 
         {/* Tablet view (3 columns) */}
-        <div className="hidden sm:grid md:hidden grid-cols-3 gap-6">
+        <div className="hidden  rounded-t-3xl rounded-bl-3xl sm:grid md:hidden grid-cols-3 gap-6">
           {images.map((img, idx) => (
             <motion.div
               key={idx}
@@ -109,13 +109,13 @@ const EligibleProfile = () => {
                 delay: 0.3 * idx,
               }}
             >
-              <div className="relative rounded-3xl w-full">
+              <div className="relative  rounded-t-3xl rounded-bl-3xl w-full">
                 <div className="relative group flex justify-center">
                   <div className="w-full h-40 rounded-2xl flex justify-center items-center mx-auto">
                     <img
                       src={img.src}
                       alt={`Eligible profile ${idx + 1}`}
-                      className="w-full h-full object-cover object-center rounded-2xl relative z-10"
+                      className="w-full h-full object-cover object-center rounded-t-3xl rounded-bl-3xl relative z-10"
                       style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
                     />
                   </div>
@@ -155,7 +155,7 @@ const EligibleProfile = () => {
                       <img
                         src={img.src}
                         alt={`Eligible profile ${idx + 1}`}
-                        className="w-full h-full object-cover object-center rounded-2xl relative z-10"
+                        className={`w-full h-full object-cover object-center rounded-t-3xl rounded-bl-3xl relative z-10 ${sizeClass}`}
                         style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.13)" }}
                       />
                     </div>

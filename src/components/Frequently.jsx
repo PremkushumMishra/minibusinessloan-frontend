@@ -69,7 +69,7 @@ const Frequently = () => {
             return (
               <div
                 key={faq.id}
-                className={`transition-all duration-300 overflow-hidden rounded-2xl shadow-sm hover:shadow-md ${
+                className={`transition-all duration-300 overflow-hidden rounded-t-2xl rounded-bl-2xl shadow-sm hover:shadow-md ${
                   isOpen ? "bg-[#184785]" : "bg-[#D9D9D9]"
                 } animate-fade-in transform hover:scale-[1.02] active:scale-[0.98]`}
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -77,7 +77,7 @@ const Frequently = () => {
                 <button
                   className={`w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 ${
                     isOpen ? "text-white" : "text-[#184785]"
-                  } font-semibold text-sm sm:text-base lg:text-lg rounded-2xl text-left`}
+                  } font-semibold text-sm sm:text-base lg:text-lg rounded-t-2xl rounded-bl-2xl-2xl text-left`}
                   onClick={() => setOpenIndex(isOpen ? null : faq.id)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
@@ -86,7 +86,7 @@ const Frequently = () => {
                   <span
                     className={`flex-shrink-0 transition-all duration-300 transform ${
                       isOpen
-                        ? "bg-white text-[#0D4059] rounded-full w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex items-center justify-center text-lg sm:text-2xl lg:text-3xl rotate-180"
+                        ? "bg-white text-[#0D4059] rounded-t-2xl rounded-bl-2xl-full w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex items-center justify-center text-lg sm:text-2xl lg:text-3xl rotate-180"
                         : "text-2xl sm:text-3xl lg:text-4xl text-[#0D4059] flex items-center justify-center"
                     }`}
                     style={{ fontWeight: 400 }}

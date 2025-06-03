@@ -220,7 +220,7 @@ const HowItWorks = () => {
                   >
                     Apply
                   </div>
-                  <div className="text-[#0D4183] text-xs sm:text-sm font-poppins">
+                  <div className="text-[#0D4183] text-xs sm:text-sm text-justify font-poppins">
                     Fill out a simple application form in minutes.
                   </div>
                 </div>
@@ -243,7 +243,7 @@ const HowItWorks = () => {
                   >
                     Document Verification
                   </div>
-                  <div className="text-[#0D4183] text-xs sm:text-sm font-poppins">
+                  <div className="text-[#0D4183] text-justify text-xs sm:text-sm font-poppins">
                     Upload your documents securely for quick verification.
                   </div>
                 </div>
@@ -266,7 +266,7 @@ const HowItWorks = () => {
                   >
                     Eligibility Check
                   </div>
-                  <div className="text-[#0D4183] text-xs sm:text-sm font-poppins">
+                  <div className="text-[#0D4183] text-justify text-xs sm:text-sm font-poppins">
                     Check your eligibility and get instant approval.
                   </div>
                 </div>
