@@ -11,10 +11,10 @@ import KycSuccess from "../components/KycSuccess";
 import ApplicantBusinessDetails from "../components/ApplicantBusinessDetails";
 import LoanEligiblity from "../components/LoanEligiblity";
 // import ApplicantPersonalDetails from "../components/ApplicantPersonalDetails";
-import CoApplicant from '../components/CoApplicant';
-import AdditionalInfo from '../components/AdditionalInfo';
-import EligibleProfile from '../components/EligibleProfile';
-import AppDownload from '../components/AppDownload';
+import CoApplicant from "../components/CoApplicant";
+import AdditionalInfo from "../components/AdditionalInfo";
+import EligibleProfile from "../components/EligibleProfile";
+import AppDownload from "../components/AppDownload";
 import BankStatement from "../components/BankStatement";
 import BsaRejectes from "../components/BsaRejectes";
 import SanctionLatter from "./SanctionLatter";
@@ -23,37 +23,41 @@ import NameEmailVerify from "../components/NameEmailVerify";
 // import Frequently from "../components/Frequently";
 import Hindi from "./Hindi";
 import Frequently from "../components/Frequently";
-import NewWhy from "../components/NewWhy"
+import NewWhy from "../components/NewWhy";
 import MblSanctionlatter from "./MblSanctionlatter";
 import BankVerificationProcess from "./BankVerificationProcess";
 import BankVerificationGlobalModal from "./BankVerificationGlobalModal";
 import Razorpay from "../components/Razorpay";
 import BankStatementComplted from "../components/BankStatementComplted";
-
+import CamProcess from "../components/CamProcess";
+import Abhinandan from "./Abhinandan";
+import EsignPage from "./EsignPage";
 const Home = () => {
   return (
     <>
+      {/* <ApplicantBusinessDetails/> */}
+      {/* <BankStatement/> */}
+      <BankStatementComplted/>
+      <CamProcess />
+      <Abhinandan />
+      <EsignPage />
       {/* <div className="pt-20">  */}
       {/* <MblSanctionlatter/> */}
       {/* <BankVerificationProcess/> */}
-{/* <BankVerificationGlobalModal visible={true} onClose={() => {}} /> */}
+      {/* <BankVerificationGlobalModal visible={true} onClose={() => {}} /> */}
       <TalkingLoan />
-      {/* <BankStatementComplted/> */}
       {/* <BankVerificationGlobalModal visible={true} onClose={() => {}} /> */}
       {/* <Razorpay /> */}
       {/* <Hindi/> */}
-      <EligibleProfile/>
+      <EligibleProfile />
       {/* <Lorem /> */}
       {/* <NewWhy/> */}
       <WhyChoose />
-    
-          <LoanCalculator />
+      <LoanCalculator />
       {/* <BsaRejectes/> */}
-       <PublicReview /> *
-
-      <AppDownload/>  
-
-      <Frequently/>
+      <PublicReview /> *
+      <AppDownload />
+      <Frequently />
       {/* <NameEmailVerify/>   */}
       {/* <SanctionLatter/> */}
       {/* <GetAmount /> */}
@@ -63,9 +67,8 @@ const Home = () => {
       {/* <ApplicantBusinessDetails /> */}
       {/* <LoanEligiblity/> */}
       {/* <AdditionalInfo/> */}
-      {/* <BankStatement/> */}
-      <ChatBot/>
-      </>
+      <ChatBot />
+    </>
   );
 };
 

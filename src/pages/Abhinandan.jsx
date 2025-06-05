@@ -1,51 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import moneyBag from "../assets/MoneyBag.jpg";
 import API_CONFIG from "../config.js"; // Make sure this path is correct
-
+import { StepContext } from "../context/StepContext";
+import { fetchUserDetails } from "../utils/api";
 const Abhinandan = () => {
   const [data, setData] = useState(null);
-  const [customerID, setCustomerID] = useState(null);
   const [status, setStatus] = useState(""); // "success" | "error" | ""
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
-  // Function to fetch user details and get customerID
-  const fetchWeb = async (token) => {
-    try {
-      const response = await axios.get(
-        `${API_CONFIG.BASE_URL}/get/user/details/web`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-      let cid = null;
-      if (response.data?.status === true && response.data?.data?.customerID) {
-        cid = response.data.data.customerID;
-        setCustomerID(cid);
-      } else if (response.data?.customerID) {
-        cid = response.data.customerID;
-        setCustomerID(cid);
-      } else {
-        setStatus("error");
-        setMessage(response.data?.message || "Failed to fetch user details.");
-        setIsLoading(false);
-        return null;
-      }
-      return cid;
-    } catch (err) {
-      setStatus("error");
-      setMessage("Network error. Please try again.");
-      setIsLoading(false);
-      return null;
-    }
-  };
+  const { updateStep } = useContext(StepContext);
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -54,10 +20,24 @@ const Abhinandan = () => {
       setMessage("");
       try {
         const token = localStorage.getItem("authToken");
+        
+        // First get user details to get customerID
+        const userDetails = await fetchUserDetails(token, { navigate });
+        console.log("User Details:", userDetails); // Debug log
+        
+        if (!userDetails || !userDetails.customerID) {
+          setStatus("error");
+          setMessage("Customer ID not found");
+          return;
+        }
+
         // 1. Get sanction amount using customerID
         const sanctionRes = await axios.post(
           `${API_CONFIG.BASE_URL}/sourcing/get-user-sanction-amount`,
-          {}, // No customerID yet
+          { 
+            customerID: userDetails.customerID,
+            // phoneNumber: userDetails.phoneNumber 
+          },
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -67,40 +47,22 @@ const Abhinandan = () => {
           }
         );
         const sanctionResult = sanctionRes.data;
+        console.log("Sanction Result:", sanctionResult); // Debug log
+        
+        updateStep("esign-page");
+        // Call fetchUserDetails after sanction API
+        await fetchUserDetails(token, { navigate });
+
         if (sanctionResult && sanctionResult.status === true) {
           setData(sanctionResult.data);
           setStatus("success");
           setMessage(sanctionResult.message || "Sanction data fetched successfully!");
-
-          // --- Call fetchWeb after sanction API success ---
-          const cid = await fetchWeb(token);
-          if (!cid) return;
-
-          // --- Call send-otp-co-applicant API ---
-          const otpRes = await axios.post(
-            `${API_CONFIG.BASE_URL}/sourcing/send-otp-co-applicant`,
-            { customerID: cid },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-              },
-              withCredentials: true,
-            }
-          );
-          const otpResult = otpRes.data;
-          if (otpResult && otpResult.status === true) {
-            setStatus("success");
-            setMessage(otpResult.message || "OTP sent to co-applicant successfully!");
-          } else {
-            setStatus("error");
-            setMessage(otpResult.message || "Failed to send OTP to co-applicant.");
-          }
         } else {
           setStatus("error");
           setMessage(sanctionResult.message || "Failed to fetch sanction data.");
         }
-      } catch (err) {
+      } catch (error) {
+        console.error("Error:", error);
         setStatus("error");
         setMessage("Network error. Please try again.");
       } finally {
@@ -119,7 +81,16 @@ const Abhinandan = () => {
   }, [message]);
 
   const handleApplyNow = () => {
-    navigate("/esign-page", { state: { ...data, customerID } });
+    navigate("/esign-page", {
+      state: {
+        approvedLoanAmount: data?.sanctionAmount,
+        Tenure: data?.tenure,
+        ROI: data?.roi,
+        accountNumber: data?.accountNumber,
+        customerID: data?.customerID,
+        borrower: data?.borrowerName,
+      },
+    });
   };
 
   return (
@@ -161,9 +132,9 @@ const Abhinandan = () => {
               ₹{data.sanctionAmount}
             </div>
           )}
-          {customerID && (
+          {data && data.customerID && (
             <div className="text-xs text-gray-500 mt-1">
-              Customer ID: {customerID}
+              Customer ID: {data.customerID}
             </div>
           )}
         </div>

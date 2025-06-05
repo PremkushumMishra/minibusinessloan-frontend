@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useStep } from "../context/StepContext";
 import axios from "axios";
 import API_CONFIG from "../config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// protect routing
-// import { useStep } from "../context/useStep";
-import { useEffect } from "react";
+import { fetchUserDetails } from "../utils/api";
+import { StepContext } from "../context/StepContext";
 
 const TERMS_CONTENT = (
   <div className="max-h-[60vh] overflow-y-auto px-2 py-4 bg-white border-l-8 border-black rounded-xl shadow-lg text-black">
@@ -460,42 +458,35 @@ const Modal = ({ open, onClose, onAgree, children }) => {
   );
 };
 
-const fetchUserDetails = async (token) => {
-  try {
-    const response = await axios.get(
-      `${API_CONFIG.BASE_URL}/get/user/details/web`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log("User Details API Response:", response.data);
-  } catch (err) {
-    console.error("User Details API Error:", err);
-  }
-};
+// const fetchUserDetails = async (token) => {
+//   try {
+//     const response = await axios.get(
+//       `${API_CONFIG.BASE_URL}/get/user/details/web`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       }
+//     );
+//     console.log("User Details API Response:", response.data);
+//     return response.data;
+//   } catch (err) {
+//     console.error("User Details API Error:", err);
+//   }
+// };
 
 
 const MobileVerification = () => {
-  const [mobileNumber, setMobileNumber] = useState(() => {
-    const savedMobile = localStorage.getItem('mobileNumber');
-    return savedMobile || "+91";
-  });
+  const [mobileNumber, setMobileNumber] = useState("+91");
   const [otp, setOtp] = useState("");
-  const [showOtpInput, setShowOtpInput] = useState(() => {
-    return localStorage.getItem('showOtpInput') === 'true';
-  });
+  const [showOtpInput, setShowOtpInput] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [hasConsented, setHasConsented] = useState(false);
   const [showTermsModal, setShowTermsModal] = useState(false);
   const navigate = useNavigate();
-  const { updateStep, currentStep } = useStep();
-  const [clientId, setClientId] = useState(() => {
-    return localStorage.getItem('clientId') || "";
-  });
   const [referralCode, setReferralCode] = useState("");
+  const { currentStep, updateStep } = useContext(StepContext);
 
   // API Configuration -change  Just change these URLs when switching APIs
   const API_CONFIG = {
@@ -567,11 +558,8 @@ const MobileVerification = () => {
         response.data?.message === "SUCCESS"
       ) {
         const receivedClientId = response.data?.data?.client_id;
-        setClientId(receivedClientId);
         localStorage.setItem('clientId', receivedClientId);
-        localStorage.setItem('mobileNumber', mobileNumberWithoutPrefix);
         setShowOtpInput(true);
-        localStorage.setItem('showOtpInput', 'true');
         toast.success("OTP sent successfully!");
       } else {
         toast.error(response.data.message || "Failed to send OTP");
@@ -600,14 +588,12 @@ const MobileVerification = () => {
 
     setIsLoading(true);
     try {
-      const mobileNumberWithoutPrefix = mobileNumber.slice(3);
-      // Get clientId from localStorage
       const storedClientId = localStorage.getItem('clientId');
       
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/auth/verify-otp-customer`,
         { 
-          phone: mobileNumberWithoutPrefix, 
+          phone: mobileNumber.slice(3),
           otp: otp, 
           client_id: storedClientId 
         },
@@ -619,25 +605,18 @@ const MobileVerification = () => {
       console.log("OTP verify response:", response.data);
 
       if (response.data?.status === true && response.data?.message === "SUCCESS") {
-        // Store the token
         const token = response.data.data;
         localStorage.setItem("authToken", `${token}`);
         
-        // Store clientId in localStorage if it's in the response
         if (response.data?.data?.client_id) {
           localStorage.setItem('clientId', response.data.data.client_id);
         }
-
-        // Call user details API
-        fetchUserDetails(token);
-
+        console.log("test")
         setVerificationStatus("success");
         toast.success("OTP Verified Successfully!");
-
-        setTimeout(() => {
-          updateStep("name-email-verify");
-          navigate(`/name-email-verify?mobileNumber=${mobileNumberWithoutPrefix}`);
-        }, 1000);
+        // Call user details API with navigate function
+         await fetchUserDetails(token, { navigate });
+        //  navigate("/name-email-verify");
       } else {
         setVerificationStatus("error");
         toast.error(response.data.message || "Invalid OTP");
@@ -653,11 +632,10 @@ const MobileVerification = () => {
   const handleResendOtp = async () => {
     setIsLoading(true);
     try {
-      const mobileNumberWithoutPrefix = mobileNumber.slice(3);
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/auth/generate-otp-customer`,
         {
-          phone: mobileNumberWithoutPrefix,
+          phone: mobileNumber.slice(3),
           appliedMode: "web",
           sourceBy: referralCode || null,
           postingBranch: null,
@@ -670,7 +648,6 @@ const MobileVerification = () => {
         response.data?.message === "SUCCESS"
       ) {
         const receivedClientId = response.data?.data?.client_id;
-        setClientId(receivedClientId);
         localStorage.setItem('clientId', receivedClientId);
         toast.success("OTP resent successfully!");
         fetchUserDetails(localStorage.getItem("authToken"));
@@ -696,7 +673,7 @@ const MobileVerification = () => {
       <ToastContainer position="top-center" />
       <div className="w-full max-w-sm bg-white p-6 rounded-t-3xl rounded-bl-3xl shadow-2xl border-2 border-[#003366] flex flex-col items-center" style={{marginTop: '0'}}>
         <div className="text-center w-full">
-          <h2 className="text-2xl mt-2 sm:text-2xl" style={{ fontFamily: 'Poppins', color: '#222', letterSpacing: 0, lineHeight: '110%' }}>Enter Your Mobile Number</h2>
+          <h2 className="text-2xl mt-2 sm:text-2xl" style={{ fontFamily: 'Poppins', letterSpacing: 0, lineHeight: '110%' }}>Enter Your Mobile Number</h2>
           <p className="mt-2" style={{ fontFamily: 'Poppins', fontWeight: 300, fontSize: 16, lineHeight: '100%',  letterSpacing: 0, color: '##000000' }}>
             Please provide your Addhar-linked <br/>
             <span style={{ display: 'block', marginTop: 6 }}>mobile no</span>
@@ -728,7 +705,7 @@ const MobileVerification = () => {
             </div>
             <div>
               <label htmlFor="referralCode" className="block text-sm font-poppins text-gray-700 mb-1" style={{ fontFamily: 'Poppins' }}>
-                Referral Code (Optional)
+                Agent ID (Optional)
               </label>
               <input
                 id="referralCode"
@@ -891,9 +868,7 @@ const MobileVerification = () => {
             <button
               onClick={() => {
                 setShowOtpInput(false);
-                localStorage.removeItem('showOtpInput');
                 localStorage.removeItem('clientId');
-                localStorage.removeItem('mobileNumber');
                 setOtp("");
                 setVerificationStatus(null);
               }}

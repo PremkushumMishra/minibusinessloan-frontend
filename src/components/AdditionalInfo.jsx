@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import API_CONFIG from "../config";
+import { fetchUserDetails } from "../utils/api";
+import { StepContext } from "../context/StepContext";
 
 const AdditionalInfo = () => {
   const [form, setForm] = useState({
@@ -20,6 +22,7 @@ const AdditionalInfo = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { updateStep } = useContext(StepContext);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -35,9 +38,11 @@ const AdditionalInfo = () => {
       window.alert("First and Second Reference Name and Contact Number must not be the same.");
       return;
     }
+    
     setLoading(true);
     setSuccess(null);
     setError(null);
+    
     try {
       const token = localStorage.getItem("authToken");
       console.log("📦 Token being sent in Authorization header:", token);
@@ -53,29 +58,35 @@ const AdditionalInfo = () => {
           },
         }
       );
-      console.log("additionl info response", response.data);
-      if (
-        response.data?.status === true &&
-        response.data?.message === "SUCCESS"
-      ) {
-        setSuccess("Data submitted successfully!");
-        fetchUserDetails();
-
-     
-        setSuccess("data submitted successfylly");
-        console.log("✅ Success! Navigating to co-applicant...");
-        setTimeout(() => {
-          navigate("/co-applicant");
-        }, 1000);
-      } else if (
-        response.data?.status === false &&
-        response.data?.message === "Lead Rejected"
-      ) {
+      
+      console.log("additional info response", response.data);
+      
+      if (response.data?.status === true && response.data?.message === "SUCCESS") {
+        try {
+          updateStep("co-applicant");
+          // Fetch user details first
+          console.log("User details fetched successfully");
+          
+          // Then show success message
+          setSuccess("Data submitted successfully!");
+          await fetchUserDetails(token, { navigate });
+          
+          // Navigate after a short delay
+          // setTimeout(() => {
+          //   navigate("/co-applicant");
+          // }, 1000);
+        } catch (error) {
+          console.error("Error fetching user details:", error);
+          // Still navigate even if user details fetch fails
+          setSuccess("Data submitted successfully!");
+          setTimeout(() => {
+            navigate("/co-applicant");
+          }, 1000);
+        }
+      } else if (response.data?.status === false && response.data?.message === "Lead Rejected") {
         navigate("/co-applicant");
       } else {
-        setError(
-          response.data?.message || "Submission failed. Please try again."
-        );
+        setError(response.data?.message || "Submission failed. Please try again.");
       }
     } catch (err) {
       console.error("Error:", err);
@@ -85,22 +96,22 @@ const AdditionalInfo = () => {
     }
   };
 
-  const fetchUserDetails = async () => {
-    try {
-      const token = localStorage.getItem("authToken");
-      const response = await axios.get(
-        `${API_CONFIG.BASE_URL}/get/user/details/web`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("User Details API Response:", response.data);
-    } catch (err) {
-      console.error("User Details API Error:", err);
-    }
-  };
+  // const fetchUserDetails = async () => {
+  //   try {
+  //     const token = localStorage.getItem("authToken");
+  //     const response = await axios.get(
+  //       `${API_CONFIG.BASE_URL}/get/user/details/web`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       }
+  //     );
+  //     console.log("User Details API Response:", response.data);
+  //   } catch (err) {
+  //     console.error("User Details API Error:", err);
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-[#0D4183] flex items-center justify-center py-8">

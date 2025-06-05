@@ -4,16 +4,19 @@ const StepContext = createContext();
 export { StepContext };
 
 export const StepProvider = ({ children }) => {
-  const [currentStep, setCurrentStep] = useState("mobile-verification");
+  const [currentStep, setCurrentStep] = useState(() => {
+    // Initialize from localStorage if available
+    return localStorage.getItem("user_step") || "mobile-verification";
+  });
 
+  // Update localStorage whenever currentStep changes
   useEffect(() => {
-    const savedStep = localStorage.getItem("user_step");
-    if (savedStep) setCurrentStep(savedStep);
-  }, []);
+    localStorage.setItem("user_step", currentStep);
+  }, [currentStep]);
 
-  const updateStep = (step) => {
-    setCurrentStep(step);
-    localStorage.setItem("user_step", step);
+  const updateStep = (newStep) => {
+    console.log("Updating step to:", newStep);
+    setCurrentStep(newStep);
   };
 
   return (
@@ -24,7 +27,6 @@ export const StepProvider = ({ children }) => {
 };
 
 export const useStep = () => {
-  
   const context = useContext(StepContext);
   if (!context) {
     throw new Error("useStep must be used within a StepProvider");

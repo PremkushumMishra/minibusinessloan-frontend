@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import API_CONFIG from "../config";
 // const CUSTOMER_ID = "MBLC0039"; 
 import BankVerificationGlobalModal from "../pages/BankVerificationGlobalModal";
 import { useNavigate } from 'react-router-dom';
+import { fetchUserDetails } from "../utils/api";
+import { StepContext } from "../context/StepContext";
 // TODO: Make dynamic if needed
 
 
@@ -14,19 +16,29 @@ const BankStatement = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [pendingValue, setPendingValue] = useState(null);
+  const [customerId, setCustomerId] = useState(null);
   const navigate = useNavigate();
   const intervalRef = useRef();
+  const { updateStep } = useContext(StepContext);
 
-  // Fetch options on mount
-
+  // Fetch options and user details on mount
   useEffect(() => {
-    const fetchOptions = async () => {
+    const initializeData = async () => {
       setLoading(true);
       setError('');
       try {
-
-       
         const token = localStorage.getItem("authToken");
+        if (!token) {
+          throw new Error("Authentication token not found");
+        }
+        updateStep("bank-statement");
+        // Fetch user details first
+        const userDetails = await fetchUserDetails(token, navigate);
+        if (userDetails?.customerID) {
+          setCustomerId(userDetails.customerID);
+        }
+
+        // Fetch statement options
         const response = await axios.get(
           `${API_CONFIG.BASE_URL}/sourcing/get-statement-options`,
           {
@@ -37,58 +49,76 @@ const BankStatement = () => {
             },
           }
         );
-        if (
-          response.data?.status === true &&
-          response.data?.message === "SUCCESS"
-        ) {
+
+        if (response.data?.status === true && response.data?.message === "SUCCESS") {
           setOptions(response.data.data);
         } else {
-          setOptions([]);
-          setError("Failed to fetch statement options.");
+          throw new Error("Failed to fetch statement options");
         }
-      } catch {
+      } catch (error) {
+        console.error("Initialization error:", error);
+        setError(error.message || "Failed to initialize. Please try again.");
         setOptions([]);
-        setError("Network error. Please try again.");
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
-    fetchOptions();
-  }, []);
 
-  console.log("options >>>> ", options);
+    initializeData();
+  }, [navigate]);
+
+  const pollBSAStatus = async (fileNo, requestId) => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const statusResponse = await axios.post(
+        `${API_CONFIG.BASE_URL}/sourcing/check-bsa-status`,
+        { fileNo, requestId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      );
+
+      const status = statusResponse?.data?.data?.userBSAStatus;
+      
+      if (status === 'SUCCESS') {
+        updateStep("bsa-success");
+        navigate('/bsa-success');
+        return true;
+      } else if (status && status !== 'Pending') {
+        updateStep("bsa-rejected");
+        navigate('/bsa-rejected');
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("BSA status check error:", error);
+      setError("Failed to check status. Please try again.");
+      return false;
+    }
+  };
 
   const handleContinue = async () => {
-    if (!pendingValue) return;
+    if (!pendingValue || !customerId) {
+      setError("Please select a bank statement method");
+      return;
+    }
+
     setLoading(true);
     setSuccess('');
     setError('');
+
     try {
-      const fetchUserDetails = async () => {
-        try {
-          const token = localStorage.getItem("authToken");
-          const response = await axios.get(
-            `${API_CONFIG.BASE_URL}/get/user/details/web`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-          return response.data;
-        } catch (err) {
-          console.error("User Details API Error:", err);
-        }
-      };
-
-      const data = await fetchUserDetails();
       const token = localStorage.getItem("authToken");
-      const fileNo = data.data.customerID;
-
-      // 1. Initiate bank statement
+      
+      // Initiate bank statement
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/initiate-bank-statement`,
         {
-          fileNo: fileNo,
+          fileNo: customerId,
           bank: "",
           defaultScreen: pendingValue.code,
           accountType: "Saving"
@@ -103,77 +133,42 @@ const BankStatement = () => {
       );
 
       if (response.data?.status === true && response.data?.message === "SUCCESS") {
+        // Open URL if provided
         if (response.data?.data?.tempUrl) {
           window.open(response.data.data.tempUrl, '_blank');
-          // return;
-           // Stop further execution
         }
+
         setSuccess("Bank statement process initiated successfully.");
-        // 2. Get requestId and fileNo from response
-        const { requestId, fileNo: returnedFileNo } = response.data.data;
+        
+        const { requestId, fileNo } = response.data.data;
 
-        // 3. Polling function
-        const pollBSAStatus = async () => {
-          try {
-            const statusResponse = await axios.post(
-              `${API_CONFIG.BASE_URL}/sourcing/check-bsa-status`,
-              {
-                fileNo: returnedFileNo,
-                requestId: requestId
-              },
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                  "Content-Type": "application/json",
-                  "Access-Control-Allow-Origin": "*",
-                },
-              }
-            );
-
-            console.log("Status ",statusResponse)
-            if (statusResponse?.data?.data?.userBSAStatus === 'SUCCESS') {
-
-              navigate('/bsa-success');
-              return true;
-            } else if (
-              statusResponse?.data?.data?.userBSAStatus &&
-              statusResponse?.data?.data?.userBSAStatus !== 'Pending'
-            ) {
-              navigate('/bsa-rejected');
-              return true;
-            }
-            return false;
-          } catch (error) {
-            console.log("BSA status API error:", error);
-            setError("Network error. Please try again.");
-            return false;
-          }
-        };
-
-        // 4. Start polling every 20 seconds
+        // Start polling
         intervalRef.current = setInterval(async () => {
-          const done = await pollBSAStatus();
+          const done = await pollBSAStatus(fileNo, requestId);
           if (done) {
             clearInterval(intervalRef.current);
           }
         }, 30000);
 
-        // Optionally, check immediately first time
-        await pollBSAStatus();
-
+        // Initial check
+        await pollBSAStatus(fileNo, requestId);
       } else {
-        setError(response.data?.message || "Failed to initiate bank statement process.");
+        throw new Error(response.data?.message || "Failed to initiate bank statement process");
       }
-    } catch {
-      setError("Network error. Please try again.");
+    } catch (error) {
+      console.error("Bank statement process error:", error);
+      setError(error.message || "Failed to process bank statement. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
   }, []);
 
@@ -201,11 +196,16 @@ const BankStatement = () => {
             {!loading && options.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-all duration-200 shadow-sm bg-white hover:border-blue-500 hover:shadow-md border-gray-200"
+                className={`flex items-center justify-between p-3 rounded-lg border cursor-pointer transition-all duration-200 shadow-sm bg-white hover:border-blue-500 hover:shadow-md border-gray-200 ${
+                  pendingValue?.id === item.id ? 'border-blue-500 shadow-md' : ''
+                }`}
                 onClick={() => setPendingValue(item)}
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-xl">{item.serviceType === "Account Aggregator" ? "🔗" : item.serviceType === "Net Banking" ? "🏛️" : "📄"}</span>
+                  <span className="text-xl">
+                    {item.serviceType === "Account Aggregator" ? "🔗" : 
+                     item.serviceType === "Net Banking" ? "🏛️" : "📄"}
+                  </span>
                   <span className="font-medium text-base">{item.serviceType}</span>
                 </div>
               </div>

@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useLocation } from "react-router-dom";
+import { StepContext } from "../context/StepContext";
 
-const EsignPage = ({
-  approvedLoanAmount = 50000,
-  Tenure = 14,
-  ROI = "12%",
-  accountNumber = "1234567890",
-  customerID = "CUST123",
-  borrower = "John Doe",
-}) => {
+const EsignPage = () => {
+  const location = useLocation();
+  const { updateStep } = useContext(StepContext);
+  const {
+    approvedLoanAmount,
+    Tenure,
+    ROI,
+    accountNumber,
+    customerID,
+    borrower,
+  } = location.state || {};
+
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [kycURL, setKycURL] = useState(null);
@@ -47,6 +53,7 @@ const EsignPage = ({
   const processSanction = () => {
     setModalVisible(true);
     setKycURL(null);
+    updateStep("abhinandan"); // Update step after e-sign
   };
 
   // Handle iframe navigation (simulate e-sign success)
@@ -94,12 +101,14 @@ const EsignPage = ({
                 label="Net Disbursement Amount"
                 value={`₹${data?.netDisbursement || ""}`}
               />
+              <DetailRow label="Account Number" value={accountNumber} />
+              <DetailRow label="Customer ID" value={customerID} />
+              <DetailRow label="Borrower" value={borrower} />
             </div>
             <div className="bg-yellow-100 rounded p-3 mb-4 text-sm font-semibold text-gray-700">
               <ul className="list-disc pl-5">
                 <li>
-                  The loan amount will be disbursed to customer's bank account ending with{" "}
-                  {accountNumber?.slice(-5) || "N/A"}
+                  The loan amount will be disbursed to customer's bank account ending with {accountNumber?.slice(-5) || "N/A"}
                 </li>
                 <li>Late payment charges will be applicable for delayed payments</li>
               </ul>

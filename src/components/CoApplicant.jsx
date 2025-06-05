@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext} from "react";
 import axios from "axios";
 import API_CONFIG from "../config";
 import { useNavigate } from "react-router-dom";
+import { fetchUserDetails } from "../utils/api";
+import { StepContext } from "../context/StepContext";
 
 const CoApplicant = () => {
   const [mobile, setMobile] = useState("");
@@ -9,47 +11,38 @@ const CoApplicant = () => {
   const [otp, setOtp] = useState("");
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState(null); // 'success' | 'error' | null
+  const [status, setStatus] = useState(null);
   const [error, setError] = useState("");
   const [customerID, setCustomerID] = useState(null);
-  // const customerID = "MBLC0050";
   const navigate = useNavigate();
+  const { updateStep } = useContext(StepContext);
 
   // PAN validation: 5 letters, 4 digits, 1 letter
   const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/i;
-
   const isMobileValid = /^\d{10}$/.test(mobile);
   const isPanValid = panRegex.test(pan);
 
   // Fetch user details on component mount
   useEffect(() => {
-    fetchUserDetails();
-  }, []);
-
-  const fetchUserDetails = async () => {
-    try {
-      const token = localStorage.getItem("authToken");
-      const response = await axios.get(
-        `${API_CONFIG.BASE_URL}/get/user/details/web`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+    const initializeUserDetails = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+          setError("Authentication token not found");
+          return;
         }
-      );
-      
-      if (response.data?.status && response.data?.data?.customerID) {
-        setCustomerID(response.data.data.customerID);
-        console.log("CustomerID set:", response.data.data.customerID);
-      } else if (response.data?.customerID) {
-        setCustomerID(response.data.customerID);
-        console.log("CustomerID set:", response.data.customerID);
+        const data = await fetchUserDetails(token, { skipNavigate: true });
+        if (data) {
+          setMobile(data.phoneNumber || "");
+          setCustomerID(data.customerID || "");
+        }
+        console.log("User details fetched successfully:", data);
+      } catch {
+        setError("Failed to fetch user details");
       }
-    } catch (err) {
-      console.error("User Details API Error:", err);
-      setError("Failed to fetch user details. Please try again.");
-    }
-  };
+    };
+    initializeUserDetails();
+  }, []);
 
   const handleSendOtp = async (e) => {
     e.preventDefault();
@@ -67,22 +60,24 @@ const CoApplicant = () => {
     
     if (!customerID) {
       setError("Customer ID not found. Please refresh and try again.");
-      await fetchUserDetails(); // Try to fetch again
       return;
     }
     
     setIsLoading(true);
     try {
       const token = localStorage.getItem("authToken");
-      console.log("📦 Token being sent in Authorization header:", token);
-      console.log("📦 CustomerID being sent:", customerID);
+      if (!token) {
+        throw new Error("Authentication token not found");
+      }
+
+      console.log("Mobile being sent to API (Send OTP):", mobile);
 
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/send-otp-co-applicant`,
         {
           phone: mobile,
           pan: pan,
-          customerID: customerID, // Using the customerID from state
+          customerID: customerID,
         },
         {
           headers: {
@@ -93,19 +88,11 @@ const CoApplicant = () => {
           withCredentials: true,
         }
       );
-      console.log(response, "co-applicant response");
 
-      if (
-        response.data?.status === true &&
-        response.data?.message === "SUCCESS"
-      ) {
-        console.log(response.data, "response.data");
-
-        // Update customerID if a new one is returned
+      if (response.data?.status === true && response.data?.message === "SUCCESS") {
         if (response.data?.customerID && response.data.customerID.length > 6) {
           setCustomerID(response.data.customerID);
         }
-        
         setShowOtpInput(true);
         setStatus(null);
         alert("OTP sent to co-applicant mobile number!");
@@ -113,9 +100,7 @@ const CoApplicant = () => {
         setError(response.data.message || "Failed to send OTP.");
       }
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Network error. Please try again."
-      );
+      setError(err.response?.data?.message || "Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -131,30 +116,25 @@ const CoApplicant = () => {
       return;
     }
     
-    // Check if customerID is available
     if (!customerID || customerID.length <= 6) {
       setError("CustomerID is missing or invalid.");
-      await fetchUserDetails(); // Try to fetch again
       return;
     }
     
     setIsLoading(true);
     try {
       const token = localStorage.getItem("authToken");
-      // Get clientId from localStorage
+      if (!token) {
+        throw new Error("Authentication token not found");
+      }
       const clientId = localStorage.getItem('clientId');
-      
-      console.log("📦 Token being sent in Authorization header:", token);
-      console.log("📦 CustomerID being sent for verification:", customerID);
-      console.log("📦 ClientID being sent for verification:", clientId);
-      
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}/sourcing/verify-otp-co-applicant`,
         {
           phone: mobile,
           otp: otp,
           customerID: customerID,
-          client_id: clientId, // Add clientId from localStorage
+          client_id: clientId,
         },
         {
           headers: {
@@ -165,33 +145,28 @@ const CoApplicant = () => {
           withCredentials: true,
         }
       );
-      
-      if (
-        response.data?.status === true &&
-        response.data?.message === "SUCCESS"
-      ) {
+      if (response.data?.status === true && response.data?.message === "SUCCESS") {
         setStatus("success");
-        console.log("✅ OTP verified successfully! Navigating to business details..======>>.",
-          response.data
-        );
+        try {
+          updateStep("applicant-business-details");
+          // Fetch user details after successful OTP verification
+          await fetchUserDetails(token, navigate);
+          console.log("User details fetched successfully after OTP verification");
+        } catch (error) {
+          console.error("Error fetching user details after OTP verification:", error);
+        }
         setTimeout(() => {
           navigate("/applicant-business-details");
         }, 1000);
-      } else if (
-        response.data?.status === false &&
-        response.data?.message === "Lead Rejected"
-      ) {
+      } else if (response.data?.status === false && response.data?.message === "Lead Rejected") {
         navigate("/applicant-business-details");
       } else {
         setStatus("error");
         setError(response.data?.message || "Invalid OTP. Please try again.");
       }
     } catch (err) {
-      console.error("Error ye rha:", err);
       setStatus("error");
-      setError(
-        err.response?.data?.message || "Network error. Please try again."
-      );
+      setError(err.response?.data?.message || "Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }

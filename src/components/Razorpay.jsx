@@ -43,7 +43,7 @@ const RazorpayButton = () => {
   };
 
   return (
-    <div className="min-h-[70vh] bg-gradient-to-b from-[#0D4183] to-[#003366] flex items-center justify-center p-3 xs:p-4 sm:p-6 md:p-8 lg:p-12">
+    <div className="min-h-[70vh] bg-gradient-to-b from-[#0D4183] to-[#003366] flex items-center justify-center mt-5  p-3 xs:p-4 sm:p-6 md:p-8 lg:p-12">
       {/* Main Container */}
       <div className="w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
         {/* Payment Card */}
@@ -65,10 +65,11 @@ const RazorpayButton = () => {
               </p>
               <div className="flex items-center justify-center gap-2">
                 <span className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-[#003366]">
-                  ₹500
+                  {/* ₹500 */}
+                  your amount
                 </span>
                 <span className="text-lg xs:text-xl sm:text-2xl md:text-3xl text-gray-500">
-                  .00
+                  {/* .00 */}
                 </span>
               </div>
               <p className="text-xs xs:text-sm text-gray-500 mt-1 xs:mt-2">

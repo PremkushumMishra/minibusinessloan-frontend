@@ -4,6 +4,7 @@ import { useStep } from "../context/StepContext";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import API_CONFIG from "../config";
+import { fetchUserDetails } from "../utils/api";
 // import ProtectedRoute from "./ProtectedRoute";
 const NameEmailVerify = () => {
   const location = useLocation();
@@ -24,8 +25,21 @@ const NameEmailVerify = () => {
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
     
     
+  useEffect(() => {
+    const getUserDetails = async () => {
+      const token = localStorage.getItem("authToken");
+      if (!token) return;
+      const userDetails = await fetchUserDetails(token, { skipNavigate: true });
+      if (userDetails && userDetails.phoneNumber) {
+        setPhoneNumber(userDetails.phoneNumber);
+      }
+    };
+    getUserDetails();
+  }, []);
+
   useEffect(() => {
     if (mobileNumber) {
       setFormData((prev) => ({
@@ -70,13 +84,14 @@ const NameEmailVerify = () => {
       setIsLoading(true);
       try {
         const token = localStorage.getItem("authToken");
-        console.log("📦 Token being sent in Authorization header:", token); // 👈 consoling token
+        console.log("📦 Token being sent in Authorization header:", token);
+        
         const response = await axios.post(
           `${API_CONFIG.BASE_URL}/sourcing/initiate-digilocker`,
           {
             name: formData.name,
             email: formData.email,
-            phone: localStorage.getItem("mobileNumber"),
+            phone: phoneNumber,
             redirectURL: formData.redirectURL,
           },
           {
@@ -85,35 +100,42 @@ const NameEmailVerify = () => {
               "Content-Type": "application/json",
               "Access-Control-Allow-Origin": "*",
             },
-        
           }
         );
+        
         console.log("Name email verify response:", response.data);  
+        
         if (response.data?.status === true && response.data?.message === "SUCCESS") {
-
           const redirectUrl = response.data?.data?.url;
           console.log("Redirect URL:", redirectUrl);
 
-
-  
           if (redirectUrl) {
             window.open(redirectUrl, "_blank");
           } else {
             alert("URL not received from the server.");
           }
 
-          updateStep("kyc-process");
-          localStorage.setItem("user_step", "kyc-process");
-          // navigate("/kyc-process");
-          fetchUserDetails();
+          // Update step
+          updateStep("additional-info");
+          // localStorage.setItem("user_step", "kyc-process");
 
+          // Store client ID if available
           if (response.data?.data?.client_id) {
             const clientId = response.data.data.client_id;
-              (clientId);
             localStorage.setItem("digilocker_client_id", clientId);
           }
-          navigate("/kyc-process");
 
+          // Fetch user details with the same token
+          try {
+            await fetchUserDetails(token, navigate);
+            console.log("User details fetched successfully");
+          } catch (error) {
+            console.error("Error fetching user details:", error);
+          }
+
+          // Navigate to KYC process to start polling
+          updateStep("kyc-process");
+          navigate("/kyc-process");
         }
       } catch (error) {
         console.error("Error initiating digilocker:", error.response);
@@ -124,24 +146,24 @@ const NameEmailVerify = () => {
     }
   };
 
-  const fetchUserDetails = async () => {
-    try {
-      const token = localStorage.getItem("authToken");
-      const response = await axios.get(
-        // "http://10.6.3.90:3000/api/v1/get/user/details/web",
-        `${API_CONFIG.BASE_URL}/get/user/details/web`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          // withCredentials: true, // If you want to send cookies
-        }
-      );
-      console.log("User Details API Response:", response.data);
-    } catch (err) {
-      console.error("User Details API Error:", err);
-    }
-  };
+  // const fetchUserDetails = async () => {
+  //   try {
+  //     const token = localStorage.getItem("authToken");
+  //     const response = await axios.get(
+  //       // "http://10.6.3.90:3000/api/v1/get/user/details/web",
+  //       `${API_CONFIG.BASE_URL}/get/user/details/web`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //         // withCredentials: true, // If you want to send cookies
+  //       }
+  //     );
+  //     console.log("User Details API Response:", response.data);
+  //   } catch (err) {
+  //     console.error("User Details API Error:", err);
+  //   }
+  // };
 
   return (
     <div className="min-h-screen bg-[#0D4183] py-16 px-4 sm:px-6 lg:px-8">

@@ -1,6 +1,7 @@
 import React from 'react'
 
 const BankStatementComplted = () => {
+  
   return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center text-jsutify bg-gradient-to-br from-white via-blue-50 to-blue-100 py-12">
       <div className="bg-white/95 border border-blue-200 rounded-t-3xl rounded-bl-3xl shadow-2xl px-10 py-12 max-w-xl w-full text-center relative overflow-hidden">

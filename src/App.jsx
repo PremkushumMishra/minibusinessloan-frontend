@@ -19,7 +19,7 @@ import KycProcess from "./components/KycProcess";
 import KycSuccess from "./components/KycSuccess";
 import AdditionalInfo from "./components/AdditionalInfo";
 import CoApplicant from "./components/CoApplicant";
-import TermsCondition from "./components/TermsCondition";  
+import TermsCondition from "./components/TermsCondition";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Faqs from "./components/Faqs";
 import BankStatement from "./components/BankStatement";
@@ -27,7 +27,8 @@ import BankStatement from "./components/BankStatement";
 import EsignPage from "./pages/EsignPage";
 import BankStatementComplted from "./components/BankStatementComplted";
 import BsaRejectes from "./components/BsaRejectes";
-
+import Abhinandan from "./pages/Abhinandan";
+import CamProcess from "./components/CamProcess";
 function App() {
   return (
     <Router>
@@ -40,7 +41,7 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/terms" element={<TermsCondition />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
-        <Route path ="/faqs" element={<Faqs/>}/>
+        <Route path="/faqs" element={<Faqs />} />
 
         <Route path="/apply" element={<Apply />} />
         {/* Step-by-step journey starts here */}
@@ -49,18 +50,18 @@ function App() {
         <Route
           path="/name-email-verify"
           element={
-            // <ProtectedRoute allowedStep="name-email-verify">
+            <ProtectedRoute allowedStep="name-email-verify">
               <NameEmailVerify />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/kyc-process"
           element={
-            // <ProtectedRoute allowedStep="kyc-process">
+            <ProtectedRoute allowedStep="kyc-process">
               <KycProcess />
-            //  </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
@@ -88,66 +89,94 @@ function App() {
         <Route
           path="/additional-info"
           element={
-            //  <ProtectedRoute allowedStep="additional-info">
+            <ProtectedRoute allowedStep="additional-info">
               <AdditionalInfo />
-            //  </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/co-applicant"
           element={
-            //  <ProtectedRoute allowedStep="co-applicant">
+            <ProtectedRoute allowedStep="co-applicant">
               <CoApplicant />
-            //  </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/applicant-business-details"
           element={
-            //      <ProtectedRoute allowedStep="applicant-business-details">
+            <ProtectedRoute allowedStep="applicant-business-details">
               <ApplicantBusinessDetails />
-            //  </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
-        <Route path="/bank-statement" element={
-          //  <ProtectedRoute allowedStep="bank-statement">
-          <BankStatement/>
-          //  </ProtectedRoute>
+        <Route
+          path="/bank-statement"
+          element={
+            <ProtectedRoute allowedStep="bank-statement">
+              <BankStatement />
+            </ProtectedRoute>
           }
-          
-          />
-          <Route path="/bsa-success" element={
-            // <ProtectedRoute allowedStep="bsa-success">  
-            <BankStatementComplted/>
+        />
+        <Route
+          path="/bsa-success"
+          element={
+            <ProtectedRoute allowedStep="bsa-success">
+              <BankStatementComplted />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/bsa-rejected"
+          element={
+            <ProtectedRoute allowedStep="bsa-rejected">
+              <BsaRejectes />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* <Route */}
+        <Route
+          path="/cam-process"
+          element={
+            // <ProtectedRoute allowedStep="cam-process">
+              <CamProcess />
             // </ProtectedRoute>
           }
-/>
+        />
+        <Route
+          path="/abhinandan"
+          element={
+            <ProtectedRoute allowedStep="abhinandan">
+              <Abhinandan />
+            </ProtectedRoute>
+          }
+        />
 
-<Route  path="/bsa-rejected" element={
-  // <ProtectedRoute allowedStep="bsa-rejected">
-    <BsaRejectes/>
-  //  </ProtectedRoute> 
-}
-  />
-
-
-
-                <Route path="/esign-page" element={<EsignPage/>}/>
+        <Route
+          path="/esign-page"
+          element={
+            <ProtectedRoute allowedStep="esign-page">
+              <EsignPage />
+            </ProtectedRoute>
+          }
+        />
 
         {/* optional */}
         {/* <Route path="/applicant-business-details-optional" element={<ApplicantBusinessDetails/>} /> */}
 
-        <Route
+        {/* <Route
           path="/application-processing"
           element={
-            //  <ProtectedRoute allowedStep="application-processing">
+            <ProtectedRoute allowedStep="application-processing">
               <ApplicationProcessing />
-            //  </ProtectedRoute>
+            </ProtectedRoute>
           }
-        />
+        /> */}
       </Routes>
 
       <Footer />
