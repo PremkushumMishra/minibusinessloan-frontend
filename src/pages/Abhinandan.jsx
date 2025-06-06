@@ -5,13 +5,16 @@ import moneyBag from "../assets/MoneyBag.jpg";
 import API_CONFIG from "../config.js"; // Make sure this path is correct
 import { StepContext } from "../context/StepContext";
 import { fetchUserDetails } from "../utils/api";
+import EsignPage from "./EsignPage";
+
 const Abhinandan = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState({});
   const [status, setStatus] = useState(""); // "success" | "error" | ""
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { updateStep } = useContext(StepContext);
+  const [isEsignPage, setIsEsignPage] = useState(false);
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -81,16 +84,18 @@ const Abhinandan = () => {
   }, [message]);
 
   const handleApplyNow = () => {
-    navigate("/esign-page", {
-      state: {
-        approvedLoanAmount: data?.sanctionAmount,
-        Tenure: data?.tenure,
-        ROI: data?.roi,
-        accountNumber: data?.accountNumber,
-        customerID: data?.customerID,
-        borrower: data?.borrowerName,
-      },
-    });
+    // navigate("/esign-page", {
+    //   state: {
+    //     approvedLoanAmount: data?.sanctionAmount,
+    //     Tenure: data?.tenure,
+    //     ROI: data?.roi,
+    //     accountNumber: data?.accountNumber,
+    //     customerID: data?.customerID,
+    //     borrower: data?.borrowerName,
+    //   },
+    // });
+    updateStep("esign-page");
+    setIsEsignPage(true);
   };
 
   return (
@@ -106,8 +111,9 @@ const Abhinandan = () => {
         </div>
       )}
 
-      <button
-        onClick={handleApplyNow}
+     { !isEsignPage && (
+      <div
+        
         className={`flex items-center justify-between w-full max-w-2xl bg-white rounded-3xl shadow-md px-6 py-4 mt-4 transition hover:shadow-lg focus:outline-none ${
           isLoading ? "opacity-50 cursor-not-allowed" : ""
         }`}
@@ -139,7 +145,12 @@ const Abhinandan = () => {
           )}
         </div>
         {/* Icon */}
-        <div className="flex-shrink-0 h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center ml-4">
+        <button
+          onClick={handleApplyNow}
+          className="flex-shrink-0 h-12 w-12 bg-blue-100 rounded-full flex items-center justify-center ml-4 transition hover:bg-blue-200 focus:outline-none"
+          aria-label="Proceed to E-Sign"
+          disabled={isLoading || !data}
+        >
           <svg
             className="w-7 h-7 text-blue-700"
             fill="none"
@@ -153,11 +164,26 @@ const Abhinandan = () => {
               d="M13 5l7 7-7 7M5 5l7 7-7 7"
             />
           </svg>
-        </div>
-      </button>
+        </button>
+      </div>
+      )}
       {isLoading && (
         <div className="mt-4 text-blue-700 font-semibold">Loading...</div>
       )}
+
+{
+  isEsignPage && (
+    <EsignPage 
+    approvedLoanAmount={data?.sanctionAmount}
+    Tenure={data?.tenure}
+    ROI={data?.roi}
+    accountNumber={data?.accountNumber}
+    customerID={data?.customerID}
+    borrower={data?.borrowerName}
+  />
+  )
+}
+
     </div>
   );
 };

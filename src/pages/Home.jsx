@@ -32,15 +32,17 @@ import BankStatementComplted from "../components/BankStatementComplted";
 import CamProcess from "../components/CamProcess";
 import Abhinandan from "./Abhinandan";
 import EsignPage from "./EsignPage";
+import DisbursalProcess from "../components/DisbursalProcess";
 const Home = () => {
   return (
     <>
       {/* <ApplicantBusinessDetails/> */}
       {/* <BankStatement/> */}
-      <BankStatementComplted/>
-      <CamProcess />
-      <Abhinandan />
-      <EsignPage />
+      {/* <BankStatementComplted/> */}
+      {/* <CamProcess /> */}
+      {/* <Abhinandan /> */}
+      {/* <EsignPage /> */}
+      {/* <DisbursalProcess /> */}
       {/* <div className="pt-20">  */}
       {/* <MblSanctionlatter/> */}
       {/* <BankVerificationProcess/> */}

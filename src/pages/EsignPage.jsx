@@ -1,23 +1,16 @@
 import React, { useState, useContext } from "react";
-import { useLocation } from "react-router-dom";
 import { StepContext } from "../context/StepContext";
+import { fetchUserDetails } from "../utils/api";
+import { useNavigate } from "react-router-dom";
+const EsignPage = ({approvedLoanAmount, Tenure, ROI, accountNumber, customerID, borrower}) => {
 
-const EsignPage = () => {
-  const location = useLocation();
   const { updateStep } = useContext(StepContext);
-  const {
-    approvedLoanAmount,
-    Tenure,
-    ROI,
-    accountNumber,
-    customerID,
-    borrower,
-  } = location.state || {};
 
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [kycURL, setKycURL] = useState(null);
   const [data, setData] = useState({});
+  const navigate = useNavigate();
 
   // Calculate loan details
   React.useEffect(() => {
@@ -41,6 +34,23 @@ const EsignPage = () => {
 
   // Dummy function for e-sign
   const handleContinue = async () => {
+
+    const token = localStorage.getItem("authToken");
+
+    const userDetails = await fetchUserDetails(token, { navigate });
+    const response = await axios.post(`${API_CONFIG.BASE_URL}/sourcing/preview-sanction`, {     
+      customerID: userDetails.customerID, 
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
+
+    // open a blank page with google.com
+    window.open("https://www.google.com", "_blank");
+    // window.location.navigate("/esign-page;")
+
     setLoading(true);
     // Simulate API call
     setTimeout(() => {

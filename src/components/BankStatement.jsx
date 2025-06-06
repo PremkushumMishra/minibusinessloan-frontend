@@ -85,6 +85,10 @@ const BankStatement = () => {
       const status = statusResponse?.data?.data?.userBSAStatus;
       
       if (status === 'SUCCESS') {
+        // Call fetchUserDetails API after BSA success
+        const token = localStorage.getItem("authToken");
+        const userDetails = await fetchUserDetails(token, { navigate });
+        console.log("fetchUserDetails after BSA SUCCESS:", userDetails);
         updateStep("bsa-success");
         navigate('/bsa-success');
         return true;

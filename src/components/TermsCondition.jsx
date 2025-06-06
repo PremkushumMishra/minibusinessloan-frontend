@@ -65,12 +65,12 @@ const TermsCondition = () => {
                   Company to sanction, process, and disburse loans via the
                   Platform.
                 </li>
-                <li>
+                {/* <li>
                   "Company" or "we" means MiniBusiness Loan, a platform managed
-                  by U.Y. Fincorp Private Limited, incorporated under the
+                  by Rich Credit Pvt Ltd, incorporated under the
                   Companies Act, 2013, and administered by its appointed
                   representatives.
-                </li>
+                </li> */}
                 <li>
                   "Customer(s)," "you," or "End-Users" refers to any person who
                   visits, downloads, accesses, or uses the Platform or Services.

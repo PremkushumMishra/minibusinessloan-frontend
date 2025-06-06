@@ -29,6 +29,7 @@ import BankStatementComplted from "./components/BankStatementComplted";
 import BsaRejectes from "./components/BsaRejectes";
 import Abhinandan from "./pages/Abhinandan";
 import CamProcess from "./components/CamProcess";
+import DisbursalProcess from "./components/DisbursalProcess";
 function App() {
   return (
     <Router>
@@ -157,18 +158,25 @@ function App() {
           }
         />
 
-        <Route
+        {/* <Route
           path="/esign-page"
           element={
             <ProtectedRoute allowedStep="esign-page">
               <EsignPage />
             </ProtectedRoute>
           }
-        />
+        /> */}
 
+        <Route
+          path="/disbursal-process"
+          element={
+            <ProtectedRoute allowedStep="disbursal-process">
+              <DisbursalProcess />
+            </ProtectedRoute>
+          }
+        />
         {/* optional */}
         {/* <Route path="/applicant-business-details-optional" element={<ApplicantBusinessDetails/>} /> */}
-
         {/* <Route
           path="/application-processing"
           element={

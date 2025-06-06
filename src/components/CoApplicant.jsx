@@ -150,7 +150,8 @@ const CoApplicant = () => {
         try {
           updateStep("applicant-business-details");
           // Fetch user details after successful OTP verification
-          await fetchUserDetails(token, navigate);
+          const userDetails = await fetchUserDetails(token, navigate);
+          console.log("customerID co-aplicant:", userDetails.customerID);
           console.log("User details fetched successfully after OTP verification");
         } catch (error) {
           console.error("Error fetching user details after OTP verification:", error);
