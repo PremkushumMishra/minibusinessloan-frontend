@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import API_CONFIG from "../config";
 
@@ -6,7 +5,7 @@ export const fetchUserDetails = async (token, { navigate, skipNavigate = false }
     const steps = [
         "mobile-verification",
         "name-email-verify",
-        "kyc-process",
+        // "kyc-process",    
         "additional-info",
         "co-applicant",
         "applicant-business-details",
@@ -27,13 +26,14 @@ export const fetchUserDetails = async (token, { navigate, skipNavigate = false }
             }
         );
         console.log("User Details API Response:", response.data);
-// if response.data.data.loanApplicationStatus is 7 or 8 navigate to cam-process
-if (response.data.data.loanApplicationStatus === 7 || response.data.data.loanApplicationStatus === 8) {
-    // if (navigate && typeof navigate === "function" && !skipNavigate) {
-        navigate("/cam-process");
-        return;
-    // }
-}
+        if (response.data.data.loanApplicationStatus === 7) {
+            navigate("/cam-process");
+            return;
+        }
+            // if (response.data.data.loanApplicationStatus === 8) {
+            //     navigate('/abhinandan');
+                
+            // }
 
         if (!localStorage.getItem("user_step")) {
             const nextStep = steps[response.data.data.loanApplicationStatus];

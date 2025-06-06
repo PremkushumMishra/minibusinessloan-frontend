@@ -5,6 +5,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import API_CONFIG from "../config";
 import { fetchUserDetails } from "../utils/api";
+import KycProcess from "./KycProcess";
 // import ProtectedRoute from "./ProtectedRoute";
 const NameEmailVerify = () => {
   const location = useLocation();

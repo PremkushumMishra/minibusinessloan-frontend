@@ -26,8 +26,8 @@ const Abhinandan = () => {
         
         // First get user details to get customerID
         const userDetails = await fetchUserDetails(token, { navigate });
-        console.log("User Details:", userDetails); // Debug log
-        
+        console.log("User Details: abhinandan page", userDetails); // Debug log
+        console.log("customerid in abhinandan page", userDetails?.customerID);
         if (!userDetails || !userDetails.customerID) {
           setStatus("error");
           setMessage("Customer ID not found");
@@ -56,8 +56,14 @@ const Abhinandan = () => {
         // Call fetchUserDetails after sanction API
         await fetchUserDetails(token, { navigate });
 
-        if (sanctionResult && sanctionResult.status === true) {
-          setData(sanctionResult.data);
+        if (
+          sanctionResult &&
+          sanctionResult.status === true &&
+          Array.isArray(sanctionResult.data) &&
+          sanctionResult.data.length > 0
+        ) {
+          const sanctionData = sanctionResult.data[0];
+          setData(sanctionData);
           setStatus("success");
           setMessage(sanctionResult.message || "Sanction data fetched successfully!");
         } else {
@@ -173,14 +179,14 @@ const Abhinandan = () => {
 
 {
   isEsignPage && (
-    <EsignPage 
-    approvedLoanAmount={data?.sanctionAmount}
-    Tenure={data?.tenure}
-    ROI={data?.roi}
-    accountNumber={data?.accountNumber}
-    customerID={data?.customerID}
-    borrower={data?.borrowerName}
-  />
+    <EsignPage
+      approvedLoanAmount={data?.approvedLoanAmount}
+      Tenure={data?.Tenure}
+      ROI={data?.ROI}
+      accountNumber={data?.accountNumber}
+      customerID={data?.customerID}
+      borrower={data?.borrower}
+    />
   )
 }
 

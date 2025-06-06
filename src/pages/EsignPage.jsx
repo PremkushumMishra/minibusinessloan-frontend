@@ -2,16 +2,19 @@ import React, { useState, useContext } from "react";
 import { StepContext } from "../context/StepContext";
 import { fetchUserDetails } from "../utils/api";
 import { useNavigate } from "react-router-dom";
+import API_CONFIG from "../config";
+import axios from "axios";
+// import { StepContext } from "../context/StepContext";
 const EsignPage = ({approvedLoanAmount, Tenure, ROI, accountNumber, customerID, borrower}) => {
 
-  const { updateStep } = useContext(StepContext);
+  // const { updateStep } = useContext(StepContext);
 
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [kycURL, setKycURL] = useState(null);
   const [data, setData] = useState({});
   const navigate = useNavigate();
-
+  const { updateStep } = useContext(StepContext);
   // Calculate loan details
   React.useEffect(() => {
     if (approvedLoanAmount) {
@@ -34,29 +37,52 @@ const EsignPage = ({approvedLoanAmount, Tenure, ROI, accountNumber, customerID, 
 
   // Dummy function for e-sign
   const handleContinue = async () => {
+    try {
+      setLoading(true);
+      console.log("Button clicked, starting process...");
+      const token = localStorage.getItem("authToken");
+      updateStep("abhinandan");
+      const userDetails = await fetchUserDetails(token, { navigate });
+      console.log("User details fetched:", userDetails);
 
-    const token = localStorage.getItem("authToken");
+      // Destructure customerID
+      const { customerID } = userDetails;
+      console.log("Customer ID to send:", customerID);
 
-    const userDetails = await fetchUserDetails(token, { navigate });
-    const response = await axios.post(`${API_CONFIG.BASE_URL}/sourcing/preview-sanction`, {     
-      customerID: userDetails.customerID, 
-    }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      withCredentials: true,
-    });
+      const previewRes = await axios.post(`${API_CONFIG.BASE_URL}/sourcing/preview-sanction`, {     
+        customerID: customerID,
+        callbackUrl: 'https://minibusinessloan.com/abhinandan', // or your actual callback URL
+        amountApplied: approvedLoanAmount,
+        tenure: Tenure,
+        repaymentAmount: data?.repaymentAmount,
+        interestRate: ROI,
+        processingFee: data?.processingFee,
+        emi: data?.EMI,
+        netDisbursement: data?.netDisbursement,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+      console.log("Preview-sanction API response:", previewRes);
 
-    // open a blank page with google.com
-    window.open("https://www.google.com", "_blank");
-    // window.location.navigate("/esign-page;")
+      // Open signUrl in new tab if present
+      const signUrl = previewRes.data?.data?.signUrl;
+      if (signUrl) {
+        window.open(signUrl, "_blank");
+      }
 
-    setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setKycURL("https://www.example.com/esign"); // Replace with real URL
+      // Simulate API call
+      setTimeout(() => {
+        setKycURL("https://www.example.com/esign"); // Replace with real URL
+        setLoading(false);
+      }, 1000);
+    } catch (error) {
+      console.error("Error in e-sign process:", error);
       setLoading(false);
-    }, 1000);
+      // You might want to show an error message to the user here
+    }
   };
 
   // Dummy function for processing sanction
